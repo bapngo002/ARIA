@@ -3,9 +3,9 @@
 | Field | Value |
 |---|---|
 | Document ID | ARIA-HW-001 |
-| Revision | A |
-| Date | 2026-07-26 |
-| Status | Hardware freeze — review required |
+| Revision | B |
+| Date | 2026-07-27 |
+| Status | Conversation synchronized — validation review active |
 | Project phase | Sprint 2 |
 | Governing documents | ARIA-PRD-001, ARIA-BOM-001 |
 
@@ -31,6 +31,10 @@ authorize procurement, PCB fabrication, or enclosure manufacturing.
   enclosure constraint.
 - Exact variants and validation evidence remain mandatory where the BOM marks a
   `VALIDATION-HOLD`.
+- The ESP32 target is the DevKitC-1 N16R8 variant.
+- The power-protection conversation decisions are captured without hiding the
+  required engineering checks: AO3401A is a latch/control device and
+  IPT015N10N5 requires an N-channel reverse-protection topology.
 
 ## 3. Compatibility review
 
@@ -47,6 +51,8 @@ authorize procurement, PCB fabrication, or enclosure manufacturing.
 | `ARIA-MCU-001` → `ARIA-SEN-001` | Unresolved | Prove XSHUT address assignment, bus partitioning, or multiplexing with the exact carriers. |
 | `ARIA-MCU-001` → `ARIA-SEN-002`/`003` and `ARIA-PWR-005` | Conditional | Allocate interfaces and test update rate, address conflicts, and bus recovery. |
 | `ARIA-CPU-001` ↔ `ARIA-MCU-001` | Compatible in principle | Verify pins, boot states, ground, routing, CRC fault handling, and watchdog stop. |
+| `ARIA-PWR-004` soft latch | Conditional | Verify main pass device, latch state machine, shutdown timing, inrush, and safe failure behavior; AO3401A is control-only. |
+| `ARIA-PWR-008` reverse protection | Unresolved | Verify the exact IPT015N10N5 package and an appropriate N-channel topology before schematic and footprint release. |
 
 ## 4. CAD readiness gate
 
@@ -62,6 +68,9 @@ A component is CAD-ready only when it has:
 
 Verified part models live in `cad/parts/`. The robot coordinate system and
 assembly rules are defined in `ARIA-MECH-001.md`.
+
+The initial CAD inventory, hashes, and filename normalization are controlled by
+`ARIA-CAD-STATUS-001.md`.
 
 ## 5. PCB readiness gate
 
@@ -99,3 +108,5 @@ Until then, Sprint 2 remains a **design freeze**, not a purchase release.
 - [ ] The master assembly has no hard interference and preserves service access.
 - [ ] PCB outline and connector positions are exported from the approved CAD.
 - [ ] BOM and manufacturing review show no silent component substitutions.
+- [ ] The purchase register contains an exact verified listing for every ordered
+      item; search terms alone are not treated as approval.

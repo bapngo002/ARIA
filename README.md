@@ -9,8 +9,8 @@ computer with an independent real-time motion and safety controller.
 |---|---|
 | M0 — Frozen requirements | Complete |
 | M1 — Hardware selection | Complete; historical drafts removed from the active tree |
-| M2 — Sprint 2 hardware freeze | In review; design work only |
-| M3 — Verified CAD library and packing study | Not started |
+| M2 — Sprint 2 hardware freeze | Synchronized; validation holds remain |
+| M3 — Verified CAD library and packing study | In progress; 3 user CAD files imported |
 | M4 — Mainboard and bench prototype | Not started |
 
 No document in this repository currently authorizes a full component purchase,
@@ -26,6 +26,12 @@ PCB fabrication, or enclosure manufacture.
 4. [ARIA-PCB-001](docs/ARIA-PCB-001.md) — two-layer mainboard development rules.
 5. [ARIA-MECH-001](docs/ARIA-MECH-001.md) — mechanical and CAD conventions.
 6. [ARIA-WIRING-001](docs/ARIA-WIRING-001.md) — wiring and internal interfaces.
+7. [ARIA-PURCHASE-001](docs/ARIA-PURCHASE-001.md) — Amazon/AliExpress
+   procurement register for frozen parts.
+8. [ARIA-CAD-STATUS-001](docs/ARIA-CAD-STATUS-001.md) — CAD file inventory,
+   hashes, verification state, and naming map.
+9. [ARIA-SPRINT-2](docs/ARIA-SPRINT-2.md) — active Sprint 2 work and exit
+   criteria.
 
 See [docs/README.md](docs/README.md) for document ownership and change rules.
 
@@ -56,5 +62,8 @@ them.
 - Never guess geometry. Use manufacturer data, a dimensionally verified model,
   or a measured physical sample.
 - Never fabricate a PCB or mechanical part from an unreviewed export.
+- New component or CAD data must be checked against the BOM, existing hashes,
+  and stable ARIA IDs before it is added. Conflicts are resolved in the
+  controlled documents rather than duplicated.
 - Merge only after the branch diff, validation holds, and generated release
   package have been reviewed.

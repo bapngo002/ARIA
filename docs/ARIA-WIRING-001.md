@@ -3,8 +3,8 @@
 | Field | Value |
 |---|---|
 | Document ID | ARIA-WIRING-001 |
-| Revision | 0 |
-| Status | Sprint 2 placeholder |
+| Revision | A |
+| Status | Sprint 2 interface baseline |
 | Governing documents | ARIA-PRD-001, ARIA-BOM-001, ARIA-HW-001, ARIA-PCB-001 |
 
 ## Frozen control link
@@ -32,6 +32,9 @@ received for 300 ms, the MCU commands both motors to stop.
   does not permit uncontrolled shared high-current return paths.
 - Permanent internal connections may be soldered only when service replacement
   is not reasonably expected. Replaceable assemblies use keyed connectors.
+- Direct soldering is preferred where it safely reduces volume, but battery,
+  fuse, storage, compute, camera, display, motors, speakers, and other service
+  parts retain a documented disconnect or service method.
 - Wire gauge, insulation, connector family, pinout, and current derating remain
   open until the measured power budget and CAD routing are complete.
 
