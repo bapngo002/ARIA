@@ -1,0 +1,28 @@
+# Operating-system and editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Temporary and backup files
+*.bak
+*.tmp
+*.swp
+*~
+
+# FreeCAD backups
+*.FCStd1
+
+# KiCad temporary files and local caches
+*-backups/
+*.lck
+_autosave-*
+fp-info-cache
+
+# Firmware build output
+.pio/
+build/
+
+# Python caches used by tooling
+__pycache__/
+*.py[cod]

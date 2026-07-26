@@ -1,7 +1,7 @@
 # ARIA CAD workspace
 
 CAD files use millimetres and stable component IDs from
-`docs/ARIA-HW-001.md`.
+`docs/ARIA-BOM-001.md`.
 
 - `parts/` — verified individual component models and keep-outs
 - `assemblies/` — robot packaging and subassemblies

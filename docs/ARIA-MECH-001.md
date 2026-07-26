@@ -5,7 +5,7 @@
 | Document ID | ARIA-MECH-001 |
 | Revision | 0 |
 | Status | Sprint 2 placeholder |
-| Governing documents | ARIA-PRD-001, ARIA-HW-001 |
+| Governing documents | ARIA-PRD-001, ARIA-BOM-001, ARIA-HW-001 |
 
 ## Objective
 
@@ -26,11 +26,11 @@ earlier 150 × 150 × 150 mm envelope is a starting volume, not the final size.
 
 ## Frozen geometry
 
-- Two ARIA-WHL-001 wheels: Ø60 mm × 18–20 mm.
-- Two ARIA-MOT-001 motors.
+- Two `ARIA-WHL-001` wheels.
+- Two `ARIA-MOT-001` motors.
 - Gear geometry and transmission ratio are deliberately not frozen; the owner
   will design them after the real motor/wheel mounting geometry is known.
-- Raspberry Pi 5 uses ARIA-THM-001 and needs a direct intake/exhaust route.
+- `ARIA-CPU-001` uses `ARIA-THM-001` and needs a direct intake/exhaust route.
 - Camera, display, microphone array, ToF sensors, speakers, and environmental
   sensor need functional openings and keep-outs.
 
@@ -41,7 +41,7 @@ earlier 150 × 150 × 150 mm envelope is a starting volume, not the final size.
    bearings unless the final transmission design proves otherwise.
 3. Keep motor phases and switching power away from microphone, audio, IMU, and
    sensor wiring.
-4. Keep the SHT45 outside internal heat and exhaust flow.
+4. Keep `ARIA-SEN-003` outside internal heat and exhaust flow.
 5. Keep microphone ports away from fan turbulence and mechanically isolate them.
 6. Provide service access to battery, fuse, storage, connectors, and debug ports.
 7. Reserve cable bend radius before shrinking the enclosure.
@@ -61,7 +61,7 @@ earlier 150 × 150 × 150 mm envelope is a starting volume, not the final size.
 ## Release gates
 
 - [ ] Every frozen component has a checked envelope and keep-outs.
-- [ ] Exact battery, display, ESP32 board, speakers, and sensor carriers are known.
+- [ ] Exact battery, display, MCU, speakers, and sensor carriers are known.
 - [ ] Wheel/transmission design is approved.
 - [ ] No hard interference exists in the master assembly.
 - [ ] Battery and fuse can be isolated for service.

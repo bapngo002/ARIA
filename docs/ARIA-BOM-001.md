@@ -1,90 +1,131 @@
-# ARIA V1 — BOM Rev A Working Draft
+# ARIA-BOM-001 — ARIA V1 Master Bill of Materials
 
-**Document ID:** ARIA-BOM-001  
-**Revision:** Draft A0  
-**Date:** 2026-07-25  
-**Status:** Budgetary estimate — **DO NOT BUY FULL BOM**  
-**Currency:** VND
+| Field | Value |
+|---|---|
+| Document ID | ARIA-BOM-001 |
+| Revision | A |
+| Date | 2026-07-26 |
+| Status | Hardware freeze — review required; not released for procurement |
+| Governing requirement | ARIA-PRD-001 |
 
-Prices below are target prices for selection, not supplier quotations. Shipping,
-tools, enclosure printing, replacement parts, taxes, ChatGPT/Gemini usage and
-other subscriptions are excluded.
+## 1. Authority
 
-## 1. Base BOM
+This file is the **single source of truth** for ARIA V1 component identities,
+quantities, freeze states, and open procurement data.
 
-| ID | Subsystem | Candidate / minimum specification | Qty | Target unit | Target total | Gate |
-|---|---|---|---:|---:|---:|---|
-| C01 | Main compute | Orange Pi 3B 4 GB, exact revision recorded | 1 | 1,450,000 | 1,450,000 | M1-1, M1-2 |
-| C02 | Storage | 64 GB high-endurance/A2 microSD, genuine | 1 | 200,000 | 200,000 | M1-1 |
-| C03 | Cooling | Board-specific heatsink + 5 V fan | 1 | 120,000 | 120,000 | M1-1 |
-| D01 | Display | 7-inch IPS HDMI, 1024×600 or better, USB capacitive touch | 1 | 950,000 | 950,000 | M1-1 |
-| V01 | Camera | UVC USB, 1080p, ≥100° diagonal FOV | 1 | 350,000 | 350,000 | M1-2 |
-| A01 | Direction audio | 4× matched INMP441 I2S microphones + rigid circular fixture | 1 set | 200,000 | 200,000 | M1-3 |
-| A02 | Playback | 3 W class-D amplifier + 4 Ω speaker | 1 set | 180,000 | 180,000 | M1-3 |
-| M01 | Safety MCU | ESP32-S3 dev board with PSRAM | 1 | 180,000 | 180,000 | M1-4 |
-| M02 | Drive motors | 6 V metal gear motors with quadrature/Hall encoders; stall current must be measured | 2 | 250,000 | 500,000 | M1-4 |
-| M03 | Motor driver | TB6612FNG module; conditional on measured stall current | 1 | 90,000 | 90,000 | M1-4 |
-| M04 | Running gear | 2 wheels + caster | 1 set | 150,000 | 150,000 | M1-4 |
-| S01 | Range/cliff | VL53L0X modules: 3 forward + 2 downward | 5 | 65,000 | 325,000 | M1-4 |
-| S02 | I²C expansion | TCA9548A multiplexer | 1 | 50,000 | 50,000 | M1-4 |
-| S03 | IMU | 6-axis IMU module, ICM-42688 class preferred | 1 | 100,000 | 100,000 | M1-4 |
-| S04 | Bumper | Lever microswitches + physical bumper bar | 2 | 15,000 | 30,000 | M1-4 |
-| S05 | Presence | HLK-LD2410C-class 24 GHz presence module | 1 | 100,000 | 100,000 | Functional |
-| S06 | Environment | SHT31 temperature/humidity module | 1 | 100,000 | 100,000 | Functional |
-| P01 | Battery | Reputable 2S Li-ion pack, ~3 Ah, with documented cells | 1 | 450,000 | 450,000 | M1-5 |
-| P02 | Regulation | 5 V ≥4 A logic buck + motor rail regulator, fused | 1 set | 250,000 | 250,000 | M1-5 |
-| P03 | Safety/wiring | BMS, fuse, E-stop, privacy switches, LEDs, connectors, wire | 1 set | 200,000 | 200,000 | M1-4, M1-5 |
-| K01 | Mechanical | Prototype plates, standoffs, brackets and fasteners | 1 set | 250,000 | 250,000 | M3 |
-|  |  | **Base estimate** |  |  | **6,225,000** |  |
-|  |  | **Recommended 10% contingency** |  |  | **622,500** |  |
-|  |  | **Responsible funding envelope** |  |  | **6,847,500** |  |
+- Other documents refer to parts by ARIA ID and do not duplicate approved model
+  names or quantities.
+- A changed or replacement component receives a new ARIA ID. IDs are never
+  reused.
+- A component is purchasable only when its exact SKU, source, electrical data,
+  mechanical data, and applicable validation evidence are complete.
+- Prices and supplier links will be added only against exact purchasable
+  variants. An approximate marketplace listing is not an approved source.
+- `ARIA-HW-001.md` records the Sprint 2 freeze decision and compatibility gates;
+  it does not supersede this BOM.
 
-## 2. Budget actions
+## 2. Freeze states
 
-To approach 6,000,000₫ without removing a frozen requirement:
+| State | Meaning |
+|---|---|
+| `FROZEN-SKU` | The named commercial product is locked. Exact revision or listing may still require validation. |
+| `FROZEN-SPEC` | The required specification is locked; an exact purchasable SKU is still required. |
+| `OPEN-REQUIRED` | The function is required, but neither its specification nor an exact SKU is frozen. |
+| `DESIGN-ITEM` | ARIA-specific mechanical part or circuit must be designed and reviewed. |
+| `VALIDATION-HOLD` | Do not order or manufacture until the stated evidence is recorded. |
 
-1. Obtain two quotes for C01 and D01; a combined saving of 225,000₫ reaches the
-   nominal target.
-2. Reuse a genuine 64 GB microSD or prototype chassis only if already owned and
-   tested. Record reused items at fair cost and as “owner supplied”.
-3. A 5-inch display can save about 200,000–300,000₫, but approve it only after a
-   YouTube/readability demo.
-4. Do **not** save money by removing bumpers, cliff sensors, fuse, emergency stop,
-   encoder feedback, BMS or independent ESP32 safety control.
+## 3. Compute, display, camera, and thermal
 
-## 3. Conditional upgrade paths
+| ARIA ID | Approved component | Qty | Interface / supply | State | Open procurement and CAD data |
+|---|---|---:|---|---|---|
+| ARIA-CPU-001 | Raspberry Pi 5, 4 GB | 1 | 5 V; CSI/DSI/USB/GPIO | FROZEN-SKU | Record board revision and official mechanical model. |
+| ARIA-MCU-001 | ESP32-S3 DevKit | 1 | 3.3 V logic; UART/I²C/PWM | FROZEN-SPEC, VALIDATION-HOLD | Select exact board, flash/PSRAM option, dimensions, and pinout. |
+| ARIA-THM-001 | Official Raspberry Pi Active Cooler for Pi 5 | 1 | Pi 5 fan header | FROZEN-SKU | Capture official keep-out and airflow envelope. |
+| ARIA-CAM-001 | Raspberry Pi Camera Module 3 Wide NoIR | 1 | CSI | FROZEN-SKU | Record cable length, connector orientation, lens keep-out, and mounting geometry. |
+| ARIA-DSP-001 | Waveshare 4-inch DSI LCD (C), 720 × 720, touch | 1 | DSI; touch interface per revision | FROZEN-SKU, VALIDATION-HOLD | Confirm exact revision, supplied cables, mounting holes, power demand, and CAD dimensions. |
+| ARIA-STO-001 | Raspberry Pi boot storage | 1 | Pi-compatible boot interface | OPEN-REQUIRED, VALIDATION-HOLD | Select technology, capacity, and exact high-endurance SKU. |
 
-| Trigger | Replace/add | Expected budget effect |
-|---|---|---:|
-| Orange Pi 3B fails compute/thermal test | Orange Pi 5 4 GB + radio if needed | +800,000 to +1,200,000 |
-| Low-cost mic array fails wake/DOA/AEC test | Processed USB 4-mic array | +1,000,000 to +1,500,000 |
-| Motor stall current exceeds driver margin | Higher-current dual motor driver | +100,000 to +300,000 |
-| Front ToF coverage is too narrow | Add/replace with wider-FOV ToF or scanning mount | +150,000 to +600,000 |
-| Battery test is below required runtime | Higher-capacity certified pack | +200,000 to +500,000 |
+## 4. Voice and audio output
 
-## 4. Quote sheet
+| ARIA ID | Approved component | Qty | Interface / supply | State | Open procurement and CAD data |
+|---|---|---:|---|---|---|
+| ARIA-AUD-001 | reSpeaker XVF3800 USB 4-Mic Array | 1 | USB audio | FROZEN-SKU | Confirm exact product revision and acoustic keep-out. |
+| ARIA-AUD-002 | HP Pavilion 15/17 FX390R laptop speaker set, left + right | 1 set | Passive speakers | FROZEN-SKU, VALIDATION-HOLD | Preserve the approved listing/photo. Measure impedance, connector, outline, acoustic ports, and mounting points from the purchased set. |
+| ARIA-AUD-003 | MAX98357A I²S Class-D amplifier module | 2 | Shared I²S; one channel per module; 5 V | FROZEN-SPEC, VALIDATION-HOLD | Select exact module and verify channel selection, startup mute, and speaker load. |
 
-Fill this table before ordering. A URL alone is not enough; record the exact
-variant, stock status, warranty and delivered price.
+## 5. Drive system
 
-| BOM ID | Supplier A / delivered price / date | Supplier B / delivered price / date | Selected | Reason |
-|---|---|---|---|---|
-| C01 | TBD | TBD | TBD | |
-| D01 | TBD | TBD | TBD | |
-| V01 | TBD | TBD | TBD | |
-| M02 | TBD | TBD | TBD | |
-| P01 | TBD | TBD | TBD | |
+| ARIA ID | Approved component | Qty | Interface / supply | State | Open procurement and CAD data |
+|---|---|---:|---|---|---|
+| ARIA-MOT-001 | DFRobot FIT1035 — 2208 BLDC motor with integrated AS5600 encoder | 2 | Three-phase motor; integrated encoder | FROZEN-SKU, VALIDATION-HOLD | Capture exact shaft/hub geometry, connector, and manufacturer mechanical data. |
+| ARIA-MOT-002 | DFRobot SimpleFOCmini DRI0058 | 2 | PWM control; three-phase output | FROZEN-SKU, VALIDATION-HOLD | Bench-test current limit and thermal margin with ARIA-MOT-001. |
+| ARIA-WHL-001 | Custom wheel, Ø60 mm × 18–20 mm | 2 | Custom mechanical interface | FROZEN-SPEC, DESIGN-ITEM | Diameter and width are locked. Gear type, ratio, teeth, hub, bearings, and axle remain intentionally open for CAD design. |
+| ARIA-MEC-001 | Caster or support wheel assembly | 1 | Mechanical | OPEN-REQUIRED, VALIDATION-HOLD | Select after ground clearance and centre-of-mass layout are known. |
 
-## 5. Procurement waves
+## 6. Navigation and environment sensing
 
-- **Wave 0 — no purchase:** confirm which tools/parts are already owned.
-- **Wave 1 — platform test:** C01, C02, C03 only.
-- **Wave 2 — interaction bench:** D01, V01, A01, A02, M01.
-- **Wave 3 — raised-wheel safety rig:** M02–M04, S01–S04, P02–P03 using a bench
-  supply where possible.
-- **Wave 4 — battery/mobile build:** S05–S06, P01 and K01 only after Waves 1–3
-  pass.
+| ARIA ID | Approved component | Qty | Interface / supply | State | Open procurement and CAD data |
+|---|---|---:|---|---|---|
+| ARIA-SEN-001 | VL53L1X ToF carrier module | 6 | I²C plus XSHUT/address control | FROZEN-SPEC, VALIDATION-HOLD | Four horizontal obstacle sensors and two downward cliff sensors. Select exact carrier and prove the multi-device strategy. |
+| ARIA-SEN-002 | BNO085 IMU breakout | 1 | I²C or SPI per final design | FROZEN-SPEC, VALIDATION-HOLD | Select exact breakout; verify axes, magnetic environment, dimensions, and interface reliability. |
+| ARIA-SEN-003 | SHT45 temperature and humidity breakout | 1 | I²C | FROZEN-SPEC, VALIDATION-HOLD | Select exact breakout and provide an isolated ventilation path away from internal heat and exhaust. |
+| ARIA-SEN-004 | Physical bumper/contact sensor assembly | 1 set | ESP32 digital inputs | OPEN-REQUIRED, VALIDATION-HOLD | Select switch count, geometry, and fail-safe wiring after chassis layout. |
+| ARIA-SEN-005 | mmWave presence sensor | 1 | Interface open | OPEN-REQUIRED, VALIDATION-HOLD | Required by the PRD; select an exact module after field-of-view and software-support review. |
+| ARIA-SEN-006 | NoIR illumination and ambient-light system | 1 set | Supply/control open | OPEN-REQUIRED, VALIDATION-HOLD | Required for night operation; select after camera placement and thermal review. |
 
-This wave plan limits sunk cost if the board, microphone concept or motor driver
-fails validation.
+## 7. Power, protection, charging, and control
 
+| ARIA ID | Approved component | Qty | Interface / supply | State | Open procurement and CAD data |
+|---|---|---:|---|---|---|
+| ARIA-PWR-001 | LiPo pouch pack, 3S, 8,000–8,500 mAh | 1 | 12.6 V maximum | FROZEN-SPEC, VALIDATION-HOLD | Select exact pack, C rating, connector, balance lead, mass, dimensions, and safety documentation. Runtime remains unvalidated. |
+| ARIA-PWR-002 | Enerkey EK-BM3r4S30A-NTC BMS | 1 | 3S battery path | FROZEN-SKU, VALIDATION-HOLD | Verify authentic datasheet, LiPo support, balance behavior, NTC, current rating, and dimensions. |
+| ARIA-PWR-003 | Pololu D24V90F5 5 V regulator | 1 | 3S input to regulated 5 V | FROZEN-SKU, VALIDATION-HOLD | Complete peak-load, voltage-drop, ripple, and thermal tests. |
+| ARIA-PWR-004 | ARIA high-side MOSFET soft-latch circuit | 1 | Battery path; button; ESP32 hold/shutdown | DESIGN-ITEM, VALIDATION-HOLD | Target circuit area ≤20 × 15 mm. Topology and devices require schematic, fault analysis, and bench validation. |
+| ARIA-PWR-005 | INA226 current and voltage monitor | 1 | I²C; high-side shunt | FROZEN-SPEC, VALIDATION-HOLD | Select exact IC or module, shunt value, Kelvin routing, range, and calibration. |
+| ARIA-PWR-006 | Littelfuse Nano² 456 Series, 15 A fuse | 1 | Main battery protection | FROZEN-SPEC, VALIDATION-HOLD | Select exact manufacturer part number and verify the time-current curve against wiring and inrush. |
+| ARIA-PWR-007 | SMBJ15A TVS diode | 1 | Main input transient clamp | FROZEN-SPEC, VALIDATION-HOLD | Select exact manufacturer and polarity variant; verify standoff/clamp voltage and fuse/BMS coordination. |
+| ARIA-PWR-008 | P-channel MOSFET reverse-polarity circuit | 1 | Main battery path | DESIGN-ITEM, VALIDATION-HOLD | Select topology and MOSFET; verify gate stress, SOA, dissipation, and interaction with the soft latch. |
+| ARIA-PWR-009 | LiPo 3S balance charger and charge lead | 1 set | 3S LiPo charging | OPEN-REQUIRED, VALIDATION-HOLD | Select a safe, documented charger and connector before battery procurement. |
+| ARIA-PWR-010 | Battery service disconnect | 1 | Main battery path | OPEN-REQUIRED, VALIDATION-HOLD | Select a compact keyed connector after current and CAD review. |
+| ARIA-UI-001 | 12 mm waterproof metal momentary pushbutton with LED ring | 1 | Low-current signal and LED | FROZEN-SPEC, VALIDATION-HOLD | Select contact arrangement, LED voltage/color, body depth, connector, and mounting drawing. It must not carry traction current. |
+| ARIA-UI-002 | Hardware microphone privacy switch and indicator | 1 set | Hardware power/control cut | OPEN-REQUIRED, VALIDATION-HOLD | Required by the PRD; exact topology and parts are open. |
+| ARIA-UI-003 | Hardware camera privacy switch and indicator | 1 set | Hardware power/control cut | OPEN-REQUIRED, VALIDATION-HOLD | Required by the PRD; exact topology and parts are open. |
+
+## 8. Interconnect and assembly items
+
+These entries are required for a complete purchasable BOM. Exact quantities are
+derived from the approved CAD assembly and wiring table.
+
+| ARIA ID | Approved component | Qty | State | Open data |
+|---|---|---:|---|---|
+| ARIA-CBL-001 | Internal cable and harness set | 1 set | DESIGN-ITEM, VALIDATION-HOLD | Define wire gauges, lengths, colors, labels, strain relief, and service loops. |
+| ARIA-CON-001 | Keyed connector set | 1 set | OPEN-REQUIRED, VALIDATION-HOLD | Select families, pin counts, current derating, and keying rules. |
+| ARIA-MEC-002 | Fastener and standoff set | 1 set | OPEN-REQUIRED, VALIDATION-HOLD | Derive sizes and quantities from the approved assembly. |
+| ARIA-BRD-001 | ARIA two-layer mainboard | 1 | DESIGN-ITEM, VALIDATION-HOLD | Outline comes from the CAD assembly. Release only after schematic/PCB review and manufacturing checks. |
+
+## 9. Frozen non-purchasable interfaces
+
+| Interface ID | Decision |
+|---|---|
+| ARIA-IF-001 | Raspberry Pi 5 ↔ ESP32-S3: 3.3 V PL011 UART at 921600 bit/s. |
+| ARIA-IF-002 | Binary frames contain header, type, length, sequence, payload, and CRC16. |
+| ARIA-IF-003 | Heartbeat every 100 ms; ESP32 stops both motors after a 300 ms valid-frame timeout. |
+| ARIA-IF-004 | Camera data stays on the Pi CSI path and is never transported over the control UART. |
+| ARIA-IF-005 | The ARIA main PCB uses two copper layers; its final outline is derived from the approved CAD assembly. |
+
+## 10. Procurement fields
+
+Before any order, add the following evidence to the relevant BOM row or linked
+component record:
+
+1. exact manufacturer and part number;
+2. supplier URL and captured listing revision;
+3. delivered unit price and quote date;
+4. electrical ratings and interface evidence;
+5. X/Y/Z envelope, mass, mounting points, connectors, and keep-outs;
+6. manufacturer datasheet and STEP model, or measurements from an identified
+   physical sample;
+7. closed validation holds and approving review.
+
+The BOM currently authorizes **design work only**. It does not authorize a full
+purchase or manufacturing release.

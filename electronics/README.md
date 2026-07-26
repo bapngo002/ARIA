@@ -5,3 +5,4 @@
 - `gerber/` — release-only manufacturing plots
 
 Gerbers are generated artifacts. Do not place unreviewed files in `gerber/`.
+Component identity and quantity come only from `docs/ARIA-BOM-001.md`.

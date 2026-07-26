@@ -5,7 +5,7 @@
 | Document ID | ARIA-PCB-001 |
 | Revision | 0 |
 | Status | Sprint 2 placeholder — architecture not released |
-| Governing documents | ARIA-PRD-001, ARIA-HW-001, ARIA-MECH-001, ARIA-WIRING-001 |
+| Governing documents | ARIA-PRD-001, ARIA-BOM-001, ARIA-HW-001, ARIA-MECH-001, ARIA-WIRING-001 |
 
 ## Objective
 
@@ -29,16 +29,16 @@ The exact scope is intentionally not frozen. The architecture review will decide
 whether the board contains:
 
 - protected power entry and distribution;
-- ARIA-PWR-004 soft-latch;
-- ARIA-PWR-005 INA226 and shunt;
-- ARIA-PWR-006 fuse, ARIA-PWR-007 TVS, and ARIA-PWR-008 reverse protection;
-- two ARIA-AUD-003 amplifier circuits or headers for commercial modules;
-- connectors for Pi, ESP32, sensors, motor drivers, speakers, fan, and user
+- `ARIA-PWR-004` soft-latch;
+- `ARIA-PWR-005` power monitoring and shunt;
+- `ARIA-PWR-006` fuse, `ARIA-PWR-007` TVS, and `ARIA-PWR-008` reverse protection;
+- two `ARIA-AUD-003` amplifier circuits or headers for commercial modules;
+- connectors for compute, MCU, sensors, motor drivers, speakers, fan, and user
   controls;
 - test points and programming/debug headers.
 
-The BMS, Pololu regulator, SimpleFOCmini boards, and ESP32 DevKit remain modules
-unless an explicit architecture revision says otherwise.
+`ARIA-PWR-002`, `ARIA-PWR-003`, `ARIA-MOT-002`, and `ARIA-MCU-001` remain
+modules unless an explicit architecture revision says otherwise.
 
 ## Required outputs
 
@@ -55,10 +55,10 @@ unless an explicit architecture revision says otherwise.
 
 ## Release gates
 
-- [ ] All applicable holds in ARIA-HW-001 are closed.
+- [ ] All applicable holds in ARIA-BOM-001 and ARIA-HW-001 are closed.
 - [ ] Exact board outline and mounting holes are approved in CAD.
 - [ ] Wire/connector choices are frozen in ARIA-WIRING-001.
 - [ ] Inrush, fuse, TVS, MOSFET SOA, and trace-current calculations are reviewed.
-- [ ] Raspberry Pi 5 power transient requirements are verified by test.
+- [ ] `ARIA-CPU-001` power-transient requirements are verified by test.
 - [ ] Audio grounding and motor-noise isolation strategy is reviewed.
 - [ ] User approves the manufacturing preview before files are ordered.
