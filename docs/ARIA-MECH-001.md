@@ -3,8 +3,8 @@
 | Field | Value |
 |---|---|
 | Document ID | ARIA-MECH-001 |
-| Revision | 0 |
-| Status | Sprint 2 placeholder |
+| Revision | A |
+| Status | Sprint 2 active CAD baseline |
 | Governing documents | ARIA-PRD-001, ARIA-BOM-001, ARIA-HW-001 |
 
 ## Objective
@@ -23,6 +23,10 @@ earlier 150 × 150 × 150 mm envelope is a starting volume, not the final size.
 - Manufacturer CAD is preferred. Community models require dimensional checks.
   Parts without reliable CAD are measured from the purchased sample.
 - Keep-outs are separate visible bodies, not undocumented extra clearance.
+- Imported masters are immutable. Corrections are stored as revisioned
+  derivatives with the source hash retained.
+- `ARIA-CAD-STATUS-001.md` is checked before every import to prevent duplicate
+  hashes or component-ID collisions.
 
 ## Frozen geometry
 

@@ -325,7 +325,7 @@ Phiên bản tiếp theo sẽ dùng tên:
 ## 10. Trạng thái hiện tại
 
 - M0 — Frozen Requirements: hoàn thành
-- M1 — Hardware Platform Selection: chưa bắt đầu
-- M2 — BOM Rev A: chưa bắt đầu
-- M3 — Mechanical Layout: chưa bắt đầu
+- M1 — Hardware Platform Selection: hoàn thành
+- M2 — Hardware/BOM synchronization: hoàn thành; còn validation hold
+- M3 — CAD Library and Mechanical Layout: đang thực hiện trong Sprint 2
 - M4 — Bench Prototype: chưa bắt đầu

@@ -19,6 +19,10 @@
 *.kicad_pcb text eol=lf
 
 *.FCStd binary
+*.dwg binary
+*.dxf binary
+*.step binary
+*.stp binary
 *.pdf binary
 *.png binary
 *.jpg binary

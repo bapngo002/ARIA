@@ -3,8 +3,8 @@
 | Field | Value |
 |---|---|
 | Document ID | ARIA-PCB-001 |
-| Revision | 0 |
-| Status | Sprint 2 placeholder — architecture not released |
+| Revision | A |
+| Status | Sprint 2 design baseline — not released for fabrication |
 | Governing documents | ARIA-PRD-001, ARIA-BOM-001, ARIA-HW-001, ARIA-MECH-001, ARIA-WIRING-001 |
 
 ## Objective
@@ -15,6 +15,8 @@ connector positions are derived from the verified CAD assembly.
 ## Frozen constraints
 
 - Two copper layers.
+- Placement and board dimensions are optimized in the 1:1 CAD assembly before
+  board outline freeze or fabrication.
 - Board outline is not fixed until the mechanical packing study is complete.
 - Power, motor, audio, sensor, and high-speed/display/camera paths must not be
   mixed casually.
@@ -39,6 +41,14 @@ whether the board contains:
 
 `ARIA-PWR-002`, `ARIA-PWR-003`, `ARIA-MOT-002`, and `ARIA-MCU-001` remain
 modules unless an explicit architecture revision says otherwise.
+
+## Power-device clarification
+
+- `AO3401A` is a low-current latch/control device, not the 15 A main pass
+  element.
+- `IPT015N10N5` is N-channel. Its exact suffix/package and reverse-polarity
+  topology must be proven before a footprint is placed.
+- No schematic symbol or footprint may be selected from a marketplace photo.
 
 ## Required outputs
 

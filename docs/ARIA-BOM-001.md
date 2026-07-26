@@ -3,9 +3,9 @@
 | Field | Value |
 |---|---|
 | Document ID | ARIA-BOM-001 |
-| Revision | A |
-| Date | 2026-07-26 |
-| Status | Hardware freeze — review required; not released for procurement |
+| Revision | B |
+| Date | 2026-07-27 |
+| Status | Conversation synchronized; hardware frozen with validation holds |
 | Governing requirement | ARIA-PRD-001 |
 
 ## 1. Authority
@@ -23,6 +23,8 @@ quantities, freeze states, and open procurement data.
   variants. An approximate marketplace listing is not an approved source.
 - `ARIA-HW-001.md` records the Sprint 2 freeze decision and compatibility gates;
   it does not supersede this BOM.
+- Historical conversation IDs are not copied when they conflict with an
+  existing canonical ID. The canonical mapping in this file wins.
 
 ## 2. Freeze states
 
@@ -39,11 +41,11 @@ quantities, freeze states, and open procurement data.
 | ARIA ID | Approved component | Qty | Interface / supply | State | Open procurement and CAD data |
 |---|---|---:|---|---|---|
 | ARIA-CPU-001 | Raspberry Pi 5, 4 GB | 1 | 5 V; CSI/DSI/USB/GPIO | FROZEN-SKU | Record board revision and official mechanical model. |
-| ARIA-MCU-001 | ESP32-S3 DevKit | 1 | 3.3 V logic; UART/I²C/PWM | FROZEN-SPEC, VALIDATION-HOLD | Select exact board, flash/PSRAM option, dimensions, and pinout. |
+| ARIA-MCU-001 | Espressif ESP32-S3-DevKitC-1, N16R8 target variant | 1 | 3.3 V logic; UART/I²C/PWM | FROZEN-SKU, VALIDATION-HOLD | Confirm the purchased board carries the ESP32-S3-WROOM N16R8 variant and matches the imported CAD and pinout. |
 | ARIA-THM-001 | Official Raspberry Pi Active Cooler for Pi 5 | 1 | Pi 5 fan header | FROZEN-SKU | Capture official keep-out and airflow envelope. |
 | ARIA-CAM-001 | Raspberry Pi Camera Module 3 Wide NoIR | 1 | CSI | FROZEN-SKU | Record cable length, connector orientation, lens keep-out, and mounting geometry. |
 | ARIA-DSP-001 | Waveshare 4-inch DSI LCD (C), 720 × 720, touch | 1 | DSI; touch interface per revision | FROZEN-SKU, VALIDATION-HOLD | Confirm exact revision, supplied cables, mounting holes, power demand, and CAD dimensions. |
-| ARIA-STO-001 | Raspberry Pi boot storage | 1 | Pi-compatible boot interface | OPEN-REQUIRED, VALIDATION-HOLD | Select technology, capacity, and exact high-endurance SKU. |
+| ARIA-STO-001 | High Endurance microSD, 64 GB, A2 | 1 | Raspberry Pi microSD | FROZEN-SPEC, VALIDATION-HOLD | Select exact manufacturer SKU and endurance rating. |
 
 ## 4. Voice and audio output
 
@@ -80,11 +82,11 @@ quantities, freeze states, and open procurement data.
 | ARIA-PWR-001 | LiPo pouch pack, 3S, 8,000–8,500 mAh | 1 | 12.6 V maximum | FROZEN-SPEC, VALIDATION-HOLD | Select exact pack, C rating, connector, balance lead, mass, dimensions, and safety documentation. Runtime remains unvalidated. |
 | ARIA-PWR-002 | Enerkey EK-BM3r4S30A-NTC BMS | 1 | 3S battery path | FROZEN-SKU, VALIDATION-HOLD | Verify authentic datasheet, LiPo support, balance behavior, NTC, current rating, and dimensions. |
 | ARIA-PWR-003 | Pololu D24V90F5 5 V regulator | 1 | 3S input to regulated 5 V | FROZEN-SKU, VALIDATION-HOLD | Complete peak-load, voltage-drop, ripple, and thermal tests. |
-| ARIA-PWR-004 | ARIA high-side MOSFET soft-latch circuit | 1 | Battery path; button; ESP32 hold/shutdown | DESIGN-ITEM, VALIDATION-HOLD | Target circuit area ≤20 × 15 mm. Topology and devices require schematic, fault analysis, and bench validation. |
+| ARIA-PWR-004 | ARIA high-side MOSFET soft-latch circuit using AO3401A as the low-current latch/control device | 1 | Battery path; button; ESP32 hold/shutdown | DESIGN-ITEM, VALIDATION-HOLD | Target circuit area ≤20 × 15 mm. AO3401A is not approved as the main 15 A pass device; complete topology, fault analysis, and bench validation. |
 | ARIA-PWR-005 | INA226 current and voltage monitor | 1 | I²C; high-side shunt | FROZEN-SPEC, VALIDATION-HOLD | Select exact IC or module, shunt value, Kelvin routing, range, and calibration. |
 | ARIA-PWR-006 | Littelfuse Nano² 456 Series, 15 A fuse | 1 | Main battery protection | FROZEN-SPEC, VALIDATION-HOLD | Select exact manufacturer part number and verify the time-current curve against wiring and inrush. |
 | ARIA-PWR-007 | SMBJ15A TVS diode | 1 | Main input transient clamp | FROZEN-SPEC, VALIDATION-HOLD | Select exact manufacturer and polarity variant; verify standoff/clamp voltage and fuse/BMS coordination. |
-| ARIA-PWR-008 | P-channel MOSFET reverse-polarity circuit | 1 | Main battery path | DESIGN-ITEM, VALIDATION-HOLD | Select topology and MOSFET; verify gate stress, SOA, dissipation, and interaction with the soft latch. |
+| ARIA-PWR-008 | Reverse-polarity circuit using Infineon IPT015N10N5 as the frozen candidate power MOSFET | 1 | Main battery path | FROZEN-SKU, DESIGN-ITEM, VALIDATION-HOLD | This is an N-channel device, so the earlier P-channel shorthand is superseded. Verify exact suffix/package, gate drive, SOA, dissipation, and interaction with the soft latch before footprint release. |
 | ARIA-PWR-009 | LiPo 3S balance charger and charge lead | 1 set | 3S LiPo charging | OPEN-REQUIRED, VALIDATION-HOLD | Select a safe, documented charger and connector before battery procurement. |
 | ARIA-PWR-010 | Battery service disconnect | 1 | Main battery path | OPEN-REQUIRED, VALIDATION-HOLD | Select a compact keyed connector after current and CAD review. |
 | ARIA-UI-001 | 12 mm waterproof metal momentary pushbutton with LED ring | 1 | Low-current signal and LED | FROZEN-SPEC, VALIDATION-HOLD | Select contact arrangement, LED voltage/color, body depth, connector, and mounting drawing. It must not carry traction current. |
@@ -129,3 +131,15 @@ component record:
 
 The BOM currently authorizes **design work only**. It does not authorize a full
 purchase or manufacturing release.
+
+## 11. Synchronization notes
+
+- Canonical camera ID: `ARIA-CAM-001`. A user CAD filename containing
+  `ARIA-SEN-001` was normalized because `ARIA-SEN-001` already identifies the
+  six VL53L1X modules.
+- `AO3401A` is recorded inside `ARIA-PWR-004`; it is not duplicated as another
+  standalone ARIA assembly.
+- `IPT015N10N5` is recorded inside `ARIA-PWR-008`. Its electrical use remains on
+  validation hold despite the model decision being frozen.
+- `ARIA-THM-001` is the Official Raspberry Pi Active Cooler and is represented
+  with `ARIA-CPU-001` in the imported CPU CAD assembly.
