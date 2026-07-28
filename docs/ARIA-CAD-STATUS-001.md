@@ -36,6 +36,13 @@ the six VL53L1X modules in `ARIA-BOM-001`. The camera is therefore stored as
 6. Create a revisioned derivative only after the imported master is recorded.
 7. Update this file and the part-level README in the same commit.
 
+
+## Verified reference drawings
+
+| ARIA ID | Repository file | Verified data | State |
+|---|---|---|---|
+| ARIA-DSP-001 | `assets/reference/ARIA-DSP-001-dimensions.png` | Round display Ø126.00 × 17.00 mm; active area Ø101.52 mm; front glass 6.00 mm; 4 × M4 mounting points on 85.00 × 65.00 mm pattern; 5 V | Mechanical reference recorded; native CAD still pending verification |
+
 ## CAD backlog
 
 The next models are the frozen display, microphone array, speakers, motors,

@@ -16,7 +16,7 @@
 | ARIA-MCU-001 | 1 | ESP32-S3-DevKitC-1, N16R8 target | `Espressif ESP32-S3 DevKitC-1 N16R8` | Confirm WROOM N16R8 marking and board dimensions |
 | ARIA-THM-001 | 1 | Official Raspberry Pi Active Cooler | `Official Raspberry Pi 5 Active Cooler` | Confirm official Pi 5 part |
 | ARIA-CAM-001 | 1 | Raspberry Pi Camera Module 3 Wide NoIR | `Raspberry Pi Camera Module 3 Wide NoIR` | Do not substitute standard, narrow, or IR-cut version |
-| ARIA-DSP-001 | 1 | Waveshare 4-inch DSI LCD (C), 720 × 720, touch | `Waveshare 4inch DSI LCD C 720x720` | Confirm revision C, DSI, touch, cables, and mounting holes |
+| ARIA-DSP-001 | 1 | Waveshare 4-inch **round** DSI LCD (C), 720 × 720, 10-point touch, SKU 24603 | `Waveshare 4inch DSI Round LCD C 720x720 SKU 24603` | Confirm the round DSI model, SKU 24603, cables, rear carrier, and 4 × M4 mounting points; do not substitute a square DPI/HDMI model |
 | ARIA-STO-001 | 1 | High Endurance microSD, 64 GB, A2 | `64GB High Endurance microSD A2` | Confirm endurance line and genuine seller |
 | ARIA-AUD-001 | 1 | reSpeaker XVF3800 USB 4-Mic Array | `Seeed Studio ReSpeaker XVF3800 USB 4 Mic Array` | Confirm Seeed product/revision and USB version |
 | ARIA-AUD-002 | 1 set | HP Pavilion 15/17 FX390R left/right speaker set | `HP FX390R laptop speaker left right` | Match seller photos to frozen geometry; measure impedance on receipt |

@@ -44,7 +44,7 @@ quantities, freeze states, and open procurement data.
 | ARIA-MCU-001 | Espressif ESP32-S3-DevKitC-1, N16R8 target variant | 1 | 3.3 V logic; UART/I²C/PWM | FROZEN-SKU, VALIDATION-HOLD | Confirm the purchased board carries the ESP32-S3-WROOM N16R8 variant and matches the imported CAD and pinout. |
 | ARIA-THM-001 | Official Raspberry Pi Active Cooler for Pi 5 | 1 | Pi 5 fan header | FROZEN-SKU | Capture official keep-out and airflow envelope. |
 | ARIA-CAM-001 | Raspberry Pi Camera Module 3 Wide NoIR | 1 | CSI | FROZEN-SKU | Record cable length, connector orientation, lens keep-out, and mounting geometry. |
-| ARIA-DSP-001 | Waveshare 4-inch DSI LCD (C), 720 × 720, touch | 1 | DSI; touch interface per revision | FROZEN-SKU, VALIDATION-HOLD | Confirm exact revision, supplied cables, mounting holes, power demand, and CAD dimensions. |
+| ARIA-DSP-001 | Waveshare 4-inch DSI LCD (C), **round**, 720 × 720, 10-point touch, SKU 24603 | 1 | DSI; I²C touch; 5 V | FROZEN-SKU, VALIDATION-HOLD | Ø126.00 × 17.00 mm; active area Ø101.52 mm; 4 × M4 on 85.00 × 65.00 mm pattern. Confirm cables, rear keep-outs, power demand, and CAD geometry. |
 | ARIA-STO-001 | High Endurance microSD, 64 GB, A2 | 1 | Raspberry Pi microSD | FROZEN-SPEC, VALIDATION-HOLD | Select exact manufacturer SKU and endurance rating. |
 
 ## 4. Voice and audio output
