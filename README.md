@@ -33,6 +33,8 @@ PCB fabrication, or enclosure manufacture.
 9. [ARIA-SPRINT-2](docs/ARIA-SPRINT-2.md) — active Sprint 2 work and exit
    criteria.
 
+10. [ARIA-COMPONENT-SHAPE-001](docs/ARIA-COMPONENT-SHAPE-001.md) — component-form reference and bare-chassis concept.
+
 See [docs/README.md](docs/README.md) for document ownership and change rules.
 
 ## Repository structure
