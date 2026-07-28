@@ -50,6 +50,18 @@ earlier 150 × 150 × 150 mm envelope is a starting volume, not the final size.
 6. Provide service access to battery, fuse, storage, connectors, and debug ports.
 7. Reserve cable bend radius before shrinking the enclosure.
 
+## Bare-chassis visual direction
+
+The current concept is recorded in `assets/concepts/ARIA-CHASSIS-CONCEPT-001.png`. It is a visual packaging study, not approved geometry.
+
+- Use a serviceable two-deck skeleton before designing the enclosure.
+- Mount circular `ARIA-DSP-001` on a rigid front bridge using the verified Ø126 mm envelope and 85 × 65 mm M4 mounting pattern.
+- Keep battery, traction hardware, and wheel loads on the lowest deck.
+- Keep compute/control electronics above with direct airflow.
+- Isolate microphone and speaker brackets from fan and motor vibration.
+- Retain a low impact rail, sensor bridge, cliff-sensor brackets, and underside battery service access.
+- Styling must not override serviceability or sensor fields of view.
+
 ## Required outputs
 
 - verified part library in `cad/parts/`;
