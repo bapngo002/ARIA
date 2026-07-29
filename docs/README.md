@@ -11,6 +11,7 @@ This directory contains the active engineering baseline.
 | `ARIA-MECH-001.md` | CAD coordinates, packaging rules, and mechanical release gates |
 | `ARIA-WIRING-001.md` | Electrical interfaces, harness rules, and fail-safe behavior |
 | `ARIA-PURCHASE-001.md` | Marketplace search terms, quantities, and order-readiness checks |
+| `ARIA-COMPONENT-REFERENCE-001.md` | Official product-image references, verified dimensions, mounting data, and validation holds |
 | `ARIA-CAD-STATUS-001.md` | CAD inventory, source filenames, hashes, and geometry validation |
 | `ARIA-SPRINT-2.md` | Current Sprint 2 status, work queue, and exit criteria |
 
