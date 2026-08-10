@@ -220,7 +220,7 @@ Phụ trách:
 - cá tính;
 - lập kế hoạch hành vi.
 
-### ESP32-S3
+### Bộ điều khiển thời gian thực (chưa mua; ESP32-S3 chỉ là ứng viên)
 
 Phụ trách:
 
@@ -326,6 +326,6 @@ Phiên bản tiếp theo sẽ dùng tên:
 
 - M0 — Frozen Requirements: hoàn thành
 - M1 — Hardware Platform Selection: hoàn thành
-- M2 — Hardware/BOM synchronization: hoàn thành; còn validation hold
-- M3 — CAD Library and Mechanical Layout: đang thực hiện trong Sprint 2
+- M2 — Danh sách linh kiện đã mua được đồng bộ ngày 2026-08-10; còn bước xác minh hàng thực tế
+- M3 — CAD: 1 file đúng tên model chưa kiểm kích thước, 1 file sai một phần, 13 hạng mục chưa có CAD
 - M4 — Bench Prototype: chưa bắt đầu

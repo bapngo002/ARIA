@@ -1,8 +1,5 @@
 # ARIA electronics workspace
 
-- `mainboard/` — native PCB project
-- `schematics/` — reviewed schematic exports and supporting calculations
-- `gerber/` — release-only manufacturing plots
+Native mainboard, schematic and reviewed fabrication work belongs here.
 
-Gerbers are generated artifacts. Do not place unreviewed files in `gerber/`.
-Component identity and quantity come only from `docs/ARIA-BOM-001.md`.
+Do not store another component list or CAD library here. Use [`purchased-hardware/README.md`](../purchased-hardware/README.md) for the purchased inventory and CAD status.

@@ -1,16 +1,5 @@
 # ARIA manufacturing
 
-This directory will contain release checklists, assembly instructions, approved
-BOM exports, fabrication notes, inspection criteria, and supplier-neutral
-manufacturing packages.
+Reviewed release checklists and fabrication packages may be stored here.
 
-No file in this directory authorizes purchasing or fabrication unless its
-revision is explicitly marked released and approved by the user.
-
-Every release package must identify:
-
-- the source commit;
-- the BOM and design revisions;
-- passed review/check results;
-- generated file checksums;
-- explicit user approval.
+Do not copy the BOM or CAD inventory into this directory. The only purchased-hardware source is [`purchased-hardware/README.md`](../purchased-hardware/README.md). Every future release must identify its source commit, passed checks and explicit approval.

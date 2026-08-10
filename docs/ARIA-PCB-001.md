@@ -1,74 +1,11 @@
-# ARIA-PCB-001 — Mainboard Development Specification
+# ARIA-PCB-001 — Mainboard development rules
 
-| Field | Value |
-|---|---|
-| Document ID | ARIA-PCB-001 |
-| Revision | A |
-| Status | Sprint 2 design baseline — not released for fabrication |
-| Governing documents | ARIA-PRD-001, ARIA-BOM-001, ARIA-HW-001, ARIA-MECH-001, ARIA-WIRING-001 |
+Purchased module identity and quantity come only from [`purchased-hardware/README.md`](../purchased-hardware/README.md).
 
-## Objective
+- Do not choose footprints from product photos or from planned components.
+- Confirm the delivered revision, pinout, connector orientation and mechanical drawing first.
+- Review power entry, protection, current paths, grounding, audio noise and motor noise.
+- Complete schematic review, ERC, PCB DRC and a 1:1 mechanical check before fabrication.
+- Generated Gerbers must identify their source commit and explicit approval.
 
-Develop a compact, serviceable two-layer ARIA mainboard whose outline and
-connector positions are derived from the verified CAD assembly.
-
-## Frozen constraints
-
-- Two copper layers.
-- Placement and board dimensions are optimized in the 1:1 CAD assembly before
-  board outline freeze or fabrication.
-- Board outline is not fixed until the mechanical packing study is complete.
-- Power, motor, audio, sensor, and high-speed/display/camera paths must not be
-  mixed casually.
-- The main fuse, TVS, reverse-polarity protection, soft-latch, and power
-  monitoring require coordinated review.
-- No Gerber release before schematic review, ERC, DRC, and 1:1 mechanical
-  interference review.
-
-## Candidate functional scope
-
-The exact scope is intentionally not frozen. The architecture review will decide
-whether the board contains:
-
-- protected power entry and distribution;
-- `ARIA-PWR-004` soft-latch;
-- `ARIA-PWR-005` power monitoring and shunt;
-- `ARIA-PWR-006` fuse, `ARIA-PWR-007` TVS, and `ARIA-PWR-008` reverse protection;
-- two `ARIA-AUD-003` amplifier circuits or headers for commercial modules;
-- connectors for compute, MCU, sensors, motor drivers, speakers, fan, and user
-  controls;
-- test points and programming/debug headers.
-
-`ARIA-PWR-002`, `ARIA-PWR-003`, `ARIA-MOT-002`, and `ARIA-MCU-001` remain
-modules unless an explicit architecture revision says otherwise.
-
-## Power-device clarification
-
-- `AO3401A` is a low-current latch/control device, not the 15 A main pass
-  element.
-- `IPT015N10N5` is N-channel. Its exact suffix/package and reverse-polarity
-  topology must be proven before a footprint is placed.
-- No schematic symbol or footprint may be selected from a marketplace photo.
-
-## Required outputs
-
-- reviewed block diagram and power tree;
-- exact schematic with manufacturer part numbers;
-- power/current/thermal budget;
-- connector and pin-allocation table;
-- 2D board outline linked to the CAD origin;
-- routed two-layer PCB with controlled return paths;
-- schematic ERC and PCB DRC reports;
-- STEP model of the populated board;
-- fabrication drawings, Gerbers, drills, pick-and-place, and PCB BOM;
-- bring-up and fault-injection checklist.
-
-## Release gates
-
-- [ ] All applicable holds in ARIA-BOM-001 and ARIA-HW-001 are closed.
-- [ ] Exact board outline and mounting holes are approved in CAD.
-- [ ] Wire/connector choices are frozen in ARIA-WIRING-001.
-- [ ] Inrush, fuse, TVS, MOSFET SOA, and trace-current calculations are reviewed.
-- [ ] `ARIA-CPU-001` power-transient requirements are verified by test.
-- [ ] Audio grounding and motor-noise isolation strategy is reviewed.
-- [ ] User approves the manufacturing preview before files are ordered.
+This file intentionally contains no second BOM.
