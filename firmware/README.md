@@ -1,5 +1,5 @@
 # ARIA firmware
 
-No real-time controller has been recorded as purchased yet. ESP32 is a candidate only.
+The board ordered as inventory item 16 is identified as the 44-pin, dual-USB-C YD-ESP32-S3 with an ESP32-S3-WROOM-1-N16R8 module. The supplied pinout places the onboard RGB LED on GPIO48.
 
-Firmware work must not assume a specific controller board until its exact purchased model is added to [`purchased-hardware/README.md`](../purchased-hardware/README.md). Generated build output is not committed.
+Firmware may target this YD board family for development, but production pin assignments and external power behavior must not be frozen until the delivered PCB/revision is checked against [`purchased-hardware/README.md`](../purchased-hardware/README.md). Generated build output is not committed.
