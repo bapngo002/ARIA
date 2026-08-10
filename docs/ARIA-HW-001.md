@@ -18,8 +18,8 @@ Component identity, quantity, purchase status and CAD status live only in [`purc
 ## Before motion tests
 
 - Confirm the motor/driver pair, encoder feedback, current limit, thermal behavior and stop behavior on the bench.
-- An ESP32-S3 N16R8 development board has been ordered and is recorded as inventory item 16.
-- Do not release pin assignments, firmware targets or mechanical geometry until the delivered PCB/revision and module marking are verified against the listing and candidate CAD.
+- The ordered controller is identified from the order and pinout evidence as a 44-pin, dual-USB-C YD-ESP32-S3 with an ESP32-S3-WROOM-1-N16R8 module; it is inventory item 16.
+- The family pinout, including RGB on GPIO48, may be used for planning. Do not release power wiring, tight enclosure geometry or production pin assignments until the delivered PCB/revision is inspected and measured against the nominal CAD.
 
 ## Release rule
 

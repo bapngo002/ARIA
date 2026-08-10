@@ -220,7 +220,7 @@ Phụ trách:
 - cá tính;
 - lập kế hoạch hành vi.
 
-### Bộ điều khiển thời gian thực (đã đặt ESP32-S3 N16R8; chờ xác minh board thực tế)
+### Bộ điều khiển thời gian thực (đã đặt YD-ESP32-S3 N16R8; chờ đo board thực tế)
 
 Phụ trách:
 
