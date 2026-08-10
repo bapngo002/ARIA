@@ -18,8 +18,8 @@ Component identity, quantity, purchase status and CAD status live only in [`purc
 ## Before motion tests
 
 - Confirm the motor/driver pair, encoder feedback, current limit, thermal behavior and stop behavior on the bench.
-- Use a real-time controller only after its exact purchased model is added to the canonical inventory.
-- ESP32 is currently a design candidate, not a purchased component.
+- An ESP32-S3 N16R8 development board has been ordered and is recorded as inventory item 16.
+- Do not release pin assignments, firmware targets or mechanical geometry until the delivered PCB/revision and module marking are verified against the listing and candidate CAD.
 
 ## Release rule
 

@@ -1,11 +1,11 @@
 # ARIA — Linh kiện đã mua và CAD
 
 > **Đây là nguồn duy nhất trong repo cho linh kiện ĐÃ MUA, số lượng và CAD tương ứng.**
-> Không sao chép bảng này sang file khác. ESP32 chưa mua nên không nằm trong bảng.
+> Không sao chép bảng này sang file khác. ESP32-S3 N16R8 đã được bổ sung ở dòng 16.
 
 Cập nhật: 2026-08-10
-Phạm vi: **15 hạng mục / 27 đơn vị vật lý**
-Tổng chi phí đã ghi nhận: **khoảng ¥89,080** (gồm phí/thuế đơn truyền động; không dùng để suy ra giá từng dòng)
+Phạm vi: **16 hạng mục / 28 đơn vị vật lý**
+Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn truyền động; không dùng để suy ra giá từng dòng)
 
 ## Danh sách đã mua
 
@@ -26,12 +26,13 @@ Tổng chi phí đã ghi nhận: **khoảng ¥89,080** (gồm phí/thuế đơn 
 | 13 | IMU | Adafruit BNO085 9-DOF breakout | 1 | — | Thiếu. |
 | 14 | Drive | DFRobot FIT1035 2208 BLDC, tích hợp encoder từ AS5600 | 2 | — | Thiếu; không cần encoder rời. |
 | 15 | Motor driver | DFRobot DRI0058 SimpleFOCMini | 2 | — | Thiếu. |
+| 16 | Real-time control | Bo phát triển ESP32-S3, tùy chọn N16R8 theo listing ([bằng chứng đặt hàng](evidence/16-esp32-s3-n16r8-order.png)) | 1 | [DWG ứng viên](cad-review/16-esp32-s3-n16r8_UNVERIFIED-BOARD.dwg) | Đã đặt ngày 2026-08-07, ¥1,496, đang chờ giao; chưa xác minh hãng, PCB/revision, pinout và mức độ khớp CAD. |
 
 ## Kết quả đối chiếu CAD
 
 - **1 file đúng tên model nhưng chưa xác minh kích thước:** Camera Module 3 Wide NoIR.
 - **1 file sai một phần:** Raspberry Pi 5 ghép với **Official Active Cooler**, không khớp cooler **Smraza** đã mua.
-- **1 file không thuộc đồ đã mua:** [ESP32-S3-DevKitC-1](cad-review/not-purchased/esp32-s3-devkitc-1_UNMATCHED.dwg). ESP32 chưa mua nên bị loại khỏi inventory. File vẫn được giữ vì là dữ liệu độc nhất chưa có bản thay thế.
+- **1 file ứng viên cho ESP32-S3 N16R8:** dung lượng N16R8 khớp tùy chọn đã đặt, nhưng ảnh đơn hàng chưa chứng minh board là DevKitC-1 hoặc có cùng PCB/pinout. File được giữ trong `cad-review/`, chưa dùng làm chuẩn.
 - **13 hạng mục hoàn toàn chưa có CAD trong repo.**
 - **Không phát hiện CAD trùng SHA-256** trong ba file đã nhập.
 - **Chưa có CAD nào được xác minh đủ để chế tạo.**
@@ -42,7 +43,7 @@ Tổng chi phí đã ghi nhận: **khoảng ¥89,080** (gồm phí/thuế đơn 
 |---|---|---|---|---|
 | Ứng viên đúng model | `cad/05-raspberry-pi-camera-module-3-wide-noir.dwg` | `ARIA-SEN-001_Camera-Module-3-Wide-NoIR_colored.dwg` | `D3B28B76AD57CCA2DB5FC2A12D78417A592557A5F56D5D4C3DAAEA016415A2BE` | Giữ; cần đo/đối chiếu datasheet. |
 | Sai một phần | `cad-review/01-raspberry-pi-5-with-official-cooler_UNVERIFIED-MISMATCH.dwg` | `ARIA-CPU-001_colored-final.dwg` | `54B941F2210CF043CEC7F9E826D32738850710780BBC9B49B460F33F7F667A4F` | Giữ; không coi là CAD của cooler đã mua. |
-| Không thuộc đồ đã mua | `cad-review/not-purchased/esp32-s3-devkitc-1_UNMATCHED.dwg` | `Drawing4.dwg esp32 s3.dwg` | `3CDCF4305BB62F79AA52780F26449277D7CE0F3542CB31A376870152A3DFDFDB` | Giữ vì độc nhất; loại khỏi inventory. |
+| Ứng viên ESP32 chưa xác minh PCB | `cad-review/16-esp32-s3-n16r8_UNVERIFIED-BOARD.dwg` | `Drawing4.dwg esp32 s3.dwg` | `3CDCF4305BB62F79AA52780F26449277D7CE0F3542CB31A376870152A3DFDFDB` | Giữ và gắn với dòng 16 ở trạng thái review; chưa coi là CAD đúng board. |
 
 ## Quy tắc duy trì
 
@@ -50,4 +51,4 @@ Tổng chi phí đã ghi nhận: **khoảng ¥89,080** (gồm phí/thuế đơn 
 2. Model, số lượng và trạng thái CAD chỉ sửa trong file này.
 3. Không tạo BOM, purchase register hoặc CAD-status thứ hai.
 4. Không gọi CAD là “verified” nếu chưa kiểm units, kích thước tổng, lỗ bắt, đầu nối và keep-out.
-5. Không đưa linh kiện dự kiến mua vào bảng. **ESP32 hiện chưa mua.**
+5. Không đưa linh kiện dự kiến mua vào bảng. ESP32-S3 ở dòng 16 đã đặt nhưng vẫn phải xác minh board thực tế khi nhận.
