@@ -15,3 +15,5 @@ The only component/CAD inventory is [`purchased-hardware/README.md`](../purchase
 ## Release gate
 
 A CAD file is usable for design only after its critical dimensions are checked against manufacturer data or a measured physical sample. None of the current imported files is yet released for manufacture.
+
+The selected infrared illuminator is the Waveshare Infrared LED Board (B), SKU 10670, with two boards intended around the Camera Module 3 Wide NoIR. Its normalized third-party CAD remains in [`purchased-hardware/cad-review/`](../purchased-hardware/cad-review/waveshare-infrared-led-board-b-10670/README.md) until a physical sample is measured.
