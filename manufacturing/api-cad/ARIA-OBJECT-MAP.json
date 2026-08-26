@@ -1,0 +1,439 @@
+{
+  "schema_version": "1.0.0",
+  "document_id": "ARIA-OBJECT-MAP",
+  "repo_baseline_commit": "e3a6a83f4384d188aee4c76c771f4b8fce5c523e",
+  "resolver_policy": {
+    "match_key": "FreeCAD Object.Name",
+    "label_is_authority": false,
+    "fuzzy_matching_allowed": false,
+    "unmapped_match_action": "STOP_AND_REPORT",
+    "legacy_file_default_action": "REJECT_UNLESS_EXPLICITLY_MAPPED",
+    "hash_required_before_release": true
+  },
+  "documents": [
+    {
+      "document_id": "final_working_assembly",
+      "path": "manufacturing/api-cad/input/cad/ARIA-final-working.FCStd",
+      "status": "PENDING",
+      "sha256": "PENDING",
+      "required": true,
+      "notes": "Create from the authoritative integrated assembly after scan and explicit approval; file does not exist in baseline."
+    }
+  ],
+  "objects": [
+    {
+      "object_id": "main_compute_display",
+      "expected_instances": 1,
+      "design_state": "ASSEMBLY_LOCKED",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "AUTHORITATIVE_INTEGRATED_ASSEMBLY_FILE_MISSING",
+        "OBJECT_NAME_NOT_MAPPED"
+      ],
+      "forbidden_source_files": [
+        "purchased-hardware/cad-review/01-raspberry-pi-5-with-official-cooler_UNVERIFIED-MISMATCH.dwg"
+      ]
+    },
+    {
+      "object_id": "camera",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [
+        {
+          "path": "purchased-hardware/cad/05-raspberry-pi-camera-module-3-wide-noir.dwg",
+          "sha256": "D3B28B76AD57CCA2DB5FC2A12D78417A592557A5F56D5D4C3DAAEA016415A2BE",
+          "verification": "NOT_VERIFIED"
+        }
+      ],
+      "critical": true,
+      "release_blockers": [
+        "UNITS_ENVELOPE_HOLES_LENS_FOV_CONNECTOR_NOT_VERIFIED",
+        "OBJECT_NAME_NOT_MAPPED"
+      ]
+    },
+    {
+      "object_id": "ir_left",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "CAD_FILE_MISSING",
+        "LARGE_SMALL_EYE_DATUMS_MISSING",
+        "OBJECT_NAME_NOT_MAPPED"
+      ]
+    },
+    {
+      "object_id": "ir_right",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "CAD_FILE_MISSING",
+        "LARGE_SMALL_EYE_DATUMS_MISSING",
+        "ROTATED_PCB_CLEARANCE_NOT_VERIFIED",
+        "OBJECT_NAME_NOT_MAPPED"
+      ]
+    },
+    {
+      "object_id": "microphone_array",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "EXACT_REVISION_AND_CAD_OR_MEASUREMENT_MISSING",
+        "ACOUSTIC_PORT_AND_MOUNT_DATUMS_MISSING"
+      ]
+    },
+    {
+      "object_id": "tof_front_left",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "CAD_FILE_MISSING",
+        "20MM_HOLE_PATTERN_NOT_VERIFIED"
+      ]
+    },
+    {
+      "object_id": "tof_front_right",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "CAD_FILE_MISSING",
+        "20MM_HOLE_PATTERN_NOT_VERIFIED"
+      ]
+    },
+    {
+      "object_id": "tof_side_left",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "CAD_FILE_MISSING",
+        "20MM_HOLE_PATTERN_NOT_VERIFIED"
+      ]
+    },
+    {
+      "object_id": "tof_side_right",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "CAD_FILE_MISSING",
+        "20MM_HOLE_PATTERN_NOT_VERIFIED"
+      ]
+    },
+    {
+      "object_id": "motor_left",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "EXACT_CAD_AND_MEASURED_CRITICAL_DIMENSIONS_MISSING"
+      ]
+    },
+    {
+      "object_id": "motor_right",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "EXACT_CAD_AND_MEASURED_CRITICAL_DIMENSIONS_MISSING"
+      ]
+    },
+    {
+      "object_id": "encoder_left",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "ENCODER_PCB_GEOMETRY_MISSING"
+      ]
+    },
+    {
+      "object_id": "encoder_right",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "ENCODER_PCB_GEOMETRY_MISSING"
+      ]
+    },
+    {
+      "object_id": "wheel_left",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "AXLE_HEIGHT_AND_RUNNING_CLEARANCE_PENDING"
+      ]
+    },
+    {
+      "object_id": "wheel_right",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "AXLE_HEIGHT_AND_RUNNING_CLEARANCE_PENDING"
+      ]
+    },
+    {
+      "object_id": "battery_block",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "INSTALLATION_CLEARANCE_CABLE_EXIT_AND_MASS_PENDING"
+      ]
+    },
+    {
+      "object_id": "aux_electronics_block",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "FINAL_TRIMMED_ENVELOPE_MOUNTS_AND_CONNECTOR_KEEPOUTS_PENDING"
+      ],
+      "reference_only_files": [
+        "purchased-hardware/cad-review/16-yd-esp32-s3-n16r8/16-yd-esp32-s3-n16r8_board.step"
+      ]
+    },
+    {
+      "object_id": "speaker_left",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_PROVISIONAL_FROM_CONSTRAINT",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "OUTLINE_MOUNT_GASKET_AND_REAR_CLEARANCE_PENDING"
+      ]
+    },
+    {
+      "object_id": "speaker_right",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_PROVISIONAL_FROM_CONSTRAINT",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "OUTLINE_MOUNT_GASKET_AND_REAR_CLEARANCE_PENDING"
+      ]
+    },
+    {
+      "object_id": "passive_radiator",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "MEASURED_OUTLINE_MOUNT_GASKET_AND_ACOUSTIC_DATA_PENDING"
+      ]
+    },
+    {
+      "object_id": "ip2368",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "BOARD_MOUNTS_USB_C_COMPONENT_HEIGHTS_AND_HOTSPOT_PENDING"
+      ]
+    },
+    {
+      "object_id": "blower_3010",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_PROVISIONAL_FROM_CONSTRAINT",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "ACTUAL_MOUNT_INLET_OUTLET_GEOMETRY_PENDING"
+      ]
+    },
+    {
+      "object_id": "power_button",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_MOUNTING_APERTURE_ONLY",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "BODY_BEZEL_INSERTION_AND_TERMINAL_DEPTH_PENDING"
+      ]
+    },
+    {
+      "object_id": "microphone_roof",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "VERIFIED_MIC_GEOMETRY_REQUIRED"
+      ]
+    },
+    {
+      "object_id": "speaker_enclosure",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "VERIFIED_SPEAKER_PR_GEOMETRY_AND_TUNING_REQUIRED"
+      ]
+    },
+    {
+      "object_id": "cooling_duct",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "VERIFIED_IP2368_AND_BLOWER_GEOMETRY_REQUIRED"
+      ]
+    },
+    {
+      "object_id": "air_intake",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "FINAL_SHELL_AND_VERIFIED_BLOWER_INLET_AREA_REQUIRED"
+      ]
+    },
+    {
+      "object_id": "upper_shell",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "COMPLETE_VERIFIED_LAYOUT_AND_PRINT_RULES_REQUIRED"
+      ]
+    },
+    {
+      "object_id": "lower_shell",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "COMPLETE_VERIFIED_LAYOUT_AND_PRINT_RULES_REQUIRED"
+      ]
+    },
+    {
+      "object_id": "shell_joint",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "source_files": [],
+      "critical": true,
+      "release_blockers": [
+        "PRINT_PROCESS_MATERIAL_TOLERANCE_AND_EXACT_FASTENERS_REQUIRED"
+      ]
+    }
+  ]
+}
