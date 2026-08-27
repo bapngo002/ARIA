@@ -1,0 +1,414 @@
+{
+  "schema_version": "1.1.0",
+  "document_id": "ARIA-CONSTRAINTS",
+  "units": "mm",
+  "captured_at": "2026-08-27",
+  "repo_baseline": {
+    "repository": "bapngo002/ARIA",
+    "branch": "main",
+    "commit": "e3a6a83f4384d188aee4c76c771f4b8fce5c523e"
+  },
+  "execution_policy": {
+    "unknown_tokens": [
+      "UNKNOWN",
+      "PENDING",
+      "NOT_MAPPED",
+      "NOT_VERIFIED"
+    ],
+    "pending_does_not_imply_blocking": true,
+    "continue_layout_with_approved_placeholder": true,
+    "placeholder_must_be_explicitly_labeled": true,
+    "placeholder_may_drive_final_mating_geometry": false,
+    "true_blocker_scope": "DEPENDENT_FINAL_MANUFACTURING_INTERFACE_ONLY",
+    "infer_dimensions_from_images": false,
+    "infer_geometry_from_generic_part_name": false,
+    "allow_unmapped_legacy_cad": false,
+    "allow_label_fuzzy_matching": false,
+    "allow_uniform_scale_to_fix_local_feature": false,
+    "manufacturing_export_requires_all_critical_checks_pass": true
+  },
+  "readiness": {
+    "layout": "READY_WITH_PLACEHOLDERS",
+    "final_release": "BLOCKED_BY_TRUE_BLOCKERS",
+    "layout_authorities": [
+      "REAL_ASSEMBLY",
+      "LOCKED_ENVELOPE",
+      "CONSTRAINT_DRIVEN_PLACEHOLDER",
+      "ADJUSTABLE_OR_OPEN_INTERFACE"
+    ]
+  },
+  "coordinate_semantics": {
+    "axis_mapping": "PENDING",
+    "directions": [
+      "FRONT",
+      "REAR",
+      "UP",
+      "DOWN",
+      "LEFT",
+      "RIGHT"
+    ],
+    "rule": "Resolve semantic directions to the authoritative assembly coordinate system after the FreeCAD scan; do not assume XYZ from screenshots."
+  },
+  "body": {
+    "fixed_diameter_mm": null,
+    "fixed_diameter_status": "REMOVED",
+    "initial_target_envelope_mm": [
+      150,
+      150,
+      150
+    ],
+    "initial_target_is_manufacturing_constraint": false,
+    "external_envelope_rule": "MINIMIZE_AFTER_VERIFIED_INTERNAL_LAYOUT",
+    "shell_split": "UPPER_LOWER",
+    "seam_may_follow_panel_lines": true,
+    "seam_must_not_cross_mic_chamber": true,
+    "heavy_components_supported_by": "LOWER_SHELL",
+    "local_growth_requires_documented_reason": true
+  },
+  "shell_joint": {
+    "status": "DESIGN_NEW",
+    "fastener_family": "M2.5",
+    "model_threads": false,
+    "model_fastener_solid": false,
+    "features": [
+      "SCREW_BOSS",
+      "PILOT_CENTERING_HOLE",
+      "SMALL_LOCATING_LIP"
+    ],
+    "locating_lip_load_bearing": false,
+    "locating_lip_is_snap_fit": false,
+    "boss_count": "PENDING",
+    "boss_outer_diameter_mm": "PENDING",
+    "pilot_hole_diameter_mm": "PENDING",
+    "lip_clearance_mm": "PENDING",
+    "print_material_process": "PENDING",
+    "requirements": [
+      "NO_COMPONENT_COLLISION",
+      "SUFFICIENT_SURROUNDING_MATERIAL",
+      "DRIVER_ACCESS",
+      "EVEN_STRUCTURAL_DISTRIBUTION"
+    ]
+  },
+  "main_compute_display": {
+    "status": "ASSEMBLY_LOCKED",
+    "internal_relative_geometry_locked": true,
+    "allowed_transform": "RIGID_BODY_ONLY",
+    "children_not_independently_positioned": [
+      "RASPBERRY_PI_5",
+      "WAVESHARE_ROUND_DSI_DISPLAY",
+      "SMRAZA_ACTIVE_COOLER",
+      "EXISTING_SPACERS_AND_FASTENERS"
+    ],
+    "display_face": "FRONT",
+    "keepouts_required": [
+      "COOLER_AIRFLOW",
+      "USED_CONNECTORS",
+      "CABLE_PLUG_UNPLUG",
+      "ASSEMBLY_REMOVAL"
+    ],
+    "authoritative_assembly_file": "PENDING",
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_REAL_ASSEMBLY_OR_RIGID_PLACEHOLDER"
+  },
+  "camera": {
+    "status": "PENDING",
+    "quantity": 1,
+    "relative_location": "CENTERED_DIRECTLY_ABOVE_DISPLAY",
+    "lens_direction": "FRONT",
+    "connector_direction": "DOWN",
+    "connector_direction_locked": true,
+    "externally_visible": [
+      "LENS_OR_OPTICAL_WINDOW_ONLY"
+    ],
+    "pcb_external_visibility_allowed": false,
+    "aperture_basis": "VERIFIED_FOV_AND_OPTICAL_KEEPOUT",
+    "mounting_rule": "USE_VERIFIED_EXISTING_PCB_HOLES_ONLY",
+    "pitch": "PENDING_CALCULATED",
+    "service_direction": "INSIDE",
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_SAME_MODEL_DWG_AND_LOCKED_ORIENTATION"
+  },
+  "ir_pair": {
+    "status": "PENDING",
+    "quantity": 2,
+    "physical_boards_identical": true,
+    "external_geometry": "MIRROR_SYMMETRIC_ABOUT_CAMERA_DISPLAY_CENTER_PLANE",
+    "optical_eyes_per_board": [
+      "LARGE",
+      "SMALL"
+    ],
+    "all_eye_paths_must_be_clear": true,
+    "right_left_internal_orientation_may_differ": true,
+    "one_board_rotation_about_view_axis_deg_allowed": [
+      0,
+      180
+    ],
+    "local_shell_growth_allowed": true,
+    "external_symmetry_may_be_broken": false,
+    "required_independent_checks": [
+      "IR_LEFT_LARGE_EYE_CLEAR",
+      "IR_LEFT_SMALL_EYE_CLEAR",
+      "IR_RIGHT_LARGE_EYE_CLEAR",
+      "IR_RIGHT_SMALL_EYE_CLEAR"
+    ],
+    "eye_centers_and_diameters": "PENDING",
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_CONSERVATIVE_SYMMETRIC_DUAL_EYE_PLACEHOLDERS"
+  },
+  "microphone": {
+    "status": "PENDING",
+    "location": "TOP",
+    "chamber_isolation": "COMPLETE",
+    "sealed_floor_wall_required": true,
+    "separate_roof": true,
+    "roof_status": "DESIGN_NEW",
+    "acoustic_gap_mm": {
+      "min": 2,
+      "max": 3,
+      "detail_status": "VERIFY_AGAINST_REAL_MIC_GEOMETRY"
+    },
+    "roof_may_contact_mic_carrier": false,
+    "supports_must_not_block_acoustic_paths": true,
+    "cooling_duct_connection_allowed": false,
+    "speaker_chamber_connection_allowed": false,
+    "electronics_chamber_open_connection_allowed": false,
+    "cable_pass_through": "ONLY_REQUIRED_PENETRATION_AND_MUST_PRESERVE_ISOLATION",
+    "exact_revision_and_geometry": "PENDING",
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_ISOLATED_CHAMBER_PLACEHOLDER"
+  },
+  "drive": {
+    "motor_quantity": 2,
+    "wheel_quantity": 2,
+    "motor_body_location": "INSIDE_SHELL",
+    "exposed_motor_region": "ROTOR_OUTPUT_ONLY_AS_REQUIRED",
+    "wheel": {
+      "status": "ENVELOPE_ONLY",
+      "outside_diameter_mm": 61,
+      "width_mm": 24,
+      "internal_hub_geometry_owner": "USER",
+      "api_must_not_design_internal_hub": true,
+      "axis_relation": "WHEEL_AXIS_EQUALS_MOTOR_ROTOR_AXIS_EXACTLY",
+      "rotation_clearance_deg": 360,
+      "axle_height_mm": "PENDING_CALCULATED",
+      "running_clearance_mm": "PENDING"
+    },
+    "encoder": {
+      "outer_pcb_face_to_fixed_stator_face_mm": 5,
+      "distance_locked": true,
+      "spacer_type": "BRASS",
+      "axis_relation": "ENCODER_AXIS_COAXIAL_WITH_MOTOR_ROTOR_AXIS"
+    },
+    "shell_wheel_stop_required": true,
+    "rotating_part_shell_contact_allowed": false,
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_DRIVE_ENVELOPE_AND_LOCKED_AXES"
+  },
+  "tof_vl53l1x": {
+    "status": "PENDING",
+    "quantity": 4,
+    "roles": [
+      "FRONT_LEFT",
+      "FRONT_RIGHT",
+      "SIDE_LEFT",
+      "SIDE_RIGHT"
+    ],
+    "reference_board_envelope_mm": [
+      25,
+      10
+    ],
+    "reference_board_envelope_release_status": "VERIFY_BEFORE_RELEASE",
+    "mounting_hole_center_spacing_mm": 20,
+    "mounting_hole_center_spacing_authoritative": true,
+    "cad_correction": "EDIT_MOUNTING_HOLE_FEATURE_ONLY",
+    "uniform_scale_allowed": false,
+    "connector_direction": "UP",
+    "optical_face_direction": "OUTWARD",
+    "floor_intersection_radius_mm": {
+      "target": 200,
+      "tolerance": 10,
+      "origin": "ROBOT_CENTER"
+    },
+    "front_yaw_initial_intent_deg": {
+      "left": -15,
+      "right": 15,
+      "may_reduce_only_for_verified_drive_collision": true
+    },
+    "side_yaw": "CALCULATED_FOR_COVERAGE_AND_CLEARANCE",
+    "pitch_and_height": "CALCULATED_FROM_REAL_GEOMETRY",
+    "old_bracket_thickness_mm": 1,
+    "old_bracket_thickness_release_status": "PENDING",
+    "forbidden_collisions": [
+      "WHEEL",
+      "WHEEL_SWEPT_VOLUME",
+      "MOTOR",
+      "ENCODER"
+    ],
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_25X10_ENVELOPES_20MM_HOLES_AND_RAY_CONSTRAINTS"
+  },
+  "battery_block": {
+    "status": "ENVELOPE_ONLY",
+    "includes": [
+      "ASSEMBLED_CELLS",
+      "INTEGRATED_BMS"
+    ],
+    "size_mm": [
+      60,
+      74,
+      65
+    ],
+    "size_locked": true,
+    "internal_geometry_may_be_split": false,
+    "allowed_orientation": "ORTHOGONAL_90_DEGREE_ROTATIONS_ONLY",
+    "arbitrary_tilt_allowed": false,
+    "support_shell": "LOWER_SHELL",
+    "mounting": [
+      "BOTTOM_CRADLE",
+      "LATERAL_STOPS",
+      "REMOVABLE_UPPER_RETAINER_WITH_M2.5"
+    ],
+    "sealed_unserviceable_box_allowed": false,
+    "removal_must_not_require": [
+      "DISPLAY_REMOVAL",
+      "SPEAKER_REMOVAL",
+      "MOTOR_REMOVAL"
+    ],
+    "installation_clearance_mm": "PENDING",
+    "cable_exit": "PENDING",
+    "mass_g": "PENDING"
+  },
+  "aux_electronics_block": {
+    "status": "PENDING",
+    "raw_perfboard_size_mm": [
+      90,
+      150
+    ],
+    "raw_perfboard_is_final_envelope": false,
+    "must_trim_unused_raw_board": true,
+    "final_size_mm": "PENDING",
+    "final_shape": "PENDING",
+    "mounting_pattern": "PENDING",
+    "connector_keepouts": "PENDING",
+    "provisional_visualization": "SLIGHTLY_LARGER_THAN_ESP_BOARD",
+    "provisional_visualization_may_drive_shell_release": false,
+    "included_modules": [
+      "YD_ESP32_S3",
+      "SIMPLEFOCMINI_LEFT",
+      "SIMPLEFOCMINI_RIGHT",
+      "BNO085",
+      "MAX98357A_LEFT",
+      "MAX98357A_RIGHT",
+      "INA226",
+      "D24V90F5"
+    ],
+    "d24v90f5_thermal_clearance_required": true,
+    "dupont_allowed_for_motor_or_main_high_current": false,
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_OVERSIZED_EDITABLE_AUX_PLACEHOLDER"
+  },
+  "speaker_system": {
+    "status": "PENDING",
+    "location": "REAR",
+    "speaker_quantity": 2,
+    "passive_radiator_quantity": 1,
+    "speaker_aperture_diameter_mm": 40,
+    "speaker_frame_to_magnet_depth_mm": 25,
+    "provisional_structure_margin_each_side_mm": 5,
+    "provisional_face_region_each_speaker_mm": [
+      50,
+      50
+    ],
+    "speaker_mount_pattern": "PENDING",
+    "passive_radiator_outer_envelope_mm_approx": [
+      78,
+      42
+    ],
+    "passive_radiator_envelope_release_status": "PENDING_MEASUREMENT",
+    "shared_acoustic_volume": true,
+    "sealed_from_electronics": true,
+    "sealed_from_cooling_duct": true,
+    "amplifiers_inside_sealed_volume": false,
+    "enclosure_status": "DESIGN_NEW",
+    "enclosure_tuning_target": "PENDING",
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_CONSERVATIVE_SPEAKER_AND_PR_ENVELOPES"
+  },
+  "charging_cooling": {
+    "status": "PENDING",
+    "location": "REAR_UPPER_SERVICE_ZONE",
+    "stack_order_low_to_high": [
+      "IP2368",
+      "BLOWER"
+    ],
+    "ip2368_usb_c_direction": "REAR",
+    "local_rear_flat_allowed": true,
+    "ip2368_hot_face_contact_with_printed_shell_allowed": false,
+    "ip2368_air_gap_mm": "PENDING",
+    "blower": {
+      "type": "CENTRIFUGAL_3010",
+      "voltage_v": 5,
+      "envelope_mm": [
+        30,
+        30,
+        10
+      ],
+      "mounting_inlet_outlet_geometry": "PENDING",
+      "role": "EXHAUST",
+      "intended_operation": "CHARGING_ONLY"
+    },
+    "air_path": [
+      "LOWER_OR_BODY_INTAKE",
+      "IP2368_HOT_REGION",
+      "BLOWER",
+      "DEDICATED_UPPER_OR_REAR_EXHAUST"
+    ],
+    "intake_pattern": "MULTIPLE_NARROW_PARALLEL_SLANTED_FISH_GILL_SLOTS",
+    "intake_open_area_rule": "AT_LEAST_VERIFIED_USEFUL_BLOWER_INLET_AREA",
+    "intake_must_not_be_internally_blocked": true,
+    "exhaust_recirculation_allowed": false,
+    "duct_connections_forbidden": [
+      "MIC_CHAMBER",
+      "MIC_ACOUSTIC_GAP",
+      "SEALED_SPEAKER_CHAMBER"
+    ],
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_REAR_IP2368_AND_30X30X10_BLOWER_ENVELOPES"
+  },
+  "power_button": {
+    "status": "ENVELOPE_ONLY",
+    "family": "HUSA_WATERPROOF_METAL_TRI_COLOUR_MOMENTARY",
+    "quantity": 1,
+    "mounting_hole_diameter_mm": 12,
+    "mounting_hole_locked": true,
+    "preferred_location": "REAR_NEAR_CHARGING_SERVICE_ZONE",
+    "visible_external_parts": [
+      "BUTTON",
+      "BEZEL"
+    ],
+    "body_diameter_mm": "PENDING",
+    "bezel_diameter_mm": "PENDING",
+    "insertion_depth_mm": "PENDING",
+    "terminal_total_depth_mm": "PENDING",
+    "final_manufacturing_critical": false,
+    "layout_readiness": "READY_WITH_12MM_THROUGH_HOLE_AND_OPEN_SERVICE_KEEPOUT"
+  },
+  "wiring_scope": {
+    "detailed_routing_in_scope": false,
+    "cable_channels_required": false,
+    "sealed_wall_pass_throughs_required": true,
+    "connector_plug_unplug_clearance_required": true,
+    "service_disconnects_required": true
+  },
+  "service_rules": {
+    "battery_independently_removable": true,
+    "main_compute_display_removed_as_locked_assembly": true,
+    "speaker_module_independently_removable": true,
+    "charging_module_independently_removable": true,
+    "mic_module_independently_removable": true,
+    "destructive_disassembly_allowed": false,
+    "unrelated_major_module_removal_allowed": false,
+    "fastener_tool_access_required": true,
+    "connector_removal_direction_required": true
+  }
+}

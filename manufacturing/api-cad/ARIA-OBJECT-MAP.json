@@ -1,0 +1,519 @@
+{
+  "schema_version": "1.1.0",
+  "document_id": "ARIA-OBJECT-MAP",
+  "repo_baseline_commit": "e3a6a83f4384d188aee4c76c771f4b8fce5c523e",
+  "resolver_policy": {
+    "exact_import_match_key": "FreeCAD Object.Name",
+    "label_is_authority": false,
+    "fuzzy_matching_allowed": false,
+    "missing_exact_map_action": "USE_APPROVED_PLACEHOLDER_AND_CONTINUE_LAYOUT",
+    "legacy_file_default_action": "REFERENCE_ONLY_UNLESS_EXPLICITLY_APPROVED",
+    "hash_required_for_final_release_source": true
+  },
+  "gate_policy": {
+    "pending_is_automatically_blocking": false,
+    "layout_requires_one_of": [
+      "REAL_ASSEMBLY",
+      "CAD_EXACT",
+      "LOCKED_ENVELOPE",
+      "CONSTRAINT_DRIVEN_PLACEHOLDER",
+      "ADJUSTABLE_OR_OPEN_INTERFACE"
+    ],
+    "layout_blocking_state": "BLOCKED_NO_AUTHORITY_OR_FALLBACK",
+    "final_blocking_field": "true_blockers_final",
+    "true_blocker_scope": "DEPENDENT_FINAL_MANUFACTURING_INTERFACE_ONLY"
+  },
+  "documents": [
+    {
+      "document_id": "final_working_assembly",
+      "path": "manufacturing/api-cad/input/cad/ARIA-final-working.FCStd",
+      "status": "PENDING_IMPORT_OR_CREATION",
+      "sha256": "PENDING",
+      "required_for_layout": false,
+      "required_for_final_release": true,
+      "fallback": "Build a new working document from approved envelopes/placeholders; later replace placeholders with the real integrated assembly without changing locked constraints."
+    }
+  ],
+  "objects": [
+    {
+      "object_id": "main_compute_display",
+      "expected_instances": 1,
+      "design_state": "ASSEMBLY_LOCKED",
+      "layout_readiness": "READY_WITH_REAL_ASSEMBLY_OR_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "MAP_WHEN_REAL_ASSEMBLY_IS_LOADED",
+      "placeholder": {
+        "kind": "RIGID_ASSEMBLY_ENVELOPE",
+        "authority": "EXISTING_REAL_PI_DISPLAY_SMRAZA_ASSEMBLY",
+        "rules": [
+          "MOVE_AS_ONE_RIGID_BODY",
+          "DO_NOT_REPOSITION_INTERNAL_CHILDREN",
+          "KEEP_FRONT_DISPLAY_FACE_AND_COOLER_CONNECTOR_RESERVATIONS"
+        ]
+      },
+      "true_blockers_final": [
+        "FINAL_ASSEMBLY_ENVELOPE_MOUNT_INTERFACES_AND_CONNECTOR_COOLER_KEEPOUTS_UNCAPTURED"
+      ],
+      "forbidden_source_files": [
+        "purchased-hardware/cad-review/01-raspberry-pi-5-with-official-cooler_UNVERIFIED-MISMATCH.dwg"
+      ]
+    },
+    {
+      "object_id": "camera",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED_NON_BLOCKING",
+      "placeholder": {
+        "kind": "SAME_MODEL_DWG_OR_CONSERVATIVE_CAMERA_ENVELOPE",
+        "authority": "LOCKED_CENTER_FRONT_CONNECTOR_DOWN_CONSTRAINTS",
+        "may_define_final_mount_or_aperture": false
+      },
+      "source_files": [
+        {
+          "path": "purchased-hardware/cad/05-raspberry-pi-camera-module-3-wide-noir.dwg",
+          "sha256": "D3B28B76AD57CCA2DB5FC2A12D78417A592557A5F56D5D4C3DAAEA016415A2BE",
+          "verification": "PLACEMENT_REFERENCE_ONLY"
+        }
+      ],
+      "true_blockers_final": [
+        "CAMERA_FINAL_MOUNT_AND_LENS_FOV_OPTICAL_KEEPOUT_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "ir_left",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED_NON_BLOCKING",
+      "placeholder": {
+        "kind": "CONSERVATIVE_DUAL_EYE_SENSOR_HEAD",
+        "authority": "LARGE_AND_SMALL_EYES_SEPARATELY_CLEAR_EXTERNAL_MIRROR_SYMMETRY",
+        "may_define_final_mount_or_aperture": false
+      },
+      "true_blockers_final": [
+        "ONE_IR_BOARD_FINAL_EYE_DATUMS_MOUNT_AND_CONNECTOR_INTERFACE_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "ir_right",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "layout_readiness": "READY_WITH_DERIVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "DERIVE_FROM_IR_LEFT_WHEN_VERIFIED",
+      "placeholder": {
+        "kind": "ROTATED_OR_MIRRORED_DUAL_EYE_SENSOR_HEAD",
+        "authority": "IDENTICAL_BOARD_180_DEG_VIEW_AXIS_ROTATION_ALLOWED_EXTERNAL_GEOMETRY_MIRRORED"
+      },
+      "depends_on_verified_definition": "ir_left",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "microphone_array",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_MAPPED_NON_BLOCKING",
+      "placeholder": {
+        "kind": "EDITABLE_ISOLATED_TOP_CHAMBER",
+        "authority": "COMPLETE_ISOLATION_SEPARATE_ROOF_2_TO_3_MM_ACOUSTIC_GAP",
+        "may_define_final_ports_or_carrier": false
+      },
+      "true_blockers_final": [
+        "MIC_FINAL_ENVELOPE_ACOUSTIC_PORTS_AND_MOUNT_INTERFACE_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "microphone_roof",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "layout_readiness": "READY_TO_DESIGN_PARAMETRIC",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "placeholder": {
+        "kind": "PARAMETRIC_ROOF_AND_SUPPORTS",
+        "authority": "MIC_CHAMBER_AND_GAP_CONSTRAINTS"
+      },
+      "depends_on_verified_definition": "microphone_array",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "tof_front_left",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "placeholder": {
+        "kind": "TOF_25X10_REFERENCE_ENVELOPE",
+        "authority": "20_MM_HOLE_SPACING_CONNECTOR_UP_R200_PLUS_MINUS_10_RAY",
+        "may_define_final_mount_or_aperture": false
+      },
+      "true_blockers_final": [
+        "ONE_TOF_MODULE_FINAL_OUTLINE_HOLES_AND_OPTICAL_DATUM_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "tof_front_right",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_DERIVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "DERIVE_FROM_TOF_FRONT_LEFT_WHEN_VERIFIED",
+      "placeholder": {
+        "kind": "TOF_25X10_REFERENCE_ENVELOPE",
+        "authority": "SHARED_TOF_CONSTRAINTS"
+      },
+      "depends_on_verified_definition": "tof_front_left",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "tof_side_left",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_DERIVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "DERIVE_FROM_TOF_FRONT_LEFT_WHEN_VERIFIED",
+      "placeholder": {
+        "kind": "TOF_25X10_REFERENCE_ENVELOPE",
+        "authority": "SHARED_TOF_CONSTRAINTS_SIDE_POSITION_CALCULATED"
+      },
+      "depends_on_verified_definition": "tof_front_left",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "tof_side_right",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_DERIVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "DERIVE_FROM_TOF_FRONT_LEFT_WHEN_VERIFIED",
+      "placeholder": {
+        "kind": "TOF_25X10_REFERENCE_ENVELOPE",
+        "authority": "SHARED_TOF_CONSTRAINTS_SIDE_POSITION_CALCULATED"
+      },
+      "depends_on_verified_definition": "tof_front_left",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "motor_left",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "layout_readiness": "READY_WITH_REAL_ASSEMBLY_OR_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "MAP_EXISTING_MODEL_OR_GENERATE_CONSERVATIVE_ENVELOPE",
+      "placeholder": {
+        "kind": "DRIVE_ENVELOPE_WITH_ROTOR_AXIS_AND_ENCODER_KEEPOUT",
+        "authority": "WHEEL_AXIS_EQUALS_ROTOR_AXIS_ENCODER_OFFSET_5_MM_STATOR_INSIDE"
+      },
+      "true_blockers_final": [
+        "ONE_MOTOR_ENCODER_FINAL_STATOR_MOUNT_ROTOR_AXIS_AND_ENCODER_ENVELOPE_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "motor_right",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "layout_readiness": "READY_WITH_DERIVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "DERIVE_FROM_MOTOR_LEFT_WHEN_VERIFIED",
+      "placeholder": {
+        "kind": "MIRRORED_DRIVE_ENVELOPE",
+        "authority": "SHARED_DRIVE_CONSTRAINTS"
+      },
+      "depends_on_verified_definition": "motor_left",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "encoder_left",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_KEEPOUT_FROM_DRIVE_CONSTRAINT",
+      "placeholder": {
+        "kind": "CONSERVATIVE_ENCODER_PCB_KEEPOUT",
+        "authority": "OUTER_PCB_FACE_5_MM_FROM_FIXED_STATOR_FACE_COAXIAL"
+      },
+      "depends_on_verified_definition": "motor_left",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "encoder_right",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_DERIVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "DERIVE_FROM_ENCODER_LEFT",
+      "placeholder": {
+        "kind": "MIRRORED_ENCODER_PCB_KEEPOUT",
+        "authority": "SHARED_DRIVE_CONSTRAINTS"
+      },
+      "depends_on_verified_definition": "motor_left",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "wheel_left",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_LOCKED_ENVELOPE",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "placeholder": {
+        "kind": "CYLINDER_AND_SWEPT_VOLUME",
+        "authority": "DIAMETER_61_WIDTH_24_AXIS_EQUALS_MOTOR_AXIS"
+      },
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "wheel_right",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_LOCKED_ENVELOPE",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "placeholder": {
+        "kind": "CYLINDER_AND_SWEPT_VOLUME",
+        "authority": "DIAMETER_61_WIDTH_24_AXIS_EQUALS_MOTOR_AXIS"
+      },
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "battery_block",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_LOCKED_ENVELOPE",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "placeholder": {
+        "kind": "BOX_WITH_OPEN_SERVICE_AND_ADJUSTABLE_RESTRAINT",
+        "authority": "60X74X65_INCLUDES_BMS_ORTHOGONAL_ROTATIONS_ONLY"
+      },
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "aux_electronics_block",
+      "expected_instances": 1,
+      "design_state": "PENDING",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_OVERSIZED_EDITABLE_PLACEHOLDER",
+      "placeholder": {
+        "kind": "OVERSIZED_EDITABLE_AUX_BLOCK",
+        "authority": "SLIGHTLY_LARGER_THAN_ESP_BOARD_RAW_90X150_STOCK_FORBIDDEN_AS_FINAL_SIZE",
+        "may_define_final_mount_or_shell_closure": false
+      },
+      "reference_only_files": [
+        "purchased-hardware/cad-review/16-yd-esp32-s3-n16r8/16-yd-esp32-s3-n16r8_board.step"
+      ],
+      "true_blockers_final": [
+        "AUX_POPULATED_TRIMMED_FINAL_ENVELOPE_RETENTION_AND_CONNECTOR_TERMINAL_KEEPOUTS_UNMEASURED"
+      ]
+    },
+    {
+      "object_id": "speaker_left",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "placeholder": {
+        "kind": "SPEAKER_CONSERVATIVE_ENVELOPE",
+        "authority": "APERTURE_DIAMETER_40_DEPTH_25_FACE_REGION_APPROX_50X50"
+      },
+      "true_blockers_final": [
+        "ONE_SPEAKER_FINAL_MOUNT_SEAL_GEOMETRY_AND_ACOUSTIC_TARGET_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "speaker_right",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_DERIVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "DERIVE_FROM_SPEAKER_LEFT_WHEN_VERIFIED",
+      "placeholder": {
+        "kind": "SPEAKER_CONSERVATIVE_ENVELOPE",
+        "authority": "SHARED_SPEAKER_CONSTRAINTS"
+      },
+      "depends_on_verified_definition": "speaker_left",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "passive_radiator",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_CONSERVATIVE_PLACEHOLDER",
+      "placeholder": {
+        "kind": "OVAL_78X42_APPROX_RESERVED_VOLUME",
+        "authority": "APPROVED_LAYOUT_ESTIMATE_NOT_FINAL_MATING_GEOMETRY"
+      },
+      "true_blockers_final": [
+        "PASSIVE_RADIATOR_FINAL_MOUNT_SEAL_GEOMETRY_AND_REQUIRED_ACOUSTIC_DATA_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "speaker_enclosure",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "layout_readiness": "READY_TO_DESIGN_PARAMETRIC",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "placeholder": {
+        "kind": "PARAMETRIC_REAR_SEALED_RESERVED_VOLUME",
+        "authority": "TWO_SPEAKERS_ONE_PASSIVE_RADIATOR_SEPARATE_FROM_ELECTRONICS_AND_AIRFLOW"
+      },
+      "depends_on_verified_definition": "speaker_left,passive_radiator",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "ip2368",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_APPROVED_PLACEHOLDER",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_CONSERVATIVE_REAR_PLACEHOLDER",
+      "placeholder": {
+        "kind": "CONSERVATIVE_REAR_BOARD_AND_SERVICE_VOLUME",
+        "authority": "BELOW_BLOWER_USB_C_REAR_HOT_FACE_IN_DEDICATED_AIRFLOW",
+        "may_define_final_port_mount_or_duct_interface": false
+      },
+      "true_blockers_final": [
+        "IP2368_FINAL_ENVELOPE_USB_C_DATUM_RETENTION_AND_HOT_REGION_HEIGHTS_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "blower_3010",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_LOCKED_ENVELOPE",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_FROM_CONSTRAINT",
+      "placeholder": {
+        "kind": "BOX_30X30X10_WITH_CONSERVATIVE_INLET_OUTLET_ZONES",
+        "authority": "APPROVED_BLOWER_ENVELOPE_5V_EXHAUST_ROLE"
+      },
+      "true_blockers_final": [
+        "PURCHASED_BLOWER_FINAL_MOUNT_INLET_AND_OUTLET_GEOMETRY_UNVERIFIED"
+      ]
+    },
+    {
+      "object_id": "cooling_duct",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "layout_readiness": "READY_TO_DESIGN_PARAMETRIC",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "placeholder": {
+        "kind": "PARAMETRIC_RESERVED_AIR_PATH",
+        "authority": "INTAKE_TO_IP2368_TO_BLOWER_TO_EXHAUST_SEPARATE_FROM_MIC_AND_SPEAKER"
+      },
+      "depends_on_verified_definition": "ip2368,blower_3010",
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "air_intake",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "layout_readiness": "READY_TO_DESIGN_PARAMETRIC",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "placeholder": {
+        "kind": "PARAMETRIC_SLANTED_FISH_GILL_SLOT_PATTERN",
+        "authority": "FINAL_OPEN_AREA_CALCULATED_FROM_VERIFIED_BLOWER_INLET"
+      },
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "power_button",
+      "expected_instances": 1,
+      "design_state": "ENVELOPE_ONLY",
+      "layout_readiness": "READY_WITH_LOCKED_INTERFACE",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "GENERATE_MOUNTING_APERTURE_AND_OPEN_KEEPOUT",
+      "placeholder": {
+        "kind": "DIAMETER_12_THROUGH_HOLE_WITH_OVERSIZED_REAR_SERVICE_VOLUME",
+        "authority": "APPROVED_HUSA_12_MM_MOUNTING_INTERFACE",
+        "tight_blind_cavity_allowed": false
+      },
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "upper_shell",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "layout_readiness": "READY_TO_DESIGN_PARAMETRIC",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "placeholder": {
+        "kind": "PARAMETRIC_SHELL_AROUND_CURRENT_AUTHORITIES",
+        "authority": "MASTER_SPEC_EXTERIOR_SERVICE_AND_MODULE_CONSTRAINTS"
+      },
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "lower_shell",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "layout_readiness": "READY_TO_DESIGN_PARAMETRIC",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "placeholder": {
+        "kind": "PARAMETRIC_LOAD_BEARING_SHELL_WITH_ADJUSTABLE_OPEN_MOUNTS",
+        "authority": "MASTER_SPEC_LOAD_PATH_SERVICE_AND_MODULE_CONSTRAINTS"
+      },
+      "true_blockers_final": []
+    },
+    {
+      "object_id": "shell_joint",
+      "expected_instances": 1,
+      "design_state": "DESIGN_NEW",
+      "layout_readiness": "READY_TO_DESIGN_PARAMETRIC",
+      "freecad_document": "final_working_assembly",
+      "freecad_object_names": [],
+      "map_status": "NOT_CREATED",
+      "placeholder": {
+        "kind": "PARAMETRIC_M2_5_BOSSES_PILOT_HOLES_AND_LOCATING_LIP",
+        "authority": "LOCKED_JOINT_CONCEPT_DIMENSIONS_REMAIN_PARAMETERS"
+      },
+      "true_blockers_final": [
+        "PRINT_PROCESS_MATERIAL_TOLERANCE_AND_ACTUAL_M2_5_FASTENER_DATA_UNSELECTED"
+      ]
+    }
+  ]
+}
