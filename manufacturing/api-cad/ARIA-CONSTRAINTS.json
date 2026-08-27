@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "document_id": "ARIA-CONSTRAINTS",
   "units": "mm",
   "captured_at": "2026-08-27",
@@ -15,13 +15,27 @@
       "NOT_MAPPED",
       "NOT_VERIFIED"
     ],
-    "stop_on_critical_unknown": true,
+    "pending_does_not_imply_blocking": true,
+    "continue_layout_with_approved_placeholder": true,
+    "placeholder_must_be_explicitly_labeled": true,
+    "placeholder_may_drive_final_mating_geometry": false,
+    "true_blocker_scope": "DEPENDENT_FINAL_MANUFACTURING_INTERFACE_ONLY",
     "infer_dimensions_from_images": false,
     "infer_geometry_from_generic_part_name": false,
     "allow_unmapped_legacy_cad": false,
     "allow_label_fuzzy_matching": false,
     "allow_uniform_scale_to_fix_local_feature": false,
     "manufacturing_export_requires_all_critical_checks_pass": true
+  },
+  "readiness": {
+    "layout": "READY_WITH_PLACEHOLDERS",
+    "final_release": "BLOCKED_BY_TRUE_BLOCKERS",
+    "layout_authorities": [
+      "REAL_ASSEMBLY",
+      "LOCKED_ENVELOPE",
+      "CONSTRAINT_DRIVEN_PLACEHOLDER",
+      "ADJUSTABLE_OR_OPEN_INTERFACE"
+    ]
   },
   "coordinate_semantics": {
     "axis_mapping": "PENDING",
@@ -93,7 +107,8 @@
       "ASSEMBLY_REMOVAL"
     ],
     "authoritative_assembly_file": "PENDING",
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_REAL_ASSEMBLY_OR_RIGID_PLACEHOLDER"
   },
   "camera": {
     "status": "PENDING",
@@ -110,7 +125,8 @@
     "mounting_rule": "USE_VERIFIED_EXISTING_PCB_HOLES_ONLY",
     "pitch": "PENDING_CALCULATED",
     "service_direction": "INSIDE",
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_SAME_MODEL_DWG_AND_LOCKED_ORIENTATION"
   },
   "ir_pair": {
     "status": "PENDING",
@@ -136,7 +152,8 @@
       "IR_RIGHT_SMALL_EYE_CLEAR"
     ],
     "eye_centers_and_diameters": "PENDING",
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_CONSERVATIVE_SYMMETRIC_DUAL_EYE_PLACEHOLDERS"
   },
   "microphone": {
     "status": "PENDING",
@@ -157,7 +174,8 @@
     "electronics_chamber_open_connection_allowed": false,
     "cable_pass_through": "ONLY_REQUIRED_PENETRATION_AND_MUST_PRESERVE_ISOLATION",
     "exact_revision_and_geometry": "PENDING",
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_ISOLATED_CHAMBER_PLACEHOLDER"
   },
   "drive": {
     "motor_quantity": 2,
@@ -183,7 +201,8 @@
     },
     "shell_wheel_stop_required": true,
     "rotating_part_shell_contact_allowed": false,
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_DRIVE_ENVELOPE_AND_LOCKED_AXES"
   },
   "tof_vl53l1x": {
     "status": "PENDING",
@@ -225,7 +244,8 @@
       "MOTOR",
       "ENCODER"
     ],
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_25X10_ENVELOPES_20MM_HOLES_AND_RAY_CONSTRAINTS"
   },
   "battery_block": {
     "status": "ENVELOPE_ONLY",
@@ -284,7 +304,8 @@
     ],
     "d24v90f5_thermal_clearance_required": true,
     "dupont_allowed_for_motor_or_main_high_current": false,
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_OVERSIZED_EDITABLE_AUX_PLACEHOLDER"
   },
   "speaker_system": {
     "status": "PENDING",
@@ -310,7 +331,8 @@
     "amplifiers_inside_sealed_volume": false,
     "enclosure_status": "DESIGN_NEW",
     "enclosure_tuning_target": "PENDING",
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_CONSERVATIVE_SPEAKER_AND_PR_ENVELOPES"
   },
   "charging_cooling": {
     "status": "PENDING",
@@ -350,7 +372,8 @@
       "MIC_ACOUSTIC_GAP",
       "SEALED_SPEAKER_CHAMBER"
     ],
-    "critical": true
+    "final_manufacturing_critical": true,
+    "layout_readiness": "READY_WITH_REAR_IP2368_AND_30X30X10_BLOWER_ENVELOPES"
   },
   "power_button": {
     "status": "ENVELOPE_ONLY",
@@ -367,7 +390,8 @@
     "bezel_diameter_mm": "PENDING",
     "insertion_depth_mm": "PENDING",
     "terminal_total_depth_mm": "PENDING",
-    "critical": true
+    "final_manufacturing_critical": false,
+    "layout_readiness": "READY_WITH_12MM_THROUGH_HOLE_AND_OPEN_SERVICE_KEEPOUT"
   },
   "wiring_scope": {
     "detailed_routing_in_scope": false,

@@ -3,7 +3,7 @@
 - **Run ID:** `PENDING`
 - **Source commit:** `PENDING`
 - **FCStd path / SHA-256:** `PENDING`
-- **Constraint version:** `1.0.0`
+- **Constraint version:** `1.1.0`
 - **Reviewer/date:** `PENDING`
 - **Allowed status:** `PASS`, `FAIL`, `NOT_RUN`, `NOT_APPLICABLE`
 
@@ -12,7 +12,9 @@ Rules:
 - Default status is `NOT_RUN`.
 - A `PASS` requires a value, screenshot/report/object reference or repeatable method in Evidence.
 - `NOT_APPLICABLE` requires written approval and reason.
-- Any critical row not `PASS` blocks manufacturing export.
+- A critical row not `PASS` blocks **final manufacturing export only**, not layout work covered by an approved placeholder.
+- Layout may continue when a row is `NOT_RUN` if the object map says layout-ready and the evidence names the assembly/envelope/constraint fallback.
+- A layout item stops only when it has neither usable authority nor approved fallback (`BLOCKED_NO_AUTHORITY_OR_FALLBACK`).
 - This checklist is copied into a dated run report; do not overwrite this template with unsupported PASS values.
 
 ## A. Inputs and object mapping
@@ -20,11 +22,12 @@ Rules:
 | Critical | Check | Status | Evidence |
 |---|---|---|---|
 | Yes | Source commit and all input SHA-256 values recorded | NOT_RUN | — |
-| Yes | Integrated Pi/display/Smraza cooler assembly is authoritative and opens cleanly | NOT_RUN | — |
-| Yes | Every critical component is mapped by exact FreeCAD `Object.Name` | NOT_RUN | — |
+| Yes | Integrated Pi/display/Smraza cooler assembly is captured before its final mount/shell interface release | NOT_RUN | Layout may use the real assembly as a locked group or a rigid placeholder |
+| Yes | Every imported release component is mapped by exact FreeCAD `Object.Name`; unmapped layout items use approved placeholders | NOT_RUN | — |
 | Yes | No fuzzy Label match or unmapped legacy CAD is used | NOT_RUN | — |
 | Yes | Units, envelope, holes, connectors and keep-outs are verified for every `CAD_EXACT` promotion | NOT_RUN | — |
-| Yes | No critical field remains UNKNOWN/PENDING/NOT_MAPPED/NOT_VERIFIED | NOT_RUN | — |
+| Yes | Every UNKNOWN/PENDING/NOT_MAPPED/NOT_VERIFIED item is classified NON_BLOCKING or TRUE_BLOCKER with fallback/dependent scope | NOT_RUN | — |
+| Yes | Layout validator reports zero `layout_blockers` | NOT_RUN | — |
 | Yes | Existing reviewed/reference-only CAD is not treated as manufacturing authority | NOT_RUN | — |
 
 ## B. General collision and clearance
@@ -33,7 +36,7 @@ Rules:
 |---|---|---|---|
 | Yes | No solid-solid collision between components, mounts and shell | NOT_RUN | — |
 | Yes | No shell/mount intersects any moving/swept volume | NOT_RUN | — |
-| Yes | Minimum clearances use documented print/process values | NOT_RUN | — |
+| Yes | Final minimum clearances use documented print/process values; layout clearances remain explicit parameters | NOT_RUN | — |
 | Yes | Connectors have plug/unplug and cable-entry clearance | NOT_RUN | — |
 | Yes | No local shell growth exists without a documented functional reason | NOT_RUN | — |
 | Yes | Final envelope is minimized after all functional checks | NOT_RUN | — |
@@ -97,7 +100,7 @@ Rules:
 | Yes | Battery cannot shift into wheel/motor/encoder/speaker/electronics volumes | NOT_RUN | — |
 | Yes | Battery can be removed without display, speaker or motor removal | NOT_RUN | — |
 | Yes | Battery cable exit and service clearance are verified | NOT_RUN | — |
-| Yes | AUX envelope comes from populated, trimmed and measured carrier—not raw 90 × 150 stock | NOT_RUN | — |
+| Yes | Final AUX envelope comes from populated, trimmed and measured carrier—not raw 90 × 150 stock; layout uses an oversized editable placeholder | NOT_RUN | — |
 | Yes | AUX block mount and all connector/terminal keep-outs are verified | NOT_RUN | — |
 | Yes | D24V90F5 thermal clearance is preserved | NOT_RUN | — |
 
@@ -141,7 +144,7 @@ Rules:
 | Critical | Check | Status | Evidence |
 |---|---|---|---|
 | Yes | Power-button mounting aperture is Ø12 mm | NOT_RUN | — |
-| Yes | Exact button body/bezel/depth/terminal envelope is verified before tight cavity release | NOT_RUN | — |
+| Yes | Button uses Ø12 through-hole plus open/oversized rear service keep-out; exact body data is required only if a tight cavity is introduced | NOT_RUN | — |
 | Yes | Upper/lower shells align using a small locating lip without forced fit | NOT_RUN | — |
 | Yes | Locating lip only locates; M2.5 screws provide clamping | NOT_RUN | — |
 | Yes | Boss/pilot/lip dimensions come from documented print process, material and fasteners | NOT_RUN | — |
@@ -157,7 +160,8 @@ Rules:
 | Critical | Check | Status | Evidence |
 |---|---|---|---|
 | Yes | All sections A–I critical rows are PASS with evidence | NOT_RUN | — |
-| Yes | Strict workspace validator passes without `--allow-pending` | NOT_RUN | — |
+| Yes | `python scripts/01_validate_workspace.py --stage final-release` passes | NOT_RUN | — |
+| Yes | No `true_blockers_final` remain | NOT_RUN | — |
 | Yes | Final FCStd recomputes cleanly and final SHA-256 is recorded | NOT_RUN | — |
 | Yes | Collision/optical/acoustic/airflow/assembly reports are present | NOT_RUN | — |
 | Yes | STEP/STL/3MF export settings and source objects are recorded | NOT_RUN | — |

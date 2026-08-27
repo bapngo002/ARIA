@@ -2,46 +2,48 @@
 
 This is an **operational CAD instance/readiness map**, not a purchase BOM. Purchased identity, quantity and purchase/CAD status remain canonical only in [`purchased-hardware/README.md`](../../purchased-hardware/README.md). “Instances” below means geometry instances needed in the final mechanical assembly.
 
-## State rules
+## State and gate rules
 
-- `CAD_EXACT`: verified release geometry. None exists in the current repo snapshot.
-- `ASSEMBLY_LOCKED`: rigid assembly role; internal relative geometry must not change. Missing authoritative assembly can still block release.
-- `ENVELOPE_ONLY`: use only stated outside envelope/datums.
-- `PENDING`: a critical input or verification is missing.
-- `DESIGN_NEW`: geometry is created by this CAD project from locked constraints.
+- `CAD_EXACT`: verified release geometry.
+- `ASSEMBLY_LOCKED`: use the real integrated assembly as one rigid body; repo mapping may follow later.
+- `ENVELOPE_ONLY`: use locked/conservative outside volume and functional datums.
+- `PENDING`: data remains open, but blocking is determined separately.
+- `DESIGN_NEW`: create geometry from constraints.
+- `NON_BLOCKING`: layout may continue with the listed assembly/envelope/placeholder strategy.
+- `TRUE_BLOCKER`: blocks only the dependent final manufacturing interface/export, never the entire layout workspace.
 
-| ID | Mechanical item | Instances | Primary state | Repo/input evidence | Locked use | Release blocker |
+| ID | Mechanical item | Instances | Primary state | Layout authority / placeholder | Layout gate | TRUE BLOCKER before dependent final manufacture |
 |---|---|---:|---|---|---|---|
-| `main_compute_display` | Pi 5 + round display + Smraza cooler + existing spacers/mounting | 1 | `ASSEMBLY_LOCKED` | Authoritative integrated assembly is not in repo; current Pi DWG in `cad-review/` contains the wrong official cooler | Transform as one rigid body only | **YES:** import, scan, hash and map assembly |
-| `camera` | Camera Module 3 Wide NoIR | 1 | `PENDING` | Same-model DWG exists at `purchased-hardware/cad/05-...dwg`, but repo says unverified | Center above display; lens FRONT; connector DOWN; lens only exposed | **YES:** verify scale, holes, lens/FOV, connector datum |
-| `ir_left` | Left IR module | 1 | `PENDING` | No model/file in current repo | Large + small eye both open; mirror-symmetric exterior | **YES:** exact model, optical datums, mounts |
-| `ir_right` | Right IR module, same physical board as left | 1 | `PENDING` | No model/file in current repo | PCB may rotate 180° about view axis; preserve mirrored eye pattern | **YES:** same as left plus verified rotated clearance |
-| `microphone_array` | reSpeaker/XMOS XVF3800 array | 1 | `PENDING` | Canonical inventory says exact revision/USB variant and CAD missing | Completely isolated top acoustic chamber | **YES:** revision, CAD/measurements, ports, mounts |
-| `microphone_roof` | Separate mic roof/cap/carrier supports | 1 set | `DESIGN_NEW` | Created in final CAD | Curved cap; acoustic gap about 2–3 mm; tool-accessible supports | Depends on verified mic geometry |
-| `tof_front_left` | VL53L1X | 1 | `PENDING` | No model/file in current repo | Connector UP; beam-to-floor R200 ±10; hole spacing 20 mm | **YES:** exact CAD/object; verify board 25×10 |
-| `tof_front_right` | VL53L1X | 1 | `PENDING` | No model/file in current repo | Same; initial yaw intent near ±15°, geometry decides reduction | **YES** |
-| `tof_side_left` | VL53L1X | 1 | `PENDING` | No model/file in current repo | Side position optimized; connector UP; R200 ±10 | **YES** |
-| `tof_side_right` | VL53L1X | 1 | `PENDING` | No model/file in current repo | Mirror exterior; connector UP; R200 ±10 | **YES** |
-| `motor_left` | FIT1035 2208 BLDC | 1 | `PENDING` | Purchased but no CAD in repo | Stator inside; only rotor output exposed | **YES:** exact CAD and measured critical dimensions |
-| `motor_right` | FIT1035 2208 BLDC | 1 | `PENDING` | Purchased but no CAD in repo | Mirror placement, same rules | **YES** |
-| `encoder_left` | Integrated AS5600 encoder PCB geometry | 1 | `PENDING` | No separate/exact CAD in repo | Outer PCB face to stator fixed face = 5 mm; coaxial | **YES:** PCB geometry/object mapping |
-| `encoder_right` | Integrated AS5600 encoder PCB geometry | 1 | `PENDING` | No separate/exact CAD in repo | Same | **YES** |
-| `wheel_left` | Wheel outside envelope | 1 | `ENVELOPE_ONLY` | User-approved envelope | Ø61 × 24; axis exactly motor axis; internal hub excluded | Axle height/running clearance pending |
-| `wheel_right` | Wheel outside envelope | 1 | `ENVELOPE_ONLY` | User-approved envelope | Same | Axle height/running clearance pending |
-| `battery_block` | Assembled cells + integrated BMS | 1 | `ENVELOPE_ONLY` | User-approved final block | 60 × 74 × 65; orthogonal orientation only; removable lower cradle | Pack cable exit, clearance/padding and mass pending |
-| `aux_electronics_block` | Trimmed perfboard + small electronics incl. D24V90F5 | 1 | `PENDING` | 90×150 mm is raw stock only; YD board nominal CAD remains in `cad-review/` | Temporary visualization only; no shell/mount release | **YES:** populate, trim, measure final envelope/mounts/connectors |
-| `speaker_left` | Square speaker | 1 | `ENVELOPE_ONLY` | Purchased; no exact CAD | Ø40 acoustic aperture; 25 mm frame-to-magnet depth; provisional structural region | **YES:** outline, holes, gasket, rear clearance |
-| `speaker_right` | Square speaker | 1 | `ENVELOPE_ONLY` | Purchased; no exact CAD | Same | **YES** |
-| `passive_radiator` | Oval passive radiator | 1 | `PENDING` | Product-image estimate only (~78×42 outer) | Shared sealed volume with both speakers | **YES:** measured outline, mount/gasket, acoustic data |
-| `speaker_enclosure` | Rear sealed speaker/PR enclosure | 1 | `DESIGN_NEW` | Created in final CAD | Removable; no airflow/electronics leakage; amps outside | Depends on exact speakers/PR and tuning target |
-| `ip2368` | Rear charging board | 1 | `PENDING` | Purchased; no CAD or verified measurements | Below blower; USB-C rear; hot face in dedicated airflow | **YES:** board, mounts, connector, heights/hotspot |
-| `blower_3010` | 5 V centrifugal blower | 1 | `ENVELOPE_ONLY` | Approved 30×30×10 envelope; exact revision/mount absent | Exhaust in charging-only duct | **YES:** mount, inlet/outlet and actual revision |
-| `cooling_duct` | IP2368/blower duct and rear/upper exhaust | 1 | `DESIGN_NEW` | Created in final CAD | Separate from mic/speaker; short unrestricted path | Depends on exact IP2368/blower |
-| `air_intake` | Lower/body slanted parallel intake slots | 1 pattern | `DESIGN_NEW` | Approved sketch intent | Fish-gill pattern; open area ≥ verified blower useful inlet | Airflow area/recirculation calculation pending |
-| `power_button` | HUSA metal tri-colour momentary switch | 1 | `ENVELOPE_ONLY` | Only 12 mm mounting variant is locked | Ø12 mounting aperture; rear service zone | **YES:** body/bezel/depth/terminal dimensions |
-| `upper_shell` | Upper body shell | 1 | `DESIGN_NEW` | Created in final CAD | Carries front/top geometry; serviceable | Depends on complete layout and print rules |
-| `lower_shell` | Lower load-bearing shell/chassis | 1 | `DESIGN_NEW` | Created in final CAD | Motors, Battery Block, AUX and lower sensors supported here | Depends on complete layout and print rules |
-| `shell_joint` | M2.5 bosses, pilot holes and locating lip | 1 set | `DESIGN_NEW` | Created in final CAD | Lip locates only; screws clamp; all tools accessible | **YES:** print process/material/tolerances/fasteners |
+| `main_compute_display` | Pi 5 + round display + Smraza cooler + existing spacers/mounting | 1 | `ASSEMBLY_LOCKED` | Import/use the existing real assembly as one rigid body; if repo Name map is absent, preserve the whole selected App::Part/group | `NON_BLOCKING` | Capture final assembly envelope, mount interfaces and connector/cooler keep-outs |
+| `camera` | Camera Module 3 Wide NoIR | 1 | `PENDING` | Same-model DWG + locked center/FRONT/connector-DOWN orientation; reserve conservative optical head space | `NON_BLOCKING` | Verify final mounting and lens/FOV optical keep-out |
+| `ir_left` | Left IR module | 1 | `PENDING` | Conservative head envelope with two independent optical keep-outs (large + small) | `NON_BLOCKING` | Verify one exact board's two eye datums, mount and connector interface |
+| `ir_right` | Same physical IR board on right | 1 | `PENDING` | Derive from left placeholder; allow 180° view-axis rotation; mirror exterior openings | `NON_BLOCKING` | No independent blocker; inherits verified left-board definition |
+| `microphone_array` | reSpeaker/XMOS XVF3800 array | 1 | `PENDING` | Reserve isolated top chamber and editable carrier under separate roof with 2–3 mm acoustic gap | `NON_BLOCKING` | Verify mic envelope, acoustic ports and mounting interface |
+| `microphone_roof` | Separate roof/cap/supports | 1 set | `DESIGN_NEW` | Parametric roof around mic chamber; supports remain editable | `NON_BLOCKING` | No independent blocker; final interface depends on verified mic definition |
+| `tof_front_left` | VL53L1X | 1 | `ENVELOPE_ONLY` | 25 × 10 reference envelope, 20 mm hole spacing, connector UP, solved R200 ±10 beam | `NON_BLOCKING` | Verify one module's final outline, holes and optical datum |
+| `tof_front_right` | VL53L1X | 1 | `ENVELOPE_ONLY` | Derive/mirror verified placeholder rules; initial yaw intent near ±15° | `NON_BLOCKING` | No independent blocker; inherits shared module definition |
+| `tof_side_left` | VL53L1X | 1 | `ENVELOPE_ONLY` | Same placeholder; calculate side position/pitch from beam and drive clearance | `NON_BLOCKING` | No independent blocker; inherits shared module definition |
+| `tof_side_right` | VL53L1X | 1 | `ENVELOPE_ONLY` | Mirror external aperture and solve placement independently if internal clearance differs | `NON_BLOCKING` | No independent blocker; inherits shared module definition |
+| `motor_left` | FIT1035 2208 BLDC + encoder interface | 1 | `PENDING` | Use existing assembly/model if available or conservative drive envelope preserving rotor axis and 5 mm encoder spacing | `NON_BLOCKING` | Verify one motor/encoder stator mount, rotor axis and encoder envelope |
+| `motor_right` | Mirrored drive assembly | 1 | `PENDING` | Derive/mirror left drive placeholder | `NON_BLOCKING` | No independent blocker; inherits shared drive definition |
+| `encoder_left` | Integrated AS5600 encoder PCB geometry | 1 | `ENVELOPE_ONLY` | Conservative PCB keep-out at locked 5 mm relation, coaxial with motor | `NON_BLOCKING` | Included in shared motor/encoder blocker |
+| `encoder_right` | Integrated AS5600 encoder PCB geometry | 1 | `ENVELOPE_ONLY` | Mirror left placeholder | `NON_BLOCKING` | No independent blocker |
+| `wheel_left` | Wheel outside envelope | 1 | `ENVELOPE_ONLY` | Ø61 × 24 with exact motor-axis relation and swept volume | `NON_BLOCKING` | None; axle height/running clearance are calculated design outputs |
+| `wheel_right` | Wheel outside envelope | 1 | `ENVELOPE_ONLY` | Same | `NON_BLOCKING` | None |
+| `battery_block` | Assembled cells + integrated BMS | 1 | `ENVELOPE_ONLY` | Locked 60 × 74 × 65 block; orthogonal rotations; open cradle/adjustable retainer | `NON_BLOCKING` | None; leave open service/cable access and tune clearance during fit test |
+| `aux_electronics_block` | Trimmed perfboard + small electronics incl. D24V90F5 | 1 | `PENDING` | Clearly oversized editable block, slightly larger than ESP board; never reserve raw 90 × 150 stock | `NON_BLOCKING` | Measure populated/trimmed final envelope, retention and connector/terminal keep-outs |
+| `speaker_left` | Square speaker | 1 | `ENVELOPE_ONLY` | Ø40 aperture, 25 mm depth and conservative ~50 × 50 face region | `NON_BLOCKING` | Verify one speaker's mount/seal geometry and choose acoustic target |
+| `speaker_right` | Square speaker | 1 | `ENVELOPE_ONLY` | Derive/mirror left placeholder | `NON_BLOCKING` | No independent blocker; inherits shared speaker definition |
+| `passive_radiator` | Oval passive radiator | 1 | `ENVELOPE_ONLY` | Conservative ~78 × 42 reserved envelope, kept adjustable | `NON_BLOCKING` | Verify mount/seal geometry and acoustic data needed by chosen enclosure target |
+| `speaker_enclosure` | Rear sealed speaker/PR enclosure | 1 | `DESIGN_NEW` | Parametric reserved volume around two speakers + one PR; can drive body layout now | `NON_BLOCKING` | No independent blocker; final seal/tuning depends on speaker/PR data |
+| `ip2368` | Rear charging board | 1 | `ENVELOPE_ONLY` | Conservative rear board volume below blower; USB-C points rear; local flat and service opening allowed | `NON_BLOCKING` | Verify envelope, USB-C datum, retention and hot-region/component heights |
+| `blower_3010` | 5 V centrifugal blower | 1 | `ENVELOPE_ONLY` | Locked 30 × 30 × 10 box with conservative inlet/outlet zones | `NON_BLOCKING` | Verify purchased blower mount, inlet and outlet geometry |
+| `cooling_duct` | IP2368/blower duct and exhaust | 1 | `DESIGN_NEW` | Parametric duct reserved from IP2368 placeholder to blower placeholder; separated from mic/speaker | `NON_BLOCKING` | No independent blocker; final interfaces depend on IP2368/blower verification |
+| `air_intake` | Lower/body slanted parallel intake slots | 1 pattern | `DESIGN_NEW` | Fish-gill pattern; calculate area from final verified blower inlet later | `NON_BLOCKING` | None; pattern is a calculated shell feature |
+| `power_button` | HUSA metal tri-colour momentary switch | 1 | `ENVELOPE_ONLY` | Ø12 through-hole plus oversized/open rear internal service keep-out | `NON_BLOCKING` | None; do not create a tight blind cavity until body depth is known |
+| `upper_shell` | Upper body shell | 1 | `DESIGN_NEW` | Parametric shell around all current envelopes/placeholders; affected interfaces remain editable | `NON_BLOCKING` | No independent blocker; only dependent final interfaces wait for their source data |
+| `lower_shell` | Lower load-bearing shell/chassis | 1 | `DESIGN_NEW` | Same; use adjustable/open mounts for unresolved blocks | `NON_BLOCKING` | No independent blocker |
+| `shell_joint` | M2.5 bosses, pilot holes and locating lip | 1 set | `DESIGN_NEW` | Position/count can be designed now; keep hole/boss/lip dimensions parametric | `NON_BLOCKING` | Select print material/process/tolerance and actual M2.5 fastener data before releasing fit dimensions |
 
 ## Items intentionally absorbed into blocks
 
@@ -51,10 +53,7 @@ This is an **operational CAD instance/readiness map**, not a purchase BOM. Purch
 
 ## Current readiness summary
 
-- `CAD_EXACT`: 0.
-- `ASSEMBLY_LOCKED`: 1 role, but its authoritative file/map is pending.
-- `ENVELOPE_ONLY`: Battery Block, two wheels, two partial speaker envelopes, blower envelope and 12 mm button aperture.
-- `PENDING`: all unverified/missing component geometry listed above.
-- `DESIGN_NEW`: mic roof/carrier, speaker enclosure, cooling duct, intake slots, upper shell, lower shell and shell joint.
-
-This means layout exploration may begin only after the integrated assembly is supplied, but manufacturing geometry/export remains blocked until all critical pending data is resolved.
+- Layout gate: **READY_WITH_PLACEHOLDERS**. Every listed instance has an assembly, envelope or constraint strategy.
+- Final-manufacturing gate: **NOT_READY** until the limited shared `TRUE_BLOCKER` definitions above are verified.
+- Missing exact CAD or repo object mapping alone is never a blocker.
+- Continue with layout, collision envelopes, optical rays, module arrangement, shell studies, service sequence and parametric mounts now; label unresolved mating geometry `NOT FOR MANUFACTURE`.

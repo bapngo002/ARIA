@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate ARIA CAD workspace structure and release readiness."""
+"""Validate ARIA CAD workspace structure, layout readiness and final release gates."""
 
 from __future__ import annotations
 
@@ -47,27 +47,86 @@ def require(mapping: dict[str, Any], key: str, location: str, errors: list[str])
 
 
 def validate_constraints(constraints: dict[str, Any], errors: list[str]) -> None:
-    for key in ("schema_version", "document_id", "units", "repo_baseline", "execution_policy"):
+    for key in (
+        "schema_version",
+        "document_id",
+        "units",
+        "repo_baseline",
+        "execution_policy",
+        "readiness",
+    ):
         require(constraints, key, "constraints", errors)
     if constraints.get("units") != "mm":
         errors.append("constraints.units must be 'mm'")
+
     policy = constraints.get("execution_policy", {})
-    if not isinstance(policy, dict) or policy.get("stop_on_critical_unknown") is not True:
-        errors.append("execution_policy.stop_on_critical_unknown must be true")
-    if isinstance(policy, dict) and policy.get("allow_unmapped_legacy_cad") is not False:
+    if not isinstance(policy, dict):
+        errors.append("execution_policy must be an object")
+        return
+    if policy.get("pending_does_not_imply_blocking") is not True:
+        errors.append("execution_policy.pending_does_not_imply_blocking must be true")
+    if policy.get("continue_layout_with_approved_placeholder") is not True:
+        errors.append("execution_policy.continue_layout_with_approved_placeholder must be true")
+    if policy.get("placeholder_may_drive_final_mating_geometry") is not False:
+        errors.append("execution_policy.placeholder_may_drive_final_mating_geometry must be false")
+    if policy.get("allow_unmapped_legacy_cad") is not False:
         errors.append("execution_policy.allow_unmapped_legacy_cad must be false")
+
+    readiness = constraints.get("readiness", {})
+    if readiness.get("layout") != "READY_WITH_PLACEHOLDERS":
+        errors.append("constraints.readiness.layout must be READY_WITH_PLACEHOLDERS")
+
+
+def validate_repo_sources(object_id: str, sources: Any, errors: list[str]) -> None:
+    if sources is None:
+        return
+    if not isinstance(sources, list):
+        errors.append(f"{object_id}: source_files must be a list")
+        return
+    for index, source in enumerate(sources):
+        if not isinstance(source, dict) or not source.get("path"):
+            errors.append(f"{object_id}: source_files[{index}] missing path")
+            continue
+        path = REPO_ROOT / source["path"]
+        if not path.is_file():
+            errors.append(f"{object_id}: mapped repo source missing: {source['path']}")
+            continue
+        expected_hash = source.get("sha256")
+        if expected_hash and expected_hash not in {"PENDING", "UNKNOWN"}:
+            actual_hash = sha256_file(path)
+            if actual_hash != str(expected_hash).upper():
+                errors.append(
+                    f"{object_id}: SHA-256 mismatch for {source['path']}: "
+                    f"expected {expected_hash}, got {actual_hash}"
+                )
+
+
+def dependency_ids(raw: Any) -> list[str]:
+    if raw is None:
+        return []
+    if isinstance(raw, str):
+        return [part.strip() for part in raw.split(",") if part.strip()]
+    if isinstance(raw, list) and all(isinstance(item, str) for item in raw):
+        return raw
+    return []
 
 
 def validate_object_map(
     object_map: dict[str, Any],
     errors: list[str],
     warnings: list[str],
-) -> list[str]:
+) -> tuple[list[str], list[str], int]:
     resolver = object_map.get("resolver_policy", {})
-    if resolver.get("match_key") != "FreeCAD Object.Name":
-        errors.append("resolver_policy.match_key must be 'FreeCAD Object.Name'")
+    if resolver.get("exact_import_match_key") != "FreeCAD Object.Name":
+        errors.append("resolver_policy.exact_import_match_key must be 'FreeCAD Object.Name'")
     if resolver.get("fuzzy_matching_allowed") is not False:
         errors.append("resolver_policy.fuzzy_matching_allowed must be false")
+
+    gate_policy = object_map.get("gate_policy", {})
+    if gate_policy.get("pending_is_automatically_blocking") is not False:
+        errors.append("gate_policy.pending_is_automatically_blocking must be false")
+    if gate_policy.get("final_blocking_field") != "true_blockers_final":
+        errors.append("gate_policy.final_blocking_field must be true_blockers_final")
 
     documents = object_map.get("documents")
     if not isinstance(documents, list):
@@ -89,11 +148,24 @@ def validate_object_map(
     objects = object_map.get("objects")
     if not isinstance(objects, list):
         errors.append("object map objects must be a list")
-        return []
+        return [], [], 0
 
     allowed_states = {"CAD_EXACT", "ASSEMBLY_LOCKED", "ENVELOPE_ONLY", "PENDING", "DESIGN_NEW"}
+    ready_states = {
+        "READY_WITH_REAL_ASSEMBLY_OR_PLACEHOLDER",
+        "READY_WITH_APPROVED_PLACEHOLDER",
+        "READY_WITH_DERIVED_PLACEHOLDER",
+        "READY_WITH_LOCKED_ENVELOPE",
+        "READY_WITH_LOCKED_INTERFACE",
+        "READY_TO_DESIGN_PARAMETRIC",
+    }
+    blocked_state = "BLOCKED_NO_AUTHORITY_OR_FALLBACK"
     object_ids: set[str] = set()
-    critical_blockers: list[str] = []
+    pending_dependencies: list[tuple[str, str]] = []
+    layout_blockers: list[str] = []
+    true_blockers: list[str] = []
+    non_blocking_count = 0
+
     for index, item in enumerate(objects):
         location = f"objects[{index}]"
         if not isinstance(item, dict):
@@ -107,6 +179,9 @@ def validate_object_map(
             errors.append(f"duplicate object_id: {object_id}")
         object_ids.add(object_id)
 
+        if "critical" in item or "release_blockers" in item:
+            errors.append(f"{object_id}: legacy critical/release_blockers fields are forbidden")
+
         state = item.get("design_state")
         if state not in allowed_states:
             errors.append(f"{object_id}: invalid design_state {state!r}")
@@ -118,49 +193,46 @@ def validate_object_map(
         elif len(names) != len(set(names)):
             errors.append(f"{object_id}: duplicate FreeCAD object names")
 
-        source_files = item.get("source_files", [])
-        if not isinstance(source_files, list):
-            errors.append(f"{object_id}: source_files must be a list")
-            continue
-        for source_index, source in enumerate(source_files):
-            if not isinstance(source, dict) or not source.get("path"):
-                errors.append(f"{object_id}: source_files[{source_index}] missing path")
-                continue
-            path = REPO_ROOT / source["path"]
-            if not path.is_file():
-                errors.append(f"{object_id}: mapped repo source missing: {source['path']}")
-                continue
-            expected_hash = source.get("sha256")
-            if expected_hash and expected_hash not in {"PENDING", "UNKNOWN"}:
-                actual_hash = sha256_file(path)
-                if actual_hash != str(expected_hash).upper():
-                    errors.append(
-                        f"{object_id}: SHA-256 mismatch for {source['path']}: "
-                        f"expected {expected_hash}, got {actual_hash}"
-                    )
+        readiness = item.get("layout_readiness")
+        if readiness == blocked_state:
+            layout_blockers.append(f"{object_id}: no assembly, envelope, constraint or fallback")
+        elif readiness not in ready_states:
+            errors.append(f"{object_id}: invalid layout_readiness {readiness!r}")
+        else:
+            non_blocking_count += 1
+            if not item.get("placeholder") and state != "CAD_EXACT":
+                errors.append(f"{object_id}: ready item must define placeholder/authority")
 
-        blockers = item.get("release_blockers", [])
-        if not isinstance(blockers, list):
-            errors.append(f"{object_id}: release_blockers must be a list")
+        blockers = item.get("true_blockers_final")
+        if not isinstance(blockers, list) or not all(isinstance(value, str) for value in blockers):
+            errors.append(f"{object_id}: true_blockers_final must be a string list")
             blockers = []
-        if item.get("critical") is True and blockers:
-            critical_blockers.extend(f"{object_id}: {blocker}" for blocker in blockers)
+        true_blockers.extend(f"{object_id}: {blocker}" for blocker in blockers)
 
-    if not any(item.get("design_state") == "ASSEMBLY_LOCKED" for item in objects if isinstance(item, dict)):
-        errors.append("object map must contain the locked main compute/display assembly")
-    if not any(item.get("design_state") == "DESIGN_NEW" for item in objects if isinstance(item, dict)):
-        errors.append("object map must contain design-new geometry")
-    if critical_blockers:
-        warnings.append(f"{len(critical_blockers)} critical release blocker(s) remain")
-    return critical_blockers
+        validate_repo_sources(object_id, item.get("source_files"), errors)
+        for dependency in dependency_ids(item.get("depends_on_verified_definition")):
+            pending_dependencies.append((object_id, dependency))
+
+    for object_id, dependency in pending_dependencies:
+        if dependency not in object_ids:
+            errors.append(f"{object_id}: unknown depends_on_verified_definition {dependency!r}")
+
+    if layout_blockers:
+        warnings.append(f"{len(layout_blockers)} layout blocker(s) remain")
+    else:
+        warnings.append("layout gate is ready: every object has an approved authority or fallback")
+    if true_blockers:
+        warnings.append(f"{len(true_blockers)} true blocker(s) remain for dependent final manufacture")
+    return layout_blockers, true_blockers, non_blocking_count
 
 
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--allow-pending",
-        action="store_true",
-        help="validate structure but report critical release blockers as expected warnings",
+        "--stage",
+        choices=("structure", "layout", "final-release"),
+        default="layout",
+        help="gate to evaluate; default is layout",
     )
     args = parser.parse_args(argv[1:])
 
@@ -170,22 +242,34 @@ def main(argv: list[str]) -> int:
     object_map = load_json(OBJECT_MAP_PATH, errors)
     if constraints:
         validate_constraints(constraints, errors)
-    blockers = validate_object_map(object_map, errors, warnings) if object_map else []
+    if object_map:
+        layout_blockers, true_blockers, non_blocking_count = validate_object_map(
+            object_map, errors, warnings
+        )
+    else:
+        layout_blockers, true_blockers, non_blocking_count = [], [], 0
 
+    layout_ready = not errors and not layout_blockers
+    final_release_ready = layout_ready and not true_blockers
     result = {
         "workspace": str(WORKSPACE),
-        "mode": "STRUCTURE_ALLOW_PENDING" if args.allow_pending else "STRICT_RELEASE_PREFLIGHT",
+        "stage": args.stage,
         "errors": errors,
         "warnings": warnings,
-        "critical_release_blockers": blockers,
+        "non_blocking_layout_objects": non_blocking_count,
+        "layout_blockers": layout_blockers,
+        "true_blockers_final": true_blockers,
         "structure_valid": not errors,
-        "release_ready": not errors and not blockers,
+        "layout_ready": layout_ready,
+        "final_release_ready": final_release_ready,
     }
     print(json.dumps(result, indent=2, ensure_ascii=False))
 
     if errors:
         return 1
-    if blockers and not args.allow_pending:
+    if args.stage == "layout" and layout_blockers:
+        return 2
+    if args.stage == "final-release" and (layout_blockers or true_blockers):
         return 2
     return 0
 

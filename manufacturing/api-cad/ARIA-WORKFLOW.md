@@ -4,9 +4,11 @@ This workflow is mandatory. A phase may produce an exploratory report while pend
 
 ## Output labels
 
-- `EXPLORATORY / NOT FOR MANUFACTURE`: incomplete inputs or failed checks; geometry may be used only to discuss layout.
+- `LAYOUT / PLACEHOLDERS / NOT FOR MANUFACTURE`: incomplete final inputs, but every item has an approved assembly/envelope/constraint fallback; geometry may be developed, saved and reviewed.
 - `GEOMETRY VERIFIED / NOT RELEASED`: inputs verified and geometry checks pass, but release approval is absent.
 - `RELEASED`: all critical checks PASS, sources/hashes are recorded and the user explicitly approves export.
+
+`PENDING` alone never stops work. Only a `BLOCKED_NO_AUTHORITY_OR_FALLBACK` item stops layout. `TRUE_BLOCKER` stops only the dependent final manufacturing interface/export.
 
 ## Phase 0 — freeze source state
 
@@ -15,9 +17,9 @@ This workflow is mandatory. A phase may produce an exploratory report while pend
 3. Read the workspace files in the order specified by `README.md`.
 4. Compare the workspace `repo_baseline` to current `main`.
 5. If canonical inventory or engineering rules changed, reconcile and commit the workspace update before touching CAD.
-6. Run `python scripts/01_validate_workspace.py --allow-pending` to validate JSON structure and enumerate blockers.
+6. Run `python scripts/01_validate_workspace.py --stage layout` to validate JSON structure, placeholder authority and layout readiness.
 
-**Gate 0:** workspace parses; no conflicting duplicate object IDs; all repo paths/hashes that claim to exist are valid.
+**Gate 0:** workspace parses; no conflicting duplicate object IDs; all repo paths/hashes that claim to exist are valid; layout validator reports zero layout blockers.
 
 ## Phase 1 — collect and quarantine inputs
 
@@ -25,9 +27,9 @@ This workflow is mandatory. A phase may produce an exploratory report while pend
 2. Put physical measurement records in `input/measurements/`; every record includes component ID, revision/marking, instrument, date, units, measured dimensions and uncertainty/resolution.
 3. Put images in `input/reference-images/`; tag each as style, identity, connector orientation or measurement evidence. Images alone are never dimensional authority.
 4. Calculate SHA-256 for every input.
-5. Do not copy an item from `purchased-hardware/cad-review/` into the approved flow merely to remove a blocker. Resolve the exact mismatch/verification issue first.
+5. A reviewed/unverified file may be used only as an explicitly labeled placement reference when constraints allow it. It cannot become final mating geometry merely because it removes a placeholder.
 
-**Gate 1:** every candidate has provenance, hash and explicit verification state.
+**Gate 1:** every used candidate has provenance/hash/state; every item without a verified candidate has an explicit envelope/constraint fallback.
 
 ## Phase 2 — scan FreeCAD
 
@@ -48,7 +50,7 @@ The scan report must contain:
 
 Do not modify geometry in the scan step.
 
-**Gate 2:** authoritative assembly opens without repair errors and scan report is committed or attached to the CAD run.
+**Gate 2:** if a real assembly is available, it opens without repair errors and has a scan report. If unavailable, generate the approved placeholder and continue; this does not block layout.
 
 ## Phase 3 — map objects exactly
 
@@ -56,9 +58,9 @@ Do not modify geometry in the scan step.
 2. Update `ARIA-OBJECT-MAP.json` with exact object names, source file and SHA-256.
 3. Map the integrated Pi/display/cooler assembly to one parent assembly object and list its internal children only for collision/verification; never expose them as independently movable layout objects.
 4. Map each IR optical eye and each ToF optical datum explicitly where the CAD provides child objects/datums.
-5. If an object is absent, duplicated ambiguously or nested unexpectedly, stop and report it as `NOT_MAPPED`.
+5. If an object is absent, duplicated ambiguously or nested unexpectedly, do not guess the match. Keep it `NOT_MAPPED_NON_BLOCKING`, instantiate its approved placeholder and continue layout.
 
-**Gate 3:** all critical imported objects have an exact unambiguous map; no banned legacy file is used.
+**Gate 3:** every object has either an exact unambiguous map or an approved placeholder authority; no fuzzy match is used.
 
 ## Phase 4 — verify dimensions and functional datums
 
@@ -77,17 +79,17 @@ Special corrections:
 - YD-ESP32 CAD in `cad-review/`: nominal/reference only until the delivered board is measured; the final CAD object is the measured AUX block, not an independent shell-mounted ESP board.
 - VL53L1X: if hole spacing is not `20.00 mm`, edit only mounting-hole geometry. Never uniformly scale the module.
 
-**Gate 4:** a dimension report exists. Critical `UNKNOWN/PENDING/NOT_VERIFIED` causes a hard stop for dependent geometry.
+**Gate 4:** a dimension/open-items report exists. Each unknown is classified `NON_BLOCKING` or `TRUE_BLOCKER`. Non-blocking placeholder geometry continues; only the affected final mating/aperture/sealing geometry waits for a true blocker.
 
 ## Phase 5 — create locked envelopes and datums
 
 1. Create Battery Block `60 × 74 × 65 mm` as one solid; do not expose cells/BMS.
 2. Create two wheel envelopes `Ø61 × 24 mm` with central axes; do not design hub interiors.
-3. Create only provisional speaker/blower/button envelopes as allowed by constraints; mark them `NOT FOR MANUFACTURE` where geometry is partial.
-4. Do not create a `90 × 150 mm` AUX block. Until measured, a temporary clearly labeled visualization block may be slightly larger than the ESP board, but it cannot drive shell or mount release.
+3. Create conservative speaker, PR, IP2368, blower and button envelopes as allowed by constraints; mark partial geometry `PLACEHOLDER / NOT FOR MANUFACTURE`.
+4. Do not create a `90 × 150 mm` AUX block. Create an oversized editable AUX placeholder slightly larger than the ESP board; let it drive spatial layout but not final retention or a tight shell closure.
 5. Establish semantic datums: robot center plane, ground plane, FRONT, motor axes, wheel swept volumes, optical rays and service/removal vectors.
 
-**Gate 5:** every generated envelope is traceable to a locked number and contains no invented detail.
+**Gate 5:** every generated envelope is traceable to a locked constraint or documented conservative fallback and contains no invented hidden detail.
 
 ## Phase 6 — layout
 
@@ -111,36 +113,36 @@ Layout rules:
 - leave room for real connectors and tool/removal vectors;
 - minimize final envelope only after functional constraints pass.
 
-**Gate 6:** no hard collision; every major module has a feasible insertion/removal vector.
+**Gate 6:** no hard collision between current authorities/placeholders; every major module has a feasible insertion/removal vector. Placeholder-driven clearances remain parametric.
 
 ## Phase 7 — mounts and module interfaces
 
-1. Build motor/stator mounts and wheel housing/stop without touching rotating geometry.
+1. Build parametric motor/stator mount reservations and wheel housing/stop without touching rotating geometry; do not freeze final hole geometry until shared drive data is verified.
 2. Build a lower-shell battery cradle, lateral stops and removable M2.5 retainer.
 3. Mount the entire Pi/display assembly at its existing assembly interfaces.
 4. Mount sensors only through verified holes; do not drill virtual PCB holes.
-5. Build removable interfaces for AUX, speaker, charging and mic modules.
+5. Build removable, adjustable/open interfaces for AUX, speaker, charging and mic placeholders; tighten them only after final source data arrives.
 6. Add only necessary cable pass-throughs across isolated walls.
 
-**Gate 7:** loads reach lower chassis appropriately; all fasteners/connectors are accessible.
+**Gate 7:** loads reach lower chassis appropriately; current fasteners/connectors are accessible; unresolved final interfaces remain visibly parametric/placeholder.
 
 ## Phase 8 — acoustic and cooling subsystems
 
 ### Acoustic
 
-1. Build a sealed rear enclosure for two speakers plus one passive radiator only after exact geometry and tuning target exist.
+1. Reserve and shape a parametric sealed rear enclosure now. Freeze gasket seats, mounting holes and final acoustic volume only after exact geometry and tuning target exist.
 2. Keep MAX98357A modules outside the sealed volume.
 3. Build a fully isolated top mic chamber with a separate roof, approximately 2–3 mm acoustic gap and unobstructed acoustic paths.
 4. Do not share mic, speaker or airflow volumes.
 
 ### Cooling
 
-1. Put IP2368 below the blower; point USB-C to rear and allow a local flat.
+1. Put the conservative IP2368 placeholder below the 30 × 30 × 10 blower placeholder; point USB-C service direction to rear and allow a local flat.
 2. Route lower/body intake air over the verified hot region into blower exhaust.
 3. Create parallel slanted fish-gill intake slots.
 4. Verify open area, internal blockage and hot-air recirculation.
 
-**Gate 8:** speaker leak check, mic isolation check and complete intake-to-exhaust path all PASS.
+**Gate 8:** conceptual/parametric speaker separation, mic isolation and complete intake-to-exhaust path all PASS for layout. Final leak/flow evidence is deferred to final release.
 
 ## Phase 9 — shell generation
 
@@ -150,17 +152,17 @@ Layout rules:
 4. Preserve local flat/service surfaces only where required.
 5. Add only verified windows/apertures for display, camera, four IR eyes, four ToF beams, speakers/PR, intake/exhaust, USB-C and button.
 
-**Gate 9:** collision, wall integrity, aperture and service checks pass on both shell halves.
+**Gate 9:** collision, wall integrity, reserved aperture and service checks pass on both shell halves. Placeholder-derived apertures remain uncommitted manufacturing features.
 
 ## Phase 10 — M2.5 bosses and locating lip
 
-1. Load recorded print material/process/tolerance and exact fastener data.
-2. Create M2.5 bosses and pilot holes; do not model threads.
-3. Create a small locating lip with assembly clearance; it aligns but does not snap or carry clamp load.
+1. Place/count parametric M2.5 bosses and locating lip now using the locked joint concept.
+2. Before final release, load recorded print material/process/tolerance and exact fastener data, then resolve boss, pilot-hole and lip-fit parameters. Do not model threads.
+3. The locating lip aligns but does not snap or carry clamp load.
 4. Place bosses away from keep-outs and add driver-access volumes.
 5. Validate shell alignment without forcing or overconstraint.
 
-**Gate 10:** print/tolerance values are verified; all joint checks PASS.
+**Gate 10 layout:** boss locations and tool paths are feasible. **Gate 10 final:** print/tolerance/fastener values are verified and all joint fit checks PASS.
 
 ## Phase 11 — validation
 
@@ -176,12 +178,12 @@ Execute and record every line in `ARIA-VALIDATION-CHECKLIST.md`:
 8. battery, Pi/display and other module removal simulations;
 9. upper/lower alignment, fastener and connector accessibility.
 
-Any critical `FAIL`, `NOT_RUN`, `UNKNOWN` or unsupported `PASS` blocks export.
+For layout, `NOT_RUN/PENDING` is permitted when an approved placeholder/fallback is recorded. For final manufacturing export, every final-critical row must PASS with evidence and no `TRUE_BLOCKER` may remain.
 
 ## Phase 12 — export and release
 
 1. Recompute and save the final FCStd.
-2. Run strict workspace validation without `--allow-pending`.
+2. Run `python scripts/01_validate_workspace.py --stage final-release`.
 3. Record source commit, FCStd SHA-256, constraint version and validation report.
 4. Export neutral assembly STEP plus print files only for approved design-new parts; choose STL/3MF tolerances intentionally and record them.
 5. Put final files in `output/export/` with a release manifest.
@@ -190,7 +192,9 @@ Any critical `FAIL`, `NOT_RUN`, `UNKNOWN` or unsupported `PASS` blocks export.
 
 ## Change control
 
+- Never ask the user to restate a decision already recorded in this workspace. Read the source files and continue from the approved constraint/placeholder.
+- Request new user input only when the exact dependent final interface has reached a recorded `TRUE_BLOCKER` that cannot be resolved by measurement already present in the repo/workspace.
 - A new measurement updates the measurement record, constraints/object map as needed and triggers every dependent validation again.
-- A changed component revision returns the affected object to `PENDING`.
+- A changed component revision returns the affected object to `PENDING`, selects its approved placeholder and blocks only the dependent final interface until reverified.
 - A manual CAD deviation must state reason, affected objects/checks and user approval.
 - Never fix a failed check by weakening/deleting the constraint without explicit approval.

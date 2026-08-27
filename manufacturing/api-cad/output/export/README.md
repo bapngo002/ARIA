@@ -1,6 +1,6 @@
 # CAD exports
 
-This directory is empty until strict preflight and every critical validation check PASS.
+Manufacturing releases stay empty until final-release preflight and every final-critical validation check PASS. Layout/review exports may be stored in a clearly separated `not-for-manufacture/` subdirectory when useful; they must preserve placeholder labels and cannot be mistaken for released print files.
 
 Each release uses a versioned subdirectory and includes:
 

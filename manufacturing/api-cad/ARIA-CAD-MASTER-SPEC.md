@@ -1,11 +1,11 @@
 # ARIA final CAD master specification
 
 - **Document ID:** ARIA-CAD-MASTER-SPEC
-- **Version:** 1.0.0
+- **Version:** 1.1.0
 - **Captured:** 2026-08-27
 - **Repo baseline:** `main@e3a6a83f4384d188aee4c76c771f4b8fce5c523e`
 - **Units:** millimetres
-- **Status:** design decisions frozen; geometry release blocked by pending inputs
+- **Status:** layout ready with controlled placeholders; final manufacturing release has limited true blockers
 
 ## 1. Authority and conflict handling
 
@@ -15,7 +15,14 @@
 - This workspace is the operational authority for the **final CAD layout, constraints, object mapping, workflow and validation** after it is merged to `main`.
 - `docs/ARIA-BOM-001.md` did not exist in the baseline and must not be fabricated from memory.
 - If a conversation-era component identity conflicts with `main`, `main` wins. In particular, do not carry the old “BMS 3S 40A không NTC” description forward: current canonical inventory records a 3S 20A + NTC BMS. CAD treats it only as part of the locked Battery Block unless the canonical inventory is deliberately revised.
-- Unknown geometry remains `UNKNOWN/PENDING`. No photo scaling, generic-datasheet substitution or AI estimation is permitted.
+- Unknown geometry remains `UNKNOWN/PENDING`, but is not automatically blocking. Use an approved assembly, envelope, constraint-driven placeholder or adjustable interface for layout; do not invent hidden detail.
+
+### 1.1 Readiness rule
+
+- `NON_BLOCKING`: enough information exists to reserve volume, orient, arrange modules, generate concept mounts/shells or keep work parametric. Continue and label the affected geometry `PLACEHOLDER / NOT FOR MANUFACTURE` where appropriate.
+- `TRUE_BLOCKER`: a datum is indispensable for final manufacturing geometry, cannot be calculated from the completed layout, cannot be covered by a conservative envelope and cannot be replaced by an adjustable/serviceable interface.
+- A `TRUE_BLOCKER` blocks only the dependent **final manufacturing interface/export**, not unrelated layout work and not the whole CAD workspace.
+- Placeholder geometry must preserve locked functional constraints and must never silently become drill, aperture, seal or mating geometry in a release file.
 
 ## 2. Overall architecture
 
@@ -59,7 +66,7 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - Preserve cooler intake/exhaust clearance and service clearance for all connectors actually used.
 - The enclosure creates mounts for the whole assembly, not a new independent Pi mounting scheme.
 - Removal direction and screw/tool access must allow the whole assembly to leave from inside after the upper shell/front area is opened.
-- Repo baseline does not contain the authoritative integrated assembly. Import and map it before layout release. The current Pi DWG in `cad-review/` uses the wrong cooler and is not an acceptable substitute.
+- Repo baseline does not contain the authoritative integrated assembly, but the existing real assembly may be imported and used as a rigid placeholder without exact repo mapping. This is `NON_BLOCKING` for layout. Its final envelope, mounting and connector/cooler keep-outs must be captured before final shell/mount release. The Pi DWG in `cad-review/` uses the wrong cooler and is not an acceptable replacement for the assembly.
 
 ### 3.2 Camera
 
@@ -71,7 +78,7 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - Use existing PCB mounting holes if verified; never add holes to the camera PCB.
 - Allow cable connection/disconnection below the connector and removal from inside.
 - Camera pitch remains `PENDING/CALCULATED` until the assembly position, ground plane and verified FOV are available.
-- Repo has a same-model DWG, but scale, holes, lens keep-out and dimensions are not verified; it is not `CAD_EXACT` yet.
+- Repo has a same-model DWG. Use it plus locked orientation as a `NON_BLOCKING` placement placeholder. Verification of mounting and optical keep-out is a `TRUE_BLOCKER` only for the final camera mount/aperture.
 
 ### 3.3 Paired IR modules
 
@@ -82,7 +89,7 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - Because the boards are identical rather than handed parts, one PCB may rotate 180° about the viewing axis so the visible eye pattern is a mirror pair.
 - Internal PCB orientations may differ. External symmetry is higher priority than identical internal orientation.
 - The shell/head may grow locally to clear the rotated board/connector, but left/right exterior geometry must remain symmetric.
-- Exact IR model, eye centers/diameters, mounting and object mapping are absent from the repo baseline and are critical `PENDING` inputs.
+- The approved paired-eye constraints are sufficient for `NON_BLOCKING` symmetric layout with a conservative sensor-head envelope. Exact eye datums/mounting are a `TRUE_BLOCKER` only for final optical apertures and PCB retention.
 
 ### 3.4 Microphone top module
 
@@ -94,7 +101,7 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - Roof/mic support legs and fasteners must not block the acoustic paths and must be tool-accessible.
 - Only a required cable pass-through may penetrate the chamber wall; seal/isolate it as part of the acoustic design.
 - Blower duct, intake and exhaust must never use the mic acoustic gap.
-- Exact mic revision, CAD, mounting points, port locations, carrier dimensions and removal direction remain critical `PENDING`.
+- The isolated-chamber concept and 2–3 mm roof-gap rule are sufficient for `NON_BLOCKING` top-volume layout. Exact microphone envelope, acoustic ports and mounting interface are a `TRUE_BLOCKER` only for the final carrier, roof supports and acoustic openings.
 
 ### 3.5 Drive: motors, encoders and wheels
 
@@ -120,7 +127,7 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - Left/right external apertures should be symmetric. Report any unavoidable internal asymmetry.
 - No sensor, bracket or beam may collide with wheel, motor, encoder or wheel swept volume.
 - Approximate old bracket thickness `1 mm` is not a released manufacturing dimension; it remains `PENDING` pending material/process.
-- Exact CAD files and FreeCAD object names are absent from the repo baseline and are critical `PENDING` inputs.
+- The `25 × 10 mm` reference envelope, locked 20 mm hole spacing, connector-UP rule and R200 ±10 target are sufficient for `NON_BLOCKING` layout and ray solving. Physical verification of the final hole/optical datums is a `TRUE_BLOCKER` only for released brackets/apertures.
 
 ### 3.7 Battery Block
 
@@ -139,7 +146,7 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - The purchased `90 × 150 mm` perforated PCB is raw stock only. It is not the final board size and no `90 × 150 mm` cavity may be reserved.
 - After physical module layout, trim unused perfboard and measure final length × width × height plus connector/terminal keep-outs.
 - Until measured, use only a clearly labeled provisional visualization envelope “slightly larger than the ESP board”; it must not drive shell release or mounting hole placement.
-- Final envelope, outline, layer count/stack, mounting pattern and connector exits are `UNKNOWN/PENDING`.
+- Final envelope, outline, layer count/stack, mounting pattern and connector exits are `UNKNOWN/PENDING`. Use a clearly oversized, editable AUX placeholder for layout; this is `NON_BLOCKING`. The populated-and-trimmed block envelope plus service interfaces are a `TRUE_BLOCKER` only for final AUX retention and surrounding shell closure.
 - D24V90F5 may be mounted on this block. Preserve airflow/thermal clearance around its hot components.
 - Do not route motor or main high-current power through Dupont wiring or low-current perfboard traces; this is an electrical release constraint that also affects terminal access.
 
@@ -152,7 +159,7 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - Passive radiator provisional outside envelope: approximately `78 × 42 mm`; active-area values from product imagery are not authoritative manufacturing dimensions.
 - The two speakers and passive radiator share the intended acoustic volume. They may be angled/rearranged to follow the rear shell only after real geometry/mounts are available.
 - Enclosure is isolated from electronics, airflow duct and shell leaks. MAX98357A boards remain outside the sealed acoustic volume.
-- Speaker/PR CAD, hole patterns, gasket compression, enclosure volume/tuning and final arrangement are critical `PENDING` for acoustic release.
+- The locked apertures/depth and conservative rear reserved volume are `NON_BLOCKING` for body layout. Exact speaker/PR sealing interfaces and an acoustic volume/tuning target are `TRUE_BLOCKER` data for the final sealed enclosure only.
 
 ### 3.10 Charging and cooling module
 
@@ -166,7 +173,7 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - Total unobstructed intake area must be at least the blower's verified useful inlet area. Internal walls/components must not block it.
 - Intake and exhaust must be separated enough to avoid recirculating hot exhaust.
 - Duct is separate from mic chamber and sealed speaker enclosure, avoids the battery where practical, and uses a short path with no unnecessary sharp restrictions.
-- IP2368 board dimensions, mount holes, connector position and thermal hotspot are critical `PENDING`.
+- A conservative rear board envelope below the 30 × 30 × 10 blower, rear USB-C direction and dedicated duct are `NON_BLOCKING` for layout. Exact port/mount/hot-region datums are `TRUE_BLOCKER` only for final IP2368 retention, shell cutout and verified thermal duct.
 
 ### 3.11 Power button
 
@@ -193,22 +200,32 @@ Treat the complete existing `Pi 5 + Waveshare round display + Smraza active cool
 - Every screw must have driver approach clearance. Every connector intended for service must have a defined unplug direction.
 - No critical part may require destructive shell flexing, cutting, breaking a glued joint or removing an unrelated major module.
 
-## 6. Release blockers
+## 6. Open data classification
 
-The following must be supplied/scanned/measured before manufacturing export:
+### 6.1 NON-BLOCKING — continue now
 
-1. Authoritative integrated Pi/display/cooler FreeCAD assembly and exact object names.
-2. Exact IR model(s), both optical eye datums, mounts and connector keep-outs.
-3. Exact four VL53L1X models after verifying/correcting only the 20 mm hole pattern.
-4. Exact motor/encoder CAD and physical verification of critical dimensions.
-5. Camera DWG verification: units, envelope, holes, lens/FOV keep-out and connector location.
-6. Microphone revision, CAD/measurement, acoustic port geometry and mounting.
-7. Final AUX block length × width × height, mounting pattern and connector keep-outs after the perfboard is populated and cut.
-8. IP2368 board envelope, mount holes, USB-C datum, component heights/hot face and thermal test.
-9. Purchased blower mount/inlet/outlet geometry.
-10. Speaker and passive radiator outlines, hole patterns, gasket interfaces and enclosure volume/tuning target.
-11. Power button body/bezel/depth/terminal dimensions.
-12. Print process/material/tolerance, shell wall thickness, boss dimensions, pilot holes and locating-lip clearance.
-13. Ground plane, axle height, wheel running clearance and stabilizing/bumper geometry.
+- Missing repo object names or exact CAD when a real assembly, locked envelope or constraint placeholder exists.
+- Camera placement using the same-model DWG and locked FRONT/DOWN orientation.
+- IR symmetric sensor-head volumes with separate large/small optical reservations.
+- Four ToF placeholders using 25 × 10 mm reference envelopes, 20 mm hole spacing and calculated R200 ±10 rays.
+- Wheels, Battery Block, blower envelope and Ø12 button aperture.
+- Conservative speaker/IP2368/AUX reserved volumes, provided they remain editable and are not used as final mating geometry.
+- Ground plane, axle height, running clearance, shell shape, boss count/placement, intake slot pattern and removal vectors: these are calculated/design outputs, not missing external authority.
+- Unknown button body depth: use a rear through-access/oversized internal keep-out instead of a tight blind cavity.
+- Battery cable exit/mass: use open service access and adjustable retention; do not stop layout.
 
-Until these are resolved, output may be exploratory layout only and must be stamped `NOT FOR MANUFACTURE`.
+### 6.2 TRUE BLOCKERS — only for dependent final manufacture
+
+1. Final Pi/display/cooler assembly envelope, mounting interface and connector/cooler keep-outs.
+2. Camera mounting plus verified lens/FOV optical keep-out.
+3. One exact IR board geometry with both eye datums and mounting/connector interface; the other side is derived from the identical board and approved rotation.
+4. Microphone envelope, acoustic port positions and mounting interface.
+5. One verified VL53L1X physical/CAD definition for final outline, holes and optical datum; four placements derive from it.
+6. One verified motor/encoder definition for stator mount, rotor axis and encoder envelope; the opposite side mirrors it.
+7. Final populated/trimmed AUX block envelope, retention interface and connector/terminal keep-outs.
+8. Speaker and passive-radiator mounting/sealing interfaces plus chosen enclosure acoustic target.
+9. IP2368 envelope, USB-C datum, retention interface and hot-region/component-height envelope.
+10. Purchased blower mounting, inlet and outlet geometry.
+11. Print process/material/tolerance and actual M2.5 fastener data needed to release pilot holes, bosses and locating-lip fit.
+
+These blockers do not prevent ongoing layout, placeholder mounts, shell studies, ray/clearance analysis or service-sequence design. Only affected final interfaces and manufacturing exports remain `NOT FOR MANUFACTURE`.
