@@ -35,7 +35,7 @@ ARIA đã qua nhiều thử nghiệm module thực tế; không còn là dự á
 - Camera Pi test OK. Màn hình mua AliExpress đã chạy; **UI phải nằm trong vùng tròn**. BOM lưu tên màn hình hiện có; chưa có bằng chứng mới để tự đổi model/revision hoặc suy ra kích thước vùng hiển thị thực.
 - Microphone board/array thu tiếng rõ. MAX98357A hiện là **2 board mới, cả 2 OK**. IMU và BME280 đã test OK (E2).
 - ToF hiện có **4 × VL53L1X** theo E2; mapping XSHUT được bảo tồn dưới đây. Chat báo đã test ToF nhưng không có kết quả từng S1–S4 hoặc test đồng thời/reboot để kết luận cả cụm pass.
-- Power sensing hiện hành là **INA260 ×2**, DigiKey **1528-2955-ND**, board code **4226** (E1/E2); chưa có bằng chứng bench INA260 pass.
+- Power sensing hiện hành là **INA260 ×1**, DigiKey **1528-2955-ND**, board code **4226** (E1/E2); chưa có bằng chứng bench INA260 pass.
 
 ### Pinmap bench được bảo tồn — chưa là pinmap tích hợp đã release
 
@@ -219,7 +219,7 @@ Nguồn được giữ nguyên trên D (tài liệu lịch sử, không phải n
 ### Điều chỉnh khi áp dụng tài liệu KST
 
 1. STEP-001/002 dùng docs/ARIA-BOM-001.md là inventory duy nhất. Nhận định cũ “BOM không tồn tại” và baseline e3a6a83 đã hết hiệu lực; không chuyển inventory trở lại purchased-hardware/README.md.
-2. STEP-015/024 dùng INA260 ×2, không INA226. BME280 và 4 VL53L1X theo cấu hình hiện hành; không đưa lại sensor/model lịch sử vào thiết kế.
+2. STEP-015/024 dùng INA260 ×1, không INA226. BME280 và 4 VL53L1X theo cấu hình hiện hành; không đưa lại sensor/model lịch sử vào thiết kế.
 3. STEP-006 không yêu cầu bỏ cây software/pi và firmware/esp32 đang có hoặc viết lại code từ đầu. Chỉ tái cấu trúc khi có nhu cầu triển khai cụ thể và bảo tồn capture/LKG.
 4. STEP-014/016 không mặc định chuyển IMU/ToF về ESP32: source capture đang đọc chúng trên Pi. Wiring/ownership cuối phải được xác minh; ESP32 vẫn có trách nhiệm dừng độc lập khi mất link.
 5. KST cung cấp tham khảo về dashboard, state machine, công cụ AI, lệnh có thời hạn, settings và recovery. Không dùng firmware KST làm firmware ARIA; không copy GPIO, driver L298N/servo, ngưỡng hoặc timeout mặc định sang ARIA. Có chuỗi safety/tool trong binary không chứng minh runtime hoặc safe stop trên ARIA.
@@ -250,7 +250,7 @@ Nguồn được giữ nguyên trên D (tài liệu lịch sử, không phải n
 
 ## Xác nhận phần cứng và kiểm kê wiring — 2026-09-12
 
-Người dùng xác nhận “đúng chuẩn rồi” đối với bảng vừa trình bày: Pi 5 4GB/microSD 128GB, YD-ESP32-S3 N16R8 44 chân dual USB-C, FIT1035 ×2, DRI0058 ×2, AS5600 ×2 đi cùng motor, INA260 ×2 Adafruit 4226, VL53L1X ×4, BNO085 và BME280. Đây là VERIFIED ở mức owner-reported cho cấu hình/model đã liệt kê; không xác nhận revision, dây đang đấu, pin availability hay kết quả bench mới. Không cần hỏi lại model trong bảng nếu không có mâu thuẫn mới.
+Người dùng xác nhận “đúng chuẩn rồi” đối với bảng vừa trình bày: Pi 5 4GB/microSD 128GB, YD-ESP32-S3 N16R8 44 chân dual USB-C, FIT1035 ×2, DRI0058 ×2, AS5600 ×2 đi cùng motor, INA260 ×2 Adafruit 4226 (số lượng ở xác nhận cũ, đã thay bằng ×1 theo điều chỉnh sau đó), VL53L1X ×4, BNO085 và BME280. Đây là VERIFIED ở mức owner-reported cho cấu hình/model đã liệt kê; không xác nhận revision, dây đang đấu, pin availability hay kết quả bench mới. Không cần hỏi lại model trong bảng nếu không có mâu thuẫn mới.
 
 Kiểm kê wiring: docs/ARIA-WIRING-001.md hiện có quy tắc và cập nhật INA260/BMS tích hợp, chưa có sơ đồ pin-to-pin hợp nhất theo capture. electronics/schematics chỉ có README. Tìm được bản lịch sử D:/UserData/ARIA/history/2026-08-01/referenced-chatgpt-conversation-this-is-an/outputs/docs/ARIA-WIRING-002.md và PDF/KiCad tương ứng; Rev A ghi DESIGN BASELINE - DO NOT BUILD, dùng Pi 8GB, DevKitC-1, INA226, 6 ToF/SHT45 và BMS Enerkey, nên không dùng như sơ đồ hiện hành. D:/UserData/ARIA_DONG_BO/01_ARIA_MECH_FROM_ZERO_R1/CH500_WIRING_SERVICE_R1.json là routing cơ khí, tự ghi electrical release blocked; giả định pack/DALY trong đó không thay thế cấu hình pin hiện hành. Các bản này được bảo tồn lịch sử, chưa nhập lại vào repo.
 
@@ -258,7 +258,9 @@ Kết luận: tài liệu quy tắc đã cập nhật một phần, sơ đồ đ
 
 ## Cập nhật INA260 — xác nhận trực tiếp 2026-09-12
 
-Người dùng chốt INA260, nhưng linh kiện chưa về nên chưa cập nhật chân đấu nối. Cấu hình mục tiêu vẫn INA260 ×2 theo BOM; trạng thái nhận hàng: chưa nhận; lắp/bench: chưa thực hiện; chân SDA/SCL, nguồn, ALERT nếu dùng và địa chỉ I²C: NOT VERIFIED/TBD. Không sao chép địa chỉ 0x44 của INA226 sang INA260. Xác nhận này làm rõ câu “đúng chuẩn rồi” trước đó là xác nhận lựa chọn model, không phải đã nhận/lắp INA260. Không yêu cầu test INA260 trước khi hàng về; giữ hạng mục này pending delivery, có thể đối chiếu phần wiring khác độc lập.
+**Số lượng chốt mới nhất: INA260 ×1.** Người dùng điều chỉnh từ 2 xuống 1; cấu hình hai board đã superseded. Chưa nhận hàng, chưa chốt wiring/address và chưa bench.
+
+Người dùng chốt INA260, nhưng linh kiện chưa về nên chưa cập nhật chân đấu nối. Cấu hình mục tiêu là INA260 ×1 theo điều chỉnh số lượng mới nhất của người dùng; trạng thái nhận hàng: chưa nhận; lắp/bench: chưa thực hiện; chân SDA/SCL, nguồn, ALERT nếu dùng và địa chỉ I²C: NOT VERIFIED/TBD. Không sao chép địa chỉ 0x44 của INA226 sang INA260. Xác nhận này làm rõ câu “đúng chuẩn rồi” trước đó là xác nhận lựa chọn model, không phải đã nhận/lắp INA260. Không yêu cầu test INA260 trước khi hàng về; giữ hạng mục này pending delivery, có thể đối chiếu phần wiring khác độc lập.
 
 File người dùng cung cấp D:/UserData/Downloads/PROJECT_ARIA_LATEST_PINOUT_HANDOFF_2026-09-12.md đã đọc và đối chiếu: motor/encoder/tuning, USB Serial 115200, ToF Pi GPIO22–25/0x30–0x33, BNO085 0x4A và BME280 0x76 khớp capture. File báo audio GPIO18/19/21, camera CAM/DISP0, display CAM/DISP1 và overlay; đây là evidence tài liệu mới, chưa kiểm cấu hình runtime. File ghi INA226 còn đang dùng và planned INA260; xác nhận mới không chứng minh INA226 hiện còn lắp. Không phục hồi INA226 làm cấu hình mục tiêu. Các nhãn bounded motion/failsafe PASS trong file chưa đóng lỗi static của sketch capture: chưa thấy command-duration timeout độc lập heartbeat. Không nâng runtime/flash/bench thành VERIFIED hoặc đổi pin chỉ từ nhãn PASS/LOCKED trong tài liệu.
 

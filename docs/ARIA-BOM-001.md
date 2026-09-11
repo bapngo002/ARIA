@@ -6,7 +6,7 @@
 Cập nhật: 2026-09-12
 
 Tiến độ, kết quả test và migration gaps nằm trong [MASTER HANDOFF](ARIA-MASTER-HANDOFF.md); không suy ra tiến độ dự án từ bảng mua hàng này.
-Phạm vi bảng đã mua có hồ sơ trước migration (không phải toàn bộ phần cứng live): **15 hạng mục / 28 đơn vị được ghi nhận**; không cộng lại phần bảo vệ tích hợp trong cụm pin. Bánh xe hiện hành được ghi riêng bên dưới do chưa có số lượng mua được xác nhận.
+Phạm vi bảng đã mua có hồ sơ trước migration (không phải toàn bộ phần cứng live): **15 hạng mục / 28 đơn vị ở snapshot lịch sử** (trước điều chỉnh INA260 xuống 1; không phải tổng đã nhận hiện tại); không cộng lại phần bảo vệ tích hợp trong cụm pin. Bánh xe hiện hành được ghi riêng bên dưới do chưa có số lượng mua được xác nhận.
 Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn truyền động; không dùng để suy ra giá từng dòng)
 
 ## Danh sách đã mua
@@ -14,7 +14,7 @@ Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn 
 | # | Nhóm | Linh kiện / model đã mua | SL | CAD hiện có | Kết luận |
 |---:|---|---|---:|---|---|
 | 1 | Compute | Raspberry Pi 5 4GB | 1 | [Pi 5 + Official Cooler](../purchased-hardware/cad-review/01-raspberry-pi-5-with-official-cooler_UNVERIFIED-MISMATCH.dwg) | **Sai một phần:** cooler trong file là loại chính hãng, cooler mua là Smraza; chưa kiểm kích thước. |
-| 2 | Power sensing | Board INA260 đo dòng điện / điện áp / công suất qua I²C; DigiKey **1528-2955-ND**; board code **4226** | 2 | — | **Chốt dùng, chưa nhận hàng** theo xác nhận người dùng; chưa lắp, chưa chốt chân đấu nối/địa chỉ I²C, chưa bench. Thiếu CAD; đối chiếu revision khi hàng về. |
+| 2 | Power sensing | Board INA260 đo dòng điện / điện áp / công suất qua I²C; DigiKey **1528-2955-ND**; board code **4226** | 1 | — | **Chốt dùng, chưa nhận hàng** theo xác nhận người dùng; chưa lắp, chưa chốt chân đấu nối/địa chỉ I²C, chưa bench. Thiếu CAD; đối chiếu revision khi hàng về. |
 | 3 | Thermal | Smraza Active Cooler cho Raspberry Pi 5, 5V PWM 4-pin | 1 | — | Thiếu. |
 | 4 | Power | Pololu D24V90F5, 5V/9A | 1 | — | Thiếu. |
 | 5 | Vision | Raspberry Pi Camera Module 3 Wide NoIR | 1 | [DWG](../purchased-hardware/cad/05-raspberry-pi-camera-module-3-wide-noir.dwg) | Đúng tên model; chưa kiểm scale, lỗ bắt, lens keep-out và kích thước. |
@@ -43,6 +43,8 @@ Nguồn: xác nhận trực tiếp của người dùng trong yêu cầu migrati
 - **AS5600 ×2**: bảng dòng 14 ghi tích hợp trong hai FIT1035; không cộng thêm encoder rời.
 - Màn hình AliExpress đã chạy theo snapshot; tên Waveshare ở dòng 11 là định danh đang lưu, exact revision/bộ cáp và vùng tròn cần đối chiếu, không tự thay model.
 
+Số lượng INA260 hiện hành: **1 board**, theo điều chỉnh trực tiếp của người dùng ngày 2026-09-12; thay cho số lượng 2 trước đó. Chưa nhận hàng; chưa chốt đấu nối. Tổng chi phí lịch sử không được tự giảm khi chưa có hồ sơ đơn hàng cập nhật.
+
 ### Bánh xe
 
 - Loại lốp: **gravel tire**.
@@ -60,7 +62,7 @@ Nguồn: xác nhận trực tiếp của người dùng trong yêu cầu migrati
 
 ### Lịch sử thay đổi / superseded
 
-- INA226 đã được thay thế hoàn toàn bởi INA260 ×2 tại dòng 2; không dùng INA226 trong thiết kế, wiring hoặc firmware hiện hành.
+- INA226 đã được thay thế hoàn toàn bởi INA260 ×1 tại dòng 2; không dùng INA226 trong thiết kế, wiring hoặc firmware hiện hành.
 - Trạng thái MAX98357A cũ “1 tốt, 1 hỏng” đã bị thay thế bởi 2 board mới, cả 2 đều OK.
 - Bánh xe Ø40 × 20 mm đã obsolete; thông số hiện hành nằm ở mục Bánh xe.
 - Dòng BMS rời ID 6 trước đây ghi 3S Li-ion, 20A + NTC. Đây là dữ liệu lịch sử, không xác nhận rating/model của BMS bên trong cụm pin hiện tại.
