@@ -4,7 +4,7 @@
 
 ## NEW CHATGPT ACCOUNT BOOTSTRAP
 
-1. Đọc file này trước khi tiếp tục Project ARIA. Sau hợp nhất theo yêu cầu người dùng, **checkout ARIA đã hợp nhất là source of truth làm việc duy nhất**, gồm master này cho quyết định và source đã nhập cho phần mềm capture. GitHub `bapngo002/ARIA/main` là baseline quyết định đã đối chiếu; cập nhật local này chưa được push. Không dùng export/kho ổ D như trạng thái song song.
+1. Đọc file này trước khi tiếp tục Project ARIA. Sau hợp nhất theo yêu cầu người dùng, **checkout ARIA đã hợp nhất là source of truth làm việc duy nhất**, gồm master này cho quyết định và source đã nhập cho phần mềm capture. GitHub `bapngo002/ARIA/main` là baseline quyết định đã đối chiếu; các thay đổi hoàn tất được đồng bộ GitHub theo ủy quyền thường xuyên của người dùng; kiểm tra remote HEAD khi báo kết quả. Không dùng export/kho ổ D như trạng thái song song.
 2. Ưu tiên CURRENT/CANONICAL. Không hồi sinh thông tin HISTORICAL/OBSOLETE từ chat cũ, commit cũ hoặc branch chưa merge.
 3. [ARIA-BOM-001](ARIA-BOM-001.md) là nguồn duy nhất cho inventory, model, số lượng, trạng thái mua và CAD. File này quản lý tiến độ, mức kiểm chứng, pinmap, kiến trúc, migration gaps và thứ tự công việc; không suy diễn tiến độ từ BOM.
 4. [PRD frozen](ARIA-PRD-001.md) giữ nguyên yêu cầu sản phẩm. Các ghi chú tiến độ trong PRD, đặc biệt mục 10 “M4 — Bench Prototype: chưa bắt đầu”, là historical và không mô tả hiện trạng. Không sửa PRD để đồng bộ tiến độ.
@@ -275,6 +275,12 @@ Tiến độ triển khai vượt Phase 0 ở nhiều nhánh: STEP-008/009 có U
 
 Không có bench/flash/runtime test mới trong lần đối chiếu STEP này. Giữ báo cáo PASS của pinout như evidence tài liệu, giữ regression/safety gaps chưa giải quyết riêng để không xóa lịch sử hoặc nâng mức kiểm chứng không có cơ sở.
 
+## Quy tắc đồng bộ GitHub thường xuyên — 2026-09-12
+
+Người dùng yêu cầu luôn đồng bộ GitHub và tận dụng GitHub Copilot Pro. Từ mốc này, sau mỗi phần việc hoàn tất: kiểm tra thay đổi phù hợp, commit local, fetch/đối chiếu remote, push origin/main và xác minh SHA remote; không cần hỏi lại cho các lần đồng bộ thuộc phạm vi ARIA đã giao. Không force-push hoặc ghi đè công việc khác. Nếu không đồng bộ được, báo rõ và giữ bản local. Các ghi chú “chưa push” phía trên là lịch sử checkpoint, không phải trạng thái remote cố định. Đợt đồng bộ này bao gồm toàn bộ các commit hợp nhất/cập nhật local đang chờ.
+
+Tiếp tục dùng Copilot Pro cho các việc hỗ trợ có lợi ích cụ thể (review, bản nháp nhỏ, test cần thiết), với prompt/output gọn và kiểm tra lại trước tích hợp. Không gọi thêm chỉ để lặp lại một chỉnh sửa đơn giản. Codex vẫn viết chính và chịu trách nhiệm tích hợp. Không phát sinh mua credit, overage hoặc API trả phí riêng; hạn mức Copilot và Codex độc lập. Quyền đồng bộ GitHub không phải quyền tự flash hoặc vận hành motor.
+
 ## NEXT STEPS — NEXT STEP ORDER
 
 | Thứ tự | Công việc | Điều kiện hoàn thành |
@@ -290,4 +296,4 @@ Không có bench/flash/runtime test mới trong lần đối chiếu STEP này. 
 
 **Bước tiếp theo duy nhất:** hoàn thiện STEP-003 — thu cấu hình board/build hiện tại và đối chiếu với pinmap đã ghi, đặc biệt encoder GPIO35/36/37 với N16R8; hỗ trợ bằng capture Pi chỉ đọc và hồ sơ build ESP32. ToF trên Pi đã được giải thích bằng pinout mới + code, không tiếp tục coi Pi/ESP là hai phương án ngang nhau. INA260 chờ hàng, không ngăn đối chiếu phần còn lại. Chưa đổi chân hoặc flash khi chưa xác định bản chạy/LKG.
 
-Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; đồng bộ GitHub khi thực hiện xuất bản được yêu cầu. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.
+Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; tự đồng bộ GitHub theo ủy quyền thường xuyên bên dưới và xác minh remote HEAD. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.

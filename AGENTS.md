@@ -8,3 +8,5 @@
 - Check available Codex usage before substantial work blocks. If a reported remaining limit reaches 20% or less, warn the user and checkpoint the current work early. This is an active-session practice, not background monitoring or a guarantee against exhaustion.
 - Save completed decisions in the existing master and commit completed changes. Do not repeat whole-file reads or regenerate code unnecessarily; keep user updates concise.
 - Copilot and Codex have separate quotas. Do not buy credits, enable overages or use external API billing without the user's instruction.
+
+- User authorizes ongoing GitHub synchronization: after a completed, reviewed work block, commit and push to origin/main, then verify remote HEAD. Fetch before publishing; never force-push or overwrite other work. Report sync failures and retain local changes. This authorization does not permit hardware deployment or paid overages.
