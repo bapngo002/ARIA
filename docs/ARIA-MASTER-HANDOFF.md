@@ -248,6 +248,14 @@ Nguồn được giữ nguyên trên D (tài liệu lịch sử, không phải n
 
 **Điểm tiếp tục:** hoàn thiện phần còn mở của STEP-001–004, tương ứng bước 1 của NEXT STEP ORDER. Việc cụ thể ngay sau đối chiếu là xác nhận board/build/wiring hiện tại; thu cấu hình Pi chỉ đọc để hỗ trợ đối chiếu. Lần kiểm tra mạng ngày 2026-09-12 gần nhất không phân giải được aria.local, khác lần E4 đã tới xác thực nhưng bị từ chối; chưa chạy được lệnh trên Pi. Không suy ra Pi tắt hoặc firmware thay đổi từ lỗi mạng này.
 
+## Xác nhận phần cứng và kiểm kê wiring — 2026-09-12
+
+Người dùng xác nhận “đúng chuẩn rồi” đối với bảng vừa trình bày: Pi 5 4GB/microSD 128GB, YD-ESP32-S3 N16R8 44 chân dual USB-C, FIT1035 ×2, DRI0058 ×2, AS5600 ×2 đi cùng motor, INA260 ×2 Adafruit 4226, VL53L1X ×4, BNO085 và BME280. Đây là VERIFIED ở mức owner-reported cho cấu hình/model đã liệt kê; không xác nhận revision, dây đang đấu, pin availability hay kết quả bench mới. Không cần hỏi lại model trong bảng nếu không có mâu thuẫn mới.
+
+Kiểm kê wiring: docs/ARIA-WIRING-001.md hiện có quy tắc và cập nhật INA260/BMS tích hợp, chưa có sơ đồ pin-to-pin hợp nhất theo capture. electronics/schematics chỉ có README. Tìm được bản lịch sử D:/UserData/ARIA/history/2026-08-01/referenced-chatgpt-conversation-this-is-an/outputs/docs/ARIA-WIRING-002.md và PDF/KiCad tương ứng; Rev A ghi DESIGN BASELINE - DO NOT BUILD, dùng Pi 8GB, DevKitC-1, INA226, 6 ToF/SHT45 và BMS Enerkey, nên không dùng như sơ đồ hiện hành. D:/UserData/ARIA_DONG_BO/01_ARIA_MECH_FROM_ZERO_R1/CH500_WIRING_SERVICE_R1.json là routing cơ khí, tự ghi electrical release blocked; giả định pack/DALY trong đó không thay thế cấu hình pin hiện hành. Các bản này được bảo tồn lịch sử, chưa nhập lại vào repo.
+
+Kết luận: tài liệu quy tắc đã cập nhật một phần, sơ đồ đấu dây toàn hệ thống chưa cập nhật/được xác minh theo cấu hình hiện tại. Bước tiếp tục vẫn là đối chiếu wiring thật với capture rồi cập nhật chính ARIA-WIRING-001; không lấy sự xác nhận model làm xác nhận dây.
+
 ## NEXT STEPS — NEXT STEP ORDER
 
 | Thứ tự | Công việc | Điều kiện hoàn thành |
