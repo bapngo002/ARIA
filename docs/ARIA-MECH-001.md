@@ -12,6 +12,10 @@ The only component/CAD inventory is [`docs/ARIA-BOM-001.md`](ARIA-BOM-001.md).
 - Put unique but mismatched or not-purchased CAD in `purchased-hardware/cad-review/`.
 - Do not create another CAD status table.
 
+## Current packaging direction
+
+Use the [master handoff mechanical snapshot](ARIA-MASTER-HANDOFF.md#cơ-khí-hiện-hành) for the current exterior/packaging direction and unresolved dimensions. The fixed 200 mm sphere is obsolete; final outer dimensions follow actual component packaging and clearances. The approved reference image must still be recovered and identified. Final fan placement while charging, caster choice and CAD packaging remain open.
+
 ## Current wheel reference
 
 Use the [canonical wheel specification](ARIA-BOM-001.md#bánh-xe) for clearance and fit planning. Confirm the meaning of the reported center/hub dimension and the contents of a set before designing the axle interface or assigning per-wheel mass.

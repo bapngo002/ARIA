@@ -8,7 +8,8 @@ Purchased component identity and quantity come only from [`docs/ARIA-BOM-001.md`
 - Verify connector polarity, wire gauge, current derating and service disconnects.
 - Keep replaceable parts disconnectable.
 - Prove motor stop behavior for loss of the main computer, controller reset and sensor faults.
-- The real-time controller interface remains a design decision until an exact controller is actually purchased and added to the canonical inventory.
+- The canonical controller family is recorded in the BOM. Pi↔ESP32 protocol and integrated wiring still need validation; controller selection is no longer waiting for an inventory entry.
+- Preserve the historical bench pinmap and unresolved pin holds in the [master handoff](ARIA-MASTER-HANDOFF.md#pinmap-bench-được-bảo-tồn--chưa-là-pinmap-tích-hợp-đã-release). Check GPIO48 RGB/XSHUT interaction and encoder-pin availability for the exact N16R8 build before freezing integrated wiring.
 
 This file intentionally contains no connector BOM, component list or CAD status copy.
 

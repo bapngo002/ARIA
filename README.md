@@ -2,10 +2,8 @@
 
 ARIA là dự án robot AI đồng hành cá nhân.
 
-## Nguồn chuẩn duy nhất cho linh kiện và CAD
+**Bắt đầu tại [ARIA-MASTER-HANDOFF](docs/ARIA-MASTER-HANDOFF.md)**: CURRENT/CANONICAL snapshot, hướng dẫn tài khoản ChatGPT mới, tiến độ kiểm chứng, pinmap, migration gaps và NEXT STEP ORDER. Sau migration, GitHub `main` là source of truth.
 
-Mở [`docs/ARIA-BOM-001.md`](docs/ARIA-BOM-001.md) để xem BOM, cấu hình phần cứng hiện hành, linh kiện đã mua, model, số lượng, chi phí đã ghi nhận và trạng thái CAD.
+[ARIA-BOM-001](docs/ARIA-BOM-001.md) là nguồn duy nhất cho inventory, model, số lượng, trạng thái mua và CAD. Không suy ra tiến độ từ BOM. CAD/bằng chứng mua hàng nằm trong `purchased-hardware/`.
 
-CAD và bằng chứng mua hàng nằm trong `purchased-hardware/`; README tại đó dẫn về BOM. Các phiên bản cũ vẫn được giữ trong lịch sử Git để truy vết.
-
-Các tài liệu kỹ thuật khác trong `docs/`, `electronics/`, `firmware/` và `manufacturing/` tham chiếu BOM này, không tạo danh sách linh kiện thứ hai. PRD frozen tiếp tục là nguồn yêu cầu sản phẩm.
+[PRD](docs/ARIA-PRD-001.md) giữ frozen cho yêu cầu sản phẩm; các ghi chú tiến độ cũ trong đó không thay thế master handoff. Code live Pi/ESP32 chưa được capture; xem checklist ở master, [firmware](firmware/README.md) và [software](software/README.md).

@@ -2,6 +2,8 @@
 
 Component identity, quantity, purchase status and CAD status live only in [`docs/ARIA-BOM-001.md`](ARIA-BOM-001.md). This document must not repeat that inventory.
 
+Current progress and reported module passes are in the [master handoff](ARIA-MASTER-HANDOFF.md). The gates below are requirements, not a claim that bench work has not started or has passed.
+
 ## Before bench power
 
 - Confirm delivered markings and exact board revisions against the canonical inventory.
@@ -18,7 +20,7 @@ Component identity, quantity, purchase status and CAD status live only in [`docs
 ## Before motion tests
 
 - Confirm the motor/driver pair, encoder feedback, current limit, thermal behavior and stop behavior on the bench.
-- The ordered controller is identified from the order and pinout evidence as a 44-pin, dual-USB-C YD-ESP32-S3 with an ESP32-S3-WROOM-1-N16R8 module; it is inventory item 16.
+- Controller family identity comes from BOM item 16. GPIO/Wi-Fi/Bluetooth tests are owner-reported in the master handoff; exact tested PCB/revision still needs evidence.
 - The family pinout, including RGB on GPIO48, may be used for planning. Do not release power wiring, tight enclosure geometry or production pin assignments until the delivered PCB/revision is inspected and measured against the nominal CAD.
 
 ## Release rule

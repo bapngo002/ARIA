@@ -3,8 +3,10 @@
 > **Đây là nguồn chuẩn duy nhất cho BOM, trạng thái phần cứng hiện hành, linh kiện đã mua, số lượng và CAD tương ứng.**
 > Không sao chép bảng này sang file khác. ESP32-S3 N16R8 đã được bổ sung ở dòng 16.
 
-Cập nhật: 2026-09-11
-Phạm vi bảng đã mua: **15 hạng mục / 28 đơn vị được ghi nhận**; không cộng lại phần bảo vệ tích hợp trong cụm pin. Bánh xe hiện hành được ghi riêng bên dưới do chưa có số lượng mua được xác nhận.
+Cập nhật: 2026-09-12
+
+Tiến độ, kết quả test và migration gaps nằm trong [MASTER HANDOFF](ARIA-MASTER-HANDOFF.md); không suy ra tiến độ dự án từ bảng mua hàng này.
+Phạm vi bảng đã mua có hồ sơ trước migration (không phải toàn bộ phần cứng live): **15 hạng mục / 28 đơn vị được ghi nhận**; không cộng lại phần bảo vệ tích hợp trong cụm pin. Bánh xe hiện hành được ghi riêng bên dưới do chưa có số lượng mua được xác nhận.
 Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn truyền động; không dùng để suy ra giá từng dòng)
 
 ## Danh sách đã mua
@@ -25,11 +27,21 @@ Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn 
 | 13 | IMU | Adafruit BNO085 9-DOF breakout | 1 | — | Thiếu. |
 | 14 | Drive | DFRobot FIT1035 2208 BLDC, tích hợp encoder từ AS5600 | 2 | — | Thiếu; không cần encoder rời. |
 | 15 | Motor driver | DFRobot DRI0058 SimpleFOCMini | 2 | — | Thiếu. |
-| 16 | Real-time control | YD-ESP32-S3 / ESP32-S3-WROOM-1-N16R8, 44 chân, dual USB-C ([đơn hàng](../purchased-hardware/evidence/16-esp32-s3-n16r8-order.png), [pinout](../purchased-hardware/evidence/16-esp32-s3-n16r8-pinout.png)) | 1 | [Bộ CAD 2D/3D](../purchased-hardware/cad-review/16-yd-esp32-s3-n16r8/README.md) | Đã đặt ngày 2026-08-07, ¥1,496, đang chờ giao; đã xác định đúng họ PCB, kích thước CAD còn phải đo lại trên bo thực tế. |
+| 16 | Real-time control | YD-ESP32-S3 / ESP32-S3-WROOM-1-N16R8, 44 chân, dual USB-C ([đơn hàng](../purchased-hardware/evidence/16-esp32-s3-n16r8-order.png), [pinout](../purchased-hardware/evidence/16-esp32-s3-n16r8-pinout.png)) | 1 | [Bộ CAD 2D/3D](../purchased-hardware/cad-review/16-yd-esp32-s3-n16r8/README.md) | Đã đặt ngày 2026-08-07, ¥1,496; họ PCB canonical theo ảnh. Snapshot 2026-09-12 báo ESP32/controller đã test; trạng thái chờ giao cũ không còn dùng làm current-state. Chưa đối chiếu exact revision của board test; CAD còn phải đo bo thực tế. |
 
 ## Cấu hình hiện hành do người dùng xác nhận
 
-Thông tin dưới đây được chốt ngày 2026-09-11 theo yêu cầu cập nhật của người dùng. Các ID trong bảng đã mua được giữ ổn định để không làm sai tham chiếu CAD; ID 6 được bỏ khỏi bảng linh kiện rời, xem phần nội bộ pin bên dưới. Tổng chi phí vẫn là số đã ghi nhận, không suy ra chi phí mới từ thay đổi cách đếm.
+Cấu hình được chốt ngày 2026-09-11 và bổ sung từ migration snapshot ngày 2026-09-12 theo xác nhận của người dùng. Các ID trong bảng đã mua được giữ ổn định để không làm sai tham chiếu CAD; ID 6 được bỏ khỏi bảng linh kiện rời, xem phần nội bộ pin bên dưới. Tổng chi phí vẫn là số đã ghi nhận, không suy ra chi phí mới từ thay đổi cách đếm.
+
+### Bổ sung cấu hình live từ migration 2026-09-12
+
+Nguồn: xác nhận trực tiếp của người dùng trong yêu cầu migration; xem evidence/mức test ở master handoff. Không cộng các mục sau vào tổng 15 hạng mục / 28 đơn vị hoặc tổng chi phí cũ khi chưa có hồ sơ mua đối chiếu.
+
+- microSD **128GB** đang dùng trên Pi; chưa có exact SKU/hồ sơ mua ở repo. Thay spec 64GB trong lịch sử.
+- **BME280** là sensor môi trường hiện hành; chưa có exact board/revision, số lượng mua và CAD được đối chiếu. SHT45 lịch sử không phải cấu hình live.
+- **VL53L1X ×4** theo snapshot người dùng; chưa có carrier/revision, hồ sơ mua và CAD. Không tiếp tục dùng số lượng 6 từ BOM cũ như inventory hiện tại.
+- **AS5600 ×2**: bảng dòng 14 ghi tích hợp trong hai FIT1035; không cộng thêm encoder rời.
+- Màn hình AliExpress đã chạy theo snapshot; tên Waveshare ở dòng 11 là định danh đang lưu, exact revision/bộ cáp và vùng tròn cần đối chiếu, không tự thay model.
 
 ### Bánh xe
 
@@ -43,7 +55,8 @@ Thông tin dưới đây được chốt ngày 2026-09-11 theo yêu cầu cập 
 
 - **BMS 3S đã tích hợp bên trong cụm pin**, không phải linh kiện standalone trong BOM hoặc hardware summary.
 - Chỉ đề cập BMS trong nội bộ pin, bảo vệ, sạc hoặc ghi chú lịch sử. Kiểm tra chức năng bảo vệ của cụm pin khi thử nguồn/sạc.
-- Thông tin cell đã mua trong bảng không tự xác định cấu hình lắp pack hoặc số cell dự phòng.
+- Kiến trúc **3S**; kế hoạch **18650 3S3P / 9 cell**, candidate **Samsung INR18650-35E** theo migration snapshot, chỉ **planned/not confirmed inventory**. Không có xác nhận pack đã lắp đúng cấu hình này.
+- Thông tin 10 cell đã ghi nhận trong bảng không tự xác định cấu hình lắp pack, số cell dự phòng hoặc xác nhận Samsung 35E chính hãng; mâu thuẫn listing vẫn mở.
 
 ### Lịch sử thay đổi / superseded
 
