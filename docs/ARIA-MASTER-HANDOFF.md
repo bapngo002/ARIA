@@ -113,12 +113,20 @@ E1 xác nhận repo có ảnh nhận dạng YD board và CAD danh nghĩa; điề
 
 Không khôi phục các purchase registers/handoff/architecture documents đã bị hợp nhất chỉ để làm đủ tên file. Git history là nơi truy vết, không phải current-state song song.
 
+## Nơi lưu dữ liệu — quyết định người dùng 2026-09-12
+
+- **Repo làm việc duy nhất: D:\UserData\ARIA\repo.** Từ nay mọi source, dữ liệu tải, model, CAD, work và outputs của ARIA phải lưu trên D, không tạo dữ liệu dự án mới trên C.
+- Capture gốc đã chuyển nguyên byte sang D:\UserData\ARIA\capture-original; lịch sử tác vụ ở D:\UserData\ARIA\history. Đây là evidence/history, không phải current-state song song. Kho phần cứng hiện có D:\UserData\ARIA_DONG_BO được truy cập qua D:\UserData\ARIA\hardware-library.
+- Work/output của tác vụ hiện tại ở D:\UserData\ARIA\current-task. Các junction thư mục cũ chỉ chuyển tiếp đến D; không phải bản sao dữ liệu trên C. Các file lẻ của tác vụ CAD 2026-07-30/ti dùng đường dẫn D trực tiếp vì không tạo được file symlink.
+- Đã đối chiếu SHA-256 trước khi bỏ các bản trên C. Không xóa CAD/backup khác nội dung, model, nguồn thử nghiệm hoặc lịch sử Git. Kết quả lọc cache và nhật ký chuyển lưu tại D:\UserData\ARIA\storage-audit; không tạo master/handoff thứ hai.
+- Pi: dùng đúng **ssh aria@aria.local**. Việc chuyển ổ không thay đổi phần mềm trên Pi/ESP32 và không đóng runtime/flash verification gaps.
+
 ## Software/artifacts và MIGRATION GAPS
 
 **E4 — Local consolidation 2026-09-12.** Đã đọc nội dung 9 file export và 9 tài liệu repo và .gitattributes (19 file); đối chiếu thêm 9 bản tương ứng ở ổ D bằng SHA-256. Không gọi đây là đã đọc mọi CAD/binary trong kho PC.
 
 Đường dẫn thực là `C:\Users\bapca\ARIA_EXPORT` và `D:\UserData\ARIA_DONG_BO`; các đường dẫn có thêm dấu phân cách trong yêu cầu cũ không tồn tại. Kho ổ D không có Git hoặc master. Checkout được xác nhận remote đúng và HEAD = origin/main sau fetch tại baseline `cc1889114ac9530542528190bf230321d30f8eda`:
-`C:\Users\bapca\Documents\Codex\2026-09-12\referenced-chatgpt-conversation-this-is-an\work\ARIA`.
+`D:\UserData\ARIA\repo`. Vị trí trước khi chuyển ổ: `C:\Users\bapca\Documents\Codex\2026-09-12\referenced-chatgpt-conversation-this-is-an\work\ARIA` (nay đi qua junction tới D).
 
 9/9 bản export giống byte với kho ổ D; cả 9 chưa có trong baseline Git, đã nhập nguyên byte vào đúng cây hiện tại. Không overwrite source cũ; không sửa tuning, pinmap hoặc PRD. Baseline Git giữ nguyên tài liệu trước hợp nhất; export và kho D giữ nguyên. Chưa tìm được bản last-known-good riêng có log pass: không gắn nhãn LKG cho sketch chỉ vì comment “đã PASS”.
 
