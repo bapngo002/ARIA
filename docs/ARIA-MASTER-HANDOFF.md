@@ -232,7 +232,8 @@ Nguồn được giữ nguyên trên D (tài liệu lịch sử, không phải n
 |---|---|---|
 | 001 | PARTIALLY VERIFIED — đối chiếu hồ sơ đã có, không làm lại từ đầu | Đóng delta vật lý còn thiếu hoặc ghi rõ deferred; báo cáo v0.4 tự ghi chưa DONE |
 | 002 | PARTIALLY VERIFIED — BOM hiện hành đã hợp nhất các quyết định mới | Hoàn thiện evidence/revision còn thiếu và đồng bộ GitHub khi được yêu cầu |
-| 003–004 | PARTIALLY VERIFIED — có model, mapping và source capture | Board/build/wiring thật, encoder GPIO35/36/37, ToF Pi/ESP, danh sách v1 được freeze |
+| 003 | PARTIALLY VERIFIED — người dùng xác nhận họ board; pinout mới khớp capture | Còn revision/build/memory, rails và dây thật; không hỏi lại model hoặc tự đổi encoder GPIO35/36/37 |
+| 004 | PARTIALLY VERIFIED — đã xác nhận cấu hình chính, tài liệu pinout xác định sensors trên Pi | INA260 ×1 pending delivery; các revision/cấu hình ngoại vi còn thiếu giữ PROVISIONAL |
 | 005 | PARTIALLY VERIFIED — baseline và capture đã commit | Protocol/safety decisions chưa đủ để đóng bước |
 | 006–010 | PARTIALLY VERIFIED — có cây source, serial 115200 và heartbeat | Handshake/version, structured log, fault/link tests; không coi liên kết đã ổn định |
 | 011–017 | PARTIALLY VERIFIED — motor/encoder và sensor source đã có một phần | SAFE_MODE, INA260, snapshot/self-test và bằng chứng từng driver |
@@ -264,6 +265,16 @@ Người dùng chốt INA260, nhưng linh kiện chưa về nên chưa cập nh�
 
 File người dùng cung cấp D:/UserData/Downloads/PROJECT_ARIA_LATEST_PINOUT_HANDOFF_2026-09-12.md đã đọc và đối chiếu: motor/encoder/tuning, USB Serial 115200, ToF Pi GPIO22–25/0x30–0x33, BNO085 0x4A và BME280 0x76 khớp capture. File báo audio GPIO18/19/21, camera CAM/DISP0, display CAM/DISP1 và overlay; đây là evidence tài liệu mới, chưa kiểm cấu hình runtime. File ghi INA226 còn đang dùng và planned INA260; xác nhận mới không chứng minh INA226 hiện còn lắp. Không phục hồi INA226 làm cấu hình mục tiêu. Các nhãn bounded motion/failsafe PASS trong file chưa đóng lỗi static của sketch capture: chưa thấy command-duration timeout độc lập heartbeat. Không nâng runtime/flash/bench thành VERIFIED hoặc đổi pin chỉ từ nhãn PASS/LOCKED trong tài liệu.
 
+## Checkpoint STEP sau bổ sung pinout và INA260 ×1
+
+Đã cập nhật docs/ARIA-WIRING-001.md bằng bảng tín hiệu từ capture + pinout mới, ghi riêng phần chỉ có trong tài liệu (I2S, camera/display connector, overlay). Đây là VERIFIED ở mức đối chiếu hồ sơ/source, chưa phải wiring release vật lý. Bản kiểm kê trước đó nói wiring chưa có bảng là trạng thái trước cập nhật này.
+
+Điểm công việc hiện tại là STEP-003 (board/build/wiring evidence), trong Phase 0 chưa đóng gate; không có cơ sở tuyên bố đã hoàn thành tuần tự tới STEP-034. STEP-001 đã đối chiếu và nhận xác nhận nhóm phần cứng chính; phần inventory mở về pack, phụ kiện, revision và evidence vẫn giữ trong BOM/master, không bắt người dùng xác nhận lại toàn bộ. STEP-002 đã cập nhật local nhưng chưa xuất bản GitHub, nên chưa DONE theo định nghĩa gốc. STEP-005 còn protocol/safety decisions; STEP-006 đã có cây source tương đương, không tạo lại skeleton cho đủ tên thư mục.
+
+Tiến độ triển khai vượt Phase 0 ở nhiều nhánh: STEP-008/009 có USB serial/heartbeat nhưng thiếu handshake/version và fault evidence; STEP-013/014/016 có encoder/BNO085/ToF source và báo cáo PASS; STEP-029/030/034 có stop/velocity/CLI một phần; STEP-054/068 có thu âm/chụp ảnh. Không dùng các phần này để đánh dấu cả phase DONE. STEP-019/031/032 còn thiếu command-duration timeout trong source hiện có; STEP-020 có heartbeat stop nhưng còn nhánh lỗi static đã ghi. STEP-015/024 (đổi INA226 thành INA260) là DEFERRED — pending delivery, không yêu cầu bench khi chưa nhận hàng. Voice/AI/UI/OTA/autonomy vẫn theo giới hạn capture đã ghi, danh sách chức năng trong pinout không phải source triển khai.
+
+Không có bench/flash/runtime test mới trong lần đối chiếu STEP này. Giữ báo cáo PASS của pinout như evidence tài liệu, giữ regression/safety gaps chưa giải quyết riêng để không xóa lịch sử hoặc nâng mức kiểm chứng không có cơ sở.
+
 ## NEXT STEPS — NEXT STEP ORDER
 
 | Thứ tự | Công việc | Điều kiện hoàn thành |
@@ -277,6 +288,6 @@ File người dùng cung cấp D:/UserData/Downloads/PROJECT_ARIA_LATEST_PINOUT_
 | 7 | **Voice/AI/display integration** | Merge module đã pass, UI nằm trong vùng tròn, test wake/STT/response/audio/video và không làm hỏng drive/safety |
 | 8 | **Mechanical finalization** | Chốt caster/fan/layout từ phần cứng đo thật, clearance/airflow/serviceability và CAD kiểm duyệt trước chế tạo |
 
-**Bước tiếp theo duy nhất:** tiếp tục bước 1 — đối chiếu wiring/board/build thực tế để freeze pinmap, đặc biệt ToF Pi so với ESP lịch sử và encoder GPIO35/36/37 với N16R8. Chưa đổi pin hoặc bắt đầu code mới khi evidence này thiếu. Capture E4 hỗ trợ bước 1, không thay đổi thứ tự bảng.
+**Bước tiếp theo duy nhất:** hoàn thiện STEP-003 — thu cấu hình board/build hiện tại và đối chiếu với pinmap đã ghi, đặc biệt encoder GPIO35/36/37 với N16R8; hỗ trợ bằng capture Pi chỉ đọc và hồ sơ build ESP32. ToF trên Pi đã được giải thích bằng pinout mới + code, không tiếp tục coi Pi/ESP là hai phương án ngang nhau. INA260 chờ hàng, không ngăn đối chiếu phần còn lại. Chưa đổi chân hoặc flash khi chưa xác định bản chạy/LKG.
 
 Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; đồng bộ GitHub khi thực hiện xuất bản được yêu cầu. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.
