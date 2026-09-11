@@ -1,0 +1,2 @@
+/home/aria/aria_models/aria_v2.onnx
+/home/aria/aria_models/aria.onnx

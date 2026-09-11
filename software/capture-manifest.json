@@ -1,0 +1,65 @@
+{
+  "audit_date": "2026-09-12",
+  "baseline_commit": "cc1889114ac9530542528190bf230321d30f8eda",
+  "source_export": "C:/Users/bapca/ARIA_EXPORT",
+  "comparison_copy": "D:/UserData/ARIA_DONG_BO",
+  "capture_timestamp": "NOT VERIFIED",
+  "runtime_identity": "NOT VERIFIED: SSH authentication denied; no flash readback",
+  "last_known_good": "NOT VERIFIED: no independent pass-linked source recovered",
+  "files": [
+    {
+      "path": "software/pi/aria_core.py",
+      "bytes": 20639,
+      "sha256": "3f5a4b37c9bb30b54bdea9ba0f7d26ddca17cac93c3e482e78079423ab8de097",
+      "export_and_d_copy_identical": true
+    },
+    {
+      "path": "software/pi/aria_av.py",
+      "bytes": 2044,
+      "sha256": "9c338da2feae95485b723cf95312c88fe9131001904df2db13f4948741d49198",
+      "export_and_d_copy_identical": true
+    },
+    {
+      "path": "software/pi/ariactl",
+      "bytes": 351,
+      "sha256": "e2c165eb93db9e3f919755c91e849bce296271a52a2ae3ce8f2eb38b8275d9cd",
+      "export_and_d_copy_identical": true
+    },
+    {
+      "path": "software/pi/aria-core.service",
+      "bytes": 341,
+      "sha256": "2545dd95e4f85eb33138eaaaf2325de47bc0bc05f1f014c4007a3f397e9b44d5",
+      "export_and_d_copy_identical": true
+    },
+    {
+      "path": "software/pi/python-version.txt",
+      "bytes": 14,
+      "sha256": "01870de7caca112afeefd77b3c3b4c5e263cf5539a33af3f3411100727fad7d3",
+      "export_and_d_copy_identical": true
+    },
+    {
+      "path": "software/pi/pip-freeze.txt",
+      "bytes": 5812,
+      "sha256": "ba0e88b7b498828fcc8b53110bde449802913dbf3d9b295845fc55c271831cd3",
+      "export_and_d_copy_identical": true
+    },
+    {
+      "path": "software/pi/models-list.txt",
+      "bytes": 69,
+      "sha256": "f5f3c152bab720ecce6292b79463f49fc5573b58e813c4fead94f848aaa037ff",
+      "export_and_d_copy_identical": true
+    },
+    {
+      "path": "software/pi/whisper-files.txt",
+      "bytes": 13857,
+      "sha256": "08d69316628f67f335cf027402c168287794a9ad3f6429f1ea7f00663c79c94f",
+      "export_and_d_copy_identical": true
+    },
+    {
+      "path": "firmware/esp32/ARIA_DRIVE_ONLY/ARIA_DRIVE_ONLY.ino",
+      "bytes": 6740,
+      "sha256": "edc595409b7e884467a21532a3753d458b2ef2f411af13e862df9ab2231c93a5",
+      "export_and_d_copy_identical": true
+    }
+  ]
+}

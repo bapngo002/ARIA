@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+import socket
+import sys
+
+if len(sys.argv) < 2:
+    print("Usage: ariactl F|B|L|R|S|+|-|CAM|MIC|STATUS")
+    raise SystemExit(1)
+
+cmd = sys.argv[1].upper()
+
+s = socket.socket(
+    socket.AF_UNIX,
+    socket.SOCK_STREAM
+)
+
+s.connect("/tmp/aria-core.sock")
+
+s.sendall(cmd.encode())
+
+print(
+    s.recv(1024).decode()
+)
+
+s.close()

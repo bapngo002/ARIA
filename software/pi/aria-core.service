@@ -1,0 +1,20 @@
+[Unit]
+Description=ARIA Core V0.4
+After=multi-user.target
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=aria
+WorkingDirectory=/home/aria
+
+ExecStart=/home/aria/aria-venv/bin/python /home/aria/aria_core.py
+
+Restart=always
+RestartSec=2
+
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

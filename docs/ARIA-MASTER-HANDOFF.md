@@ -1,10 +1,10 @@
 # ARIA — MASTER HANDOFF
 
-**Status: CURRENT/CANONICAL · Migration snapshot: 2026-09-12**
+**Status: CURRENT/CANONICAL · Migration + local live-source consolidation: 2026-09-12**
 
 ## NEW CHATGPT ACCOUNT BOOTSTRAP
 
-1. Đọc file này trước khi tiếp tục Project ARIA. Sau migration snapshot, **GitHub `bapngo002/ARIA`, branch `main`, là source of truth**.
+1. Đọc file này trước khi tiếp tục Project ARIA. Sau hợp nhất theo yêu cầu người dùng, **checkout ARIA đã hợp nhất là source of truth làm việc duy nhất**, gồm master này cho quyết định và source đã nhập cho phần mềm capture. GitHub `bapngo002/ARIA/main` là baseline quyết định đã đối chiếu; cập nhật local này chưa được push. Không dùng export/kho ổ D như trạng thái song song.
 2. Ưu tiên CURRENT/CANONICAL. Không hồi sinh thông tin HISTORICAL/OBSOLETE từ chat cũ, commit cũ hoặc branch chưa merge.
 3. [ARIA-BOM-001](ARIA-BOM-001.md) là nguồn duy nhất cho inventory, model, số lượng, trạng thái mua và CAD. File này quản lý tiến độ, mức kiểm chứng, pinmap, kiến trúc, migration gaps và thứ tự công việc; không suy diễn tiến độ từ BOM.
 4. [PRD frozen](ARIA-PRD-001.md) giữ nguyên yêu cầu sản phẩm. Các ghi chú tiến độ trong PRD, đặc biệt mục 10 “M4 — Bench Prototype: chưa bắt đầu”, là historical và không mô tả hiện trạng. Không sửa PRD để đồng bộ tiến độ.
@@ -39,7 +39,7 @@ ARIA đã qua nhiều thử nghiệm module thực tế; không còn là dự á
 
 ### Pinmap bench được bảo tồn — chưa là pinmap tích hợp đã release
 
-Nguồn E2; không có sketch tương ứng trong repo để đối chiếu. Không đổi chân khi nhập lại code mà chưa ghi quyết định và test lại.
+Nguồn mapping lịch sử E2; đợt E4 đã nhập sketch để đối chiếu, xem phần hợp nhất bên dưới. Không đổi chân khi nhập lại code mà chưa ghi quyết định và test lại.
 
 | Chức năng | Mapping đã dùng/đã biết | Giới hạn kiểm chứng |
 |---|---|---|
@@ -93,7 +93,7 @@ E1 xác nhận repo có ảnh nhận dạng YD board và CAD danh nghĩa; điề
 
 - **Motor + encoder integration:** lịch sử chạy hai bên; regression nóng/no-spin chưa đóng, xem current motor status.
 - **ToF:** đã có báo cáo test và mapping 4 XSHUT; thiếu kết quả riêng S1–S4, address assignment, chạy đồng thời và power-cycle recovery. Không đánh dấu toàn bộ 4 sensor pass.
-- **Pi audio/display/voice stack:** module có test nhưng live sources, services và môi trường chưa được capture. Không xác nhận voice/AI/display integration hoàn tất.
+- **Pi audio/display/voice stack:** module có test; E4 đã nhập Core/AV/service và danh sách môi trường, còn thiếu display/voice source, cấu hình và môi trường venv đầy đủ. Không xác nhận voice/AI/display integration hoàn tất.
 - **Controller pinmap:** pinmap lịch sử chưa chứng minh cùng exact board/revision/build hiện tại; còn GPIO48 và memory-pin hold.
 
 ## HISTORICAL/OBSOLETE
@@ -115,22 +115,59 @@ Không khôi phục các purchase registers/handoff/architecture documents đã 
 
 ## Software/artifacts và MIGRATION GAPS
 
-**Known from live system/chat history, not yet committed** là trạng thái của các đường dẫn E2 dưới đây. Chưa kiểm tra chúng còn tồn tại hoặc đang chạy trên Pi. Target repo là vị trí dự kiến để capture, chưa phải file đã được tạo.
+**E4 — Local consolidation 2026-09-12.** Đã đọc nội dung 9 file export và 9 tài liệu repo và .gitattributes (19 file); đối chiếu thêm 9 bản tương ứng ở ổ D bằng SHA-256. Không gọi đây là đã đọc mọi CAD/binary trong kho PC.
 
-| Live path/artifact được nhắc | Target repo dự kiến | Việc cần capture |
-|---|---|---|
-| `/home/aria/aria_core.py` | `software/pi/aria_core.py` | Nội dung thật, dependencies, IPC/drive behavior |
-| `/home/aria/aria_av.py` | `software/pi/aria_av.py` | Audio/video/UI config và launch arguments |
-| `/home/aria/ariactl` | `software/pi/ariactl` | Script thật, quyền executable, cách gọi |
-| `/home/aria/ARIA_DRIVE_ONLY/ARIA_DRIVE_ONLY.ino` | `firmware/ARIA_DRIVE_ONLY/ARIA_DRIVE_ONLY.ino` | Sketch thật và bản đang flash, board/core/library versions |
-| `/tmp/aria-core.sock` | Không commit socket runtime | Ghi IPC schema, ownership/permissions và lifecycle từ source thật |
-| `aria-core.service` | `software/systemd/aria-core.service` | Unit thực tế + overrides; vị trí unit hiện tại chưa biết |
-| `/home/aria/aria_models/aria.onnx` | Manifest model trong `software/` | File/source, version, checksum, license và cách lấy; không bịa model |
-| `whisper.cpp` + `ggml-base.bin` | Manifest/dependency setup trong `software/` | Checkout/build flags, model path/version/checksum; đường dẫn đầy đủ chưa biết |
+Đường dẫn thực là `C:\Users\bapca\ARIA_EXPORT` và `D:\UserData\ARIA_DONG_BO`; các đường dẫn có thêm dấu phân cách trong yêu cầu cũ không tồn tại. Kho ổ D không có Git hoặc master. Checkout được xác nhận remote đúng và HEAD = origin/main sau fetch tại baseline `cc1889114ac9530542528190bf230321d30f8eda`:
+`C:\Users\bapca\Documents\Codex\2026-09-12\referenced-chatgpt-conversation-this-is-an\work\ARIA`.
+
+9/9 bản export giống byte với kho ổ D; cả 9 chưa có trong baseline Git, đã nhập nguyên byte vào đúng cây hiện tại. Không overwrite source cũ; không sửa tuning, pinmap hoặc PRD. Baseline Git giữ nguyên tài liệu trước hợp nhất; export và kho D giữ nguyên. Chưa tìm được bản last-known-good riêng có log pass: không gắn nhãn LKG cho sketch chỉ vì comment “đã PASS”.
+
+| File repo đã nhập | Phạm vi bằng chứng |
+|---|---|
+| software/pi/aria_core.py | Core V0.6 theo banner/source |
+| software/pi/aria_av.py | AriaAV kiểm thiết bị, capture/record/play |
+| software/pi/ariactl | Client UNIX socket |
+| software/pi/aria-core.service | Unit capture, Description V0.4 nhưng chạy aria_core.py |
+| software/pi/python-version.txt | Python 3.13.5; chưa chứng minh interpreter của service |
+| software/pi/pip-freeze.txt | Danh sách package capture; chưa xác định môi trường gốc |
+| software/pi/models-list.txt | Hai đường dẫn aria.onnx và aria_v2.onnx; không có model binary |
+| software/pi/whisper-files.txt | Danh sách whisper.cpp, ggml-base/tiny, whisper-cli và libwhisper.so.1.9.3; không có binary/source tree tương ứng |
+| firmware/esp32/ARIA_DRIVE_ONLY/ARIA_DRIVE_ONLY.ino | Drive V0.3 source; chưa xác nhận firmware flash |
+
+[Manifest SHA-256](../software/capture-manifest.json) lưu nguồn, kích thước, hash từng file. Hai target dự kiến cũ firmware/ARIA_DRIVE_ONLY và software/systemd được thay bằng đường dẫn nhập ở bảng; không tạo bản code/unit thứ hai.
+
+### Code capture thực hiện gì — VERIFIED ở mức đọc source
+
+- Pi mở /dev/ttyACM0, 115200 baud; gửi H mỗi 0.1 s, nhận serial bằng readline và in log. Lệnh F/B/L/R/S/+/- qua bàn phím hoặc /tmp/aria-core.sock. ariactl còn hỗ trợ CAM/MIC/STATUS.
+- Pi init BNO085 trước BME280/ToF rồi mới kết nối ESP và tạo threads. BNO085 tại 0x4A đọc acceleration/gyro/quaternion; BME280 tại 0x76 đọc nhiệt/ẩm/áp suất. Đây là địa chỉ trong code, chưa phải đo bus thực tế.
+- 4 VL53L1X: gpiozero XSHUT trên Pi 22/23/24/25; khởi tạo từ 0x29 rồi gán 0x30–0x33, distance_mode=2, timing_budget=100, đổi cm thành mm. Log trạng thái khoảng mỗi giây; chưa có obstacle/cliff stop.
+- AV nhận diện camera imx708_wide_noir, ReSpeaker XVF3800, MAX98357A qua danh sách thiết bị. CAM gọi rpicam-still; MIC ghi 3 s, hw:1,0, S16_LE/16 kHz/2 kênh. Hàm play dùng pw-play nhưng core chưa cung cấp lệnh playback. Check audio không chứng minh cả hai amp/stereo đã phát.
+- ESP dùng SimpleFOC velocity cho hai motor 7 pole-pairs và hai AS5600 split I2C 400 kHz; pin motor/encoder khớp lịch sử E2. Nguồn cấu hình 12 V, motor/driver limit 3 V, align 1.5 V; PID 0.15/1/0, ramp 500, LPF 0.02; speed mặc định 8, +/-2 trong 2–20. Đây là cấu hình source, không phải tuning đã tái kiểm chứng. Rẽ dùng hệ số 0.45 một bên; không có odometry/encoder telemetry gửi về Pi.
+- Không có triển khai INA260, display/UI, wake-word, STT, AI/dialogue, autonomy trong các source capture này. File model/package có mặt trong listing không có nghĩa core đã gọi chúng.
+
+### Mâu thuẫn và giới hạn được hợp nhất
+
+1. ToF ở code là Pi GPIO22/23/24/25; E2 là ESP GPIO41/42/47/48 lịch sử. Bảo tồn cả hai với nhãn nguồn; không tự đổi chân hoặc tuyên bố wiring đã chuyển. GPIO48 hold chỉ liên quan nhánh wiring lịch sử; encoder N16R8 hold vẫn mở. BNO085 được code chuyển sang Pi; phù hợp Pi high-level/ESP realtime nhưng khác cách đọc rằng mọi sensor đã chạy trên ESP.
+2. Service Description V0.4 không khớp Core banner V0.6; ExecStart là /home/aria/aria-venv/bin/python /home/aria/aria_core.py. Giữ nguyên unit capture để bảo toàn evidence; chưa dùng label V0.4 làm phiên bản runtime.
+3. pip-freeze không liệt kê các Adafruit imports của core hoặc onnxruntime trong khi whisper listing có onnxruntime dưới aria-venv. Môi trường capture không đủ tái dựng venv; chưa kết luận thiết bị thiếu dependencies.
+4. Comment PID “đã PASS” không đóng regression nóng/no-spin trong master. Motor vẫn PARTIALLY VERIFIED.
+5. Watchdog source timeout 500 ms chỉ hoạt động sau H đầu tiên; khi failsafeActive=true, lệnh drive mới vẫn đặt target và checkHeartbeat không forceStop lần nữa. Trước H đầu tiên cũng nhận lệnh drive. forceStop chỉ đặt target=0, không disable driver. VERIFIED bằng đọc nhánh code; stop vật lý và các tình huống lỗi NOT VERIFIED. Không sửa firmware trong đợt kiểm kê.
+6. Pi trả “DRIVE ... SENT” dù send_esp thất bại; STATUS chủ yếu là trạng thái init/handle, không phải health/ack mới. ESP không sẵn sàng thì connect_esp chặn startup socket/status; sensor lỗi không liên động dừng motor. Không gọi đây là integrated safety pass.
+
+### VERIFIED / PARTIALLY VERIFIED / NOT VERIFIED sau hợp nhất
+
+- **VERIFIED (file/static):** nội dung 9 file, 9/9 hash khớp kho D và bản nhập, config/protocol/nhánh code mô tả ở trên. Không phải bench execution.
+- **VERIFIED (owner-reported E2):** các module trong bảng VERIFIED/PASSED; giữ giới hạn và thiếu log như trước.
+- **PARTIALLY VERIFIED:** motor/encoder, ToF, pinmap tích hợp và audio/voice/display integration theo master. Capture source hoàn thành một phần bước 2, không đóng bước 1 hoặc bước 2.
+- **NOT VERIFIED:** process/unit thực sự đang chạy, hash file trên Pi hiện tại, firmware trong flash, LKG độc lập, build/library settings, fresh-clone reproduction, watchdog/stop/reset thực tế, INA260 và system acceptance.
+- Đã thử SSH chỉ đọc tới aria@aria.local với BatchMode/known-host verification; bị “Permission denied (publickey,password)” trước khi chạy lệnh. Không đổi SSH/thiết bị, không flash, không bench test. Vì vậy chỉ xác định chính xác được **source capture Core V0.6 + Drive V0.3**, chưa thể khẳng định đó là runtime hiện tại.
 
 ### Checklist capture
 
-- [ ] Copy live Pi files và cấu hình OS/audio/camera/display/service thực tế; lưu launch commands, dependencies và phiên bản. Loại credential/token và dữ liệu cá nhân khỏi nội dung commit.
+- [x] Nhập 9 file capture nguyên byte và manifest; đối chiếu 9 bản kho D.
+- [ ] Pi: lấy systemctl cat/show/status (unit + overrides + PID/ExecStart), journal và SHA-256 source hiện tại để gắn capture với runtime; xác nhận quyền/owner socket và executable ariactl.
+- [ ] Pi: lấy /home/aria/aria-venv/bin/python --version và -m pip freeze, OS build, boot/config.txt, I2C/GPIO wiring, ALSA/PipeWire/camera/display config, launch commands; không đưa credential/token hoặc dữ liệu riêng tư vào repo.
+- [ ] Pi: lấy model binaries hoặc nguồn tải/license + hash, wake-word/voice/display source, whisper.cpp commit/build flags và checksum binary/model.
 - [ ] Lấy sketch đang flash và last-known-good motor/encoder sketches từ Pi/PC/old chats; lưu hash, ngày và kết quả riêng từng phiên bản, không nhầm code regression với code pass.
 - [ ] Lấy test sketches/logs IMU, BME280, ToF, INA260, ESP32, camera và audio; ghi board revision, wiring, nguồn thử, phạm vi test và pass/fail. INA260 chưa có pass evidence.
 - [ ] Khôi phục ảnh approved exterior reference, số đo battery/speaker và CAD từ PC/chat; phân biệt hình tham khảo với bản đã duyệt.
@@ -139,8 +176,8 @@ Không khôi phục các purchase registers/handoff/architecture documents đã 
 
 ### Kết quả rà repo
 
-- Trước snapshot: `firmware/` chỉ có README; không có `software/`, runnable Pi/ESP32 source, service, model hoặc bench logs. Lịch sử tên file trên các refs đã fetch chỉ thấy Python tooling CAD, không thấy các live files nêu trên. Không có code thật để chuẩn hóa trong đợt này.
-- [Firmware README](../firmware/README.md) và [software README](../software/README.md) là entrypoints/checklist pointers, không phải implementation.
+- Baseline trước E4 (historical): `firmware/` chỉ có README; không có `software/`, runnable Pi/ESP32 source, service, model hoặc bench logs. Lịch sử tên file trên các refs đã fetch chỉ thấy Python tooling CAD, không thấy các live files nêu trên. Không có code thật để chuẩn hóa trong đợt này.
+- Sau E4: firmware/software đã có source capture; README dẫn vào source và master duy nhất.
 - `electronics/` và `manufacturing/` trên `main` chỉ có README; chưa có schematic/mainboard/gerber release. CAD được giữ trong `purchased-hardware/`; trạng thái duyệt vẫn do BOM quản lý.
 - Root/docs index đã đổi để dẫn vào master; wiring/HW/MECH đã đồng bộ phạm vi hiện hành. `purchased-hardware/README.md` tiếp tục dẫn về BOM và không chứa inventory thứ hai.
 - PRD giữ nguyên byte-for-byte; các ghi chú tiến độ stale của nó được phân loại historical ở đây. PCB/manufacturing rules vẫn là release gates, không phải tuyên bố đã hoàn thành.
@@ -151,7 +188,7 @@ Không khôi phục các purchase registers/handoff/architecture documents đã 
 2. Pinmap chưa freeze tích hợp: GPIO48 RGB/XSHUT, khả dụng GPIO encoder với N16R8, bus/address sensor và Pi link chưa xác minh.
 3. Pi↔ESP32 protocol, watchdog, lost-link/reset/sensor-fault stop chưa được chứng minh end-to-end; không dùng số timeout lịch sử như kết quả đã test.
 4. INA260 current sensing, tải regulator, battery protection/charging, thermal và power-fault behavior thiếu validation. Listing ratings không phải số đo.
-5. Live code, service, model/dependencies và logs còn ngoài repo; chưa tái tạo được hệ thống từ fresh clone.
+5. Đã nhập source/service capture E4; còn thiếu runtime identity, model binaries, venv/build/config và logs để tái tạo từ fresh clone.
 6. Final mechanics: fan khi sạc, caster/ball caster, measured packaging, wheel hub, missing approved reference và CAD release.
 7. PRD acceptance còn mở: locomotion/autonomy, tránh vật cản/chống rơi, presence/bumper, privacy hardware và voice/AI/display integration; module pass không chứng minh các chức năng này đã hoàn tất.
 
@@ -168,4 +205,6 @@ Không khôi phục các purchase registers/handoff/architecture documents đã 
 | 7 | **Voice/AI/display integration** | Merge module đã pass, UI nằm trong vùng tròn, test wake/STT/response/audio/video và không làm hỏng drive/safety |
 | 8 | **Mechanical finalization** | Chốt caster/fan/layout từ phần cứng đo thật, clearance/airflow/serviceability và CAD kiểm duyệt trước chế tạo |
 
-Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit lên `main`. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.
+**Bước tiếp theo duy nhất:** tiếp tục bước 1 — đối chiếu wiring/board/build thực tế để freeze pinmap, đặc biệt ToF Pi so với ESP lịch sử và encoder GPIO35/36/37 với N16R8. Chưa đổi pin hoặc bắt đầu code mới khi evidence này thiếu. Capture E4 hỗ trợ bước 1, không thay đổi thứ tự bảng.
+
+Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; đồng bộ GitHub khi thực hiện xuất bản được yêu cầu. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.

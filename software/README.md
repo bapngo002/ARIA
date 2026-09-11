@@ -1,5 +1,5 @@
-# ARIA software — capture pending
+# ARIA software
 
-Chưa có source Pi, service hoặc model thật được commit. Danh sách live paths, target paths và checklist duy nhất nằm trong [MASTER HANDOFF — Software/artifacts và MIGRATION GAPS](../docs/ARIA-MASTER-HANDOFF.md#softwareartifacts-và-migration-gaps).
+Source capture Pi nằm trong [pi/](pi/); unit được bảo tồn tại pi/aria-core.service. [capture-manifest.json](capture-manifest.json) lưu SHA-256 và nguồn. Không dùng pip-freeze.txt như môi trường tái dựng đã verified. Model/Whisper mới có danh sách đường dẫn.
 
-Đưa source thật vào đây sau khi capture từ Pi; ghi dependencies, launch/setup, service overrides và model provenance/checksums. Không commit socket runtime, credential hoặc placeholder code giả làm implementation. Trạng thái chạy/test chỉ cập nhật ở master handoff.
+Trạng thái, giới hạn runtime, IPC và checklist duy nhất nằm trong [MASTER HANDOFF](../docs/ARIA-MASTER-HANDOFF.md). Không tự deploy snapshot trước khi đối chiếu thiết bị.

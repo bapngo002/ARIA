@@ -1,6 +1,6 @@
 # ARIA engineering documents
 
-**Đọc [ARIA-MASTER-HANDOFF.md](ARIA-MASTER-HANDOFF.md) trước.** Đây là snapshot CURRENT/CANONICAL về tiến độ, verification, pinmap và migration gaps; GitHub `main` là source of truth sau migration.
+**Đọc [ARIA-MASTER-HANDOFF.md](ARIA-MASTER-HANDOFF.md) trước.** Đây là snapshot CURRENT/CANONICAL về tiến độ, verification, pinmap và migration gaps; checkout đã hợp nhất là source of truth làm việc; trạng thái đồng bộ GitHub xem master.
 
 [`ARIA-BOM-001.md`](ARIA-BOM-001.md) là nguồn chuẩn duy nhất cho inventory, model, số lượng, trạng thái mua và CAD. Không suy diễn tiến độ từ BOM. PRD giữ frozen; ghi chú tiến độ historical trong PRD không phải current-state.
 
