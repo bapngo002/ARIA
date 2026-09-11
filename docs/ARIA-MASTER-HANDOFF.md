@@ -206,6 +206,48 @@ Codex giữ vai trò viết code chính và duyệt tích hợp. Tận dụng Gi
 
 Copilot CLI 1.0.83 đã cài từ GitHub release chính thức trên D, kiểm SHA-256 và chạy thành công một lượt review pinmap bằng thông tin đã cung cấp: 0 file thay đổi, 0.86 AI credit theo CLI. Đây chỉ là kiểm chứng kênh hỗ trợ, không phải xác minh wiring/hardware hoặc toàn bộ tính năng Copilot. State/logs đặt dưới D:/UserData/ARIA/tools/copilot/state. Không bật chi phí vượt gói hoặc API trả phí riêng. Hạn mức hai dịch vụ độc lập; theo dõi trong phiên làm việc và lưu checkpoint sớm, không cam kết sử dụng vô hạn.
 
+## KST / STEP-001–106 — đối chiếu tiếp tục tiến trình
+
+Theo yêu cầu người dùng tiếp tục dựa trên kế hoạch KST, đã đọc ngày 2026-09-12: kế hoạch Word FINAL, roadmap 106 bước, báo cáo STEP-001 v0.4 và báo cáo kiểm tra lại KST ngày 07/09. Dùng mã STEP làm chỉ mục công việc tham chiếu; trạng thái hiện hành và NEXT STEP ORDER vẫn ở master này. Không tạo master/roadmap thứ hai, không reset các module đã có về chưa bắt đầu và không đánh dấu DONE chỉ vì có source.
+
+Nguồn được giữ nguyên trên D (tài liệu lịch sử, không phải nguồn quyết định song song):
+- D:/UserData/Downloads/ARIA_MASTER_TRANSFER_V2/ARIA_KST_REVERSE_MASTER_PLAN_FINAL.docx — SHA-256 e2c88b681d80b077b112b3279cdab4a081fd903f9a112a6d63777e136df845dc.
+- D:/UserData/Downloads/ARIA_MASTER_TRANSFER_V2/ARIA-ROADMAP-106-STEPS.md — SHA-256 24abfa370bf2d51ffdf71e23f779efc0ef9be5bda2dbc1d7485a677f48b98dcb.
+- D:/UserData/ARIA/history/2026-09-07/xe/outputs/ARIA-STEP-001-DOI-CHIEU.md — SHA-256 ec2b6a4841074a07b96c75db2cbbc88f388b4b53deca37c1d55f152f0251dfb2.
+- D:/UserData/ARIA/history/2026-09-07/xe/outputs/ARIA-KST-KIEM-TRA-FILE-GOC-VA-AP-DUNG.md — báo cáo static review; chưa tái thực hiện reverse/bench trong lần đối chiếu này.
+
+### Điều chỉnh khi áp dụng tài liệu KST
+
+1. STEP-001/002 dùng docs/ARIA-BOM-001.md là inventory duy nhất. Nhận định cũ “BOM không tồn tại” và baseline e3a6a83 đã hết hiệu lực; không chuyển inventory trở lại purchased-hardware/README.md.
+2. STEP-015/024 dùng INA260 ×2, không INA226. BME280 và 4 VL53L1X theo cấu hình hiện hành; không đưa lại sensor/model lịch sử vào thiết kế.
+3. STEP-006 không yêu cầu bỏ cây software/pi và firmware/esp32 đang có hoặc viết lại code từ đầu. Chỉ tái cấu trúc khi có nhu cầu triển khai cụ thể và bảo tồn capture/LKG.
+4. STEP-014/016 không mặc định chuyển IMU/ToF về ESP32: source capture đang đọc chúng trên Pi. Wiring/ownership cuối phải được xác minh; ESP32 vẫn có trách nhiệm dừng độc lập khi mất link.
+5. KST cung cấp tham khảo về dashboard, state machine, công cụ AI, lệnh có thời hạn, settings và recovery. Không dùng firmware KST làm firmware ARIA; không copy GPIO, driver L298N/servo, ngưỡng hoặc timeout mặc định sang ARIA. Có chuỗi safety/tool trong binary không chứng minh runtime hoặc safe stop trên ARIA.
+6. Báo cáo kiểm tra lại giới hạn các tuyên bố “reverse hoàn tất”, “hard max đã được bảo đảm” và “OTA luôn rollback”: giữ ở mức bằng chứng static đã báo cáo, không nâng thành bench VERIFIED. Source custom và cloud backend không được khôi phục từ gói này.
+7. KST xếp autonomy cuối còn NEXT STEP ORDER hiện hành tách locomotion/autonomy trước voice. Không tự đổi thứ tự đã chốt: phần caller/person approach của STEP-104 vẫn phụ thuộc vision và obstacle safety; không gọi mọi autonomy hoàn tất trước khi các phụ thuộc tương ứng đạt.
+
+### Trạng thái đối chiếu theo STEP
+
+| STEP | Trạng thái tiếp tục | Phần còn thiếu để đóng |
+|---|---|---|
+| 001 | PARTIALLY VERIFIED — đối chiếu hồ sơ đã có, không làm lại từ đầu | Đóng delta vật lý còn thiếu hoặc ghi rõ deferred; báo cáo v0.4 tự ghi chưa DONE |
+| 002 | PARTIALLY VERIFIED — BOM hiện hành đã hợp nhất các quyết định mới | Hoàn thiện evidence/revision còn thiếu và đồng bộ GitHub khi được yêu cầu |
+| 003–004 | PARTIALLY VERIFIED — có model, mapping và source capture | Board/build/wiring thật, encoder GPIO35/36/37, ToF Pi/ESP, danh sách v1 được freeze |
+| 005 | PARTIALLY VERIFIED — baseline và capture đã commit | Protocol/safety decisions chưa đủ để đóng bước |
+| 006–010 | PARTIALLY VERIFIED — có cây source, serial 115200 và heartbeat | Handshake/version, structured log, fault/link tests; không coi liên kết đã ổn định |
+| 011–017 | PARTIALLY VERIFIED — motor/encoder và sensor source đã có một phần | SAFE_MODE, INA260, snapshot/self-test và bằng chứng từng driver |
+| 018–027 | NOT VERIFIED về gate an toàn | Còn lỗi watchdog đã ghi ở E4; chưa có fault-injection/stop evidence |
+| 028–034 | PARTIALLY VERIFIED — có F/B/L/R/S và ariactl | Bounded motion, ACK/status/safety API và test dừng; CLI hiện tại chưa đạt gate |
+| 035–053 | NOT VERIFIED | Chưa có state machine/event bus/MCP implementation trong capture |
+| 054–060 | PARTIALLY VERIFIED — có thu âm/module audio | Wake/VAD/STT/TTS/barge-in và hội thoại end-to-end |
+| 061–067 | NOT VERIFIED | AI router/tool-call loop chưa có trong capture |
+| 068–072 | PARTIALLY VERIFIED — camera/chụp ảnh đã có | Công cụ vision, phân tích ảnh và lifecycle/privacy chưa đủ |
+| 073–077 | PARTIALLY VERIFIED — display đã được báo cáo chạy | Chưa có source UI/biểu cảm trong capture |
+| 078–099 | NOT VERIFIED trên ARIA | Dashboard KST chỉ là tham khảo; settings/OTA/memory chưa được chứng minh triển khai |
+| 100–106 | NOT VERIFIED | Odometry/autonomy/soak và fault tests chưa có evidence |
+
+**Điểm tiếp tục:** hoàn thiện phần còn mở của STEP-001–004, tương ứng bước 1 của NEXT STEP ORDER. Việc cụ thể ngay sau đối chiếu là xác nhận board/build/wiring hiện tại; thu cấu hình Pi chỉ đọc để hỗ trợ đối chiếu. Lần kiểm tra mạng ngày 2026-09-12 gần nhất không phân giải được aria.local, khác lần E4 đã tới xác thực nhưng bị từ chối; chưa chạy được lệnh trên Pi. Không suy ra Pi tắt hoặc firmware thay đổi từ lỗi mạng này.
+
 ## NEXT STEPS — NEXT STEP ORDER
 
 | Thứ tự | Công việc | Điều kiện hoàn thành |
