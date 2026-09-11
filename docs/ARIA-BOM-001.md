@@ -14,7 +14,7 @@ Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn 
 | # | Nhóm | Linh kiện / model đã mua | SL | CAD hiện có | Kết luận |
 |---:|---|---|---:|---|---|
 | 1 | Compute | Raspberry Pi 5 4GB | 1 | [Pi 5 + Official Cooler](../purchased-hardware/cad-review/01-raspberry-pi-5-with-official-cooler_UNVERIFIED-MISMATCH.dwg) | **Sai một phần:** cooler trong file là loại chính hãng, cooler mua là Smraza; chưa kiểm kích thước. |
-| 2 | Power sensing | Board INA260 đo dòng điện / điện áp / công suất qua I²C; DigiKey **1528-2955-ND**; board code **4226** | 2 | — | Thiếu CAD; cần đối chiếu kích thước và revision trên board thực tế. |
+| 2 | Power sensing | Board INA260 đo dòng điện / điện áp / công suất qua I²C; DigiKey **1528-2955-ND**; board code **4226** | 2 | — | **Chốt dùng, chưa nhận hàng** theo xác nhận người dùng; chưa lắp, chưa chốt chân đấu nối/địa chỉ I²C, chưa bench. Thiếu CAD; đối chiếu revision khi hàng về. |
 | 3 | Thermal | Smraza Active Cooler cho Raspberry Pi 5, 5V PWM 4-pin | 1 | — | Thiếu. |
 | 4 | Power | Pololu D24V90F5, 5V/9A | 1 | — | Thiếu. |
 | 5 | Vision | Raspberry Pi Camera Module 3 Wide NoIR | 1 | [DWG](../purchased-hardware/cad/05-raspberry-pi-camera-module-3-wide-noir.dwg) | Đúng tên model; chưa kiểm scale, lỗ bắt, lens keep-out và kích thước. |

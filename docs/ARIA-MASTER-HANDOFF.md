@@ -256,6 +256,12 @@ Kiểm kê wiring: docs/ARIA-WIRING-001.md hiện có quy tắc và cập nhật
 
 Kết luận: tài liệu quy tắc đã cập nhật một phần, sơ đồ đấu dây toàn hệ thống chưa cập nhật/được xác minh theo cấu hình hiện tại. Bước tiếp tục vẫn là đối chiếu wiring thật với capture rồi cập nhật chính ARIA-WIRING-001; không lấy sự xác nhận model làm xác nhận dây.
 
+## Cập nhật INA260 — xác nhận trực tiếp 2026-09-12
+
+Người dùng chốt INA260, nhưng linh kiện chưa về nên chưa cập nhật chân đấu nối. Cấu hình mục tiêu vẫn INA260 ×2 theo BOM; trạng thái nhận hàng: chưa nhận; lắp/bench: chưa thực hiện; chân SDA/SCL, nguồn, ALERT nếu dùng và địa chỉ I²C: NOT VERIFIED/TBD. Không sao chép địa chỉ 0x44 của INA226 sang INA260. Xác nhận này làm rõ câu “đúng chuẩn rồi” trước đó là xác nhận lựa chọn model, không phải đã nhận/lắp INA260. Không yêu cầu test INA260 trước khi hàng về; giữ hạng mục này pending delivery, có thể đối chiếu phần wiring khác độc lập.
+
+File người dùng cung cấp D:/UserData/Downloads/PROJECT_ARIA_LATEST_PINOUT_HANDOFF_2026-09-12.md đã đọc và đối chiếu: motor/encoder/tuning, USB Serial 115200, ToF Pi GPIO22–25/0x30–0x33, BNO085 0x4A và BME280 0x76 khớp capture. File báo audio GPIO18/19/21, camera CAM/DISP0, display CAM/DISP1 và overlay; đây là evidence tài liệu mới, chưa kiểm cấu hình runtime. File ghi INA226 còn đang dùng và planned INA260; xác nhận mới không chứng minh INA226 hiện còn lắp. Không phục hồi INA226 làm cấu hình mục tiêu. Các nhãn bounded motion/failsafe PASS trong file chưa đóng lỗi static của sketch capture: chưa thấy command-duration timeout độc lập heartbeat. Không nâng runtime/flash/bench thành VERIFIED hoặc đổi pin chỉ từ nhãn PASS/LOCKED trong tài liệu.
+
 ## NEXT STEPS — NEXT STEP ORDER
 
 | Thứ tự | Công việc | Điều kiện hoàn thành |
