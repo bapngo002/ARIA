@@ -3,8 +3,8 @@
 > **Đây là nguồn duy nhất trong repo cho linh kiện ĐÃ MUA, số lượng và CAD tương ứng.**
 > Không sao chép bảng này sang file khác. ESP32-S3 N16R8 đã được bổ sung ở dòng 16.
 
-Cập nhật: 2026-08-10
-Phạm vi: **16 hạng mục / 28 đơn vị vật lý**
+Cập nhật: 2026-09-11
+Phạm vi: **16 hạng mục / 29 đơn vị vật lý**
 Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn truyền động; không dùng để suy ra giá từng dòng)
 
 ## Danh sách đã mua
@@ -12,7 +12,7 @@ Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn 
 | # | Nhóm | Linh kiện / model đã mua | SL | CAD hiện có | Kết luận |
 |---:|---|---|---:|---|---|
 | 1 | Compute | Raspberry Pi 5 4GB | 1 | [Pi 5 + Official Cooler](cad-review/01-raspberry-pi-5-with-official-cooler_UNVERIFIED-MISMATCH.dwg) | **Sai một phần:** cooler trong file là loại chính hãng, cooler mua là Smraza; chưa kiểm kích thước. |
-| 2 | Power sensing | Module INA226, I²C, 0–36V | 1 | — | Thiếu; cần xác minh board/shunt cụ thể. |
+| 2 | Power sensing | Board INA260 đo dòng điện / điện áp / công suất qua I²C; DigiKey **1528-2955-ND**; board code **4226** | 2 | — | Thiếu CAD; cần đối chiếu kích thước và revision trên board thực tế. |
 | 3 | Thermal | Smraza Active Cooler cho Raspberry Pi 5, 5V PWM 4-pin | 1 | — | Thiếu. |
 | 4 | Power | Pololu D24V90F5, 5V/9A | 1 | — | Thiếu. |
 | 5 | Vision | Raspberry Pi Camera Module 3 Wide NoIR | 1 | [DWG](cad/05-raspberry-pi-camera-module-3-wide-noir.dwg) | Đúng tên model; chưa kiểm scale, lỗ bắt, lens keep-out và kích thước. |
