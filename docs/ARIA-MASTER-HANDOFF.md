@@ -200,6 +200,12 @@ Không khôi phục các purchase registers/handoff/architecture documents đã 
 6. Final mechanics: fan khi sạc, caster/ball caster, measured packaging, wheel hub, missing approved reference và CAD release.
 7. PRD acceptance còn mở: locomotion/autonomy, tránh vật cản/chống rơi, presence/bumper, privacy hardware và voice/AI/display integration; module pass không chứng minh các chức năng này đã hoàn tất.
 
+## Phối hợp Codex / Copilot — quyết định người dùng 2026-09-12
+
+Codex giữ vai trò viết code chính và duyệt tích hợp. Tận dụng GitHub Copilot Pro cho công việc hỗ trợ có phạm vi rõ: bản nháp nhỏ, test cần thiết, giải thích và review; tránh thực hiện trùng cả tác vụ ở hai bên. Quy tắc thực hiện tại AGENTS.md và .github/copilot-instructions.md, không thay thế NEXT STEP ORDER.
+
+Copilot CLI 1.0.83 đã cài từ GitHub release chính thức trên D, kiểm SHA-256 và chạy thành công một lượt review pinmap bằng thông tin đã cung cấp: 0 file thay đổi, 0.86 AI credit theo CLI. Đây chỉ là kiểm chứng kênh hỗ trợ, không phải xác minh wiring/hardware hoặc toàn bộ tính năng Copilot. State/logs đặt dưới D:/UserData/ARIA/tools/copilot/state. Không bật chi phí vượt gói hoặc API trả phí riêng. Hạn mức hai dịch vụ độc lập; theo dõi trong phiên làm việc và lưu checkpoint sớm, không cam kết sử dụng vô hạn.
+
 ## NEXT STEPS — NEXT STEP ORDER
 
 | Thứ tự | Công việc | Điều kiện hoàn thành |
