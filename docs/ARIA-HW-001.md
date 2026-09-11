@@ -1,11 +1,11 @@
 # ARIA-HW-001 — Hardware validation gates
 
-Component identity, quantity, purchase status and CAD status live only in [`purchased-hardware/README.md`](../purchased-hardware/README.md). This document must not repeat that inventory.
+Component identity, quantity, purchase status and CAD status live only in [`docs/ARIA-BOM-001.md`](ARIA-BOM-001.md). This document must not repeat that inventory.
 
 ## Before bench power
 
 - Confirm delivered markings and exact board revisions against the canonical inventory.
-- Verify battery chemistry, polarity, cell condition, BMS behavior, fuse strategy and wire ratings.
+- Verify battery chemistry, polarity, cell condition, behavior of the 3S BMS integrated inside the battery pack, fuse strategy and wire ratings.
 - Verify every regulator output unloaded before connecting compute, display, audio or sensors.
 - Treat marketplace power/current claims as unverified until measured.
 

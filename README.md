@@ -4,15 +4,8 @@ ARIA là dự án robot AI đồng hành cá nhân.
 
 ## Nguồn chuẩn duy nhất cho linh kiện và CAD
 
-Mở [`purchased-hardware/README.md`](purchased-hardware/README.md).
+Mở [`docs/ARIA-BOM-001.md`](docs/ARIA-BOM-001.md) để xem BOM, cấu hình phần cứng hiện hành, linh kiện đã mua, model, số lượng, chi phí đã ghi nhận và trạng thái CAD.
 
-File đó là nơi duy nhất được phép ghi:
+CAD và bằng chứng mua hàng nằm trong `purchased-hardware/`; README tại đó dẫn về BOM. Các phiên bản cũ vẫn được giữ trong lịch sử Git để truy vết.
 
-- linh kiện đã mua;
-- model và số lượng;
-- tổng chi phí đã ghi nhận;
-- CAD tương ứng, CAD thiếu và CAD sai.
-
-Các BOM, purchase register và CAD-status cũ đã bị loại khỏi cây hiện tại vì chứa linh kiện chưa mua, model sai hoặc thông tin trùng. Lịch sử Git vẫn giữ các phiên bản cũ để truy vết.
-
-Các thư mục `docs/`, `electronics/`, `firmware/` và `manufacturing/` chỉ chứa yêu cầu hoặc ghi chú kỹ thuật; chúng không được tạo danh sách linh kiện thứ hai.
+Các tài liệu kỹ thuật khác trong `docs/`, `electronics/`, `firmware/` và `manufacturing/` tham chiếu BOM này, không tạo danh sách linh kiện thứ hai. PRD frozen tiếp tục là nguồn yêu cầu sản phẩm.

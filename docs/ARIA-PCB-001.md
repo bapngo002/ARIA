@@ -1,6 +1,6 @@
 # ARIA-PCB-001 — Mainboard development rules
 
-Purchased module identity and quantity come only from [`purchased-hardware/README.md`](../purchased-hardware/README.md).
+Purchased module identity and quantity come only from [`docs/ARIA-BOM-001.md`](ARIA-BOM-001.md).
 
 - Do not choose footprints from product photos or from planned components.
 - Confirm the delivered revision, pinout, connector orientation and mechanical drawing first.

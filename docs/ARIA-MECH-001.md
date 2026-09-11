@@ -1,6 +1,6 @@
 # ARIA-MECH-001 — Mechanical and CAD rules
 
-The only component/CAD inventory is [`purchased-hardware/README.md`](../purchased-hardware/README.md).
+The only component/CAD inventory is [`docs/ARIA-BOM-001.md`](ARIA-BOM-001.md).
 
 ## Conventions
 
@@ -11,6 +11,10 @@ The only component/CAD inventory is [`purchased-hardware/README.md`](../purchase
 - Put matching purchased-part CAD in `purchased-hardware/cad/`.
 - Put unique but mismatched or not-purchased CAD in `purchased-hardware/cad-review/`.
 - Do not create another CAD status table.
+
+## Current wheel reference
+
+Use the [canonical wheel specification](ARIA-BOM-001.md#bánh-xe) for clearance and fit planning. Confirm the meaning of the reported center/hub dimension and the contents of a set before designing the axle interface or assigning per-wheel mass.
 
 ## Release gate
 
