@@ -2,7 +2,17 @@
 
 **Status: CURRENT/CANONICAL · Migration + local live-source consolidation: 2026-09-12**
 
-## ACTIVE CHECKPOINT — ESP damaged; replacement PCB planning
+## ACTIVE CHECKPOINT — 2026-09-13: replacement ESP, right encoder diagnostic
+
+Latest owner report supersedes the receipt/encoder uncertainty in the historical checkpoint below: replacement ESP is present, same YD-ESP32-S3 N16R8; left encoder is damaged, connected encoder is RIGHT. User first identified right SDA36/SCL37, then acknowledged completing the requested remap (right SDA4/SCL5, left allocation SDA8/SCL9). Treat this as owner-reported wiring, not photo/continuity verification. User confirms motor power unplugged. Failed-left disconnection, encoder supply/polarity and physical EN state have not been independently verified.
+
+New separate diagnostic: firmware/esp32/ARIA_ENCODER_CHECK_R1, v0.1.0. Right bus only, no SimpleFOC/PWM/motion commands; both EN pins and phase-control outputs held LOW after setup. Motor power must stay disconnected through reset/upload/test. Original Drive V0.3/capture remains unchanged. Pi tool inventory and ESP USB identity are next, followed by user-run upload and right-encoder serial capture; no assistant hardware upload or motion performed. Build evidence is recorded in the diagnostic README; compilation is not bench evidence.
+
+Pi evidence supplied as terminal screenshots in this task: GPIO2/3 show SDA1/SCL1 with pull-ups and HIGH; GPIO22-25 output HIGH; dtparam=i2c_arm=on and /dev/i2c-1 present. Bus scan responds at 0x30/31/32/33, 0x4A, 0x76 and 0x40. First six match expected ToF/BNO085/BME280 assignments but do not prove identity, measurements or physical XSHUT ordering. User confirms INA260 connected to Pi. At 0x40 register FE returns 0x5449 and FF returns 0x2270, matching INA260 identification. Subsequent registers 00/01/02/03 return 0x6127/0x0206/0x2231/0x02A9: current 0.6475 A, bus voltage 10.94125 V, power 6.81 W, sequential samples. IN+/IN- endpoints and measurement accuracy remain unverified. INA260 pending-delivery statements below are superseded by this evidence and the updated BOM.
+
+Pi SSH is owner-operated: user has a logged-in session and runs supplied commands. Assistant SSH authentication previously failed; no assistant access to that session is established. Two speakers produce sound but owner reports stutter; audio stability and PipeWire output remain unverified.
+
+## HISTORICAL CHECKPOINT — ESP damaged; replacement PCB planning
 
 User reports ESP burned, encoder condition unknown, and intends replacement. User explicitly requests optimizing ESP/all pin allocation for new PCB and confirms same YD-ESP32-S3 N16R8 board type. This is authorization to propose a replacement map, not confirmation of the cause of failure, encoder health, or a new test pass. Earlier PASS reports remain historical evidence and do not describe the post-incident hardware.
 

@@ -3,7 +3,9 @@
 > **Đây là nguồn chuẩn duy nhất cho BOM, trạng thái phần cứng hiện hành, linh kiện đã mua, số lượng và CAD tương ứng.**
 > Không sao chép bảng này sang file khác. ESP32-S3 N16R8 đã được bổ sung ở dòng 16.
 
-Cập nhật: 2026-09-12
+Cập nhật: 2026-09-13
+
+**Cập nhật hiện hành 2026-09-13, thay thế trạng thái nhận hàng/sự cố cũ bên dưới:** người dùng xác nhận đã có ESP thay thế cùng loại YD N16R8; không suy ra thêm số lượng mua hoặc giá. Encoder AS5600 bên trái hỏng, bên phải còn nối và đang chờ kiểm tra sau đổi chân; chưa xác nhận đã thay encoder trái. INA260 ×1 đã có và nối Pi; ảnh terminal xác nhận mã nhận dạng tại địa chỉ 0x40. Chi tiết số đo và giới hạn kiểm chứng nằm trong master. Các ghi chú “chưa nhận hàng” INA260 và “chưa xác nhận nhận board thay thế” trong snapshot dưới đây là lịch sử đã superseded.
 
 Tiến độ, kết quả test và migration gaps nằm trong [MASTER HANDOFF](ARIA-MASTER-HANDOFF.md); không suy ra tiến độ dự án từ bảng mua hàng này.
 Phạm vi bảng đã mua có hồ sơ trước migration (không phải toàn bộ phần cứng live): **15 hạng mục / 28 đơn vị ở snapshot lịch sử** (trước điều chỉnh INA260 xuống 1; không phải tổng đã nhận hiện tại); không cộng lại phần bảo vệ tích hợp trong cụm pin. Bánh xe hiện hành được ghi riêng bên dưới do chưa có số lượng mua được xác nhận.
@@ -14,7 +16,7 @@ Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn 
 | # | Nhóm | Linh kiện / model đã mua | SL | CAD hiện có | Kết luận |
 |---:|---|---|---:|---|---|
 | 1 | Compute | Raspberry Pi 5 4GB | 1 | [Pi 5 + Official Cooler](../purchased-hardware/cad-review/01-raspberry-pi-5-with-official-cooler_UNVERIFIED-MISMATCH.dwg) | **Sai một phần:** cooler trong file là loại chính hãng, cooler mua là Smraza; chưa kiểm kích thước. |
-| 2 | Power sensing | Board INA260 đo dòng điện / điện áp / công suất qua I²C; DigiKey **1528-2955-ND**; board code **4226** | 1 | — | **Chốt dùng, chưa nhận hàng** theo xác nhận người dùng; chưa lắp, chưa chốt chân đấu nối/địa chỉ I²C, chưa bench. Thiếu CAD; đối chiếu revision khi hàng về. |
+| 2 | Power sensing | Board INA260 đo dòng điện / điện áp / công suất qua I²C; DigiKey **1528-2955-ND**; board code **4226** | 1 | — | **Đã có, đã nối Pi** theo xác nhận 2026-09-13; mã nhận dạng INA260 đọc được tại **0x40**. Chưa xác minh routing IN+/IN−, độ chính xác hoặc full-load bench. Thiếu CAD/revision. |
 | 3 | Thermal | Smraza Active Cooler cho Raspberry Pi 5, 5V PWM 4-pin | 1 | — | Thiếu. |
 | 4 | Power | Pololu D24V90F5, 5V/9A | 1 | — | Thiếu. |
 | 5 | Vision | Raspberry Pi Camera Module 3 Wide NoIR | 1 | [DWG](../purchased-hardware/cad/05-raspberry-pi-camera-module-3-wide-noir.dwg) | Đúng tên model; chưa kiểm scale, lỗ bắt, lens keep-out và kích thước. |
@@ -27,7 +29,7 @@ Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn 
 | 13 | IMU | Adafruit BNO085 9-DOF breakout | 1 | — | Thiếu. |
 | 14 | Drive | DFRobot FIT1035 2208 BLDC, tích hợp encoder từ AS5600 | 2 | — | Thiếu; không cần encoder rời. |
 | 15 | Motor driver | DFRobot DRI0058 SimpleFOCMini | 2 | — | Thiếu. |
-| 16 | Real-time control | YD-ESP32-S3 / ESP32-S3-WROOM-1-N16R8, 44 chân, dual USB-C ([đơn hàng](../purchased-hardware/evidence/16-esp32-s3-n16r8-order.png), [pinout](../purchased-hardware/evidence/16-esp32-s3-n16r8-pinout.png)) | 1 | [Bộ CAD 2D/3D](../purchased-hardware/cad-review/16-yd-esp32-s3-n16r8/README.md) | Đã đặt ngày 2026-08-07, ¥1,496; họ PCB canonical theo ảnh. **Cập nhật sau đó: người dùng báo board cháy; chọn thay bằng cùng loại YD N16R8. Chưa xác nhận mua/nhận board thay thế; không cộng thêm số lượng mua.** Báo cáo test trước sự cố là lịch sử. Chưa đối chiếu exact revision của board test; CAD còn phải đo bo thực tế. |
+| 16 | Real-time control | YD-ESP32-S3 / ESP32-S3-WROOM-1-N16R8, 44 chân, dual USB-C ([đơn hàng](../purchased-hardware/evidence/16-esp32-s3-n16r8-order.png), [pinout](../purchased-hardware/evidence/16-esp32-s3-n16r8-pinout.png)) | 1 | [Bộ CAD 2D/3D](../purchased-hardware/cad-review/16-yd-esp32-s3-n16r8/README.md) | Đã đặt ngày 2026-08-07, ¥1,496; họ PCB canonical theo ảnh. **Board cũ cháy; người dùng xác nhận đã có board thay thế cùng loại YD N16R8 ngày 2026-09-13. Chưa có hồ sơ giá/số lượng mua mới; không cộng thêm số lượng mua.** Báo cáo test trước sự cố là lịch sử. Chưa đối chiếu exact revision của board test; CAD còn phải đo bo thực tế. |
 
 ## Cấu hình hiện hành do người dùng xác nhận
 

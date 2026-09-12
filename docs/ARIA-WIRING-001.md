@@ -2,6 +2,8 @@
 
 Purchased component identity and quantity come only from [`docs/ARIA-BOM-001.md`](ARIA-BOM-001.md).
 
+Latest wiring checkpoint (2026-09-13): owner identifies connected encoder as RIGHT, initially SDA36/SCL37, then acknowledges remap to SDA4/SCL5 after receiving both new assignments. Left SDA8/SCL9 is reserved; left encoder is damaged and must remain disconnected. Motor power owner-confirmed unplugged. New diagnostic `firmware/esp32/ARIA_ENCODER_CHECK_R1` reads only the right bus with driver EN held LOW after setup. No physical continuity, supply or reset EN verification; carrier is still not released. INA260 is now connected to Pi per owner and its identification registers match at 0x40; exact physical supply/SDA/SCL and IN+/IN- routing remain unverified. Earlier pending-delivery/address-TBD statements are historical, superseded for receipt/address only. See master for screenshot evidence.
+
 - Battery and motor current must not pass through breadboards or low-current buttons.
 - Use short, fused, strain-relieved high-current wiring.
 - Route motor phases and switching power away from audio, camera, IMU and control wiring.
