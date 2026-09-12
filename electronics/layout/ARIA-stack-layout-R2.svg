@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1420" viewBox="0 0 1640 1420"><rect width="100%" height="100%" fill="#f4f7fb"/>
 <text x="55" y="79" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#15283f">ARIA / BỐ TRÍ XẾP TẦNG R2</text>
-<text x="55" y="123" font-family="Arial, sans-serif" font-size="27" font-weight="400" fill="#15283f">Một đế chung • Module tháo được • Bó dây riêng theo chức năng</text>
+<text x="55" y="123" font-family="Arial, sans-serif" font-size="27" font-weight="400" fill="#15283f">Đế có sẵn 70 × 100 mm • Xếp tầng tháo được • Đầu nguồn gom về một mép</text>
 <rect x="55" y="145" width="1530" height="52" rx="14" fill="#fff1d9" stroke="#e4ba70" stroke-width="2"/>
-<text x="75" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#855500">BẢN Ý TƯỞNG — Không theo tỷ lệ; chưa xác nhận kích thước, lỗ hàn hoặc chiều cao tầng.</text>
+<text x="75" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#855500">BẢN Ý TƯỞNG — Đế 70 × 100 mm; hình không theo tỷ lệ, chưa chốt lỗ hàn / chiều cao.</text>
 <rect x="335" y="245" width="1250" height="215" rx="14" fill="#ffffff" stroke="#b8c9dc" stroke-width="2"/>
 <circle cx="356" cy="261" r="6" fill="#bdc8d3"/>
 <circle cx="1566" cy="261" r="6" fill="#bdc8d3"/>
@@ -42,12 +42,12 @@
 <polyline points="520,635 545,635" fill="none" stroke="#76b68c" stroke-width="4"/>
 <rect x="1040" y="557" width="250" height="163" rx="14" fill="#eee8fa" stroke="#b8c9dc" stroke-width="2"/>
 <text x="1058" y="599" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">MAX98357A L</text>
-<text x="1058" y="637" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Nguồn 5V riêng</text>
+<text x="1058" y="637" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Nhánh 5V riêng</text>
 <text x="1058" y="666" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Cặp dây → loa L</text>
 <text x="1058" y="695" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Không nối SPK− GND</text>
 <rect x="1310" y="557" width="250" height="163" rx="14" fill="#eee8fa" stroke="#b8c9dc" stroke-width="2"/>
 <text x="1328" y="599" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">MAX98357A R</text>
-<text x="1328" y="637" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Nguồn 5V riêng</text>
+<text x="1328" y="637" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Nhánh 5V riêng</text>
 <text x="1328" y="666" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Cặp dây → loa R</text>
 <text x="1328" y="695" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Không nối SPK− GND</text>
 <text x="55" y="873" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15283f">TẦNG ĐẾ</text>

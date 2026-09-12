@@ -14,7 +14,7 @@ This file intentionally contains no second BOM.
 
 User supplied two bench photos and authorizes stacking modules to minimize footprint. Photo 2 shows a perforated prototyping board, YD-style dual-USB ESP module, loose SimpleFOC boards, two amplifier boards, and a blue board visibly marked INA260. Photo 1 shows a round display and multiple loose wired peripherals. Individual solder joints, wire functions, exact dimensions, module health and power paths cannot be verified from these photos. The apparent INA260 is a new visual observation; confirm receipt/use before treating the prior pending-delivery record as resolved. No photo-derived pad spacing or footprint is released.
 
-[Exploded top views of the proposed stack](../electronics/layout/ARIA-stack-layout-R2.svg). Concept only, not to scale, not a solder map. It supersedes the R1 single-plane placement assumption; the R1 proposed signal assignment remains unchanged in ARIA-WIRING-001.md. User confirms replacement ESP same family. Perfboard dimensions and allowable total height still require measurement; no claim this is the smallest possible envelope or that all modules fit the photographed board.
+[Exploded top views of the proposed stack](../electronics/layout/ARIA-stack-layout-R2.svg). Concept only, not to scale, not a solder map. It supersedes the R1 single-plane placement assumption; the R1 proposed signal assignment remains unchanged in ARIA-WIRING-001.md. User confirms replacement ESP same family. User subsequently confirms the available perfboard is 70 × 100 mm and requests compact stacking instead of spreading all modules over its area. Allowable total height still requires measurement; no claim this is the smallest possible envelope or that all modules fit the photographed board.
 
 ### Proposed organization
 
@@ -40,3 +40,19 @@ User supplied two bench photos and authorizes stacking modules to minimize footp
 Espressif recommends the antenna outside the baseboard edge and sufficient clearance in the final assembly; apply this to every stacked board, wire and metal support, not just the layer carrying ESP. [Official module placement guidance](https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32s3/pcb-layout-design.html#general-principles-of-pcb-layout-for-modules-positioning-a-module-on-a-base-board).
 
 Copilot Pro reviewed the earlier single-plane proposal (1.73 AI credits; no file changes). Retained concerns: phase/encoder coupling, shared noisy return paths, uncertain fit and post-incident isolation. Rejected suggestions to invent a universal IMU standoff distance or cut a generic ground moat; actual mechanical/return-path design and measurements are needed. Stacked R2 is the primary agent's response to the subsequent user instruction and is not a Copilot-approved hardware release. Generated diagram was visually checked for readable labels; no CAD fit, schematic ERC, electrical test or thermal test has occurred.
+
+### Power edge refinement — user-confirmed 70 × 100 mm base
+
+Arrange power connection points along ONE accessible edge across tiers, with each bank explicitly labeled by voltage and source, not by generic VCC/VIN. This meets the request for orderly common rows without electrically shorting incompatible supplies. Available base size is confirmed, but there is no module-envelope fit proof; upper carriers may be smaller, with supports and clearances determined by measurement. Do not yet cut perfboard or assign hole coordinates.
+
+| Proposed bank at service edge | Sharing rule | Scope |
+|---|---|---|
+| GND / returns | Common electrical reference, deliberate separate branch returns | Motor/buck/input high-current returns go directly to rated distribution; no traction return through sensor/USB/perfboard pad chains |
+| VBAT_PROTECTED | Protected battery-voltage distribution, separately protected branches | Motor drivers and buck input only as allowed by reviewed power tree; no Pi/ESP/sensor/amplifier input here |
+| 5V_SYS | Regulated 5V supply with individually identified branches | Approved 5V loads; Pi power entry and USB backfeed rules remain unresolved/reviewed separately |
+| 3V3_PI | Pi-side logic domain | Only compatible Pi-side sensor logic/load after carrier revision and current-budget review |
+| 3V3_ESP | ESP-side logic domain | Encoder supply after isolation/health/current-budget checks; never connected to 3V3_PI or driver auxiliary 3.3V output |
+
+These are segregated terminal banks in a shared physical row, NOT one continuous positive rail. No generic VCC/VIN wire is assigned until its module input requirement is checked. Per-module current/polarity, busbar/wire sizing, fuse ratings and a common power-source scheme remain schematic tasks. Keep these banks distinct by labels and spacing/keying; color alone is insufficient. Leave motor phases and differential speaker outputs off both positive and GND buses. Ground is not galvanic isolation. Use suitable distribution terminals/wiring, not a long bridged chain of small perfboard pads for power.
+
+Do not interpret the latest answer as confirmation that INA260 has arrived; it only specifies base dimensions and desired wiring organization. Its label is visible in the photo, while explicit receipt/use confirmation remains pending.
