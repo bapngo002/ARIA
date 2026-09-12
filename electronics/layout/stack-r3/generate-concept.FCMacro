@@ -1,4 +1,5 @@
 import FreeCAD as App, Part, Import, FreeCADGui as Gui
+from pivy import coin
 from pathlib import Path
 import json
 out=Path('D:/UserData/ARIA/current-task/outputs/SolidWorks-layout')
@@ -59,6 +60,7 @@ try:
  build('ARIA_STACK_R3_ASSEMBLED_CONCEPT',0)
  build('ARIA_STACK_R3_EXPLODED_CONCEPT',32)
  (out/'placement-concept.json').write_text(json.dumps(records,indent=2),encoding='utf-8')
+ (out/'generation-error.txt').unlink(missing_ok=True)
  (out/'generation-done.txt').write_text('Two concept documents exported. Placeholder bodies, not verified component models. No released mounting holes.',encoding='utf-8')
 except Exception:
  import traceback
