@@ -14,6 +14,8 @@ Owner-reported: old ESP damaged; replacement same family selected, purchase/rece
 
 Photo follow-up: the second supplied image visibly includes a board marked INA260. This is visual model-label evidence, not a bench pass or confirmed update of receipt status; user confirmation pending. Keep one planned board and no assigned INA260 wiring/address. No photo-derived dimensions or PCB footprints are treated as verified. Concept R2: base power/driver, middle ESP/audio, top Pi with open cooling; functional sensors/display/mic remain at their required locations. This changes placement proposal only, not capture firmware or release status.
 
+3D follow-up: user requested SolidWorks visualization. Simplified assembled/exploded STEP concept R3 now lives in electronics/layout/stack-r3, linked from ARIA-PCB-001.md. Confirmed base70x100 only; all tier heights/module envelopes are illustrative. STEP export/shape validity checked; SolidWorks native startup/import/save not verified. No wiring or code change.
+
 ## NEW CHATGPT ACCOUNT BOOTSTRAP
 
 1. Đọc file này trước khi tiếp tục Project ARIA. Sau hợp nhất theo yêu cầu người dùng, **checkout ARIA đã hợp nhất là source of truth làm việc duy nhất**, gồm master này cho quyết định và source đã nhập cho phần mềm capture. GitHub `bapngo002/ARIA/main` là baseline quyết định đã đối chiếu; các thay đổi hoàn tất được đồng bộ GitHub theo ủy quyền thường xuyên của người dùng; kiểm tra remote HEAD khi báo kết quả. Không dùng export/kho ổ D như trạng thái song song.

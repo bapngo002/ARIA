@@ -1,0 +1,522 @@
+[
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "BASE_70x100_CONFIRMED_OUTLINE_ONLY",
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "w": 70,
+    "h": 100,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "DRIVER_ENVELOPE_5",
+    "x": 5,
+    "y": 5,
+    "z": 4,
+    "w": 26,
+    "h": 21.5,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "DRIVER_COMPONENT_ALLOWANCE_5",
+    "x": 8,
+    "y": 9,
+    "z": 5.6,
+    "w": 20,
+    "h": 12,
+    "t": 10
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "DRIVER_ENVELOPE_38",
+    "x": 38,
+    "y": 5,
+    "z": 4,
+    "w": 26,
+    "h": 21.5,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "DRIVER_COMPONENT_ALLOWANCE_38",
+    "x": 41,
+    "y": 9,
+    "z": 5.6,
+    "w": 20,
+    "h": 12,
+    "t": 10
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "POLOLU_PLACEHOLDER",
+    "x": 5,
+    "y": 37,
+    "z": 4,
+    "w": 22,
+    "h": 42,
+    "t": 14
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "IP2368_PLACEHOLDER",
+    "x": 34,
+    "y": 36,
+    "z": 4,
+    "w": 31,
+    "h": 25,
+    "t": 12
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "INA260_PLACEHOLDER",
+    "x": 35,
+    "y": 70,
+    "z": 4,
+    "w": 25,
+    "h": 25,
+    "t": 10
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "LOGIC_CARRIER_PLACEHOLDER",
+    "x": 0,
+    "y": 0,
+    "z": 30,
+    "w": 70,
+    "h": 94,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ESP_SOCKET_ENVELOPE",
+    "x": 3,
+    "y": 53,
+    "z": 32,
+    "w": 29,
+    "h": 62,
+    "t": 5
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ESP_YD_NOMINAL_BOARD",
+    "x": 3,
+    "y": 56.5,
+    "z": 37,
+    "w": 27.94,
+    "h": 63.5,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ESP_MODULE_SHIELD_PLACEHOLDER",
+    "x": 6,
+    "y": 88,
+    "z": 38.6,
+    "w": 22,
+    "h": 23,
+    "t": 3
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ESP_ANTENNA_CLEAR_ALL_LAYERS",
+    "x": 3,
+    "y": 114,
+    "z": 38.6,
+    "w": 28,
+    "h": 6,
+    "t": 1
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ESP_USB_ACCESS_4",
+    "x": 4,
+    "y": 53,
+    "z": 38.6,
+    "w": 12,
+    "h": 8,
+    "t": 4
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ESP_USB_ACCESS_18",
+    "x": 18,
+    "y": 53,
+    "z": 38.6,
+    "w": 12,
+    "h": 8,
+    "t": 4
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "AMP_PLACEHOLDER_12",
+    "x": 43,
+    "y": 12,
+    "z": 34,
+    "w": 20,
+    "h": 24,
+    "t": 5
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "AMP_PLACEHOLDER_43",
+    "x": 43,
+    "y": 43,
+    "z": 34,
+    "w": 20,
+    "h": 24,
+    "t": 5
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_GND",
+    "x": 3,
+    "y": 1,
+    "z": 33,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_VBAT",
+    "x": 16,
+    "y": 1,
+    "z": 33,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_5V",
+    "x": 29,
+    "y": 1,
+    "z": 33,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_3V3_PI",
+    "x": 42,
+    "y": 1,
+    "z": 33,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_3V3_ESP",
+    "x": 55,
+    "y": 1,
+    "z": 33,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "PI_SENSOR_CONNECTOR_PLACEHOLDER",
+    "x": 43,
+    "y": 78,
+    "z": 34,
+    "w": 22,
+    "h": 10,
+    "t": 8
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "PI5_OUTLINE_56x85_NOMINAL",
+    "x": 7,
+    "y": 0,
+    "z": 60,
+    "w": 56,
+    "h": 85,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "PI_PORT_ENVELOPE_PLACEHOLDER",
+    "x": 9,
+    "y": 1,
+    "z": 61.6,
+    "w": 51,
+    "h": 20,
+    "t": 16
+  },
+  {
+    "document": "ARIA_STACK_R3_ASSEMBLED_CONCEPT",
+    "label": "COOLER_ENVELOPE_PLACEHOLDER",
+    "x": 18,
+    "y": 31,
+    "z": 61.6,
+    "w": 33,
+    "h": 38,
+    "t": 15
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "BASE_70x100_CONFIRMED_OUTLINE_ONLY",
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "w": 70,
+    "h": 100,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "DRIVER_ENVELOPE_5",
+    "x": 5,
+    "y": 5,
+    "z": 4,
+    "w": 26,
+    "h": 21.5,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "DRIVER_COMPONENT_ALLOWANCE_5",
+    "x": 8,
+    "y": 9,
+    "z": 5.6,
+    "w": 20,
+    "h": 12,
+    "t": 10
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "DRIVER_ENVELOPE_38",
+    "x": 38,
+    "y": 5,
+    "z": 4,
+    "w": 26,
+    "h": 21.5,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "DRIVER_COMPONENT_ALLOWANCE_38",
+    "x": 41,
+    "y": 9,
+    "z": 5.6,
+    "w": 20,
+    "h": 12,
+    "t": 10
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "POLOLU_PLACEHOLDER",
+    "x": 5,
+    "y": 37,
+    "z": 4,
+    "w": 22,
+    "h": 42,
+    "t": 14
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "IP2368_PLACEHOLDER",
+    "x": 34,
+    "y": 36,
+    "z": 4,
+    "w": 31,
+    "h": 25,
+    "t": 12
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "INA260_PLACEHOLDER",
+    "x": 35,
+    "y": 70,
+    "z": 4,
+    "w": 25,
+    "h": 25,
+    "t": 10
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "LOGIC_CARRIER_PLACEHOLDER",
+    "x": 0,
+    "y": 0,
+    "z": 62,
+    "w": 70,
+    "h": 94,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ESP_SOCKET_ENVELOPE",
+    "x": 3,
+    "y": 53,
+    "z": 64,
+    "w": 29,
+    "h": 62,
+    "t": 5
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ESP_YD_NOMINAL_BOARD",
+    "x": 3,
+    "y": 56.5,
+    "z": 69,
+    "w": 27.94,
+    "h": 63.5,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ESP_MODULE_SHIELD_PLACEHOLDER",
+    "x": 6,
+    "y": 88,
+    "z": 70.6,
+    "w": 22,
+    "h": 23,
+    "t": 3
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ESP_ANTENNA_CLEAR_ALL_LAYERS",
+    "x": 3,
+    "y": 114,
+    "z": 70.6,
+    "w": 28,
+    "h": 6,
+    "t": 1
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ESP_USB_ACCESS_4",
+    "x": 4,
+    "y": 53,
+    "z": 70.6,
+    "w": 12,
+    "h": 8,
+    "t": 4
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ESP_USB_ACCESS_18",
+    "x": 18,
+    "y": 53,
+    "z": 70.6,
+    "w": 12,
+    "h": 8,
+    "t": 4
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "AMP_PLACEHOLDER_12",
+    "x": 43,
+    "y": 12,
+    "z": 66,
+    "w": 20,
+    "h": 24,
+    "t": 5
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "AMP_PLACEHOLDER_43",
+    "x": 43,
+    "y": 43,
+    "z": 66,
+    "w": 20,
+    "h": 24,
+    "t": 5
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_GND",
+    "x": 3,
+    "y": 1,
+    "z": 65,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_VBAT",
+    "x": 16,
+    "y": 1,
+    "z": 65,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_5V",
+    "x": 29,
+    "y": 1,
+    "z": 65,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_3V3_PI",
+    "x": 42,
+    "y": 1,
+    "z": 65,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "ISOLATED_POWER_BANK_3V3_ESP",
+    "x": 55,
+    "y": 1,
+    "z": 65,
+    "w": 10,
+    "h": 8,
+    "t": 7
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "PI_SENSOR_CONNECTOR_PLACEHOLDER",
+    "x": 43,
+    "y": 78,
+    "z": 66,
+    "w": 22,
+    "h": 10,
+    "t": 8
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "PI5_OUTLINE_56x85_NOMINAL",
+    "x": 7,
+    "y": 0,
+    "z": 124,
+    "w": 56,
+    "h": 85,
+    "t": 1.6
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "PI_PORT_ENVELOPE_PLACEHOLDER",
+    "x": 9,
+    "y": 1,
+    "z": 125.6,
+    "w": 51,
+    "h": 20,
+    "t": 16
+  },
+  {
+    "document": "ARIA_STACK_R3_EXPLODED_CONCEPT",
+    "label": "COOLER_ENVELOPE_PLACEHOLDER",
+    "x": 18,
+    "y": 31,
+    "z": 125.6,
+    "w": 33,
+    "h": 38,
+    "t": 15
+  }
+]
