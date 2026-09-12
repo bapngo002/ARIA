@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1420" viewBox="0 0 1640 1420"><rect width="100%" height="100%" fill="#f4f7fb"/>
+<text x="55" y="79" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#15283f">ARIA / BỐ TRÍ XẾP TẦNG R2</text>
+<text x="55" y="123" font-family="Arial, sans-serif" font-size="27" font-weight="400" fill="#15283f">Một đế chung • Module tháo được • Bó dây riêng theo chức năng</text>
+<rect x="55" y="145" width="1530" height="52" rx="14" fill="#fff1d9" stroke="#e4ba70" stroke-width="2"/>
+<text x="75" y="178" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#855500">BẢN Ý TƯỞNG — Không theo tỷ lệ; chưa xác nhận kích thước, lỗ hàn hoặc chiều cao tầng.</text>
+<rect x="335" y="245" width="1250" height="215" rx="14" fill="#ffffff" stroke="#b8c9dc" stroke-width="2"/>
+<circle cx="356" cy="261" r="6" fill="#bdc8d3"/>
+<circle cx="1566" cy="261" r="6" fill="#bdc8d3"/>
+<rect x="335" y="535" width="1250" height="215" rx="14" fill="#ffffff" stroke="#b8c9dc" stroke-width="2"/>
+<circle cx="356" cy="551" r="6" fill="#bdc8d3"/>
+<circle cx="1566" cy="551" r="6" fill="#bdc8d3"/>
+<rect x="335" y="825" width="1250" height="215" rx="14" fill="#ffffff" stroke="#b8c9dc" stroke-width="2"/>
+<circle cx="356" cy="841" r="6" fill="#bdc8d3"/>
+<circle cx="1566" cy="841" r="6" fill="#bdc8d3"/>
+<text x="55" y="293" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15283f">TẦNG TRÊN</text>
+<text x="55" y="333" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#15283f">Pi + làm mát</text>
+<text x="55" y="369" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#15283f">Không đè lên anten</text>
+<rect x="545" y="267" width="530" height="163" rx="14" fill="#e5edf9" stroke="#b8c9dc" stroke-width="2"/>
+<text x="563" y="309" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">Raspberry Pi 5 + cooler</text>
+<text x="563" y="347" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Quạt quay lên trên; để thoáng hút/xả</text>
+<text x="563" y="376" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">USB, GPIO và FFC hướng ra mép</text>
+<text x="563" y="405" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Gắn trụ riêng; tháo được từng tầng</text>
+<rect x="1100" y="267" width="460" height="163" rx="14" fill="#eff4fa" stroke="#b8c9dc" stroke-width="2"/>
+<text x="1118" y="309" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">Lối cáp ra ngoài</text>
+<text x="1118" y="347" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">USB → ESP / mic</text>
+<text x="1118" y="376" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">FFC → camera / màn hình</text>
+<text x="1118" y="405" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Dây tín hiệu đi ở mép phải</text>
+<rect x="355" y="267" width="165" height="163" rx="14" fill="#e4f5eb" stroke="#76b68c" stroke-width="2"/>
+<text x="372" y="324" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#15283f">KHOẢNG</text>
+<text x="372" y="360" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#15283f">TRỐNG RF</text>
+<text x="372" y="393" font-family="Arial, sans-serif" font-size="19" font-weight="400" fill="#15283f">Suốt các tầng</text>
+<text x="55" y="583" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15283f">TẦNG GIỮA</text>
+<text x="55" y="623" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#15283f">Điều khiển + audio</text>
+<text x="55" y="659" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#15283f">Đầu nối dễ tiếp cận</text>
+<rect x="545" y="557" width="470" height="163" rx="14" fill="#e4f5eb" stroke="#b8c9dc" stroke-width="2"/>
+<text x="563" y="599" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">ESP YD-N16R8 trên socket</text>
+<text x="563" y="637" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Anten hướng trái, vượt mép chồng</text>
+<text x="563" y="666" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">USB/BOOT/RESET có lối thao tác</text>
+<text x="563" y="695" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Encoder L: 8/9   |   R: 4/5 (đề xuất)</text>
+<rect x="355" y="583" width="165" height="105" rx="14" fill="#c6e9d1" stroke="#76b68c" stroke-width="2"/>
+<text x="375" y="633" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#15283f">ANTEN ESP</text>
+<polyline points="520,635 545,635" fill="none" stroke="#76b68c" stroke-width="4"/>
+<rect x="1040" y="557" width="250" height="163" rx="14" fill="#eee8fa" stroke="#b8c9dc" stroke-width="2"/>
+<text x="1058" y="599" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">MAX98357A L</text>
+<text x="1058" y="637" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Nguồn 5V riêng</text>
+<text x="1058" y="666" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Cặp dây → loa L</text>
+<text x="1058" y="695" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Không nối SPK− GND</text>
+<rect x="1310" y="557" width="250" height="163" rx="14" fill="#eee8fa" stroke="#b8c9dc" stroke-width="2"/>
+<text x="1328" y="599" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">MAX98357A R</text>
+<text x="1328" y="637" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Nguồn 5V riêng</text>
+<text x="1328" y="666" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Cặp dây → loa R</text>
+<text x="1328" y="695" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Không nối SPK− GND</text>
+<text x="55" y="873" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#15283f">TẦNG ĐẾ</text>
+<text x="55" y="913" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#15283f">Nguồn + motor</text>
+<text x="55" y="949" font-family="Arial, sans-serif" font-size="21" font-weight="400" fill="#15283f">Có lối thoát nhiệt</text>
+<rect x="545" y="847" width="310" height="163" rx="14" fill="#ffe7df" stroke="#b8c9dc" stroke-width="2"/>
+<text x="563" y="889" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">2 × SimpleFOC Mini</text>
+<text x="563" y="927" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Đặt cạnh nhau, không đè</text>
+<text x="563" y="956" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Pha motor đi xuống/trái</text>
+<text x="563" y="985" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Encoder đi lối khác pha</text>
+<rect x="880" y="847" width="320" height="163" rx="14" fill="#fff0d7" stroke="#b8c9dc" stroke-width="2"/>
+<text x="898" y="889" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">IP2368 + Pololu</text>
+<text x="898" y="927" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Cổng sạc ra mép đế</text>
+<text x="898" y="956" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Không nằm dưới anten</text>
+<text x="898" y="985" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Chừa không gian tản nhiệt</text>
+<rect x="1225" y="847" width="335" height="163" rx="14" fill="#fff0d7" stroke="#b8c9dc" stroke-width="2"/>
+<text x="1243" y="889" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">Đầu nguồn / INA260</text>
+<text x="1243" y="927" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Giữ chỗ cho 1 board</text>
+<text x="1243" y="956" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Vị trí đo + chân: chưa chốt</text>
+<text x="1243" y="985" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#15283f">Nhánh công suất tách riêng</text>
+<rect x="355" y="847" width="165" height="163" rx="14" fill="#e4f5eb" stroke="#76b68c" stroke-width="2"/>
+<text x="372" y="905" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#15283f">KHÔNG ĐẶT</text>
+<text x="372" y="944" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#15283f">KIM LOẠI</text>
+<text x="345" y="1079" font-family="Arial, sans-serif" font-size="23" font-weight="400" fill="#15283f">Các khe giữa tầng phải đủ cho linh kiện cao nhất, chân hàn và đầu cắm — chưa chốt số mm.</text>
+<rect x="55" y="1112" width="1530" height="222" rx="14" fill="#e8eef5" stroke="#b8c9dc" stroke-width="2"/>
+<text x="75" y="1157" font-family="Arial, sans-serif" font-size="27" font-weight="700" fill="#15283f">BỘ PHẬN ĐẶT Ở VỊ TRÍ CHỨC NĂNG, NỐI VỀ ĐẾ</text>
+<text x="75" y="1204" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#15283f">ToF S1–S4: mép/vị trí quan sát  •  Camera + màn hình: mặt trước  •  Mic: vùng thoáng âm</text>
+<text x="75" y="1244" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#15283f">BME280: chỗ thông khí  •  BNO085: gá cứng theo trục chassis, xa nguồn nóng / motor / loa</text>
+<text x="75" y="1284" font-family="Arial, sans-serif" font-size="24" font-weight="400" fill="#15283f">Pin, motor và loa: gá cơ khí riêng  •  Không ép tất cả lên bo chỉ để giảm số dây.</text>
+<text x="55" y="1382" font-family="Arial, sans-serif" font-size="22" font-weight="400" fill="#586d84">Nhìn từng tầng từ phía linh kiện. Hình tách tầng để dễ đọc; không phải đường điện hoặc hướng hàn mặt dưới.</text>
+</svg>
