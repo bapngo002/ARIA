@@ -2,6 +2,16 @@
 
 **Status: CURRENT/CANONICAL · Migration + local live-source consolidation: 2026-09-12**
 
+## ACTIVE CHECKPOINT — ESP damaged; replacement PCB planning
+
+User reports ESP burned, encoder condition unknown, and intends replacement. User explicitly requests optimizing ESP/all pin allocation for new PCB and confirms same YD-ESP32-S3 N16R8 board type. This is authorization to propose a replacement map, not confirmation of the cause of failure, encoder health, or a new test pass. Earlier PASS reports remain historical evidence and do not describe the post-incident hardware.
+
+Current work: STEP-003 with incident recovery. Proposed carrier signal allocation R1 is in docs/ARIA-WIRING-001.md; it is not released for soldering/fabrication. Keep motor GPIO15/16/17/18 and11/12/13/14; propose left encoder SDA8/SCL9 and right SDA4/SCL5. Pi mapping retained; INA260 ×1 pending delivery with wiring/address TBD. Actual replacement revision, connector orientation, PCB type/dimensions and power/disable circuit remain open.
+
+NEW VERIFIED DOCUMENT CONSTRAINT: Espressif WROOM-1 datasheet v1.8 Table3-1 note b says GPIO35/36/37 are unavailable for external use on Octal-PSRAM modules; Table1-1 identifies N16R8 as that variant. This supersedes the earlier uncertainty about using these pins in a new N16R8 PCB. It does NOT prove why the old board burned. Source capture retains original mapping untouched for provenance; do not flash/run it as the new-map firmware.
+
+Owner-reported: old ESP damaged; replacement same family selected, purchase/receipt not confirmed. NOT VERIFIED: both encoders and other attached hardware after incident, root cause and power path. Before further motion, isolate and inspect the old harness, verify supply/polarity and each encoder independently, confirm replacement board, and review power/EN/boot behavior. Source initFOC can energize motors during boot; zero target is not driver disable. No motor, flash or power test was run in this planning session.
+
 ## NEW CHATGPT ACCOUNT BOOTSTRAP
 
 1. Đọc file này trước khi tiếp tục Project ARIA. Sau hợp nhất theo yêu cầu người dùng, **checkout ARIA đã hợp nhất là source of truth làm việc duy nhất**, gồm master này cho quyết định và source đã nhập cho phần mềm capture. GitHub `bapngo002/ARIA/main` là baseline quyết định đã đối chiếu; các thay đổi hoàn tất được đồng bộ GitHub theo ủy quyền thường xuyên của người dùng; kiểm tra remote HEAD khi báo kết quả. Không dùng export/kho ổ D như trạng thái song song.
@@ -294,6 +304,6 @@ Tiếp tục dùng Copilot Pro cho các việc hỗ trợ có lợi ích cụ th
 | 7 | **Voice/AI/display integration** | Merge module đã pass, UI nằm trong vùng tròn, test wake/STT/response/audio/video và không làm hỏng drive/safety |
 | 8 | **Mechanical finalization** | Chốt caster/fan/layout từ phần cứng đo thật, clearance/airflow/serviceability và CAD kiểm duyệt trước chế tạo |
 
-**Bước tiếp theo duy nhất:** hoàn thiện STEP-003 — thu cấu hình board/build hiện tại và đối chiếu với pinmap đã ghi, đặc biệt encoder GPIO35/36/37 với N16R8; hỗ trợ bằng capture Pi chỉ đọc và hồ sơ build ESP32. ToF trên Pi đã được giải thích bằng pinout mới + code, không tiếp tục coi Pi/ESP là hai phương án ngang nhau. INA260 chờ hàng, không ngăn đối chiếu phần còn lại. Chưa đổi chân hoặc flash khi chưa xác định bản chạy/LKG.
+**Bước tiếp theo duy nhất:** tiếp tục STEP-003 theo ACTIVE CHECKPOINT sau sự cố cháy ESP: xác minh board thay thế/cách cấp nguồn và các đầu nối để hoàn thiện sơ đồ carrier R1; encoder GPIO35/36/37 không được dùng trên N16R8 mới. Kiểm tra encoder và dây cũ trước tái sử dụng; chưa cấp motor hoặc flash firmware cũ lên wiring mới. INA260 chờ hàng, wiring/address giữ TBD.
 
 Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; tự đồng bộ GitHub theo ủy quyền thường xuyên bên dưới và xác minh remote HEAD. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.

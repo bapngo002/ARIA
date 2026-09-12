@@ -27,7 +27,7 @@ Tổng chi phí đã ghi nhận: **khoảng ¥90,576** (gồm phí/thuế đơn 
 | 13 | IMU | Adafruit BNO085 9-DOF breakout | 1 | — | Thiếu. |
 | 14 | Drive | DFRobot FIT1035 2208 BLDC, tích hợp encoder từ AS5600 | 2 | — | Thiếu; không cần encoder rời. |
 | 15 | Motor driver | DFRobot DRI0058 SimpleFOCMini | 2 | — | Thiếu. |
-| 16 | Real-time control | YD-ESP32-S3 / ESP32-S3-WROOM-1-N16R8, 44 chân, dual USB-C ([đơn hàng](../purchased-hardware/evidence/16-esp32-s3-n16r8-order.png), [pinout](../purchased-hardware/evidence/16-esp32-s3-n16r8-pinout.png)) | 1 | [Bộ CAD 2D/3D](../purchased-hardware/cad-review/16-yd-esp32-s3-n16r8/README.md) | Đã đặt ngày 2026-08-07, ¥1,496; họ PCB canonical theo ảnh. Snapshot 2026-09-12 báo ESP32/controller đã test; trạng thái chờ giao cũ không còn dùng làm current-state. Chưa đối chiếu exact revision của board test; CAD còn phải đo bo thực tế. |
+| 16 | Real-time control | YD-ESP32-S3 / ESP32-S3-WROOM-1-N16R8, 44 chân, dual USB-C ([đơn hàng](../purchased-hardware/evidence/16-esp32-s3-n16r8-order.png), [pinout](../purchased-hardware/evidence/16-esp32-s3-n16r8-pinout.png)) | 1 | [Bộ CAD 2D/3D](../purchased-hardware/cad-review/16-yd-esp32-s3-n16r8/README.md) | Đã đặt ngày 2026-08-07, ¥1,496; họ PCB canonical theo ảnh. **Cập nhật sau đó: người dùng báo board cháy; chọn thay bằng cùng loại YD N16R8. Chưa xác nhận mua/nhận board thay thế; không cộng thêm số lượng mua.** Báo cáo test trước sự cố là lịch sử. Chưa đối chiếu exact revision của board test; CAD còn phải đo bo thực tế. |
 
 ## Cấu hình hiện hành do người dùng xác nhận
 
