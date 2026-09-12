@@ -12,6 +12,8 @@ Pi evidence supplied as terminal screenshots in this task: GPIO2/3 show SDA1/SCL
 
 Pi SSH is owner-operated: user has a logged-in session and runs supplied commands. Assistant SSH authentication previously failed; no assistant access to that session is established. Two speakers produce sound but owner reports stutter; audio stability and PipeWire output remain unverified.
 
+ESP upload preparation follow-up: Pi screenshot shows Arduino CLI at /home/aria/bin/arduino-cli; Python esptool module absent. USB serial path usb-1a86_USB_Single_Serial_5C4C212733-if00 maps to ttyACM0. Use the UART-bridge diagnostic build option CDCOnBoot=default for this cable, as documented in its README. Source unchanged; Pi compile/upload and actual ESP chip identification still pending user-run results.
+
 ## HISTORICAL CHECKPOINT — ESP damaged; replacement PCB planning
 
 User reports ESP burned, encoder condition unknown, and intends replacement. User explicitly requests optimizing ESP/all pin allocation for new PCB and confirms same YD-ESP32-S3 N16R8 board type. This is authorization to propose a replacement map, not confirmation of the cause of failure, encoder health, or a new test pass. Earlier PASS reports remain historical evidence and do not describe the post-incident hardware.

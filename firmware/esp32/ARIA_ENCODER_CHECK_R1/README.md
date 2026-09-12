@@ -13,6 +13,8 @@ Diagnostic only for replacement YD-ESP32-S3 N16R8. Original Drive V0.3 remains u
 Build target: `esp32:esp32:esp32s3:FlashSize=16M,PSRAM=opi,USBMode=hwcdc,CDCOnBoot=cdc`.
 Serial: native USB CDC, 115200. Pi port and installed tools must be identified before giving the upload command; do not assume `/dev/ttyACM0` belongs to this ESP.
 
+Pi follow-up: owner screenshot shows `/home/aria/bin/arduino-cli`, no system Python esptool, and `/dev/serial/by-id/usb-1a86_USB_Single_Serial_5C4C212733-if00` pointing to ttyACM0. This is a USB serial bridge identity; for this connection use `CDCOnBoot=default` in the FQBN so Arduino `Serial` reports through UART0, not the separate native USB connector. Keep other options unchanged. Compile this variant on Pi before uploading; the local build evidence below applies to the native CDC variant only. Arduino CLI can use its core-bundled upload tool; a system Python esptool module is not required. Upload/encoder results are still pending.
+
 Register reference: [ams OSRAM AS5600 datasheet](https://look.ams-osram.com/m/7059eac7531a86fd/original/AS5600-DS000365.pdf).
 
 Runtime, upload, encoder health, physical EN levels and motion safety remain NOT VERIFIED until actual logs/tests. This diagnostic is not a replacement drive release.
