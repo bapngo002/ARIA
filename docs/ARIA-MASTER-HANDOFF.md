@@ -12,7 +12,9 @@ User screenshots show all seven sensors returned data for20 samples, then contin
 
 Audio: owner reports both speakers now play without stutter at100% after testing50% then100%. Cause of earlier periodic stutter is UNKNOWN; do not attribute to ESP. Exact routing/channel/SD and soak duration unverified. Pi screenshot shows get_throttled=0x0, SoC52.7C, no matches in kernel log filter for undervoltage/throttling/overcurrent. No flagged Pi condition in that check; not full power-path/motor-load validation.
 
-NEXT IMPLEMENTATION: create separately versioned standalone Pi sensor program with timestamp, four ToF in mm, BME280, BNO085 acceleration, INA260, explicit per-sensor errors, bounded waits and Ctrl+C cleanup; preserve capture. Inline snippets have run on Pi, but this program has NOT yet been committed as a reusable implementation. Then address audio only as needed. ChatGPT Work task was created to continue this scope; do not claim it has completed work without inspecting its actual result.
+IMPLEMENTED IN CHATGPT WORK: `software/pi/aria_sensors.py` is a separately versioned standalone Pi program with UTC timestamp, four ToF in mm, BME280, BNO085 acceleration, INA260, explicit per-sensor `ok`/`no_data`/`timeout`/`error`, bounded ToF waits, optional JSONL and Ctrl+C cleanup. It resets XSHUT and reassigns 0x30–0x33 every run. It does not open ESP serial, import drive code, start/modify the service or contain motion commands; capture files remain unchanged. Four unit tests plus Python compile/help checks pass in the cloud checkout. This exact program has not yet run on Pi, so its runtime output remains pending owner execution through `/home/aria/aria-venv/bin/python`; the assistant has no authenticated Pi session and will not request a password in chat. Then address audio only as needed.
+
+Owner allows broader ARIA code development in later completed/checkpointed blocks. MOTOR HOLD remains in force until explicitly lifted. If the active system reports remaining coding quota at 20% or less, warn the owner and commit/push a resumable checkpoint instead of stopping mid-change.
 
 Cross-task synchronization requested by owner: GitHub main and this master are the shared continuity source for this account's ARIA tasks. Each task must read latest main at entry and save completed changes/evidence before handoff. Only synchronize accessible evidence and completed work; preserve other tasks' uncommitted/in-progress files. This is repository synchronization, not automatic sharing of every private chat or inaccessible cloud workspace.
 
@@ -76,8 +78,8 @@ ARIA đã qua nhiều thử nghiệm module thực tế; không còn là dự á
 - Raspberry Pi 5 4GB đã mua và chạy; **Raspberry Pi OS 64-bit**, SSH host **`aria.local`**, microSD **128GB** (E2). Chưa xác minh lại kết nối SSH hoặc OS build trong lần migration.
 - Camera Pi test OK. Màn hình mua AliExpress đã chạy; **UI phải nằm trong vùng tròn**. BOM lưu tên màn hình hiện có; chưa có bằng chứng mới để tự đổi model/revision hoặc suy ra kích thước vùng hiển thị thực.
 - Microphone board/array thu tiếng rõ. MAX98357A hiện là **2 board mới, cả 2 OK**. IMU và BME280 đã test OK (E2).
-- ToF hiện có **4 × VL53L1X** theo E2; mapping XSHUT được bảo tồn dưới đây. Chat báo đã test ToF nhưng không có kết quả từng S1–S4 hoặc test đồng thời/reboot để kết luận cả cụm pass.
-- Power sensing hiện hành là **INA260 ×1**, DigiKey **1528-2955-ND**, board code **4226** (E1/E2); chưa có bằng chứng bench INA260 pass.
+- ToF hiện có **4 × VL53L1X** theo E2; người dùng đã xác nhận cả bốn phản hồi khi thử và ảnh cho thấy chạy đồng thời, nhưng chưa có log lưu repo, accuracy/reset/obstacle-safety validation.
+- Power sensing hiện hành là **INA260 ×1**, DigiKey **1528-2955-ND**, board code **4226** (E1/E2); đã nhận dạng và đọc số đo qua Pi theo ảnh người dùng, còn thiếu routing IN+/IN−, accuracy và full-load validation.
 
 ### Pinmap bench được bảo tồn — chưa là pinmap tích hợp đã release
 
@@ -127,6 +129,8 @@ Drive sử dụng **2 × BLDC FIT1035**, **2 × SimpleFOC Mini** và **2 × AS56
 | ESP32 | GPIO/Wi-Fi/Bluetooth đã test | Safety firmware, exact test board revision |
 | IMU | Test OK | Axis/calibration trong chassis |
 | BME280 | Test OK | Độ chính xác sau packaging/nhiệt |
+| 4 × VL53L1X | Người dùng xác nhận thử cả bốn hoạt động; ảnh có lần chạy đồng thời | Accuracy, reset recovery, obstacle/cliff safety |
+| INA260 | ID đúng tại 0x40 và có số đo qua Pi trong ảnh | Nhánh IN+/IN−, accuracy/full-load/power-path validation |
 | AS5600 | Encoder test đã chạy | Closed-loop motor ổn định sau merge |
 
 E1 xác nhận repo có ảnh nhận dạng YD board và CAD danh nghĩa; điều này chỉ chứng minh nguồn tài liệu hiện có, không chứng minh hardware/CAD đã pass đo kiểm.
@@ -134,7 +138,7 @@ E1 xác nhận repo có ảnh nhận dạng YD board và CAD danh nghĩa; điề
 ## PARTIALLY VERIFIED
 
 - **Motor + encoder integration:** lịch sử chạy hai bên; regression nóng/no-spin chưa đóng, xem current motor status.
-- **ToF:** đã có báo cáo test và mapping 4 XSHUT; thiếu kết quả riêng S1–S4, address assignment, chạy đồng thời và power-cycle recovery. Không đánh dấu toàn bộ 4 sensor pass.
+- **ToF:** owner-reported functional check cả S1–S4 và ảnh chạy đồng thời; thiếu log lưu repo, accuracy, physical ordering và power-cycle recovery. Không đánh dấu obstacle/cliff safety pass.
 - **Pi audio/display/voice stack:** module có test; E4 đã nhập Core/AV/service và danh sách môi trường, còn thiếu display/voice source, cấu hình và môi trường venv đầy đủ. Không xác nhận voice/AI/display integration hoàn tất.
 - **Controller pinmap:** pinmap lịch sử chưa chứng minh cùng exact board/revision/build hiện tại; còn GPIO48 và memory-pin hold.
 
@@ -237,7 +241,7 @@ Không khôi phục các purchase registers/handoff/architecture documents đã 
 1. Motor nóng/no-spin sau merge; thiếu bản tái lập và bench evidence mới.
 2. Pinmap chưa freeze tích hợp: GPIO48 RGB/XSHUT, khả dụng GPIO encoder với N16R8, bus/address sensor và Pi link chưa xác minh.
 3. Pi↔ESP32 protocol, watchdog, lost-link/reset/sensor-fault stop chưa được chứng minh end-to-end; không dùng số timeout lịch sử như kết quả đã test.
-4. INA260 current sensing, tải regulator, battery protection/charging, thermal và power-fault behavior thiếu validation. Listing ratings không phải số đo.
+4. INA260 đã nhận dạng/đọc được nhưng routing IN+/IN−, accuracy/full-load, tải regulator, battery protection/charging, thermal và power-fault behavior còn thiếu validation. Listing ratings không phải số đo.
 5. Đã nhập source/service capture E4; còn thiếu runtime identity, model binaries, venv/build/config và logs để tái tạo từ fresh clone.
 6. Final mechanics: fan khi sạc, caster/ball caster, measured packaging, wheel hub, missing approved reference và CAD release.
 7. PRD acceptance còn mở: locomotion/autonomy, tránh vật cản/chống rơi, presence/bumper, privacy hardware và voice/AI/display integration; module pass không chứng minh các chức năng này đã hoàn tất.
@@ -275,7 +279,7 @@ Nguồn được giữ nguyên trên D (tài liệu lịch sử, không phải n
 | 001 | PARTIALLY VERIFIED — đối chiếu hồ sơ đã có, không làm lại từ đầu | Đóng delta vật lý còn thiếu hoặc ghi rõ deferred; báo cáo v0.4 tự ghi chưa DONE |
 | 002 | PARTIALLY VERIFIED — BOM hiện hành đã hợp nhất các quyết định mới | Hoàn thiện evidence/revision còn thiếu và đồng bộ GitHub khi được yêu cầu |
 | 003 | PARTIALLY VERIFIED — người dùng xác nhận họ board; pinout mới khớp capture | Còn revision/build/memory, rails và dây thật; không hỏi lại model hoặc tự đổi encoder GPIO35/36/37 |
-| 004 | PARTIALLY VERIFIED — đã xác nhận cấu hình chính, tài liệu pinout xác định sensors trên Pi | INA260 ×1 pending delivery; các revision/cấu hình ngoại vi còn thiếu giữ PROVISIONAL |
+| 004 | PARTIALLY VERIFIED — đã xác nhận cấu hình chính, tài liệu pinout xác định sensors trên Pi | INA260 ×1 đã nhận dạng tại 0x40; còn thiếu physical routing/revision và các cấu hình ngoại vi giữ PROVISIONAL |
 | 005 | PARTIALLY VERIFIED — baseline và capture đã commit | Protocol/safety decisions chưa đủ để đóng bước |
 | 006–010 | PARTIALLY VERIFIED — có cây source, serial 115200 và heartbeat | Handshake/version, structured log, fault/link tests; không coi liên kết đã ổn định |
 | 011–017 | PARTIALLY VERIFIED — motor/encoder và sensor source đã có một phần | SAFE_MODE, INA260, snapshot/self-test và bằng chứng từng driver |
@@ -299,11 +303,9 @@ Kiểm kê wiring: docs/ARIA-WIRING-001.md hiện có quy tắc và cập nhật
 
 Kết luận: tài liệu quy tắc đã cập nhật một phần, sơ đồ đấu dây toàn hệ thống chưa cập nhật/được xác minh theo cấu hình hiện tại. Bước tiếp tục vẫn là đối chiếu wiring thật với capture rồi cập nhật chính ARIA-WIRING-001; không lấy sự xác nhận model làm xác nhận dây.
 
-## Cập nhật INA260 — xác nhận trực tiếp 2026-09-12
+## Cập nhật INA260 — xác nhận mới nhất 2026-09-13
 
-**Số lượng chốt mới nhất: INA260 ×1.** Người dùng điều chỉnh từ 2 xuống 1; cấu hình hai board đã superseded. Chưa nhận hàng, chưa chốt wiring/address và chưa bench.
-
-Người dùng chốt INA260, nhưng linh kiện chưa về nên chưa cập nhật chân đấu nối. Cấu hình mục tiêu là INA260 ×1 theo điều chỉnh số lượng mới nhất của người dùng; trạng thái nhận hàng: chưa nhận; lắp/bench: chưa thực hiện; chân SDA/SCL, nguồn, ALERT nếu dùng và địa chỉ I²C: NOT VERIFIED/TBD. Không sao chép địa chỉ 0x44 của INA226 sang INA260. Xác nhận này làm rõ câu “đúng chuẩn rồi” trước đó là xác nhận lựa chọn model, không phải đã nhận/lắp INA260. Không yêu cầu test INA260 trước khi hàng về; giữ hạng mục này pending delivery, có thể đối chiếu phần wiring khác độc lập.
+**Số lượng chốt mới nhất: INA260 ×1.** Người dùng điều chỉnh từ 2 xuống 1; cấu hình hai board đã superseded. Board đã có, nối chung bus I2C Pi và phản hồi tại 0x40; ID FE=0x5449/FF=0x2270 khớp INA260. Đã có các số đo owner-supplied nhưng chân nguồn/ALERT, routing IN+/IN−, nhánh tải, accuracy và full-load chưa xác nhận. Không sao chép địa chỉ 0x44 của INA226 và không gọi số đo là tổng ARIA hoặc rail 5 V Pi.
 
 File người dùng cung cấp D:/UserData/Downloads/PROJECT_ARIA_LATEST_PINOUT_HANDOFF_2026-09-12.md đã đọc và đối chiếu: motor/encoder/tuning, USB Serial 115200, ToF Pi GPIO22–25/0x30–0x33, BNO085 0x4A và BME280 0x76 khớp capture. File báo audio GPIO18/19/21, camera CAM/DISP0, display CAM/DISP1 và overlay; đây là evidence tài liệu mới, chưa kiểm cấu hình runtime. File ghi INA226 còn đang dùng và planned INA260; xác nhận mới không chứng minh INA226 hiện còn lắp. Không phục hồi INA226 làm cấu hình mục tiêu. Các nhãn bounded motion/failsafe PASS trong file chưa đóng lỗi static của sketch capture: chưa thấy command-duration timeout độc lập heartbeat. Không nâng runtime/flash/bench thành VERIFIED hoặc đổi pin chỉ từ nhãn PASS/LOCKED trong tài liệu.
 
@@ -313,7 +315,7 @@ File người dùng cung cấp D:/UserData/Downloads/PROJECT_ARIA_LATEST_PINOUT_
 
 Điểm công việc hiện tại là STEP-003 (board/build/wiring evidence), trong Phase 0 chưa đóng gate; không có cơ sở tuyên bố đã hoàn thành tuần tự tới STEP-034. STEP-001 đã đối chiếu và nhận xác nhận nhóm phần cứng chính; phần inventory mở về pack, phụ kiện, revision và evidence vẫn giữ trong BOM/master, không bắt người dùng xác nhận lại toàn bộ. STEP-002 đã cập nhật local nhưng chưa xuất bản GitHub, nên chưa DONE theo định nghĩa gốc. STEP-005 còn protocol/safety decisions; STEP-006 đã có cây source tương đương, không tạo lại skeleton cho đủ tên thư mục.
 
-Tiến độ triển khai vượt Phase 0 ở nhiều nhánh: STEP-008/009 có USB serial/heartbeat nhưng thiếu handshake/version và fault evidence; STEP-013/014/016 có encoder/BNO085/ToF source và báo cáo PASS; STEP-029/030/034 có stop/velocity/CLI một phần; STEP-054/068 có thu âm/chụp ảnh. Không dùng các phần này để đánh dấu cả phase DONE. STEP-019/031/032 còn thiếu command-duration timeout trong source hiện có; STEP-020 có heartbeat stop nhưng còn nhánh lỗi static đã ghi. STEP-015/024 (đổi INA226 thành INA260) là DEFERRED — pending delivery, không yêu cầu bench khi chưa nhận hàng. Voice/AI/UI/OTA/autonomy vẫn theo giới hạn capture đã ghi, danh sách chức năng trong pinout không phải source triển khai.
+Tiến độ triển khai vượt Phase 0 ở nhiều nhánh: STEP-008/009 có USB serial/heartbeat nhưng thiếu handshake/version và fault evidence; STEP-013/014/016 có encoder/BNO085/ToF source và báo cáo PASS; STEP-029/030/034 có stop/velocity/CLI một phần; STEP-054/068 có thu âm/chụp ảnh. Không dùng các phần này để đánh dấu cả phase DONE. STEP-019/031/032 còn thiếu command-duration timeout trong source hiện có; STEP-020 có heartbeat stop nhưng còn nhánh lỗi static đã ghi. STEP-015/024 đã tiến thêm: INA260 được nhận dạng/đọc qua Pi và standalone sensor source đã thêm; routing, accuracy/full-load và runtime của source mới vẫn chưa verified. Voice/AI/UI/OTA/autonomy vẫn theo giới hạn capture đã ghi, danh sách chức năng trong pinout không phải source triển khai.
 
 Không có bench/flash/runtime test mới trong lần đối chiếu STEP này. Giữ báo cáo PASS của pinout như evidence tài liệu, giữ regression/safety gaps chưa giải quyết riêng để không xóa lịch sử hoặc nâng mức kiểm chứng không có cơ sở.
 
@@ -336,6 +338,6 @@ Tiếp tục dùng Copilot Pro cho các việc hỗ trợ có lợi ích cụ th
 | 7 | **Voice/AI/display integration** | Merge module đã pass, UI nằm trong vùng tròn, test wake/STT/response/audio/video và không làm hỏng drive/safety |
 | 8 | **Mechanical finalization** | Chốt caster/fan/layout từ phần cứng đo thật, clearance/airflow/serviceability và CAD kiểm duyệt trước chế tạo |
 
-**Bước tiếp theo duy nhất:** tiếp tục STEP-003 theo ACTIVE CHECKPOINT sau sự cố cháy ESP: xác minh board thay thế/cách cấp nguồn và các đầu nối để hoàn thiện sơ đồ carrier R1; encoder GPIO35/36/37 không được dùng trên N16R8 mới. Kiểm tra encoder và dây cũ trước tái sử dụng; chưa cấp motor hoặc flash firmware cũ lên wiring mới. INA260 chờ hàng, wiring/address giữ TBD.
+**Bước tiếp theo đang hoạt động theo MOTOR HOLD:** người dùng chạy `software/pi/aria_sensors.py` độc lập trên Pi, lưu output/error để gắn runtime evidence; sau đó thu `wpctl status`/`aplay -l` chỉ đọc nếu tiếp tục audio. STEP-003 motor/encoder/carrier tạm dừng; không cấp motor, không flash ESP và không khởi động `aria-core.service`. Thứ tự tổng thể phía trên không bị thay thế.
 
 Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; tự đồng bộ GitHub theo ủy quyền thường xuyên bên dưới và xác minh remote HEAD. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.

@@ -45,7 +45,7 @@ Nguồn: xác nhận trực tiếp của người dùng trong yêu cầu migrati
 - **AS5600 ×2**: bảng dòng 14 ghi tích hợp trong hai FIT1035; không cộng thêm encoder rời.
 - Màn hình AliExpress đã chạy theo snapshot; tên Waveshare ở dòng 11 là định danh đang lưu, exact revision/bộ cáp và vùng tròn cần đối chiếu, không tự thay model.
 
-Số lượng INA260 hiện hành: **1 board**, theo điều chỉnh trực tiếp của người dùng ngày 2026-09-12; thay cho số lượng 2 trước đó. Chưa nhận hàng; chưa chốt đấu nối. Tổng chi phí lịch sử không được tự giảm khi chưa có hồ sơ đơn hàng cập nhật.
+Số lượng INA260 hiện hành: **1 board**, theo điều chỉnh trực tiếp của người dùng ngày 2026-09-12; thay cho số lượng 2 trước đó. Board đã có, nối vào Pi và được nhận dạng tại 0x40 theo bằng chứng người dùng ngày 2026-09-13; routing IN+/IN−, ALERT và accuracy/full-load chưa xác nhận. Tổng chi phí lịch sử không được tự giảm khi chưa có hồ sơ đơn hàng cập nhật.
 
 ### Bánh xe
 

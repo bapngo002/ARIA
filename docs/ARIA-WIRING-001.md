@@ -30,10 +30,11 @@ Sources: imported Pi Core V0.6 / ESP Drive V0.3 and user-supplied D:/UserData/Do
 | Left AS5600 | ESP SDA38 / SCL35; controller 0 | Capture and supplied pinout agree; exact memory/build compatibility still unverified |
 | Right AS5600 | ESP SDA36 / SCL37; controller 1 | Capture and supplied pinout agree; exact memory/build compatibility still unverified |
 | Pi ↔ ESP32 | USB Serial /dev/ttyACM0, 115200 baud | Capture and supplied pinout agree; no GPIO UART required by this source |
-| Pi sensor I2C | SDA GPIO2 / SCL GPIO3 | Supplied pinout; code uses board.I2C(); physical harness not inspected |
+| Pi sensor I2C | SDA GPIO2 / SCL GPIO3 | Dùng chung BME280/BNO085/4 ToF/INA260; owner-supplied GPIO/scan evidence, physical harness chưa được trợ lý kiểm tra |
 | ToF S1–S4 XSHUT | Pi GPIO22/23/24/25 respectively | Capture and supplied pinout agree |
 | ToF S1–S4 addresses | 0x30/0x31/0x32/0x33 after initialization | Capture and supplied pinout agree; assigned addresses, not power-on defaults |
 | BME280 / BNO085 | Pi I2C, 0x76 / 0x4A | Capture and supplied pinout agree |
+| INA260 | Pi I2C, 0x40 | Owner-supplied scan + ID-register evidence; ALERT không dùng/chưa gán, routing IN+/IN− chưa xác nhận |
 | MAX98357A I2S | Pi GPIO18 BCLK / GPIO19 LRC / GPIO21 DOUT | Supplied pinout only; overlays, channel selection and physical wiring still need capture |
 | Camera | Pi CAM/DISP0 | Supplied pinout; code checks imx708_wide_noir |
 | Microphone | Pi USB; ALSA hw:1,0 at reported test | Capture and supplied pinout agree; card numbering is not a permanent device identity |
@@ -43,7 +44,7 @@ Reported display overlay: dtoverlay=vc4-kms-dsi-waveshare-panel-v2,4_0_inch_c. K
 
 The supplied pinout explains that ESP GPIO41/42/47/48 ToF mapping belongs to the former sensor-on-ESP architecture. It is not the current documented ToF mapping; GPIO48/RGB is not a current ToF collision under the Pi mapping. Exact board/build provenance for encoder GPIO35/36/37 remains separate.
 
-INA260 is pending delivery. All its wiring and address assignments remain TBD; do not reuse INA226 address 0x44 or treat INA260 as installed. Power input, ground routing, connector polarity, protection, motor phase order, encoder supply and amplifier channel/SD straps are not fully specified by this signal table and must not be invented.
+INA260 pending-delivery text is superseded: one board is installed on the shared Pi I2C bus and identified at 0x40. Physical supply pins, ALERT, ground return and IN+/IN− branch remain unverified; do not infer them from address evidence. Power input, connector polarity, protection, motor phase order, encoder supply and amplifier channel/SD straps are not fully specified by this signal table and must not be invented.
 
 ## Replacement carrier PCB — proposed signal allocation R1
 
@@ -80,8 +81,8 @@ Physical numbers below apply to the Pi header viewed from its component side wit
 
 | Net/function | Pi BCM GPIO | Pi physical header pin | Endpoint |
 |---|---:|---:|---|
-| PI_I2C_SDA | 2 | 3 | Shared BME280/BNO085/ToF SDA |
-| PI_I2C_SCL | 3 | 5 | Shared BME280/BNO085/ToF SCL |
+| PI_I2C_SDA | 2 | 3 | Shared BME280/BNO085/ToF/INA260 SDA |
+| PI_I2C_SCL | 3 | 5 | Shared BME280/BNO085/ToF/INA260 SCL |
 | PI_TOF1_XSHUT | 22 | 15 | S1 XSHUT |
 | PI_TOF2_XSHUT | 23 | 16 | S2 XSHUT |
 | PI_TOF3_XSHUT | 24 | 18 | S3 XSHUT |
@@ -90,7 +91,7 @@ Physical numbers below apply to the Pi header viewed from its component side wit
 | PI_I2S_LRCLK | 19 | 35 | Both MAX98357A LRC |
 | PI_I2S_DOUT | 21 | 40 | Both MAX98357A DIN |
 
-Supply pin identification only: Pi 3.3V is physical 1/17; 5V is 2/4; GND is 6/9/14/20/25/30/34/39. This is NOT approval to feed Pi from the carrier header. Keep Pi/ESP 3.3V regulator outputs separate; shared GND does not mean parallel power outputs. Do not connect 5V to any signal GPIO. Pi GPIO0/1 (physical27/28) remain reserved for HAT identification; unused pins remain NC in this carrier draft. Allocate no INA260 signal/address yet, as expressly requested until the board arrives.
+Supply pin identification only: Pi 3.3V is physical 1/17; 5V is 2/4; GND is 6/9/14/20/25/30/34/39. This is NOT approval to feed Pi from the carrier header. Keep Pi/ESP 3.3V regulator outputs separate; shared GND does not mean parallel power outputs. Do not connect 5V to any signal GPIO. Pi GPIO0/1 (physical27/28) remain reserved for HAT identification; unused pins remain NC in this carrier draft. INA260 uses the shared I2C signals at 0x40; its physical supply/IN+/IN−/ALERT routing is still not released.
 
 Camera retains CAM/DISP0; display retains CAM/DISP1 and reported DSI overlay; microphone remains USB; ESP link remains native USB. Use original FFC/USB connectors and cables for these links, not hand-routed substitute CSI/DSI or USB data traces. Fan uses existing Pi fan connector, not a newly assigned GPIO. MAX98357A left/right channel and shutdown straps remain to verify; shared I2S wiring alone does not select stereo. Speaker outputs are differential: do not join speaker negative outputs to logic ground or each other.
 
@@ -113,7 +114,7 @@ Camera retains CAM/DISP0; display retains CAM/DISP1 and reported DSI overlay; mi
 - [ ] Verify regulator outputs, power sequencing, I2C pull-ups/logic voltages and inactive EN behavior; no motor power during initial tests.
 - [ ] Draw/review electrical schematic including power/disable paths, ERC, layout/DRC and 1:1 fit check before production PCB release. For perfboard, review the actual point-to-point solder plan and unpowered continuity instead.
 - [ ] Prepare separately versioned firmware pin changes and fault handling; preserve captured/LKG sources; validate build and non-motion tests first.
-- [ ] Only then isolated motor/stop tests; log hardware, firmware/build, supply and result. INA260 remains deferred pending delivery.
+- [ ] Only then isolated motor/stop tests; log hardware, firmware/build, supply and result. All motor work is currently paused by owner instruction.
 
 ### Sources and review
 
