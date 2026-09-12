@@ -1,5 +1,8 @@
 # ARIA working rules
 
+- Cross-task continuity: before working in Codex or ChatGPT Work, fetch/read current GitHub main and docs/ARIA-MASTER-HANDOFF.md. After each completed work block, record decisions, actual evidence, limitations and next action in that same master, then commit/push and verify remote. Do not require the owner to reconstruct prior chat. Unavailable chat/files are not evidence; do not claim account-wide memory sync. Avoid concurrent edits to another active task's files.
+- CURRENT HOLD (2026-09-13): pause all motor/encoder/driver development and hardware actions at owner request. Active work is standalone Pi sensor code and audio. Do not start aria-core.service, flash ESP or energize drivers under synchronization authority.
+
 - Read docs/ARIA-MASTER-HANDOFF.md first; preserve its NEXT STEP ORDER and verification boundaries.
 - Codex remains primary author and integration reviewer. Use GitHub Copilot for concrete bounded assistance when it saves work; do not duplicate the same full task across assistants.
 - Copilot CLI: D:/UserData/ARIA/tools/copilot/bin/copilot.exe. Set COPILOT_HOME=D:/UserData/ARIA/tools/copilot/state and COPILOT_AUTO_UPDATE=false for invocations. Keep work, logs and outputs on D.

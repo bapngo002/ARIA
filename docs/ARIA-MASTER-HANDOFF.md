@@ -2,7 +2,21 @@
 
 **Status: CURRENT/CANONICAL · Migration + local live-source consolidation: 2026-09-12**
 
-## ACTIVE CHECKPOINT — 2026-09-13: replacement ESP, right encoder diagnostic
+## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
+
+Latest user instructions: continue standalone Pi sensor/audio code; pause ALL motor/encoder/driver work. User reported motor heating without encoder; timing/firmware/cause not established. Keep driver power disconnected, do not flash or resume motor tests. Left encoder is owner-confirmed damaged; right is suspected/unusable after repeated READ_ERROR, not confirmed silicon failure. Owner reported supply about3V and continuity/no shorts; SDA2.5V/SCL2.2V measured while querying do not establish idle-bus health. Diagnostic banner ARIA_ENCODER_CHECK_R1 v0.1.0 was observed running on ESP after user upload; this is runtime evidence for diagnostic only. EN=0 text is not a physical disable test.
+
+Pi service aria-core.service (description ARIA Core V0.4) ran /home/aria/aria-venv/bin/python /home/aria/aria_core.py, PID1935, and held ttyACM0. User stopped it; later fuser was empty and diagnostic upload ran. Keep service stopped while developing sensor-only code. Autostart was not disabled; do not assume it stays stopped after reboot.
+
+User screenshots show all seven sensors returned data for20 samples, then continuous readings; no read errors in supplied samples. Libraries available in /home/aria/aria-venv/bin/python: board, adafruit_bme280, adafruit_bno08x, adafruit_vl53l1x, adafruit_ina260, smbus2. BME approximately26.7-26.8C/71%/948.9hPa. INA260 around12.3V with changing current/power; latest screenshot12.304-12.364V,567.5-862.5mA,7.01-10.62W. IN+/IN- endpoints remain unknown; not established as whole-robot consumption or Pi5V rail. BNO085 acceleration XYZ returned, Z near-10.16m/s2; gyro/quaternion/accuracy not tested. ToF0x30-33 returned changing ranges; owner later explicitly tested all4 and reports normal operation. Classify as screenshot readout evidence plus owner-reported functional check, not calibrated distance or obstacle safety PASS. All ToF display units are mm: Adafruit distance returns cm, multiply by10. None/timeouts must not become zero-distance success. ToF addresses require separate XSHUT reinitialization after sensor power loss.
+
+Audio: owner reports both speakers now play without stutter at100% after testing50% then100%. Cause of earlier periodic stutter is UNKNOWN; do not attribute to ESP. Exact routing/channel/SD and soak duration unverified. Pi screenshot shows get_throttled=0x0, SoC52.7C, no matches in kernel log filter for undervoltage/throttling/overcurrent. No flagged Pi condition in that check; not full power-path/motor-load validation.
+
+NEXT IMPLEMENTATION: create separately versioned standalone Pi sensor program with timestamp, four ToF in mm, BME280, BNO085 acceleration, INA260, explicit per-sensor errors, bounded waits and Ctrl+C cleanup; preserve capture. Inline snippets have run on Pi, but this program has NOT yet been committed as a reusable implementation. Then address audio only as needed. ChatGPT Work task was created to continue this scope; do not claim it has completed work without inspecting its actual result.
+
+Cross-task synchronization requested by owner: GitHub main and this master are the shared continuity source for this account's ARIA tasks. Each task must read latest main at entry and save completed changes/evidence before handoff. Only synchronize accessible evidence and completed work; preserve other tasks' uncommitted/in-progress files. This is repository synchronization, not automatic sharing of every private chat or inaccessible cloud workspace.
+
+## HISTORICAL CHECKPOINT — earlier 2026-09-13: replacement ESP, right encoder diagnostic
 
 Latest owner report supersedes the receipt/encoder uncertainty in the historical checkpoint below: replacement ESP is present, same YD-ESP32-S3 N16R8; left encoder is damaged, connected encoder is RIGHT. User first identified right SDA36/SCL37, then acknowledged completing the requested remap (right SDA4/SCL5, left allocation SDA8/SCL9). Treat this as owner-reported wiring, not photo/continuity verification. User confirms motor power unplugged. Failed-left disconnection, encoder supply/polarity and physical EN state have not been independently verified.
 
