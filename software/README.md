@@ -14,7 +14,7 @@ Trạng thái, giới hạn runtime, IPC và checklist duy nhất nằm trong [M
 
 ## App màn hình tròn và AI hội thoại
 
-**Bản xem trước hiện tại:** chân dung nữ anime bán hiện thực chi tiết từ `app_ui/aria-anime-v1.png`. Đây là **ảnh tĩnh**, chưa chuyển động mắt/miệng hoặc đổi biểu cảm. Trong **Cài đặt → Kiểu nhân vật**, có thể đổi sang **Avatar chuyển động** để dùng bản SVG với các hoạt ảnh dưới đây. Không gửi ảnh tới AI hoặc bật camera khi đổi kiểu nhân vật; lựa chọn lưu trong trình duyệt.
+**Bản xem trước hiện tại:** ảnh chủ nhân chọn từ `app_ui/aria-owner-portrait-v1.png`, sao chép nguyên gốc và căn khung bằng CSS. Đây là **ảnh tĩnh**, chưa chuyển động mắt/miệng hoặc đổi biểu cảm. Trong **Cài đặt → Kiểu nhân vật**, có thể đổi sang **Avatar chuyển động** để dùng bản SVG với các hoạt ảnh dưới đây. Không gửi ảnh tới AI hoặc bật camera khi đổi kiểu nhân vật; lựa chọn lưu trong trình duyệt. Chân dung tạo trước đó (`aria-anime-v1.png`) được bảo tồn nhưng không còn là ảnh mặc định.
 
 Bản thử giao diện mới nhất theo yêu cầu chủ nhân: avatar nữ cách điệu (tóc dài nâu ánh tím, da ấm, mắt nâu, lông mi nhẹ và môi hồng), giữ chuyển động và chọn biểu cảm. Chưa chốt nhân vật cuối cùng; các mô tả robot cyan bên dưới là các bản thiết kế trước, được bảo tồn trong Git.
 

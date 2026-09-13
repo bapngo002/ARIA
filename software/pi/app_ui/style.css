@@ -61,3 +61,5 @@ header button.brand{padding:0;min-height:0;background:none;border:0;border-radiu
 .main-portrait{width:17cqw;height:17cqw;align-self:center}
 #standby:has(.standby-portrait){gap:5cqw}
 .portrait{mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,#000d 75%,transparent 100%)}
+/* Owner-supplied landscape image: frame the face without editing source pixels. */
+.portrait{object-fit:cover;object-position:53% 42%}

@@ -59,6 +59,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(200, state)
         assets = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"),
                   "/aria-anime-v1.png": ("aria-anime-v1.png", "image/png"),
+                  "/aria-owner-portrait-v1.png": ("aria-owner-portrait-v1.png", "image/png"),
                   "/style.css": ("style.css", "text/css")}
         if path not in assets:
             return self.send(404, {"error": "Không tìm thấy."})
