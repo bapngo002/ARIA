@@ -9,9 +9,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
+import os
 import sys
+import tempfile
 import time
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
 
@@ -300,14 +304,14 @@ def format_human(sample: dict[str, Any]) -> str:
 
 def positive_float(value: str) -> float:
     number = float(value)
-    if number <= 0:
+    if not math.isfinite(number) or number <= 0:
         raise argparse.ArgumentTypeError("must be greater than zero")
     return number
 
 
 def nonnegative_float(value: str) -> float:
     number = float(value)
-    if number < 0:
+    if not math.isfinite(number) or number < 0:
         raise argparse.ArgumentTypeError("must be zero or greater")
     return number
 
@@ -322,7 +326,24 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="seconds to wait for each ToF sample",
     )
     parser.add_argument("--jsonl", action="store_true", help="emit one JSON object per line")
+    parser.add_argument("--snapshot", type=Path, help="atomically replace latest JSON sample for local app")
     return parser.parse_args(argv)
+
+
+def write_snapshot(path: Path, sample: dict) -> None:
+    payload = json.dumps(sample, ensure_ascii=False, allow_nan=False)
+    path = path.resolve()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    name = None
+    try:
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent,
+                                         prefix=".sensor-", suffix=".tmp", delete=False) as stream:
+            name = stream.name
+            stream.write(payload)
+        os.replace(name, path)
+    finally:
+        if name and os.path.exists(name):
+            os.unlink(name)
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -340,6 +361,8 @@ def main(argv: list[str] | None = None) -> int:
         while True:
             started = time.monotonic()
             sample = monitor.sample()
+            if args.snapshot:
+                write_snapshot(args.snapshot, sample)
             if args.jsonl:
                 print(json.dumps(sample, ensure_ascii=False, separators=(",", ":")), flush=True)
             else:

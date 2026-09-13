@@ -26,3 +26,7 @@ build/
 # Python caches used by tooling
 __pycache__/
 *.py[cod]
+
+# Local assistant secrets and personal state (keep outside repo)
+assistant.env
+assistant.sqlite3*
