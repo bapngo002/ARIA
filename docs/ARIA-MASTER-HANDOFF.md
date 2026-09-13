@@ -11,6 +11,9 @@ Archived 8 user/final-assistant text items from [Tạo avatar 3D khuôn mặt AR
 CURRENT: owner requests an actual animated 3D face, rejects R6, and asks to continue direct Blender modeling until it resembles the reference. The source final response explicitly states that this requirement has not been met. R4 remains the previously selected baseline; R7-R26 are unapproved appearance studies. Source-reported render/fit results and R6 export checks must not be presented as owner acceptance, animation readiness of R26, or Pi verification. Next action remains resolving hair/temple boundaries and validating three-view likeness in the source modeling task before facial animation/integration.
 
 Coverage is accessible text only; image pixels, linked deliverables, older backlog and unavailable account/cloud history remain outside this run. No model acquisition, code edits, hardware, flash or Pi service action; MOTOR/ENCODER/DRIVER HOLD preserved. Other listed ARIA sources had no newer activity relative to the prior run.
+### Original generated character sheet recovered — 2026-09-13
+
+Owner reports excessive blur and directs the agent to find the original in chat. VERIFIED: the native ChatGPT page for conversation 6aa68f57-f678-83ee-a054-4ade51c4878f contains the generated image titled Bảng Trình Diễn Nhân Vật 3D Chuyên Nghiệp, omitted by read_thread's attachment export. Downloaded through its Save control and verified PNG 1536 x 1024, 2,344,138 bytes; preserved at assets/characters/aria-custom/reference-fit-inputs/original-generated-character-sheet.png. Includes front/oblique/profile/back and eye/lip/hair detail panels. Earlier modeling used the 773 x 396 screenshot and missed this generated sheet. This is a distinct generated reference, not a lossless higher-resolution copy of that screenshot. Printed wireframe, 4K texture and mesh-count labels are illustrative content, not real model data or verified assets. No Blender texture update has yet been made from this newly recovered image. Next appearance work must inspect this original and its detail panels rather than claim only the small screenshot is available.
 
 ### Reference likeness iteration R8-R26 — 2026-09-13, INCOMPLETE
 
@@ -525,6 +528,8 @@ Tiếp tục dùng Copilot Pro cho các việc hỗ trợ có lợi ích cụ th
 **Bước tiếp theo đang hoạt động theo MOTOR HOLD:** người dùng chạy `software/pi/aria_sensors.py` độc lập trên Pi, lưu output/error để gắn runtime evidence; sau đó thu `wpctl status`/`aplay -l` chỉ đọc nếu tiếp tục audio. STEP-003 motor/encoder/carrier tạm dừng; không cấp motor, không flash ESP và không khởi động `aria-core.service`. Thứ tự tổng thể phía trên không bị thay thế.
 
 Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; tự đồng bộ GitHub theo ủy quyền thường xuyên bên dưới và xác minh remote HEAD. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.
+
+
 
 
 
