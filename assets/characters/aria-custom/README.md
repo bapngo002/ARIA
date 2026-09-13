@@ -1,5 +1,11 @@
 # ARIA custom sculpt workspace
 
+## Current: head proportions R1
+
+Open `aria-head-blockout-r1.blend` or the ARIA Blender launcher. This file keeps 13 editable MPFB face targets, temporary eye-fitting spheres and subdivision smoothing. It is a first proportion study, not an accepted likeness or completed sculpt. Settings are in `head-r1-report.json`; builder is `tools/avatar/sculpt_head_blockout.py`. The builder recreates R1 from the preserved base, so save future manual edits under a new revision before rebuilding.
+
+Compare `head-before-front.png` with `head-r1-front.png` under the same clay material/camera/light; R1 also has `head-r1-three-quarter.png` and `head-r1-profile.png`. The before render resets only the new face targets; it retains the same smoothing and temporary eyes for comparison. Hair, skin textures, fitted eyes, clothing and rigging are not completed. The localhost preview has not been switched to this model.
+
 ## Human-base preparation
 
 `aria-human-base.blend` now contains an unsculpted adult-female MPFB base plus the packed references. This is a different human base from the rejected pixiv anime draft; it does not yet match the concept. Separate eyeballs, hair, clothing, custom head sculpt and facial rig are pending. The original reference-only file remains unchanged.

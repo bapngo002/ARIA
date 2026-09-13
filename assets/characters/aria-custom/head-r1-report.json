@@ -1,0 +1,30 @@
+{
+  "targets": {
+    "head/head-oval": 0.22,
+    "head/head-scale-horiz-decr": 0.1,
+    "chin/chin-height-decr": 0.12,
+    "chin/chin-width-incr": 0.12,
+    "chin/chin-bones-decr": 0.15,
+    "nose/nose-width1-decr": 0.16,
+    "nose/nose-width3-decr": 0.12,
+    "mouth/mouth-upperlip-volume-incr": 0.18,
+    "mouth/mouth-lowerlip-volume-incr": 0.16,
+    "mouth/mouth-cupidsbow-incr": 0.1,
+    "mouth/mouth-angles-up": 0.07,
+    "eyes/l-eye-scale-incr": 0.18,
+    "eyes/r-eye-scale-incr": 0.18
+  },
+  "eye_landmarks": {
+    "joint-l-eye": [
+      0.02649160474538803,
+      -0.09961726516485214,
+      1.3366111516952515
+    ],
+    "joint-r-eye": [
+      -0.02649160474538803,
+      -0.09961726516485214,
+      1.3366111516952515
+    ]
+  },
+  "status": "proportion study, not accepted likeness"
+}
