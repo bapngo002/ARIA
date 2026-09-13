@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Human-avatar trial — 2026-09-13
+
+Owner asks to try a human face. Current UI preview uses an original stylized human avatar with warm skin, brown hair/irises, ears, nose and lip contours, retaining procedural gaze/blink/expressions and clock/temperature. This is a visual trial, not an approved final character or a real person's likeness. Browser inspected the rendered preview. Earlier robot variants remain in Git history; hardware/backend unchanged, Pi rendering remains NOT VERIFIED.
+
 ### Color and depth follow-up — 2026-09-13
 
 Latest owner correction: the oval face looked too round. Replaced its silhouette and shadow with a softly squared robot face, flatter forehead, straighter sides and a gently tapered lower edge; retained pupils, animation, color/depth and standby information. New silhouette visually checked in the local browser; actual Pi panel remains NOT VERIFIED.

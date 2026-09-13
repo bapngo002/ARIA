@@ -23,31 +23,35 @@ const faceViews = [...document.querySelectorAll('.robot-face')].map((face,index)
   const gradient = (id, stops) => svgNode('radialGradient',{id,cx:'35%',cy:'28%',r:'75%'},stops.map(([offset,color])=>svgNode('stop',{offset,'stop-color':color})));
   const defs = svgNode('defs',{},[
     gradient(whiteId,[['0%','#ffffff'],['48%','#f4f7ff'],['78%','#b3cedd'],['100%','#647b9e']]),
-    gradient(irisId,[['0%','#bdffe0'],['32%','#52e8c2'],['67%','#159cae'],['88%','#225878'],['100%','#112b4b']]),
-    gradient(skinId,[['0%','#90e8ec'],['25%','#55b7cc'],['58%','#30738f'],['83%','#213951'],['100%','#111b34']]),
+    gradient(irisId,[['0%','#d9c995'],['32%','#a58a58'],['67%','#715333'],['88%','#483428'],['100%','#29232a']]),
+    gradient(skinId,[['0%','#ffe7cd'],['25%','#f4c6a5'],['58%','#e7aa87'],['83%','#c58068'],['100%','#9b6256']]),
     gradient(blushId,[['0%','#ff9b9a'],['45%','#ed7b91'],['100%','#ed7b9100']]),
     gradient(mouthId,[['0%','#492c58'],['50%','#281d38'],['100%','#100f25']])
   ]);
   const features = svgNode('g',{'class':'features'});
-  const headShape='M70 12 C111 7 189 7 230 12 Q262 16 267 44 L273 113 Q275 145 255 163 C234 185 195 190 150 190 C105 190 66 185 45 163 Q25 145 27 113 L33 44 Q38 16 70 12 Z';
+  const headShape='M84 26 C106 7 193 7 216 26 Q239 50 235 91 L229 130 Q221 152 194 174 Q171 192 150 194 Q129 192 106 174 Q79 152 71 130 L65 91 Q61 50 84 26 Z';
   features.append(
     svgNode('path',{d:headShape,transform:'translate(0 6)',fill:'#020a16',opacity:'.45'}),
-    svgNode('path',{d:headShape,fill:`url(#${skinId})`,stroke:'#8edbe1','stroke-opacity':'.25','stroke-width':1}),
-    svgNode('path',{d:'M40 66 L43 43 Q47 24 71 22 C106 17 147 17 181 19',fill:'none',stroke:'#d3ffff','stroke-opacity':'.24','stroke-width':3,'stroke-linecap':'round'}),
-    svgNode('ellipse',{cx:94,cy:22,rx:30,ry:5,fill:'#ebffff',opacity:'.09',transform:'rotate(-3 94 22)'}),
-    svgNode('ellipse',{cx:59,cy:122,rx:24,ry:14,fill:`url(#${blushId})`,opacity:'.65'}),
-    svgNode('ellipse',{cx:241,cy:122,rx:24,ry:14,fill:`url(#${blushId})`,opacity:'.65'})
+    svgNode('ellipse',{cx:65,cy:94,rx:12,ry:23,fill:'#cb8a70'}),
+    svgNode('ellipse',{cx:235,cy:94,rx:12,ry:23,fill:'#b77865'}),
+    svgNode('path',{d:headShape,fill:`url(#${skinId})`,stroke:'#efc7a7','stroke-opacity':'.25','stroke-width':1}),
+    svgNode('path',{d:'M64 80 C52 56 58 21 82 13 C103 -3 158 -3 181 6 C223 2 245 30 239 65 L232 84 L223 51 C208 48 189 35 185 26 C151 44 115 38 107 27 Q77 42 73 76 Z',fill:'#30282c'}),
+    svgNode('path',{d:'M78 32 C97 6 147 5 175 15 M93 31 Q129 18 154 21',fill:'none',stroke:'#725045','stroke-width':4,'stroke-linecap':'round',opacity:'.55'}),
+    svgNode('ellipse',{cx:88,cy:123,rx:20,ry:11,fill:`url(#${blushId})`,opacity:'.33'}),
+    svgNode('ellipse',{cx:212,cy:123,rx:20,ry:11,fill:`url(#${blushId})`,opacity:'.33'}),
+    svgNode('path',{d:'M151 84 Q146 100 142 111 Q139 119 150 120 Q161 120 159 114',fill:'none',stroke:'#bc7b63','stroke-width':3,'stroke-linecap':'round'}),
+    svgNode('path',{d:'M149 101 L147 109',fill:'none',stroke:'#ffe3c1','stroke-width':3,'stroke-linecap':'round'})
   );
-  const eyes = [83,217].map(x => {
+  const eyes = [103,197].map(x => {
     const pupil = svgNode('g',{},[
       svgNode('circle',{r:17,fill:`url(#${irisId})`}),
-      svgNode('circle',{r:13.5,fill:'none',stroke:'#8bf2d5','stroke-width':'.6',opacity:'.55'}),
-      svgNode('circle',{r:9,fill:'#052731'}),
+      svgNode('circle',{r:13.5,fill:'none',stroke:'#e7c694','stroke-width':'.6',opacity:'.35'}),
+      svgNode('circle',{r:9,fill:'#201a21'}),
       svgNode('circle',{cx:-5,cy:-6,r:4,fill:'#fff','fill-opacity':'.95'}),
       svgNode('circle',{cx:6,cy:6,r:1.8,fill:'#c6fcff','fill-opacity':'.7'})
     ]);
     const eye = svgNode('g',{'class':'living-eye'},[
-      svgNode('ellipse',{cx:0,cy:2,rx:31,ry:38,fill:'#133d56',opacity:'.6'}),
+      svgNode('ellipse',{cx:0,cy:2,rx:31,ry:38,fill:'#976452',opacity:'.4'}),
       svgNode('ellipse',{cx:0,cy:0,rx:28,ry:35,fill:`url(#${whiteId})`}),pupil
     ]);
     const brow = svgNode('path',{'class':'eyebrow'});
@@ -77,10 +81,10 @@ function animateFace(now) {
     if (!view.face.getClientRects().length) continue;
     view.features.setAttribute('transform',`translate(0 ${still ? 0 : Math.sin(now/1700)*1.2})`);
     for (const [i,{x,eye,pupil,brow}] of view.eyes.entries()) {
-      eye.setAttribute('transform',`translate(${x} 78) scale(1 ${openness*blink})`);
+      eye.setAttribute('transform',`translate(${x} 78) scale(.78 ${openness*blink*.67})`);
       pupil.setAttribute('transform',`translate(${gaze[0]} ${gaze[1]})`);
       const outer=i===0 ? x-23 : x+23, inner=i===0 ? x+23 : x-23;
-      brow.setAttribute('d',`M${outer} 30 Q${x} ${22+browLift/2} ${inner} ${30+browLift}`);
+      brow.setAttribute('d',`M${outer} 47 Q${x} ${39+browLift/2} ${inner} ${47+browLift}`);
     }
     const speech=!still && current?.state==='speaking' ? Math.sin(now/130)*3 : 0;
     const curve=smile*.5, opening=Math.max(1,smile*.72+speech);

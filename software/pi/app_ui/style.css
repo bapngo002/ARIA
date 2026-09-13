@@ -38,3 +38,8 @@ header button.brand{padding:0;min-height:0;background:none;border:0;border-radiu
 .robot-face.standby-face{width:65cqw;height:43.3cqw;filter:drop-shadow(0 12px 15px #02081788)}
 .dial{background:radial-gradient(ellipse at 35% 25%,#213446 0,#111f30 42%,#070e1d 78%);border-color:#34485e}
 #standby-clock{color:#d2dceb}#standby-temperature{color:#b8cce0}
+
+/* Human-avatar trial: warm skin, brown hair/eyes and soft lip contours. */
+.robot-face .eyebrow{stroke:#48302d;stroke-width:4;filter:none;opacity:.9}
+.robot-face .volume-mouth{stroke:#ae6563;stroke-width:2.3;filter:drop-shadow(0 1px 0 #ffdfb766)}
+.robot-face .living-eye{filter:drop-shadow(0 1px 1px #8a5b4c33)}
