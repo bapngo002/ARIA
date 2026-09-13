@@ -6,6 +6,8 @@
 
 ### Human-avatar trial — 2026-09-13
 
+Latest owner choice: female avatar. Preview updated with longer brown/plum hair, delicate brows/lashes and rose lip contour; rendered in local browser. Existing gaze/blink/expressions preserved; still a character-design trial, not final approval.
+
 Owner asks to try a human face. Current UI preview uses an original stylized human avatar with warm skin, brown hair/irises, ears, nose and lip contours, retaining procedural gaze/blink/expressions and clock/temperature. This is a visual trial, not an approved final character or a real person's likeness. Browser inspected the rendered preview. Earlier robot variants remain in Git history; hardware/backend unchanged, Pi rendering remains NOT VERIFIED.
 
 ### Color and depth follow-up — 2026-09-13

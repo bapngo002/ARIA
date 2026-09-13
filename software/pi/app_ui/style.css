@@ -43,3 +43,7 @@ header button.brand{padding:0;min-height:0;background:none;border:0;border-radiu
 .robot-face .eyebrow{stroke:#48302d;stroke-width:4;filter:none;opacity:.9}
 .robot-face .volume-mouth{stroke:#ae6563;stroke-width:2.3;filter:drop-shadow(0 1px 0 #ffdfb766)}
 .robot-face .living-eye{filter:drop-shadow(0 1px 1px #8a5b4c33)}
+
+/* Female-avatar trial: delicate brows and warm rose lips. */
+.robot-face .eyebrow{stroke:#67414a;stroke-width:3;opacity:.9}
+.robot-face .volume-mouth{stroke:#b45e76;stroke-width:3;filter:drop-shadow(0 1px 0 #ffd9b866)}

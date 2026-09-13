@@ -31,12 +31,14 @@ const faceViews = [...document.querySelectorAll('.robot-face')].map((face,index)
   const features = svgNode('g',{'class':'features'});
   const headShape='M84 26 C106 7 193 7 216 26 Q239 50 235 91 L229 130 Q221 152 194 174 Q171 192 150 194 Q129 192 106 174 Q79 152 71 130 L65 91 Q61 50 84 26 Z';
   features.append(
+    svgNode('path',{d:'M66 37 C71 2 111 -5 150 0 C197 -7 233 10 240 45 C250 89 237 134 252 180 Q236 197 208 193 L91 193 Q62 198 48 180 C65 136 49 89 66 37 Z',fill:'#392633'}),
+    svgNode('path',{d:'M70 65 Q59 126 68 174 M228 57 Q241 125 231 179',fill:'none',stroke:'#76505a','stroke-width':5,'stroke-linecap':'round',opacity:'.45'}),
     svgNode('path',{d:headShape,transform:'translate(0 6)',fill:'#020a16',opacity:'.45'}),
     svgNode('ellipse',{cx:65,cy:94,rx:12,ry:23,fill:'#cb8a70'}),
     svgNode('ellipse',{cx:235,cy:94,rx:12,ry:23,fill:'#b77865'}),
     svgNode('path',{d:headShape,fill:`url(#${skinId})`,stroke:'#efc7a7','stroke-opacity':'.25','stroke-width':1}),
-    svgNode('path',{d:'M64 80 C52 56 58 21 82 13 C103 -3 158 -3 181 6 C223 2 245 30 239 65 L232 84 L223 51 C208 48 189 35 185 26 C151 44 115 38 107 27 Q77 42 73 76 Z',fill:'#30282c'}),
-    svgNode('path',{d:'M78 32 C97 6 147 5 175 15 M93 31 Q129 18 154 21',fill:'none',stroke:'#725045','stroke-width':4,'stroke-linecap':'round',opacity:'.55'}),
+    svgNode('path',{d:'M64 91 C48 52 64 17 89 10 C124 -4 168 -3 192 9 C230 10 246 38 238 78 L230 106 Q221 76 220 47 Q187 43 171 22 C149 49 103 45 84 67 Q75 83 72 114 Z',fill:'#46303c'}),
+    svgNode('path',{d:'M77 45 C99 13 137 14 156 12 M87 49 Q120 31 143 29 M184 18 Q224 29 228 56',fill:'none',stroke:'#996370','stroke-width':3,'stroke-linecap':'round',opacity:'.45'}),
     svgNode('ellipse',{cx:88,cy:123,rx:20,ry:11,fill:`url(#${blushId})`,opacity:'.33'}),
     svgNode('ellipse',{cx:212,cy:123,rx:20,ry:11,fill:`url(#${blushId})`,opacity:'.33'}),
     svgNode('path',{d:'M151 84 Q146 100 142 111 Q139 119 150 120 Q161 120 159 114',fill:'none',stroke:'#bc7b63','stroke-width':3,'stroke-linecap':'round'}),
@@ -52,7 +54,8 @@ const faceViews = [...document.querySelectorAll('.robot-face')].map((face,index)
     ]);
     const eye = svgNode('g',{'class':'living-eye'},[
       svgNode('ellipse',{cx:0,cy:2,rx:31,ry:38,fill:'#976452',opacity:'.4'}),
-      svgNode('ellipse',{cx:0,cy:0,rx:28,ry:35,fill:`url(#${whiteId})`}),pupil
+      svgNode('ellipse',{cx:0,cy:0,rx:28,ry:35,fill:`url(#${whiteId})`}),pupil,
+      svgNode('path',{d:x<150 ? 'M-27 -6 Q-26 -27 -13 -32 M-25 -17 L-32 -24 M-19 -27 L-24 -34' : 'M27 -6 Q26 -27 13 -32 M25 -17 L32 -24 M19 -27 L24 -34',fill:'none',stroke:'#46303c','stroke-width':2.6,'stroke-linecap':'round'})
     ]);
     const brow = svgNode('path',{'class':'eyebrow'});
     features.append(eye,brow); return {x,eye,pupil,brow};

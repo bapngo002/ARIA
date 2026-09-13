@@ -14,7 +14,7 @@ Trạng thái, giới hạn runtime, IPC và checklist duy nhất nằm trong [M
 
 ## App màn hình tròn và AI hội thoại
 
-Bản thử giao diện mới nhất theo yêu cầu chủ nhân: avatar người cách điệu (tóc nâu, da ấm, mắt nâu, mũi/tai/môi), giữ chuyển động và chọn biểu cảm. Chưa chốt nhân vật cuối cùng; các mô tả robot cyan bên dưới là các bản thiết kế trước, được bảo tồn trong Git.
+Bản thử giao diện mới nhất theo yêu cầu chủ nhân: avatar nữ cách điệu (tóc dài nâu ánh tím, da ấm, mắt nâu, lông mi nhẹ và môi hồng), giữ chuyển động và chọn biểu cảm. Chưa chốt nhân vật cuối cùng; các mô tả robot cyan bên dưới là các bản thiết kế trước, được bảo tồn trong Git.
 
 Khuôn mặt dùng mắt/miệng cyan theo ảnh tham khảo của chủ nhân. Trong **Cài đặt → Biểu cảm khi chờ**, chọn vui vẻ, bình thường, buồn hoặc cau có; lựa chọn được lưu trên trình duyệt này. Khi app nghe/nghĩ/nói/báo lỗi, khuôn mặt đổi theo trạng thái xử lý rồi trở về biểu cảm đã chọn. Đây là biểu diễn trạng thái app, chưa phải AI suy luận cảm xúc.
 
