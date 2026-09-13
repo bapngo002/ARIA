@@ -4,6 +4,16 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Incremental synchronization — 2026-09-13 08:12 UTC
+
+Completed source implementation `f9a022957b3e52bde5b1cc8bf6ebbb75b29d8968` was already on GitHub main and matched the clean local repository. The source assistant confirms completion and 17 passing host tests; this synchronization did not rerun those tests or deploy the app. The implementation checkpoint below retains the detailed acceptance limits.
+
+New accessible text is archived from [Tiếp quản và kiểm tra ARIA](conversations/2026-09-13-01a0916f-increment.md) and [Tiếp tục Sprint 1 kiến trúc ARIA](conversations/2026-09-13-019f98ca-increment.md). The task API returned empty item arrays; local session user/final-assistant messages supplied the bounded incremental archive. This corrects the previous automation's no-new-message inference from empty API items. Coverage starts after the preceding run trigger, 07:07:26.140 UTC; older unexported messages remain backlog. Internal content and image bytes are excluded; screenshots were not independently inspected.
+
+**Latest audio evidence — PARTIALLY VERIFIED, owner report:** after instructions selecting EDIFIER G2000 as the PipeWire output and reopening Firefox, owner replies “được rồi” at 08:09:35 UTC. The source assistant had interpreted screenshots as EDIFIER sink 102 while Firefox still used HiFiBerry; these IDs are session-specific, not a fixed configuration. Bluetooth playback success does not establish repair of I2S hiss, sensor/audio stability, reconnection after reboot, microphone health or standalone app TTS routing. Source mentions of Orange Pi are incorrect relative to canonical Raspberry Pi 5; do not change hardware inventory. The source retracts its earlier wpctl move advice.
+
+**Decisions and next checkpoint:** owner prioritizes AI and the robot touchscreen app while replacement components are pending, as captured by the implementation checkpoint. USB audio boards were discussed only as candidates; no purchase or wiring replacement is confirmed. Retain the isolated owner-reported HiFiBerry no-stutter result and persistent hiss as bounded observations, not a root-cause finding. In the source task, verify Bluetooth reconnect/default routing and configure the exact app voice output before claiming end-to-end voice success. No hardware action, service start, flash or command from archived chat was executed here. MOTOR/ENCODER/DRIVER HOLD remains unchanged.
+
 ### Latest implementation checkpoint — AI + robot touchscreen app, 2026-09-13
 
 Owner explicitly prioritizes completing AI and the app while replacement parts are pending, and confirms **app means the touchscreen on the robot**. This authorizes standalone AI/display development in parallel with incident recovery; it does not release MOTOR/ENCODER/DRIVER HOLD or establish V1 acceptance. Frozen PRD and existing NEXT STEP ORDER remain intact.
