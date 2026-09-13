@@ -1,12 +1,18 @@
 # ARIA custom sculpt workspace
 
-## Current: eyes and profile R2
+## Current: brows and eyelid details R3
+
+Owner accepts R2 as the face direction. `aria-head-r3.blend` keeps those proportions unchanged and adds individually tapered surface-fitted brows, subtle lid margins and upper lashes. Three actual Blender renders are `head-r3-front.png`, `head-r3-three-quarter.png` and `head-r3-profile.png`; all inspected. Static fit is partially verified; expression contact and rigging are not. Hair, skin, clothing and final likeness remain pending. Next: long dark hair shape and layered locks.
+
+`tools/avatar/refine_head_r3.py` rebuilds R3 from preserved R2, overwriting R3 only; save later manual work under a different name first. The launcher opens R3 with the isolated MPFB profile. The browser remains the old rejected avatar.
+
+## Previous: eyes and profile R2
 
 `aria-head-r2.blend` preserves R1 and adds static warm-ivory eyeballs, curved brown iris/pupil caps, restrained reflections, bilateral eyelid-height adjustments and small nose-tip/upper-lip targets. Eye centers derive from MPFB joint landmarks; radius and settings are in `head-r2-report.json`. `tools/avatar/refine_head_r2.py` rebuilds this file from R1 and replaces R2, so preserve manual work under a new name before running it.
 
 Front, three-quarter and profile review images are `head-r2-*.png`. These are actual Blender renders with clay skin. Static fitting is only partially verified; eye movement/blink, tearline, eyebrows/eyelashes, hair, skin textures and likeness acceptance remain pending. Procedural iris materials are a study, not final photoreal eye shading. The launcher now opens R2; browser preview remains the earlier rejected model.
 
-## Current: head proportions R1
+## Previous: head proportions R1
 
 Open `aria-head-blockout-r1.blend` or the ARIA Blender launcher. This file keeps 13 editable MPFB face targets, temporary eye-fitting spheres and subdivision smoothing. It is a first proportion study, not an accepted likeness or completed sculpt. Settings are in `head-r1-report.json`; builder is `tools/avatar/sculpt_head_blockout.py`. The builder recreates R1 from the preserved base, so save future manual edits under a new revision before rebuilding.
 

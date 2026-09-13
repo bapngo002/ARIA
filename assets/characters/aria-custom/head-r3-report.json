@@ -1,0 +1,10 @@
+{
+  "counts": {
+    "brow_hairs": 270,
+    "lashes": 38,
+    "lid_curves": 4
+  },
+  "base": "aria-head-r2.blend",
+  "proportions_changed": false,
+  "status": "static surface fitting; no expression rig"
+}
