@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Modeling preparation — MPFB base, 2026-09-13
+
+VERIFIED: installed MPFB 2.0.17 from its official tagged source (80919fa4682335c41847f761a4d79dcad4124732) as a local Blender extension in the isolated `D:/UserData/ARIA/tools/blender-profile`. Blender 5.2 registered the extension and created/saved `assets/characters/aria-custom/aria-human-base.blend`: adult-female base (19,158 vertices including helpers), packed concept references. Original reference workspace and rejected anime draft preserved. Launcher `tools/avatar/Open-ARIA-Blender.cmd` selects the correct D-drive profile. Code/source downloads, extension preferences and cache stay on D; default user profile not replaced. Base-asset CC0 license and setup report retained with artifact. PARTIALLY VERIFIED: preparation in background Blender, not a native UI/interactive sculpt test. NOT VERIFIED/pending: separate eyeballs, hair, clothing, custom likeness sculpt, rig, expressions and Pi deployment. Next action: fit the new head's proportions/silhouette to the chosen portrait before detail and animation. A base mesh is not completion of the exact-likeness requirement.
+
 ### Blender setup verified — 2026-09-13
 
 Owner asks to use/install Blender locally for custom modeling. VERIFIED: existing `C:/Program Files/Blender Foundation/Blender 5.2/blender.exe` reports Blender 5.2.0 LTS and successfully runs the reference-workspace builder; no duplicate installation/download was needed. Created `assets/characters/aria-custom/aria-custom-sculpt.blend` with both reference images packed, a reference viewport and empty custom-sculpt collection using `tools/avatar/prepare_sculpt_workspace.py`. This file is a REFERENCE WORKSPACE, not a new character mesh. No native-window visibility verification, MPFB installation, custom sculpt/rig, likeness acceptance or Pi deployment is claimed. Project outputs remain on D; rejected draft remains preserved. Next step: create a suitable human base and custom head sculpt in this new workspace, checking actual silhouette against the concept before animation.

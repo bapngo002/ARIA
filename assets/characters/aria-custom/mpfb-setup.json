@@ -1,0 +1,27 @@
+{
+  "blender": "5.2.0 LTS",
+  "mpfb": [
+    2,
+    0,
+    17
+  ],
+  "source_commit": "80919fa4682335c41847f761a4d79dcad4124732",
+  "vertices_including_helpers": 19158,
+  "macro": {
+    "gender": 0.0,
+    "age": 0.35,
+    "muscle": 0.5,
+    "weight": 0.5,
+    "proportions": 0.5,
+    "height": 0.5,
+    "cupsize": 0.5,
+    "firmness": 0.5,
+    "race": {
+      "asian": 0.33,
+      "caucasian": 0.33,
+      "african": 0.33
+    }
+  },
+  "status": "base only; no custom likeness",
+  "module": "bl_ext.aria_local.mpfb"
+}
