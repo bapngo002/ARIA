@@ -9,6 +9,8 @@ License: VRM Public License 1.0, https://vrm.dev/licenses/1.0/. The original emb
 
 ## Runtime libraries
 
+Additional runtime modifications: softer nose/chin geometry and corresponding facial position morphs, physical skin/eye materials, portrait lighting, and texture filtering. The distributed source VRM remains unmodified.
+
 Three.js r180: https://github.com/mrdoob/three.js/tree/r180
 - vendor/three.module.min.js and three.core.min.js: original release build files.
 - vendor/GLTFLoader.js and BufferGeometryUtils.js: original examples modules with only import paths changed to local modules.

@@ -20,9 +20,10 @@ async function createAvatar() {
   canvas.setAttribute('aria-label','Nhân vật nữ anime 3D');
   const scene=new T.Scene();
   const camera=new T.PerspectiveCamera(28,1,.01,20);
-  scene.add(new T.AmbientLight(0xffffff,.65));
-  const key=new T.DirectionalLight(0xfff3e9,1.5);key.position.set(-1,2,3);scene.add(key);
-  const fill=new T.DirectionalLight(0xd8eaff,.5);fill.position.set(2,1,1);scene.add(fill);
+  scene.add(new T.HemisphereLight(0xfff4ec,0xc7b4c9,1.25));
+  const key=new T.DirectionalLight(0xffecdf,1.1);key.position.set(-3,2,5);scene.add(key);
+  const fill=new T.DirectionalLight(0xe7e3ff,.7);fill.position.set(3,1,4);scene.add(fill);
+  const rim=new T.DirectionalLight(0xe5c3e9,.65);rim.position.set(1,1,-2);scene.add(rim);
   const loader=new GLTFLoader();loader.register(parser=>new VRMLoaderPlugin(parser));
   let vrm;
   try {
@@ -34,9 +35,55 @@ async function createAvatar() {
   scene.add(vrm.scene);
   // Runtime styling keeps the source model and its embedded metadata unchanged.
   const styled=new Set();
+  const portraitMaterials=new Map();
+  const sourceGeometries=new Set();
+  // Small smooth deformations calibrated only to this pinned sample's coordinates.
+  // Apply the same function to every expression so blink/smile shapes stay aligned.
+  function softenFace(geometry) {
+    sourceGeometries.add(geometry);
+    const softened=geometry.clone(),base=geometry.attributes.position;
+    const deform=(x,y,z)=>{
+      const chin=Math.exp(-Math.pow(x/.033,2))*Math.exp(-Math.pow((y-1.352)/.015,2));
+      const nose=Math.exp(-Math.pow(x/.012,2)-Math.pow((y-1.409)/.013,2));
+      return [x,y+.007*chin,z-.006*nose*Math.max(0,Math.min(1,(z-.075)/.014))];
+    };
+    for(let i=0;i<base.count;i++)softened.attributes.position.setXYZ(i,...deform(base.getX(i),base.getY(i),base.getZ(i)));
+    for(let m=0;m<(geometry.morphAttributes.position||[]).length;m++) {
+      const source=geometry.morphAttributes.position[m],dest=softened.morphAttributes.position[m];
+      for(let i=0;i<base.count;i++) {
+        const origin=[base.getX(i),base.getY(i),base.getZ(i)];
+        const values=[source.getX(i),source.getY(i),source.getZ(i)];
+        const point=deform(...values.map((v,k)=>geometry.morphTargetsRelative?v+origin[k]:v));
+        const zero=deform(...origin);
+        dest.setXYZ(i,...point.map((v,k)=>geometry.morphTargetsRelative?v-zero[k]:v));
+      }
+    }
+    softened.computeVertexNormals();softened.computeBoundingBox();softened.computeBoundingSphere();
+    return softened;
+  }
+  function refineMaterial(mat) {
+    if(!mat || mat.isOutline)return mat;
+    const skin=mat.name==='Face_00_SKIN'||mat.name==='Body_00_SKIN';
+    const eye=mat.name==='EyeIris_00_EYE'||mat.name==='EyeWhite_00_EYE';
+    if(!skin&&!eye)return mat;
+    if(portraitMaterials.has(mat))return portraitMaterials.get(mat);
+    // Preserve the authored UV artwork and morph-target mesh; shade its real contours.
+    const refined=new T.MeshPhysicalMaterial({
+      name:mat.name+' portrait',map:mat.map,color:mat.color.clone(),
+      side:mat.side,transparent:mat.transparent,opacity:mat.opacity,alphaTest:mat.alphaTest,
+      roughness:eye?.20:.82,metalness:0,
+      clearcoat:eye?.7:0,clearcoatRoughness:eye?.12:.7,
+      specularIntensity:eye?.8:.15,
+      emissive:skin?new T.Color(0xb68b78):new T.Color(0x000000),
+      emissiveMap:skin?mat.map:null,emissiveIntensity:skin?.16:0
+    });
+    portraitMaterials.set(mat,refined);return refined;
+  }
   vrm.scene.traverse(object=>{
+    if(object.geometry && !Array.isArray(object.material) && object.material?.name==='Face_00_SKIN')object.geometry=softenFace(object.geometry);
     for(const mat of (Array.isArray(object.material)?object.material:[object.material])) {
       if(!mat||styled.has(mat))continue;styled.add(mat);
+      if(mat.map)mat.map.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());
       if(mat.name.startsWith('Tops_')) {
         mat.color?.set(0xb4a3dc);
         mat.shadeColorFactor?.set(0x8171a2);
@@ -46,6 +93,7 @@ async function createAvatar() {
         mat.shadeColorFactor?.set(0x9e7b8e);
       }
     }
+    if(object.material)object.material=Array.isArray(object.material)?object.material.map(refineMaterial):refineMaterial(object.material);
   });
   // Lower arms from the author's neutral T pose before portrait framing.
   for(const [name,z] of [['leftUpperArm',-1.15],['rightUpperArm',1.15]]) {
@@ -66,8 +114,8 @@ async function createAvatar() {
   }
   const jewel=new T.Mesh(petalGeometry,new T.MeshStandardMaterial({color:0x51baa9,metalness:.3,roughness:.2}));
   jewel.scale.set(.005,.005,.004);jewel.position.z=.003;flower.add(jewel);
-  camera.position.set(0,headPosition.y+.055,.80);
-  camera.lookAt(0,headPosition.y+.055,0);
+  camera.position.set(0,headPosition.y+.063,.75);
+  camera.lookAt(0,headPosition.y+.063,0);
   const target=new T.Object3D();scene.add(target);target.position.set(0,headPosition.y,3);
   if(vrm.lookAt) vrm.lookAt.target=target;
   const reduced=matchMedia('(prefers-reduced-motion: reduce)');
@@ -83,7 +131,7 @@ async function createAvatar() {
   };
   dial.addEventListener('pointermove',onPointerMove,{passive:true});
   const expressionValues={happy:0,sad:0,angry:0,relaxed:0,surprised:0};
-  const dispose=()=>{dial.removeEventListener('pointermove',onPointerMove);VRMUtils.deepDispose(vrm.scene);VRMUtils.deepDispose(ornament);renderer.dispose();canvas.remove();};
+  const dispose=()=>{dial.removeEventListener('pointermove',onPointerMove);VRMUtils.deepDispose(vrm.scene);VRMUtils.deepDispose(ornament);for(const original of portraitMaterials.keys())original.dispose();for(const geometry of sourceGeometries)geometry.dispose();renderer.dispose();canvas.remove();};
   const fail=()=>{failed=true;pending=null;dispose();document.dispatchEvent(new Event('aria-3d-error'));};
   canvas.addEventListener('webglcontextlost',event=>{event.preventDefault();fail();},{once:true});
   function animate(ms) {
