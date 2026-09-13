@@ -2,15 +2,24 @@
 let token = '', current = null, lastHistory = '', lastMemories = '', polling = false, lastServerError = '', disconnected = false;
 const $ = id => document.getElementById(id);
 function setAvatarStyle(style) {
-  $('dial').dataset.avatar = style === 'animated' ? 'animated' : 'portrait';
+  style = ['three','animated','portrait'].includes(style) ? style : 'three';
+  $('dial').dataset.avatar = style;
   $('avatar-style').value = $('dial').dataset.avatar;
-  $('expression').disabled = style !== 'animated';
-  $('avatar-info').textContent = style === 'animated' ? 'Avatar có chuyển động mắt và biểu cảm theo trạng thái app.' : 'Chân dung minh họa chi tiết; chưa có chuyển động mắt và miệng.';
+  $('expression').disabled = style === 'portrait';
+  $('avatar-info').textContent = style === 'three' ? 'Nhân vật anime mẫu của pixiv: quay đầu, chớp mắt và biểu cảm. Chưa phải khuôn mặt trong ảnh bạn chọn.' : style === 'animated' ? 'Avatar có chuyển động mắt và biểu cảm theo trạng thái app.' : 'Chân dung bạn chọn · ảnh tĩnh.';
+  if (style === 'three') import('/avatar3d.js').then(module => module.start()).catch(avatar3dFailed);
 }
-try { setAvatarStyle(localStorage.getItem('aria-avatar-style') || 'portrait'); } catch (_) { setAvatarStyle('portrait'); }
+function avatar3dFailed() {
+  $('dial').dataset.webgl = 'unavailable';
+  if ($('dial').dataset.avatar !== 'three') return;
+  setAvatarStyle('portrait');
+  $('avatar-info').textContent = 'Không mở được nhân vật 3D trên trình duyệt này. Đang hiển thị ảnh bạn chọn.';
+}
+document.addEventListener('aria-3d-error', avatar3dFailed);
+try { setAvatarStyle(localStorage.getItem('aria-avatar-style-v2') || 'three'); } catch (_) { setAvatarStyle('three'); }
 $('avatar-style').onchange = () => {
   setAvatarStyle($('avatar-style').value);
-  try { localStorage.setItem('aria-avatar-style', $('avatar-style').value); } catch (_) {}
+  try { localStorage.setItem('aria-avatar-style-v2', $('avatar-style').value); } catch (_) {}
 };
 // Continuous poses: eyelid openness, inner eyebrow lift, smile depth, mouth width.
 const expressions = {happy:[.86,-1,24,41],normal:[1,0,13,32],sad:[.78,-12,-15,30],angry:[.67,12,-5,30],thinking:[.88,-6,3,23],listening:[1.12,-8,7,24]};
@@ -19,6 +28,7 @@ try { const saved = localStorage.getItem('aria-expression'); if (['happy','norma
 function paintFace(state = 'idle') {
   const name = {thinking:'thinking',listening:'listening',speaking:'happy',stopping:'normal',error:'sad'}[state] || restingExpression;
   faceTarget = expressions[name];
+  $('dial').dataset.expression = name;
   document.querySelectorAll('.robot-face').forEach(face => { face.dataset.expression = name; });
 }
 let faceTarget = expressions.happy, facePose = [...faceTarget];

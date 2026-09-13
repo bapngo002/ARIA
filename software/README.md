@@ -14,7 +14,9 @@ Trạng thái, giới hạn runtime, IPC và checklist duy nhất nằm trong [M
 
 ## App màn hình tròn và AI hội thoại
 
-**Bản xem trước hiện tại:** ảnh chủ nhân chọn từ `app_ui/aria-owner-portrait-v1.png`, sao chép nguyên gốc và căn khung bằng CSS. Đây là **ảnh tĩnh**, chưa chuyển động mắt/miệng hoặc đổi biểu cảm. Trong **Cài đặt → Kiểu nhân vật**, có thể đổi sang **Avatar chuyển động** để dùng bản SVG với các hoạt ảnh dưới đây. Không gửi ảnh tới AI hoặc bật camera khi đổi kiểu nhân vật; lựa chọn lưu trong trình duyệt. Chân dung tạo trước đó (`aria-anime-v1.png`) được bảo tồn nhưng không còn là ảnh mặc định.
+**Bản xem trước hiện tại:** nhân vật nữ anime 3D có sẵn của pixiv (VRM), tải hoàn toàn từ repo local. Có quay đầu nhẹ, chuyển động mắt, chớp mắt, tóc theo chuyển động và biểu cảm theo trạng thái app. Thêm áo tím, tóc nâu ánh hồng, kẹp hoa nhỏ; các cử chỉ nhìn ngang/nghiêng đầu/mỉm cười/gật đầu có khoảng nghỉ. Trên PC mắt có thể nhìn theo con trỏ, không dùng camera. Đây là **nhân vật mẫu**, chưa phải khuôn mặt trong ảnh chủ nhân; bản ghép hình khối đã bị chủ nhân loại. Cài đặt → Kiểu nhân vật vẫn cho chọn ảnh gốc hoặc SVG. Chuyển động miệng chỉ theo trạng thái nói, chưa đồng bộ âm vị. Xem nguồn và giấy phép trong [THIRD-PARTY.md](pi/app_ui/THIRD-PARTY.md).
+
+Mỗi trang chỉ dùng một WebGL canvas; mục tiêu tối đa khoảng 30fps, giới hạn mật độ điểm ảnh 1.25, dừng dựng khi ẩn/đổi kiểu nhân vật, tôn trọng giảm chuyển động. Cần WebGL2; lỗi tải hoặc mất context sẽ quay về ảnh và báo trong Cài đặt. Browser PC đã kiểm tra; hiệu năng và bộ nhớ trên Pi **NOT VERIFIED**. Ảnh gốc và ảnh tạo trước vẫn được bảo tồn.
 
 Bản thử giao diện mới nhất theo yêu cầu chủ nhân: avatar nữ cách điệu (tóc dài nâu ánh tím, da ấm, mắt nâu, lông mi nhẹ và môi hồng), giữ chuyển động và chọn biểu cảm. Chưa chốt nhân vật cuối cùng; các mô tả robot cyan bên dưới là các bản thiết kế trước, được bảo tồn trong Git.
 

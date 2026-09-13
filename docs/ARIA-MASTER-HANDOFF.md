@@ -4,6 +4,16 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Animated 3D character trial — 2026-09-13
+
+**Current visual direction:** owner requests moving 3D instead of a portrait, rejects the procedural head as ugly, then finds the stock VRM preview too plain. The rejected procedural file was kept only as a local temporary comparison, not shipped. Current preview uses pixiv's licensed VRM1_Constraint_Twist_Sample v1.0.1 through locally vendored Three.js r180 / three-vrm 3.4.2. Runtime styling adds lavender clothing, warmer hair, a small flower barrette, soft portrait fade and subdued colored background. Standby still contains only time, avatar and measured/unknown temperature. The stock character is NOT a reconstruction of the owner-selected photo and is NOT finally approved by the owner.
+
+**VERIFIED (PC/local browser):** VRM asset loads from the app's explicit local route, WebGL renders the textured/skinned character with advancing frame counters, standby/main navigation works, original-photo selection remains available and disables the expression control, returning to 3D works, and no JS errors appeared in checked states. Existing 17 host tests pass after route/CSP changes; JavaScript syntax checked. All new project assets are on D. Source VRM is unchanged (10,776,032 bytes), license metadata/third-party notices retained in app_ui; libraries are MIT, model has VRM Public License 1.0 plus embedded settings, NOT CC0. No remote CDN request at runtime; blob access is limited to image/connection decoding while scripts remain same-origin.
+
+**PARTIALLY VERIFIED:** animation code combines blink, gaze, hair spring motion, eased poses and spaced idle gestures (glance, tilt, smile, nod); pointer-following is a screen interaction, not camera tracking. Speaking mouth movement is state-driven, not audio/phoneme lip-sync. One canvas is reused, frames capped near 30fps with pixel ratio at most 1.25, drawing skips hidden/non-3D views and reduced-motion disables continuous motion. Loading/context failure has a photo fallback; context-loss recovery and reduced-motion behavior have not been fault-injected on the Pi.
+
+**NOT VERIFIED:** actual Pi GPU/memory/frame rate, deployment, voice synchronization, resemblance to the supplied portrait and final owner visual acceptance. Motor/legacy-core HOLD and provider billing boundaries remain unchanged. Next visual checkpoint is owner review of this moving-character preview, then Pi performance verification before treating it as the deployed UI.
+
 ### Human-avatar trial — 2026-09-13
 
 Current portrait selection supersedes the generated anime image: owner supplied `kling_20260517_作品_Image1Chib_5063_0.png` and explicitly requested using that face. Imported unchanged as `software/pi/app_ui/aria-owner-portrait-v1.png` (3,482,776 bytes); source/destination SHA-256 both `42b5beb8f64a1a1da5478ac991fc05002e79eeed1ceb93ebbda15619044005e7`. UI frames the landscape source with CSS object-fit/position and soft edge mask; no source pixel edits or regeneration. Standby/main now use this image, labeled owner-selected static portrait. Browser verified its rendering; clock/temperature and animated fallback remain. Source original and earlier asset preserved; facial animation and Pi runtime NOT VERIFIED.

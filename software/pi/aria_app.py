@@ -39,7 +39,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
-        self.send_header("Content-Security-Policy", "default-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'")
+        self.send_header("Content-Security-Policy", "default-src 'self'; img-src 'self' blob:; connect-src 'self' blob:; frame-ancestors 'none'; base-uri 'none'; form-action 'self'")
         self.send_header("Referrer-Policy", "no-referrer")
         self.end_headers()
         try:
@@ -58,13 +58,20 @@ class Handler(BaseHTTPRequestHandler):
             state["token"] = self.server.token
             return self.send(200, state)
         assets = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"),
+                  "/avatar3d.js": ("avatar3d.js", "text/javascript"),
+                  "/vendor/three-vrm.module.min.js": ("vendor/three-vrm.module.min.js", "text/javascript"),
+                  "/vendor/GLTFLoader.js": ("vendor/GLTFLoader.js", "text/javascript"),
+                  "/vendor/BufferGeometryUtils.js": ("vendor/BufferGeometryUtils.js", "text/javascript"),
+                  "/models/aria-sample.vrm": ("models/aria-sample.vrm", "model/gltf-binary"),
+                  "/vendor/three.module.min.js": ("vendor/three.module.min.js", "text/javascript"),
+                  "/vendor/three.core.min.js": ("vendor/three.core.min.js", "text/javascript"),
                   "/aria-anime-v1.png": ("aria-anime-v1.png", "image/png"),
                   "/aria-owner-portrait-v1.png": ("aria-owner-portrait-v1.png", "image/png"),
                   "/style.css": ("style.css", "text/css")}
         if path not in assets:
             return self.send(404, {"error": "Không tìm thấy."})
         name, mime = assets[path]
-        self.send(200, (self.server.assets / name).read_bytes(), mime if mime.startswith("image/") else mime + "; charset=utf-8")
+        self.send(200, (self.server.assets / name).read_bytes(), mime if mime.startswith(("image/", "model/")) else mime + "; charset=utf-8")
 
     def do_POST(self):
         expected_origin = f"http://127.0.0.1:{self.server.server_port}"
