@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Face reference follow-up — 2026-09-13
+
+Owner supplies a four-expression robot reference. Replaced the plain green eyes with native SVG cyan eyes/mouth: happy, normal, sad and angry, preserving the simple clock/face/temperature standby. Main settings include a resting-expression selector, saved only in this browser's local storage. Runtime listening/thinking/speaking/error uses corresponding visual poses; this represents app state, not inferred emotions or a verified AI emotion engine. Browser checked happy/angry appearance, all four selector values and return to standby, with no JS errors in the checked state. Pi display/voice synchronization remains NOT VERIFIED. Source UI only; no raster model assets, backend or hardware change.
+
 ### Touchscreen follow-up — separate standby screen, 2026-09-13
 
 Owner clarifies that the existing dialogue/memory/settings screen is the main interface; standby must show only a face, time and room temperature. Implemented in `software/pi/app_ui/`: startup standby with large blinking eyes/smile, local clock and fresh valid BME temperature; touch opens the preserved main interface, ARIA header returns to standby. A 30-second inactivity default returns to standby unless a voice/AI turn is active or an input contains a draft. No sensor value is fabricated: unavailable/stale/disconnected readings show `— °C`. Browser verified startup appearance, tap-to-open and unavailable-temperature behavior, with no JS errors in the checked state. Automatic inactivity behavior is implemented; owner interactions in the shared preview interrupted the idle observation, so no independent timed idle PASS is claimed. Actual Pi panel, measured temperature and touch remain NOT VERIFIED. No backend, provider, pinmap or motor changes.

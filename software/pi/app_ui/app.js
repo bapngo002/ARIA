@@ -1,6 +1,27 @@
 'use strict';
 let token = '', current = null, lastHistory = '', lastMemories = '', polling = false, lastServerError = '', disconnected = false;
 const $ = id => document.getElementById(id);
+const expressions = {
+  happy: {left:'M57 82 C52 24 108 24 105 82 C93 58 71 58 57 82 Z',right:'M195 82 C190 24 246 24 243 82 C231 58 209 58 195 82 Z',mouth:'M94 125 Q150 141 206 125 C209 180 91 180 94 125 Z',fill:true},
+  normal: {left:'M65 66 A16 29 0 1 0 32 0 A16 29 0 1 0 65 66 Z',right:'M203 66 A16 29 0 1 0 32 0 A16 29 0 1 0 203 66 Z',mouth:'M105 135 C118 167 182 167 195 135',fill:false},
+  sad: {left:'M51 71 H109 V78 H51 Z',right:'M191 71 H249 V78 H191 Z',mouth:'M109 159 C120 126 180 126 191 159',fill:false},
+  angry: {left:'M51 40 L112 89 Q48 108 51 40 Z',right:'M249 40 L188 89 Q252 108 249 40 Z',mouth:'M106 159 Q132 139 164 130 Q194 124 194 160 Z',fill:true},
+  thinking: {left:'M51 61 H109 V70 H51 Z',right:'M205 69 A14 24 0 1 0 28 0 A14 24 0 1 0 205 69 Z',mouth:'M124 147 Q148 140 174 147',fill:false},
+  listening: {left:'M62 64 A19 33 0 1 0 38 0 A19 33 0 1 0 62 64 Z',right:'M200 64 A19 33 0 1 0 38 0 A19 33 0 1 0 200 64 Z',mouth:'M141 145 A9 12 0 1 0 18 0 A9 12 0 1 0 141 145 Z',fill:false}
+};
+let restingExpression = 'happy';
+try { const saved = localStorage.getItem('aria-expression'); if (['happy','normal','sad','angry'].includes(saved)) restingExpression = saved; } catch (_) {}
+function paintFace(state = 'idle') {
+  const name = {thinking:'thinking',listening:'listening',speaking:'happy',stopping:'normal',error:'sad'}[state] || restingExpression;
+  const expression = expressions[name];
+  document.querySelectorAll('.robot-face').forEach(face => {
+    face.dataset.expression = name;
+    face.querySelector('.eye-left').setAttribute('d', expression.left);
+    face.querySelector('.eye-right').setAttribute('d', expression.right);
+    face.querySelector('.mouth').setAttribute('d', expression.mouth);
+    face.querySelector('.mouth').classList.toggle('filled', expression.fill);
+  });
+}
 let lastInteraction = performance.now();
 const STANDBY_AFTER_MS = 30000;
 function showStandby(visible) {
@@ -29,6 +50,7 @@ async function action(name, body = {}) {
 function render(state) {
   current = state; token = state.token;
   $('dial').dataset.state = state.state;
+  paintFace(state.state);
   $('status').textContent = labels[state.state] || state.state;
   const busy = ['listening','thinking','speaking','stopping'].includes(state.state);
   temperature(state);
@@ -112,6 +134,12 @@ function clock() {
   $('clock').textContent = value; $('standby-clock').textContent = value;
 }
 $('standby').onclick = () => showStandby(false);
+$('expression').value = restingExpression;
+$('expression').onchange = () => {
+  restingExpression = $('expression').value;
+  try { localStorage.setItem('aria-expression', restingExpression); } catch (_) {}
+  paintFace(current?.state || 'idle');
+};
 $('rest').onclick = () => showStandby(true);
 for (const event of ['pointerdown','keydown','input','wheel']) document.addEventListener(event, () => { lastInteraction = performance.now(); }, {passive:true});
 setInterval(() => {
@@ -119,4 +147,4 @@ setInterval(() => {
   const draft = $('message').value.trim() || $('memory-text').value.trim();
   if ($('standby').hidden && !busy && !draft && performance.now() - lastInteraction >= STANDBY_AFTER_MS) showStandby(true);
 }, 1000);
-clock(); refresh(); setInterval(clock, 10000); setInterval(refresh, 1000);
+paintFace(); clock(); refresh(); setInterval(clock, 10000); setInterval(refresh, 1000);

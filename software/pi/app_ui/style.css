@@ -13,3 +13,14 @@
 #standby-temperature{font-size:4.6cqw;color:#a9c7b9;font-variant-numeric:tabular-nums;letter-spacing:.03em}
 header button.brand{padding:0;min-height:0;background:none;border:0;border-radius:.5cqw}
 @media(prefers-reduced-motion:reduce){.standby-eyes i{animation:none}}
+
+/* Cyan screen expressions, inspired by the owner's face reference. */
+.robot-face{display:block;overflow:visible;color:#73d5eb;filter:drop-shadow(0 0 9px #56cce51c)}
+.robot-face .eyes path,.robot-face .mouth.filled{fill:#73cde3;stroke:#9cf0fa;stroke-width:3;stroke-linejoin:round}
+.robot-face .mouth{fill:none;stroke:#8fe5f4;stroke-width:5;stroke-linecap:round}
+.robot-face .eyes{transform-box:fill-box;transform-origin:center;animation:blink 7s infinite}
+.robot-face.standby-face{width:57cqw;height:38cqw;flex-shrink:0}
+.robot-face.face{width:20cqw;height:13.3cqw;min-height:0;align-self:center;flex-shrink:0}
+[data-state=speaking] .robot-face .mouth{transform-box:fill-box;transform-origin:center;animation:talk .35s ease-in-out infinite alternate}
+@keyframes talk{to{transform:scaleY(.65)}}
+@media(prefers-reduced-motion:reduce){.robot-face .eyes,[data-state=speaking] .robot-face .mouth{animation:none}}
