@@ -4,6 +4,14 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Accessible-message synchronization — 2026-09-13, avatar rejection and incomplete likeness
+
+Archived 8 user/final-assistant text items from [Tạo avatar 3D khuôn mặt ARIA](conversations/2026-09-13-01a09aae-avatar.md), covering all four API-returned turns, and 4 new items from [Tạo mô hình 3D](conversations/2026-09-13-6aa68f57-avatar-followup.md), deduplicated against the published checkpoint. Both sources were idle; the latest source turn ended, but its requested likeness goal remains INCOMPLETE. Source work was already published through `e1f8aad`; this synchronization only adds reviewed documentation, without rerunning Blender or modifying preserved experiments.
+
+CURRENT: owner requests an actual animated 3D face, rejects R6, and asks to continue direct Blender modeling until it resembles the reference. The source final response explicitly states that this requirement has not been met. R4 remains the previously selected baseline; R7-R26 are unapproved appearance studies. Source-reported render/fit results and R6 export checks must not be presented as owner acceptance, animation readiness of R26, or Pi verification. Next action remains resolving hair/temple boundaries and validating three-view likeness in the source modeling task before facial animation/integration.
+
+Coverage is accessible text only; image pixels, linked deliverables, older backlog and unavailable account/cloud history remain outside this run. No model acquisition, code edits, hardware, flash or Pi service action; MOTOR/ENCODER/DRIVER HOLD preserved. Other listed ARIA sources had no newer activity relative to the prior run.
+
 ### Reference likeness iteration R8-R26 — 2026-09-13, INCOMPLETE
 
 Owner explicitly requests continued Blender work until the face resembles the supplied three views. R8-R26 are preserved appearance experiments, not a finished or selected avatar. Latest files are under assets/characters/aria-custom/r26-review; preceding numbered directories are historical iterations. R4 launcher remains unchanged. No hardware/runtime/pipeline change.
@@ -517,7 +525,6 @@ Tiếp tục dùng Copilot Pro cho các việc hỗ trợ có lợi ích cụ th
 **Bước tiếp theo đang hoạt động theo MOTOR HOLD:** người dùng chạy `software/pi/aria_sensors.py` độc lập trên Pi, lưu output/error để gắn runtime evidence; sau đó thu `wpctl status`/`aplay -l` chỉ đọc nếu tiếp tục audio. STEP-003 motor/encoder/carrier tạm dừng; không cấp motor, không flash ESP và không khởi động `aria-core.service`. Thứ tự tổng thể phía trên không bị thay thế.
 
 Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; tự đồng bộ GitHub theo ủy quyền thường xuyên bên dưới và xác minh remote HEAD. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.
-
 
 
 
