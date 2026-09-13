@@ -1,0 +1,14 @@
+{
+  "status": "R7 face-only study, unapproved likeness. No hair or expression rig. R6 rejected by owner.",
+  "base": "aria-head-r4.blend",
+  "head_vertices": 4556,
+  "quads": 4532,
+  "adjustment_keys": [
+    "01 - Softer jaw and chin",
+    "02 - Slimmer nasal shape",
+    "03 - Longer eyelids and outer corners",
+    "04 - Lip volume and corners"
+  ],
+  "reference": "packed original user three-view sheet",
+  "verification": "Blender save and three static renders; no exact likeness or animation claim"
+}

@@ -4,6 +4,12 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### R6 rejected; direct Blender head study R7 — 2026-09-13
+
+Owner explicitly rejects R6 appearance ("xấu không tả nổi") and asks to create directly in Blender. R6 is REJECTED/HISTORICAL, not a viable selected avatar or a basis for further cosmetic patching. Preserved all existing files. Created `assets/characters/aria-custom/r7-head-study/aria-head-r7.blend` directly from R4, with four editable proportion layers for jaw/chin, nose, eyelids and lips, cropped head/bust and the original three-view reference packed. No hair or facial animation work in R7; no pipeline or hardware change. R4 remains the previously selected baseline; R7 is unapproved.
+
+VERIFIED: Blender saved R7 and rendered front/three-quarter/profile. Front and three-quarter visually inspected; reference likeness is still NOT VERIFIED and the result remains a generic proportion study. The adjustment layers are authored mathematical deformations, not a claimed hand-sculpt or automated reconstruction. Brow/lid curves were moved to follow the fully applied study and are not driven by individual layer weights. Source: `tools/avatar/build_head_r7.py`. A separate deliverable copy is opened in native Blender for the owner to inspect alongside the reference. Next: visual review of face proportions before further detail; do not present this as a finished likeness. Usage check reported 17% remaining and the owner was informed; checkpoint kept bounded.
+
 ### R6 facial animation candidate — 2026-09-13
 
 Continued owner request from "Tạo mô hình 3D" after reading current main and the existing R4 selection. Recovered and visually inspected the actual attached three-view reference. Created a separate R4-derived candidate in `assets/characters/aria-custom/r6-candidate/`: editable packed Blender file, GLB, FBX, five rendered views/expression samples, source reference, licenses, build report and export validation. Builders: `tools/avatar/build_face_r6.py` and `validate_face_r6.py`. R4 and its launcher remain the selected baseline; R6 is NOT an owner-approved replacement.
