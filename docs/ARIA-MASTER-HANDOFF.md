@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Touchscreen follow-up — separate standby screen, 2026-09-13
+
+Owner clarifies that the existing dialogue/memory/settings screen is the main interface; standby must show only a face, time and room temperature. Implemented in `software/pi/app_ui/`: startup standby with large blinking eyes/smile, local clock and fresh valid BME temperature; touch opens the preserved main interface, ARIA header returns to standby. A 30-second inactivity default returns to standby unless a voice/AI turn is active or an input contains a draft. No sensor value is fabricated: unavailable/stale/disconnected readings show `— °C`. Browser verified startup appearance, tap-to-open and unavailable-temperature behavior, with no JS errors in the checked state. Automatic inactivity behavior is implemented; owner interactions in the shared preview interrupted the idle observation, so no independent timed idle PASS is claimed. Actual Pi panel, measured temperature and touch remain NOT VERIFIED. No backend, provider, pinmap or motor changes.
+
 ### Incremental synchronization — 2026-09-13 08:12 UTC
 
 Completed source implementation `f9a022957b3e52bde5b1cc8bf6ebbb75b29d8968` was already on GitHub main and matched the clean local repository. The source assistant confirms completion and 17 passing host tests; this synchronization did not rerun those tests or deploy the app. The implementation checkpoint below retains the detailed acceptance limits.

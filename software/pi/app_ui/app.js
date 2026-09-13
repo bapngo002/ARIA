@@ -1,6 +1,21 @@
 'use strict';
 let token = '', current = null, lastHistory = '', lastMemories = '', polling = false, lastServerError = '', disconnected = false;
 const $ = id => document.getElementById(id);
+let lastInteraction = performance.now();
+const STANDBY_AFTER_MS = 30000;
+function showStandby(visible) {
+  $('standby').hidden = !visible;
+  $('main-interface').hidden = visible;
+  if (visible) $('standby').focus({preventScroll:true});
+  else document.querySelector('[data-page].selected').focus({preventScroll:true});
+  lastInteraction = performance.now();
+}
+function temperature(state) {
+  const bme = state?.sensors?.status === 'fresh' ? state.sensors.sample?.bme280 : null;
+  const valid = bme?.status === 'ok' && typeof bme.temperature_c === 'number' && Number.isFinite(bme.temperature_c);
+  $('standby-temperature').textContent = valid ? bme.temperature_c.toFixed(1) + ' °C' : '— °C';
+  $('standby-temperature').setAttribute('aria-label', valid ? 'Nhiệt độ phòng ' + bme.temperature_c.toFixed(1) + ' độ C' : 'Chưa có nhiệt độ mới');
+}
 const labels = {idle:'Tôi đang ở đây',thinking:'Đang nghĩ…',listening:'Đang nghe trong 5 giây…',speaking:'Đang trả lời…',stopping:'Đang dừng…',error:'Cần kiểm tra một chút'};
 function notice(text) { $('notice').textContent = text; }
 async function action(name, body = {}) {
@@ -16,6 +31,12 @@ function render(state) {
   $('dial').dataset.state = state.state;
   $('status').textContent = labels[state.state] || state.state;
   const busy = ['listening','thinking','speaking','stopping'].includes(state.state);
+  temperature(state);
+  $('rest').disabled = busy;
+  if (busy) {
+    if (!$('standby').hidden) showStandby(false);
+    lastInteraction = performance.now();
+  }
   for (const id of ['send','provider','persona','speak','reset']) $(id).disabled = busy;
   $('listen').disabled = busy || !state.voice.listen;
   $('stop').disabled = !busy;
@@ -71,7 +92,7 @@ async function refresh() {
     const response = await fetch('/api/state', {signal:AbortSignal.timeout(4000)});
     if (!response.ok) throw new Error();
     render(await response.json());
-  } catch (_) { disconnected = true; $('status').textContent='Mất kết nối app'; notice('Chưa kết nối được với ARIA trên Pi.'); }
+  } catch (_) { disconnected = true; temperature(null); $('status').textContent='Mất kết nối app'; notice('Chưa kết nối được với ARIA trên Pi.'); }
   finally { polling = false; }
 }
 document.querySelectorAll('[data-page]').forEach(button => button.onclick = () => {
@@ -86,5 +107,16 @@ $('stop').onclick = () => action('cancel');
 $('reset').onclick = () => { if (confirm('Xóa hội thoại hiện tại? Các ghi nhớ đã lưu vẫn còn.')) action('reset'); };
 for (const key of ['provider','persona','speak']) $(key).onchange = () => action('settings', {[key]:key === 'speak' ? $(key).checked : $(key).value});
 $('fullscreen').onclick = async () => { try { await document.documentElement.requestFullscreen(); } catch (_) { notice('Hãy dùng chế độ toàn màn hình của trình duyệt.'); } };
-function clock() { $('clock').textContent = new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'}); }
+function clock() {
+  const value = new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});
+  $('clock').textContent = value; $('standby-clock').textContent = value;
+}
+$('standby').onclick = () => showStandby(false);
+$('rest').onclick = () => showStandby(true);
+for (const event of ['pointerdown','keydown','input','wheel']) document.addEventListener(event, () => { lastInteraction = performance.now(); }, {passive:true});
+setInterval(() => {
+  const busy = current && ['listening','thinking','speaking','stopping'].includes(current.state);
+  const draft = $('message').value.trim() || $('memory-text').value.trim();
+  if ($('standby').hidden && !busy && !draft && performance.now() - lastInteraction >= STANDBY_AFTER_MS) showStandby(true);
+}, 1000);
 clock(); refresh(); setInterval(clock, 10000); setInterval(refresh, 1000);

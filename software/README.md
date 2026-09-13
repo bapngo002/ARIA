@@ -14,6 +14,8 @@ Trạng thái, giới hạn runtime, IPC và checklist duy nhất nằm trong [M
 
 ## App màn hình tròn và AI hội thoại
 
+Mặc định mở **màn hình chờ** chỉ có giờ, khuôn mặt và nhiệt độ phòng. Chạm vào để mở giao diện chính; chạm chữ ARIA để trở về màn hình chờ. Tự trở về sau 30 giây không thao tác, trừ khi đang nghe/nghĩ/nói/dừng hoặc còn nội dung đang nhập. Giao diện chính và hội thoại vẫn được giữ nguyên. Nhiệt độ hiển thị `— °C` khi mất kết nối, số đo cũ hoặc cảm biến chưa có dữ liệu hợp lệ.
+
 [pi/aria_app.py](pi/aria_app.py) chạy độc lập với core capture, Python 3.10+ và thư viện chuẩn. Giao diện web cục bộ nằm trong vùng tròn, dùng Chromium trên chính Pi. Có hội thoại chữ, chọn OpenAI/Gemini, cá tính, ghi nhớ thêm/xóa chủ động, trạng thái nghe/nghĩ/nói, dừng lượt và chế độ cục bộ. Không cài service hay tự mở serial/I2C/motor. Chưa có wake word, camera/vision, tự hành, app điện thoại hoặc tự mở ứng dụng bằng lời nói.
 
 Sau khi người dùng sao chép **cả thư mục** `software/pi` đến `/home/aria/aria-app`, chạy trên Pi:

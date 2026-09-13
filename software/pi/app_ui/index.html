@@ -4,8 +4,13 @@
 <title>ARIA · Ở đây cùng bạn</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
 <body>
 <main class="dial" id="dial" data-state="idle">
-  <div class="safe">
-    <header><span class="brand">ARIA</span><span id="clock"></span></header>
+  <button id="standby" aria-label="Mở giao diện chính ARIA">
+    <time id="standby-clock"></time>
+    <span class="standby-face" aria-hidden="true"><span class="standby-eyes"><i></i><i></i></span><span class="smile"></span></span>
+    <span id="standby-temperature" aria-label="Chưa có nhiệt độ mới">— °C</span>
+  </button>
+  <div class="safe" id="main-interface" hidden>
+    <header><button class="brand" id="rest" aria-label="Về màn hình chờ">ARIA</button><span id="clock"></span></header>
     <nav aria-label="Màn hình"><button data-page="home" class="selected">Bạn bè</button><button data-page="memory">Trí nhớ</button><button data-page="settings">Cài đặt</button></nav>
     <section id="home" class="page">
       <div class="face" aria-hidden="true"><i></i><i></i></div>
