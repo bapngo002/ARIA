@@ -6,6 +6,8 @@
 
 ### Animated 3D character trial — 2026-09-13
 
+Owner now requests image concepts before further character replacement, and has no character model file. Generated four standalone portrait concepts with built-in image_gen, saved under `docs/design/aria-face-concepts/` with exact prompts. VERIFIED: four PNG previews generated and preserved on D. They are static design images, NOT 3D models or evidence that this quality runs on Pi. No image was selected, no model conversion performed, and current app remains unchanged. Next visual step: owner chooses or revises a concept before model acquisition/creation.
+
 Face-depth correction: owner wants fuller, softer depth, explicitly rejects sharper nose/chin. Current preview uses physical skin/eye materials with original UV textures, softer hemispheric/key/fill lighting, low skin specularity and restrained eye reflections. Runtime-only deformation reduces the sample's nose projection and gently lifts the central chin tip; the same deformation is applied to facial position morph targets. Source VRM bytes are unchanged. Camera is slightly closer, texture anisotropy capped at 4. Local browser rendering and expression switching checked without reported JS errors; Pi GPU cost and final visual acceptance remain NOT VERIFIED. These are improvements to the stock mesh, not a high-detail reconstruction of the supplied portrait.
 
 Background follow-up: owner requests replacing the background. Current 3D view uses a muted rose/lavender gradient, brighter behind the character and dark at the circular edge, with pale clock/temperature text. CSS-only change visually checked in the local PC browser; Pi panel appearance remains NOT VERIFIED.
