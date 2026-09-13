@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Blender setup verified — 2026-09-13
+
+Owner asks to use/install Blender locally for custom modeling. VERIFIED: existing `C:/Program Files/Blender Foundation/Blender 5.2/blender.exe` reports Blender 5.2.0 LTS and successfully runs the reference-workspace builder; no duplicate installation/download was needed. Created `assets/characters/aria-custom/aria-custom-sculpt.blend` with both reference images packed, a reference viewport and empty custom-sculpt collection using `tools/avatar/prepare_sculpt_workspace.py`. This file is a REFERENCE WORKSPACE, not a new character mesh. No native-window visibility verification, MPFB installation, custom sculpt/rig, likeness acceptance or Pi deployment is claimed. Project outputs remain on D; rejected draft remains preserved. Next step: create a suitable human base and custom head sculpt in this new workspace, checking actual silhouette against the concept before animation.
+
 ### Custom character direction — owner agreement, 2026-09-13
 
 Owner agrees to a custom character based on concept 1 after rejecting the stock draft and marketplace examples. Generated `docs/design/aria-face-concepts/01-turnaround-reference.png` with built-in image_gen using approved concept 1 as identity/style reference. VERIFIED: saved three-view raster concept sheet (front, oblique, near-profile), visually inspected. PARTIALLY VERIFIED: identity resemblance and cross-view consistency are qualitative; generated views are not calibrated orthographic geometry and the side view is not an exact 90-degree profile. NOT VERIFIED: new custom mesh, topology, rig, expressions, Pi runtime or achievement of this visual quality in 3D. No new model was created in this checkpoint; rejected stock draft remains preserved, not approved. Next custom-model step is sculpting a new head against the approved portrait plus these approximate views, checking silhouette before rigging. No paid acquisition/upload or hardware actions authorized by this design decision.
