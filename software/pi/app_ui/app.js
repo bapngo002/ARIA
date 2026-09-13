@@ -1,6 +1,17 @@
 'use strict';
 let token = '', current = null, lastHistory = '', lastMemories = '', polling = false, lastServerError = '', disconnected = false;
 const $ = id => document.getElementById(id);
+function setAvatarStyle(style) {
+  $('dial').dataset.avatar = style === 'animated' ? 'animated' : 'portrait';
+  $('avatar-style').value = $('dial').dataset.avatar;
+  $('expression').disabled = style !== 'animated';
+  $('avatar-info').textContent = style === 'animated' ? 'Avatar có chuyển động mắt và biểu cảm theo trạng thái app.' : 'Chân dung minh họa chi tiết; chưa có chuyển động mắt và miệng.';
+}
+try { setAvatarStyle(localStorage.getItem('aria-avatar-style') || 'portrait'); } catch (_) { setAvatarStyle('portrait'); }
+$('avatar-style').onchange = () => {
+  setAvatarStyle($('avatar-style').value);
+  try { localStorage.setItem('aria-avatar-style', $('avatar-style').value); } catch (_) {}
+};
 // Continuous poses: eyelid openness, inner eyebrow lift, smile depth, mouth width.
 const expressions = {happy:[.86,-1,24,41],normal:[1,0,13,32],sad:[.78,-12,-15,30],angry:[.67,12,-5,30],thinking:[.88,-6,3,23],listening:[1.12,-8,7,24]};
 let restingExpression = 'happy';
@@ -20,31 +31,40 @@ function svgNode(tag, attrs = {}, children = []) {
 const faceViews = [...document.querySelectorAll('.robot-face')].map((face,index) => {
   const irisId = 'iris-' + index, whiteId = 'white-' + index;
   const skinId='skin-'+index, blushId='blush-'+index, mouthId='mouth-'+index, clipId='mouth-clip-'+index;
+  const hairId='hair-'+index;
   const gradient = (id, stops) => svgNode('radialGradient',{id,cx:'35%',cy:'28%',r:'75%'},stops.map(([offset,color])=>svgNode('stop',{offset,'stop-color':color})));
   const defs = svgNode('defs',{},[
-    gradient(whiteId,[['0%','#ffffff'],['48%','#f4f7ff'],['78%','#b3cedd'],['100%','#647b9e']]),
+    gradient(whiteId,[['0%','#fffdf8'],['58%','#fff2e6'],['85%','#ead5c8'],['100%','#c3a6a1']]),
     gradient(irisId,[['0%','#d9c995'],['32%','#a58a58'],['67%','#715333'],['88%','#483428'],['100%','#29232a']]),
-    gradient(skinId,[['0%','#ffe7cd'],['25%','#f4c6a5'],['58%','#e7aa87'],['83%','#c58068'],['100%','#9b6256']]),
+    gradient(skinId,[['0%','#fff0dd'],['30%','#f6d4bb'],['65%','#edba9e'],['87%','#ce947f'],['100%','#ac7069']]),
+    gradient(hairId,[['0%','#a67466'],['25%','#715047'],['53%','#48323a'],['85%','#2b2331'],['100%','#191d2b']]),
     gradient(blushId,[['0%','#ff9b9a'],['45%','#ed7b91'],['100%','#ed7b9100']]),
     gradient(mouthId,[['0%','#492c58'],['50%','#281d38'],['100%','#100f25']])
   ]);
   const features = svgNode('g',{'class':'features'});
   const headShape='M84 26 C106 7 193 7 216 26 Q239 50 235 91 L229 130 Q221 152 194 174 Q171 192 150 194 Q129 192 106 174 Q79 152 71 130 L65 91 Q61 50 84 26 Z';
   features.append(
-    svgNode('path',{d:'M66 37 C71 2 111 -5 150 0 C197 -7 233 10 240 45 C250 89 237 134 252 180 Q236 197 208 193 L91 193 Q62 198 48 180 C65 136 49 89 66 37 Z',fill:'#392633'}),
-    svgNode('path',{d:'M70 65 Q59 126 68 174 M228 57 Q241 125 231 179',fill:'none',stroke:'#76505a','stroke-width':5,'stroke-linecap':'round',opacity:'.45'}),
+    svgNode('path',{d:'M66 37 C71 2 111 -5 150 0 C197 -7 233 10 240 45 C250 89 230 134 254 173 Q246 190 222 196 Q206 185 203 157 L95 157 Q93 185 76 197 Q52 190 45 174 C66 132 49 89 66 37 Z',fill:`url(#${hairId})`}),
+    svgNode('path',{d:'M67 73 C48 116 85 139 64 180 Q86 167 76 132 Q66 109 76 87 M231 72 C250 114 219 141 239 178 Q215 168 225 135 Q235 103 222 84',fill:'#a07569',opacity:'.2'}),
     svgNode('path',{d:headShape,transform:'translate(0 6)',fill:'#020a16',opacity:'.45'}),
     svgNode('ellipse',{cx:65,cy:94,rx:12,ry:23,fill:'#cb8a70'}),
     svgNode('ellipse',{cx:235,cy:94,rx:12,ry:23,fill:'#b77865'}),
     svgNode('path',{d:headShape,fill:`url(#${skinId})`,stroke:'#efc7a7','stroke-opacity':'.25','stroke-width':1}),
-    svgNode('path',{d:'M64 91 C48 52 64 17 89 10 C124 -4 168 -3 192 9 C230 10 246 38 238 78 L230 106 Q221 76 220 47 Q187 43 171 22 C149 49 103 45 84 67 Q75 83 72 114 Z',fill:'#46303c'}),
-    svgNode('path',{d:'M77 45 C99 13 137 14 156 12 M87 49 Q120 31 143 29 M184 18 Q224 29 228 56',fill:'none',stroke:'#996370','stroke-width':3,'stroke-linecap':'round',opacity:'.45'}),
+    svgNode('path',{d:'M64 91 C48 52 64 17 89 10 C124 -4 168 -3 192 9 C230 10 246 38 238 78 L230 106 Q221 76 220 47 Q187 43 171 22 C149 49 103 45 84 67 Q75 83 72 114 Z',fill:`url(#${hairId})`}),
+    svgNode('path',{d:'M65 62 C64 15 131 2 163 13 C124 10 86 29 65 62 Z M178 13 Q231 9 235 65 C226 35 204 34 178 13 Z',fill:'#d49c82',opacity:'.17'}),
+    svgNode('path',{d:'M71 55 C91 21 130 12 158 14 M75 45 Q104 17 140 14 M187 20 Q221 29 229 52',fill:'none',stroke:'#ddb198','stroke-width':'.8','stroke-linecap':'round',opacity:'.3'}),
     svgNode('ellipse',{cx:88,cy:123,rx:20,ry:11,fill:`url(#${blushId})`,opacity:'.33'}),
     svgNode('ellipse',{cx:212,cy:123,rx:20,ry:11,fill:`url(#${blushId})`,opacity:'.33'}),
-    svgNode('path',{d:'M151 84 Q146 100 142 111 Q139 119 150 120 Q161 120 159 114',fill:'none',stroke:'#bc7b63','stroke-width':3,'stroke-linecap':'round'}),
-    svgNode('path',{d:'M149 101 L147 109',fill:'none',stroke:'#ffe3c1','stroke-width':3,'stroke-linecap':'round'})
+    svgNode('path',{d:'M151 88 Q145 104 142 113 Q143 121 151 122 Q160 120 158 114 Q154 102 151 88 Z',fill:'#c58b79',opacity:'.25'}),
+    svgNode('ellipse',{cx:149,cy:113,rx:6,ry:4,fill:'#ffe9d1',opacity:'.65'}),
+    svgNode('path',{d:'M142 119 Q145 121 147 120 M155 120 Q159 121 160 118',fill:'none',stroke:'#b87e70','stroke-width':1.2,'stroke-linecap':'round'}),
+    svgNode('ellipse',{cx:70,cy:125,rx:2.2,ry:5.5,fill:'#e9c892'}),
+    svgNode('ellipse',{cx:230,cy:125,rx:2.2,ry:5.5,fill:'#d5b084'})
   );
   const eyes = [103,197].map(x => {
+    const almond='M-29 0 C-15 -24 15 -24 29 0 C14 19 -14 19 -29 0 Z';
+    const eyeClipId=`eye-clip-${index}-${x}`;
+    defs.append(svgNode('clipPath',{id:eyeClipId},[svgNode('path',{d:almond})]));
     const pupil = svgNode('g',{},[
       svgNode('circle',{r:17,fill:`url(#${irisId})`}),
       svgNode('circle',{r:13.5,fill:'none',stroke:'#e7c694','stroke-width':'.6',opacity:'.35'}),
@@ -53,9 +73,11 @@ const faceViews = [...document.querySelectorAll('.robot-face')].map((face,index)
       svgNode('circle',{cx:6,cy:6,r:1.8,fill:'#c6fcff','fill-opacity':'.7'})
     ]);
     const eye = svgNode('g',{'class':'living-eye'},[
-      svgNode('ellipse',{cx:0,cy:2,rx:31,ry:38,fill:'#976452',opacity:'.4'}),
-      svgNode('ellipse',{cx:0,cy:0,rx:28,ry:35,fill:`url(#${whiteId})`}),pupil,
-      svgNode('path',{d:x<150 ? 'M-27 -6 Q-26 -27 -13 -32 M-25 -17 L-32 -24 M-19 -27 L-24 -34' : 'M27 -6 Q26 -27 13 -32 M25 -17 L32 -24 M19 -27 L24 -34',fill:'none',stroke:'#46303c','stroke-width':2.6,'stroke-linecap':'round'})
+      svgNode('path',{d:'M-30 -2 C-13 -29 15 -29 31 -2',fill:'none',stroke:'#b78282','stroke-width':6,opacity:'.25'}),
+      svgNode('path',{d:almond,fill:`url(#${whiteId})`}),svgNode('g',{'clip-path':`url(#${eyeClipId})`},[pupil]),
+      svgNode('path',{d:'M-29 0 C-15 -24 15 -24 29 0',fill:'none',stroke:'#4a333b','stroke-width':2.2,'stroke-linecap':'round'}),
+      svgNode('path',{d:x<150 ? 'M-26 -4 L-32 -9 M-22 -9 L-27 -15 M-17 -13 L-20 -18' : 'M26 -4 L32 -9 M22 -9 L27 -15 M17 -13 L20 -18',fill:'none',stroke:'#46303c','stroke-width':1.6,'stroke-linecap':'round'}),
+      svgNode('path',{d:'M-25 4 Q0 24 25 4',fill:'none',stroke:'#c08981','stroke-width':1,opacity:'.55'})
     ]);
     const brow = svgNode('path',{'class':'eyebrow'});
     features.append(eye,brow); return {x,eye,pupil,brow};
@@ -79,18 +101,19 @@ function animateFace(now) {
   if (now>nextBlink) { blinkStart=now; nextBlink=now+3200+Math.random()*3800; }
   const blinkTime=now-blinkStart;
   const blink=still || blinkTime>210 ? 1 : 1-.96*Math.sin(Math.PI*blinkTime/210);
-  const [openness,browLift,smile,width]=facePose;
+  const [openness,browLift,smile,rawWidth]=facePose;
+  const width=rawWidth*.8;
   for (const view of faceViews) {
     if (!view.face.getClientRects().length) continue;
     view.features.setAttribute('transform',`translate(0 ${still ? 0 : Math.sin(now/1700)*1.2})`);
     for (const [i,{x,eye,pupil,brow}] of view.eyes.entries()) {
-      eye.setAttribute('transform',`translate(${x} 78) scale(.78 ${openness*blink*.67})`);
+      eye.setAttribute('transform',`translate(${x} 82) scale(.94 ${openness*blink})`);
       pupil.setAttribute('transform',`translate(${gaze[0]} ${gaze[1]})`);
       const outer=i===0 ? x-23 : x+23, inner=i===0 ? x+23 : x-23;
       brow.setAttribute('d',`M${outer} 47 Q${x} ${39+browLift/2} ${inner} ${47+browLift}`);
     }
     const speech=!still && current?.state==='speaking' ? Math.sin(now/130)*3 : 0;
-    const curve=smile*.5, opening=Math.max(1,smile*.72+speech);
+    const curve=smile*.3, opening=Math.max(1,smile*.4+speech);
     const mouthPath=`M${150-width} 143 C${150-width*.55} ${143+curve} ${150+width*.55} ${143+curve} ${150+width} 143 C${150+width*.65} ${143+curve+opening} ${150-width*.65} ${143+curve+opening} ${150-width} 143 Z`;
     view.mouth.setAttribute('d',mouthPath); view.mouthClip.setAttribute('d',mouthPath);
     view.tongue.setAttribute('cy',143+curve+opening*.78);

@@ -6,6 +6,8 @@
 
 ### Human-avatar trial — 2026-09-13
 
+Latest visual direction: owner wants a more detailed, lifelike anime female character. Added original ImageGen portrait `software/pi/app_ui/aria-anime-v1.png` (1,954,374 bytes), copied into the D-drive repo, as the default standby/main avatar. Existing illustrated SVG was refined (layered hair, almond eyes with clipped moving pupils, subtle nose/lips) and retained via **Cài đặt → Kiểu nhân vật → Avatar chuyển động**. Detailed portrait is explicitly labeled a STATIC IMAGE: no blink, gaze tracking, expression change or lip-sync; user was told this limitation before integration. Expression control is disabled for static portrait. Both visual options preserve time, real/unknown temperature, dialogue and service/motor holds. Browser checked detailed portrait rendering; existing 17 host tests passed after adding its explicit image route. Future image rigging/animation and actual Pi performance are NOT VERIFIED. Character artwork remains a trial, not final owner approval.
+
 Latest owner choice: female avatar. Preview updated with longer brown/plum hair, delicate brows/lashes and rose lip contour; rendered in local browser. Existing gaze/blink/expressions preserved; still a character-design trial, not final approval.
 
 Owner asks to try a human face. Current UI preview uses an original stylized human avatar with warm skin, brown hair/irises, ears, nose and lip contours, retaining procedural gaze/blink/expressions and clock/temperature. This is a visual trial, not an approved final character or a real person's likeness. Browser inspected the rendered preview. Earlier robot variants remain in Git history; hardware/backend unchanged, Pi rendering remains NOT VERIFIED.

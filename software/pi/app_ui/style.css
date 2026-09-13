@@ -47,3 +47,17 @@ header button.brand{padding:0;min-height:0;background:none;border:0;border-radiu
 /* Female-avatar trial: delicate brows and warm rose lips. */
 .robot-face .eyebrow{stroke:#67414a;stroke-width:3;opacity:.9}
 .robot-face .volume-mouth{stroke:#b45e76;stroke-width:3;filter:drop-shadow(0 1px 0 #ffd9b866)}
+
+/* Refined portrait: finer brows, softer lip edge, less pronounced eye shadow. */
+.robot-face .eyebrow{stroke:#72504d;stroke-width:2.4;opacity:.9}
+.robot-face .volume-mouth{stroke:#c77f89;stroke-width:3.1;filter:drop-shadow(0 1px 0 #ffe4ce88)}
+.robot-face .living-eye{filter:none}
+
+/* Detailed portrait artwork; retain the procedural avatar as an explicit option. */
+.portrait{object-fit:contain;display:none;height:auto;flex-shrink:0;mask-image:radial-gradient(ellipse at 50% 45%,#000 43%,#000b 60%,transparent 74%)}
+[data-avatar=portrait] .robot-face{display:none}
+[data-avatar=portrait] .portrait{display:block}
+.standby-portrait{width:57cqw;height:57cqw}
+.main-portrait{width:17cqw;height:17cqw;align-self:center}
+#standby:has(.standby-portrait){gap:5cqw}
+.portrait{mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 55%,#000d 75%,transparent 100%)}

@@ -58,11 +58,12 @@ class Handler(BaseHTTPRequestHandler):
             state["token"] = self.server.token
             return self.send(200, state)
         assets = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"),
+                  "/aria-anime-v1.png": ("aria-anime-v1.png", "image/png"),
                   "/style.css": ("style.css", "text/css")}
         if path not in assets:
             return self.send(404, {"error": "Không tìm thấy."})
         name, mime = assets[path]
-        self.send(200, (self.server.assets / name).read_bytes(), mime + "; charset=utf-8")
+        self.send(200, (self.server.assets / name).read_bytes(), mime if mime.startswith("image/") else mime + "; charset=utf-8")
 
     def do_POST(self):
         expected_origin = f"http://127.0.0.1:{self.server.server_port}"

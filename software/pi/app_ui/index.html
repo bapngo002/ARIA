@@ -3,9 +3,10 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ARIA · Ở đây cùng bạn</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
 <body>
-<main class="dial" id="dial" data-state="idle">
+<main class="dial" id="dial" data-state="idle" data-avatar="portrait">
   <button id="standby" aria-label="Mở giao diện chính ARIA">
     <time id="standby-clock"></time>
+    <img class="portrait standby-portrait" src="/aria-anime-v1.png" alt="Chân dung nữ ARIA" width="1254" height="1254">
     <svg class="robot-face standby-face" viewBox="0 0 300 200" aria-hidden="true"><g class="eyes"><path class="eye-left"/><path class="eye-right"/></g><path class="mouth"/></svg>
     <span id="standby-temperature" aria-label="Chưa có nhiệt độ mới">— °C</span>
   </button>
@@ -13,6 +14,7 @@
     <header><button class="brand" id="rest" aria-label="Về màn hình chờ">ARIA</button><span id="clock"></span></header>
     <nav aria-label="Màn hình"><button data-page="home" class="selected">Bạn bè</button><button data-page="memory">Trí nhớ</button><button data-page="settings">Cài đặt</button></nav>
     <section id="home" class="page">
+      <img class="portrait main-portrait" src="/aria-anime-v1.png" alt="Chân dung nữ ARIA" width="1254" height="1254">
       <svg class="robot-face face" viewBox="0 0 300 200" aria-hidden="true"><g class="eyes"><path class="eye-left"/><path class="eye-right"/></g><path class="mouth"/></svg>
       <div class="status"><span class="dot"></span><span id="status" role="status">Đang kết nối…</span></div>
       <div id="conversation" aria-live="polite"><p class="welcome">Tôi ở đây.<br><small>Hôm nay bạn thế nào?</small></p></div>
@@ -29,6 +31,8 @@
     <section id="settings" class="page" hidden>
       <h1>Theo cách của bạn</h1>
       <div class="scroll settings-scroll">
+        <label>Kiểu nhân vật<select id="avatar-style"><option value="portrait">Anime bán hiện thực · ảnh tĩnh</option><option value="animated">Avatar chuyển động</option></select></label>
+        <p class="hint" id="avatar-info">Chân dung minh họa chi tiết; chưa có chuyển động mắt và miệng.</p>
         <label>Biểu cảm khi chờ<select id="expression"><option value="happy">Vui vẻ</option><option value="normal">Bình thường</option><option value="sad">Buồn</option><option value="angry">Cau có</option></select></label>
         <label>Trò chuyện cùng<select id="provider"><option value="offline">Cục bộ · giờ và trạng thái</option><option value="openai">ChatGPT / OpenAI</option><option value="gemini">Gemini</option></select></label>
         <p class="hint" id="provider-info"></p>
