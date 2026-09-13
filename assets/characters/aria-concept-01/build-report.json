@@ -1,0 +1,9 @@
+{
+  "blender": "5.2.0 LTS",
+  "vertices": 25207,
+  "bones": 154,
+  "facial_shape_keys": 57,
+  "animation_frames": 180,
+  "source": "pixiv VRM1_Constraint_Twist_Sample v1.0.1",
+  "status": "draft approximation; not image reconstruction"
+}

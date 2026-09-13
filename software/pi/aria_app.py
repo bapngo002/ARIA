@@ -58,6 +58,11 @@ class Handler(BaseHTTPRequestHandler):
             state["token"] = self.server.token
             return self.send(200, state)
         assets = {"/": ("index.html", "text/html"), "/app.js": ("app.js", "text/javascript"),
+                  "/model-preview": ("model-preview.html", "text/html"),
+                  "/model-preview.js": ("model-preview.js", "text/javascript"),
+                  "/model-preview.css": ("model-preview.css", "text/css"),
+                  "/vendor/OrbitControls.js": ("vendor/OrbitControls.js", "text/javascript"),
+                  "/aria-concept-01-draft.glb": ("../../../assets/characters/aria-concept-01/aria-concept-01-draft.glb", "model/gltf-binary"),
                   "/avatar3d.js": ("avatar3d.js", "text/javascript"),
                   "/vendor/three-vrm.module.min.js": ("vendor/three-vrm.module.min.js", "text/javascript"),
                   "/vendor/GLTFLoader.js": ("vendor/GLTFLoader.js", "text/javascript"),
@@ -71,7 +76,11 @@ class Handler(BaseHTTPRequestHandler):
         if path not in assets:
             return self.send(404, {"error": "Không tìm thấy."})
         name, mime = assets[path]
-        self.send(200, (self.server.assets / name).read_bytes(), mime if mime.startswith(("image/", "model/")) else mime + "; charset=utf-8")
+        try:
+            asset = (self.server.assets / name).read_bytes()
+        except OSError:
+            return self.send(404, {"error": "Tài nguyên chưa được cài đặt."})
+        self.send(200, asset, mime if mime.startswith(("image/", "model/")) else mime + "; charset=utf-8")
 
     def do_POST(self):
         expected_origin = f"http://127.0.0.1:{self.server.server_port}"

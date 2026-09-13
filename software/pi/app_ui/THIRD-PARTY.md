@@ -24,6 +24,10 @@ No CDN or external model request occurs at app runtime. Blob URLs are allowed on
 
 ## Shipped SHA-256
 
+The separate `/model-preview` uses the derivative in `assets/characters/aria-concept-01/`; its README and source-license-settings.json retain the original model license/settings and describe modifications. It is not the unchanged source VRM above.
+
+`vendor/OrbitControls.js` is from Three.js r180, https://github.com/mrdoob/three.js/blob/r180/examples/jsm/controls/OrbitControls.js (MIT, vendor/THREE-LICENSE.txt). Only the Three.js import path is changed to the local module. SHA-256: `9c090f4d8ea5e294e3d1c251e7544d9fa331e666e19792819fc30a00a5db474d`.
+
 - `BufferGeometryUtils.js`: `a34211b841afea271e058713b08b65e007195fef6533aaa4ad961675d6b40839`
 - `GLTFLoader.js`: `ba4d3ac753fe446135d4a3c4d6feb42b826ea2420a400194e2ec7da52c02e9c1`
 - `THREE-LICENSE.txt`: `bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601`
