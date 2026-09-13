@@ -1,0 +1,7 @@
+# Custom character reference sheet
+
+Output: `01-turnaround-reference.png`. Tool: built-in image_gen. Input reference: `01-long-hair.png`. This is a generated 2D visual reference, not a reconstructed 3D model. Views are approximate, not calibrated orthographic drawings; the requested exact profile was not achieved precisely. Custom sculpt and rig remain pending. Owner agreed to the custom-character direction, not yet to this new sheet.
+
+## Exact prompt
+
+Create a professional three-view character sculpting reference sheet of the SAME fictional adult woman in the reference image. Preserve her identity, soft realistic facial anatomy, brown almond eyes, full natural lips, rounded chin, long dark wavy hair, indigo high collar and silver trim. Three equally large head-and-shoulders portraits side by side: true straight-on frontal, 45 degree three-quarter, exact 90 degree side profile. Same neutral relaxed closed-mouth expression, same scale, eye level and focal length across views, head upright, diffuse neutral studio illumination, plain light warm gray background. Cinematic semi-realistic digital-human quality matching the reference, not anime or doll-like. Hair swept just enough off the face to expose eyelids, nose, jaw and an ear in profile while retaining the same hairstyle. Precise detailed skin, eyelids, lip forms and individual hair strands. No typography, no diagram lines, no watermark. This is a 2D concept sheet for later modeling, not a claim of existing 3D geometry. Wide landscape composition.

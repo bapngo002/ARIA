@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Custom character direction — owner agreement, 2026-09-13
+
+Owner agrees to a custom character based on concept 1 after rejecting the stock draft and marketplace examples. Generated `docs/design/aria-face-concepts/01-turnaround-reference.png` with built-in image_gen using approved concept 1 as identity/style reference. VERIFIED: saved three-view raster concept sheet (front, oblique, near-profile), visually inspected. PARTIALLY VERIFIED: identity resemblance and cross-view consistency are qualitative; generated views are not calibrated orthographic geometry and the side view is not an exact 90-degree profile. NOT VERIFIED: new custom mesh, topology, rig, expressions, Pi runtime or achievement of this visual quality in 3D. No new model was created in this checkpoint; rejected stock draft remains preserved, not approved. Next custom-model step is sculpting a new head against the approved portrait plus these approximate views, checking silhouette before rigging. No paid acquisition/upload or hardware actions authorized by this design decision.
+
 ### Owner rejects current 3D draft — 2026-09-13 10:55 UTC
 
 CURRENT visual checkpoint supersedes the earlier review/refinement next action: owner explicitly rejects the refined draft ("xấu") and asks where to find a downloadable 3D character. Concept 1 remains the selected visual direction; neither the existing draft nor a replacement model is approved. Source assistant acknowledges the unsuitable base mesh and recommends replacing it rather than continuing minor appearance edits. Next visual action: owner selects a candidate model/link, then inspect actual formats, facial blink/mouth controls, license and Pi suitability before acquisition or integration. No replacement has been downloaded or verified by this synchronization; marketplace descriptions in the source reply are unverified here and are not purchase authorization.
