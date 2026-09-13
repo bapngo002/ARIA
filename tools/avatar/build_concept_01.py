@@ -30,8 +30,8 @@ def deform_face(v):
     front = max(0, min(1, (-y-.025)/.035))
     # Adult proportions: reduce enlarged anime eye openings and their surrounding mesh.
     eye = math.exp(-((abs(x)-.040)/.033)**4-((z-1.444)/.035)**4)*front
-    z -= (z-1.444)*.16*eye
-    x -= (x-math.copysign(.040,x))*.05*eye
+    z -= (z-1.444)*.29*eye
+    x -= (x-math.copysign(.040,x))*.10*eye
     chin = math.exp(-(x/.033)**2-((z-1.352)/.015)**2)
     z += .006*chin
     nose = math.exp(-(x/.012)**2-((z-1.409)/.013)**2)*max(0,min(1,(-y-.075)/.014))
@@ -39,6 +39,15 @@ def deform_face(v):
     # Broad, low-amplitude cheek volume, without pointed protrusions.
     cheek = math.exp(-((abs(x)-.052)/.03)**2-((z-1.411)/.026)**2)*front
     y -= .0018*cheek
+    # Broad bridge and alar volume rather than a sharper anime nose tip.
+    bridge=math.exp(-(x/.011)**2-((z-1.427)/.020)**2)*front
+    alar=math.exp(-((abs(x)-.008)/.007)**2-((z-1.407)/.007)**2)*front
+    y -= .006*bridge+.0025*alar
+    # Fuller lip tissue and a less triangular lower jaw, shared by all morphs.
+    lip=math.exp(-(x/.022)**4-((z-1.386)/.008)**2)*front
+    y -= .0028*lip
+    jaw=math.exp(-((abs(x)-.030)/.021)**2-((z-1.366)/.016)**2)*front
+    x += math.copysign(.0022*jaw,x)
     return Vector((x,y,z))
 
 for key in face.data.shape_keys.key_blocks:
@@ -65,9 +74,11 @@ for vertex in face.data.vertices:
     r,g,b=1.,1.,1.
     if vertex.index in skin_vertices:
         front=max(0,min(1,(-y-.04)/.025))
-        blush=.11*math.exp(-((abs(x)-.049)/.025)**2-((z-1.414)/.021)**2)*front
-        lips=.40*math.exp(-(x/.021)**4-((z-1.387)/.0058)**2)*front
-        g-=blush+lips; b-=blush*.7+lips*.62
+        blush=.13*math.exp(-((abs(x)-.049)/.025)**2-((z-1.414)/.021)**2)*front
+        lips=.46*math.exp(-(x/.023)**4-((z-1.387)/.0065)**2)*front
+        # Warm complexion and subtle orbital shading are mesh colors, not flat overlays.
+        orbital=.08*math.exp(-((abs(x)-.04)/.024)**4-((z-1.454)/.009)**2)*front
+        r-=orbital*.6;g-=.035+blush+lips+orbital; b-=.06+blush*.7+lips*.62+orbital
     colors.data[vertex.index].color=(r,g,b,1)
 
 for mat in bpy.data.materials:
@@ -94,16 +105,17 @@ for mat in bpy.data.materials:
             mix=nodes.new('ShaderNodeMixRGB');mix.blend_type='MULTIPLY'
             mix.inputs[0].default_value=1;mix.inputs[2].default_value=(.12,.095,.10,1)
             mat.node_tree.links.new(source,mix.inputs[1]);mat.node_tree.links.new(mix.outputs[0],base)
-        shader.inputs['Roughness'].default_value=.62
-        shader.inputs['Specular IOR Level'].default_value=.22
+        shader.inputs['Roughness'].default_value=.56
+        shader.inputs['Specular IOR Level'].default_value=.18
     elif mat.name.startswith('Tops_'):
         base=shader.inputs['Base Color']
         for link in list(base.links):mat.node_tree.links.remove(link)
         base.default_value=(.029,.036,.090,1)
         shader.inputs['Roughness'].default_value=.8
     elif mat.name in ('Face_00_SKIN','Body_00_SKIN'):
-        shader.inputs['Roughness'].default_value=.78
-        shader.inputs['Subsurface Weight'].default_value=.075
+        shader.inputs['Roughness'].default_value=.53
+        shader.inputs['Specular IOR Level'].default_value=.28
+        shader.inputs['Subsurface Weight'].default_value=.12
         shader.inputs['Subsurface Radius'].default_value=(1.,.45,.25)
         shader.inputs['Subsurface Scale'].default_value=.008
         if mat.name=='Face_00_SKIN':
@@ -114,13 +126,47 @@ for mat in bpy.data.materials:
             else:mix.inputs[1].default_value=base.default_value
             mat.node_tree.links.new(color.outputs['Color'],mix.inputs[2]);mat.node_tree.links.new(mix.outputs[0],base)
     elif mat.name in ('EyeIris_00_EYE','EyeWhite_00_EYE'):
-        shader.inputs['Roughness'].default_value=.32
-        shader.inputs['Specular IOR Level'].default_value=.22
+        shader.inputs['Roughness'].default_value=.27
+        shader.inputs['Specular IOR Level'].default_value=.25
         shader.inputs['Coat Weight'].default_value=.12
-        shader.inputs['Coat Roughness'].default_value=.25
+        shader.inputs['Coat Roughness'].default_value=.2
 
 for obj in (body,face,hair):
     for poly in obj.data.polygons:poly.use_smooth=True
+
+# Fine surface-following locks give the silhouette/material genuine geometric detail.
+# Their modest count remains exportable; these are not a simulated hair groom.
+strand_mat=bpy.data.materials.new('ARIA fine hair');strand_mat.use_nodes=True
+strand_shader=strand_mat.node_tree.nodes.get('Principled BSDF')
+strand_shader.inputs['Base Color'].default_value=(.045,.025,.021,1)
+strand_shader.inputs['Roughness'].default_value=.38
+strand_shader.inputs['Specular IOR Level'].default_value=.28
+curves=bpy.data.curves.new('ARIA hair surface locks','CURVE');curves.dimensions='3D'
+curves.resolution_u=2;curves.bevel_depth=.00009;curves.bevel_resolution=1
+for side in (-1,1):
+    for strand in range(64):
+        points=[]
+        spread=strand/63
+        for step in range(100):
+            t=step/99;z=1.581-t*.39
+            x=side*(.005+spread*.035+.069*math.sin(min(1,t*3)*math.pi/2))
+            x+=.004*math.sin(t*12+spread*2)*min(1,t*3)
+            hit,loc,normal,_=hair.ray_cast(Vector((x,-.4,z)),Vector((0,1,0)))
+            if hit:
+                if points and abs(loc.y-points[-1].y)>.008:break
+                points.append(loc+Vector((0,-.00025,0)))
+            elif points:break
+        if len(points)>5:
+            spline=curves.splines.new('POLY');spline.points.add(len(points)-1)
+            for i,(point,co) in enumerate(zip(spline.points,points)):
+                point.co=(*co,1);point.radius=.2+.8*math.sin(math.pi*(i+.5)/len(points))**.5
+locks=bpy.data.objects.new('ARIA fine surface locks',curves);scene.collection.objects.link(locks)
+curves.materials.append(strand_mat)
+bpy.ops.object.select_all(action='DESELECT');locks.select_set(True);bpy.context.view_layer.objects.active=locks
+bpy.ops.object.convert(target='MESH');locks=bpy.context.object;locks.parent=rig
+group=locks.vertex_groups.new(name='J_Bip_C_Head');group.add(list(range(len(locks.data.vertices))),1,'REPLACE')
+modifier=locks.modifiers.new('Head skin','ARMATURE');modifier.object=rig
+for poly in locks.data.polygons:poly.use_smooth=True
 
 # An original indigo stand collar with a thin metallic rim, weighted to the neck.
 def collar_mesh(name,radius,depth,z,height,material):
@@ -177,6 +223,14 @@ for material in document.get('materials',[]):
     material['alphaMode']='OPAQUE'
     if 'HAIR' in material.get('name',''):
         material['pbrMetallicRoughness']['baseColorFactor']=[.12,.095,.10,1]
+# The imported white color layer is exported first; glTF renderers use COLOR_0.
+# Select the new complexion layer explicitly for skin, leaving eye/mouth textures intact.
+for mesh in document.get('meshes',[]):
+    if mesh.get('name')=='Face':
+        for primitive in mesh['primitives']:
+            if document['materials'][primitive['material']]['name']=='Face_00_SKIN':
+                attributes=primitive['attributes']
+                if 'COLOR_1' in attributes:attributes['COLOR_0']=attributes.pop('COLOR_1')
 encoded=json.dumps(document,separators=(',',':')).encode('utf-8');encoded+=b' '*((-len(encoded))%4)
 tail=binary[20+json_length:]
 glb_path.write_bytes(struct.pack('<4sII',b'glTF',2,20+len(encoded)+len(tail))+struct.pack('<I4s',len(encoded),b'JSON')+encoded+tail)
