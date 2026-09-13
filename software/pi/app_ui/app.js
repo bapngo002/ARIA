@@ -19,28 +19,45 @@ function svgNode(tag, attrs = {}, children = []) {
 }
 const faceViews = [...document.querySelectorAll('.robot-face')].map((face,index) => {
   const irisId = 'iris-' + index, whiteId = 'white-' + index;
+  const skinId='skin-'+index, blushId='blush-'+index, mouthId='mouth-'+index, clipId='mouth-clip-'+index;
   const gradient = (id, stops) => svgNode('radialGradient',{id,cx:'35%',cy:'28%',r:'75%'},stops.map(([offset,color])=>svgNode('stop',{offset,'stop-color':color})));
   const defs = svgNode('defs',{},[
-    gradient(whiteId,[['0%','#f1ffff'],['65%','#b6eef5'],['100%','#71c9db']]),
-    gradient(irisId,[['0%','#299cab'],['65%','#177284'],['100%','#073e50']])
+    gradient(whiteId,[['0%','#ffffff'],['48%','#f4f7ff'],['78%','#b3cedd'],['100%','#647b9e']]),
+    gradient(irisId,[['0%','#bdffe0'],['32%','#52e8c2'],['67%','#159cae'],['88%','#225878'],['100%','#112b4b']]),
+    gradient(skinId,[['0%','#90e8ec'],['25%','#55b7cc'],['58%','#30738f'],['83%','#213951'],['100%','#111b34']]),
+    gradient(blushId,[['0%','#ff9b9a'],['45%','#ed7b91'],['100%','#ed7b9100']]),
+    gradient(mouthId,[['0%','#492c58'],['50%','#281d38'],['100%','#100f25']])
   ]);
   const features = svgNode('g',{'class':'features'});
+  features.append(
+    svgNode('ellipse',{cx:150,cy:106,rx:127,ry:87,fill:'#020a16',opacity:'.45'}),
+    svgNode('ellipse',{cx:150,cy:98,rx:127,ry:89,fill:`url(#${skinId})`,stroke:'#8edbe1','stroke-opacity':'.25','stroke-width':1}),
+    svgNode('path',{d:'M47 58 C64 15 137 9 180 24',fill:'none',stroke:'#d3ffff','stroke-opacity':'.24','stroke-width':3,'stroke-linecap':'round'}),
+    svgNode('ellipse',{cx:94,cy:33,rx:28,ry:9,fill:'#ebffff',opacity:'.09',transform:'rotate(-15 94 33)'}),
+    svgNode('ellipse',{cx:59,cy:122,rx:24,ry:14,fill:`url(#${blushId})`,opacity:'.65'}),
+    svgNode('ellipse',{cx:241,cy:122,rx:24,ry:14,fill:`url(#${blushId})`,opacity:'.65'})
+  );
   const eyes = [83,217].map(x => {
     const pupil = svgNode('g',{},[
       svgNode('circle',{r:17,fill:`url(#${irisId})`}),
+      svgNode('circle',{r:13.5,fill:'none',stroke:'#8bf2d5','stroke-width':'.6',opacity:'.55'}),
       svgNode('circle',{r:9,fill:'#052731'}),
       svgNode('circle',{cx:-5,cy:-6,r:4,fill:'#fff','fill-opacity':'.95'}),
       svgNode('circle',{cx:6,cy:6,r:1.8,fill:'#c6fcff','fill-opacity':'.7'})
     ]);
     const eye = svgNode('g',{'class':'living-eye'},[
+      svgNode('ellipse',{cx:0,cy:2,rx:31,ry:38,fill:'#133d56',opacity:'.6'}),
       svgNode('ellipse',{cx:0,cy:0,rx:28,ry:35,fill:`url(#${whiteId})`}),pupil
     ]);
     const brow = svgNode('path',{'class':'eyebrow'});
     features.append(eye,brow); return {x,eye,pupil,brow};
   });
-  const mouth = svgNode('path',{'class':'soft-mouth'});
-  features.append(mouth); face.replaceChildren(defs,features);
-  return {face,features,eyes,mouth};
+  const mouth = svgNode('path',{'class':'volume-mouth',fill:`url(#${mouthId})`});
+  const mouthClip = svgNode('path');
+  defs.append(svgNode('clipPath',{id:clipId},[mouthClip]));
+  const tongue = svgNode('ellipse',{cx:150,cy:163,rx:20,ry:8,fill:'#ef8ca9','clip-path':`url(#${clipId})`});
+  features.append(mouth,tongue); face.replaceChildren(defs,features);
+  return {face,features,eyes,mouth,mouthClip,tongue};
 });
 let lastFaceFrame=0, nextBlink=performance.now()+3500, blinkStart=-1000, nextLook=0, gaze=[0,0], gazeTarget=[0,0];
 function animateFace(now) {
@@ -65,7 +82,10 @@ function animateFace(now) {
       brow.setAttribute('d',`M${outer} 30 Q${x} ${22+browLift/2} ${inner} ${30+browLift}`);
     }
     const speech=!still && current?.state==='speaking' ? Math.sin(now/130)*3 : 0;
-    view.mouth.setAttribute('d',`M${150-width} 143 C${150-width*.55} ${143+smile+speech} ${150+width*.55} ${143+smile+speech} ${150+width} 143`);
+    const curve=smile*.5, opening=Math.max(1,smile*.72+speech);
+    const mouthPath=`M${150-width} 143 C${150-width*.55} ${143+curve} ${150+width*.55} ${143+curve} ${150+width} 143 C${150+width*.65} ${143+curve+opening} ${150-width*.65} ${143+curve+opening} ${150-width} 143 Z`;
+    view.mouth.setAttribute('d',mouthPath); view.mouthClip.setAttribute('d',mouthPath);
+    view.tongue.setAttribute('cy',143+curve+opening*.78);
   }
 }
 requestAnimationFrame(animateFace);

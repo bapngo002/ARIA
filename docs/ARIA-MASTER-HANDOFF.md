@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Color and depth follow-up — 2026-09-13
+
+Owner requests stronger 3D feel and more color. UI now uses a rounded blue/teal face with directional gradient lighting, rim highlights and cast shadow, shaded white eyeballs/green-turquoise irises, pink cheeks and a recessed mouth with clipped pink tongue. This is lightweight SVG depth shading, not a 3D mesh renderer. Existing eased poses, pupils/gaze, blink, reduced-motion behavior, clock/temperature and navigation are retained. Browser visually checked the new standby, expression selection and return to standby with no JS errors in checked state. Pi GPU/render performance remains NOT VERIFIED. No backend or hardware changes.
+
 ### Softer face with pupils — 2026-09-13
 
 Owner requests a less rigid face with pupils. Updated native SVG renderer with softly shaded eye whites/irises, dark pupils/highlights, rounded brows and smile. Facial pose parameters interpolate instead of switching path shapes; small eased gaze shifts, randomized blink intervals and subtle vertical motion run with updates capped near 30fps. Hidden-tab drawing is skipped, hidden face elements are not updated, and reduced-motion preference suppresses gaze/blink/bobbing and pose animation. Browser checked rendered eyes/pupils, changing gaze transforms, happy-to-sad pose change and return to happy; no JS errors in checked state. These are UI animations only, not camera gaze tracking or audio lip-sync. Actual Pi rendering performance remains NOT VERIFIED. Clock/temperature, existing controls and hardware HOLD unchanged.
