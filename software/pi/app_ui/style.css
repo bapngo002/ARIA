@@ -71,6 +71,7 @@ header button.brand{padding:0;min-height:0;background:none;border:0;border-radiu
 .main-3d{width:18cqw;height:17cqw;margin:auto}
 .avatar3d canvas{display:block;width:100%;height:100%}
 /* Color stays within the portrait; standby retains only time, face and temperature. */
-[data-avatar="three"]{background:radial-gradient(ellipse at 48% 48%,#34304a 0%,#18293a 46%,#090f1a 78%)}
+[data-avatar="three"]{background:radial-gradient(ellipse at 28% 34%,#b886a252 0%,transparent 48%),radial-gradient(ellipse at 76% 56%,#927cd854 0%,transparent 51%),radial-gradient(ellipse at 50% 46%,#66516e 0%,#392f50 49%,#1c172d 77%,#100e1b 100%);border-color:#b99bce55}
+[data-avatar="three"] #standby-clock,[data-avatar="three"] #standby-temperature{color:#f3e9f6;text-shadow:0 2px 12px #100e1b80}
 .avatar3d{mask-image:linear-gradient(to bottom,#000 85%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,#000 85%,transparent 100%)}
 .avatar3d:empty{background:url('/aria-owner-portrait-v1.png') 53% 42%/cover;border-radius:45%}
