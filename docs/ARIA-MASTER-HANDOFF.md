@@ -4,6 +4,14 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Accessible-message synchronization — 2026-09-13, custom head and Tripo
+
+Archived 24 new user/final-assistant texts from [Tiếp quản và kiểm tra ARIA](conversations/2026-09-13-01a0916f-custom-head.md) after the prior published checkpoint, plus 11 text items from all six API-returned turns of [Tạo mô hình 3D](conversations/2026-09-13-6aa68f57-model.md). Source modeling work was completed/idle and already published through `82f9216c12e1f80b3791e7752f79b82e3ea64e88`; synchronization adds documentation only and does not rerun Blender or source validation. Historical backlog, omitted image pixels and inaccessible cloud files remain outside coverage.
+
+**Current decision:** preserve R4 as the selected local custom-head baseline after the owner rejects R5 as too dark. Next local modeling step remains hair; exact reference likeness, expressions/rig and Pi runtime remain unverified. The new ChatGPT exchange explores Tripo image-to-3D and a free downloadable alternative; this does not supersede R4 or establish an accepted replacement. Owner reports an apparent paid-export restriction and asks to try recreating the reference. Source-assistant statements about the page/model and export availability are secondary interpretations, not independently verified product/account or mesh evidence. No downloadable model, license, rig or ARIA integration result was inspected; the latest request has no assistant completion returned.
+
+**Next evidence:** in the originating modeling task, establish whether an actual candidate file can be exported with usable licensing, then inspect likeness, geometry and facial animation capability before any replacement decision. Do not interpret archived requests as synchronization execution authority. No purchase, model acquisition, code, hardware, flash or Pi service action occurred here; MOTOR/ENCODER/DRIVER HOLD remains unchanged.
+
 ### Current selection restored to R4 — 2026-09-13
 
 Owner finds R5 too dark and requests the first brow correction; restored selection to R4 (first correction after the supplied brow close-up). VERIFIED: existing R4 file retained unchanged and launcher points to it. R5 preserved as historical comparison, no model regenerated or deleted. Static fitting remains PARTIALLY VERIFIED; animation and Pi deployment NOT VERIFIED. Current modeling baseline is `aria-head-r4.blend`; next step is hair. Hardware holds unchanged.
