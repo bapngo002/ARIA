@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Custom head R5 — stronger brow density, 2026-09-13
+
+Owner rejects R4 brows as still thin/pale. Created separate `aria-head-r5.blend`: wider dark-brown brows, 2,200 tapered strands plus surface-fitted pigmented underlayers to remove bright gaps. Face/eye proportions preserved. VERIFIED: Blender saved and rendered three views; front visually inspected for clearly increased width and darkness. PARTIALLY VERIFIED: static fitting. NOT VERIFIED: owner acceptance, expression rig and Pi runtime. Builder `tools/avatar/refine_brows_r5.py`; launcher opens R5. R4 preserved. Next: review brow shape/density before hair. Hardware holds unchanged.
+
 ### Custom head R4 — fuller brows, 2026-09-13
 
 Owner finds R3 brows too thin against supplied close-up. Preserved R3 and created `aria-head-r4.blend` with 1,400 tapered surface-fitted strands, a wider brow body and tapered tail; existing face targets, eyes and eyelid details unchanged. VERIFIED: Blender saved R4 and rendered three views; front inspected for density and silhouette. PARTIALLY VERIFIED: static surface fit; reference likeness remains subject to review. NOT VERIFIED: expressions/rigging and Pi deployment. Builder `tools/avatar/refine_brows_r4.py` recreates R4 from R3; preserve later manual edits before rerunning. Launcher now opens R4. Next: long dark hair silhouette after this brow correction. Hardware HOLD unchanged.

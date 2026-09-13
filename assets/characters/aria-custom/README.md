@@ -1,6 +1,10 @@
 # ARIA custom sculpt workspace
 
-## Current: fuller brows R4
+## Current: stronger brow density R5
+
+`aria-head-r5.blend` adds a dark fitted underlayer and 2,200 strands with a wider body following owner rejection of pale/thin R4. Front render inspected; three views saved as `head-r5-*.png`. Static fit only, owner review pending. Builder `tools/avatar/refine_brows_r5.py` overwrites R5 from preserved R4; save later manual edits separately. Launcher opens R5.
+
+## Previous: fuller brows R4
 
 `aria-head-r4.blend` widens and densifies the brows following the owner close-up (1,400 tapered strands), preserving R3 face and lid geometry. Three renders: `head-r4-*.png`; front visually checked. Static fit only; likeness and expression behavior still need review. Builder: `tools/avatar/refine_brows_r4.py`, which overwrites R4 from preserved R3. Launcher opens R4. Next: hair silhouette.
 
