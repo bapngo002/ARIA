@@ -24,3 +24,9 @@ header button.brand{padding:0;min-height:0;background:none;border:0;border-radiu
 [data-state=speaking] .robot-face .mouth{transform-box:fill-box;transform-origin:center;animation:talk .35s ease-in-out infinite alternate}
 @keyframes talk{to{transform:scaleY(.65)}}
 @media(prefers-reduced-motion:reduce){.robot-face .eyes,[data-state=speaking] .robot-face .mouth{animation:none}}
+
+/* Soft eye whites, shaded irises and continuous animated facial poses. */
+.robot-face .eyebrow{fill:none;stroke:#74c8d6;stroke-width:4;stroke-linecap:round;opacity:.65}
+.robot-face .soft-mouth{fill:none;stroke:#96e4ec;stroke-width:5;stroke-linecap:round}
+.robot-face .living-eye{filter:drop-shadow(0 1px 3px #7bdeed26)}
+.robot-face.standby-face{width:60cqw;height:40cqw}

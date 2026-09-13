@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Softer face with pupils — 2026-09-13
+
+Owner requests a less rigid face with pupils. Updated native SVG renderer with softly shaded eye whites/irises, dark pupils/highlights, rounded brows and smile. Facial pose parameters interpolate instead of switching path shapes; small eased gaze shifts, randomized blink intervals and subtle vertical motion run with updates capped near 30fps. Hidden-tab drawing is skipped, hidden face elements are not updated, and reduced-motion preference suppresses gaze/blink/bobbing and pose animation. Browser checked rendered eyes/pupils, changing gaze transforms, happy-to-sad pose change and return to happy; no JS errors in checked state. These are UI animations only, not camera gaze tracking or audio lip-sync. Actual Pi rendering performance remains NOT VERIFIED. Clock/temperature, existing controls and hardware HOLD unchanged.
+
 ### Face reference follow-up — 2026-09-13
 
 Owner supplies a four-expression robot reference. Replaced the plain green eyes with native SVG cyan eyes/mouth: happy, normal, sad and angry, preserving the simple clock/face/temperature standby. Main settings include a resting-expression selector, saved only in this browser's local storage. Runtime listening/thinking/speaking/error uses corresponding visual poses; this represents app state, not inferred emotions or a verified AI emotion engine. Browser checked happy/angry appearance, all four selector values and return to standby, with no JS errors in the checked state. Pi display/voice synchronization remains NOT VERIFIED. Source UI only; no raster model assets, backend or hardware change.

@@ -1,27 +1,74 @@
 'use strict';
 let token = '', current = null, lastHistory = '', lastMemories = '', polling = false, lastServerError = '', disconnected = false;
 const $ = id => document.getElementById(id);
-const expressions = {
-  happy: {left:'M57 82 C52 24 108 24 105 82 C93 58 71 58 57 82 Z',right:'M195 82 C190 24 246 24 243 82 C231 58 209 58 195 82 Z',mouth:'M94 125 Q150 141 206 125 C209 180 91 180 94 125 Z',fill:true},
-  normal: {left:'M65 66 A16 29 0 1 0 32 0 A16 29 0 1 0 65 66 Z',right:'M203 66 A16 29 0 1 0 32 0 A16 29 0 1 0 203 66 Z',mouth:'M105 135 C118 167 182 167 195 135',fill:false},
-  sad: {left:'M51 71 H109 V78 H51 Z',right:'M191 71 H249 V78 H191 Z',mouth:'M109 159 C120 126 180 126 191 159',fill:false},
-  angry: {left:'M51 40 L112 89 Q48 108 51 40 Z',right:'M249 40 L188 89 Q252 108 249 40 Z',mouth:'M106 159 Q132 139 164 130 Q194 124 194 160 Z',fill:true},
-  thinking: {left:'M51 61 H109 V70 H51 Z',right:'M205 69 A14 24 0 1 0 28 0 A14 24 0 1 0 205 69 Z',mouth:'M124 147 Q148 140 174 147',fill:false},
-  listening: {left:'M62 64 A19 33 0 1 0 38 0 A19 33 0 1 0 62 64 Z',right:'M200 64 A19 33 0 1 0 38 0 A19 33 0 1 0 200 64 Z',mouth:'M141 145 A9 12 0 1 0 18 0 A9 12 0 1 0 141 145 Z',fill:false}
-};
+// Continuous poses: eyelid openness, inner eyebrow lift, smile depth, mouth width.
+const expressions = {happy:[.86,-1,24,41],normal:[1,0,13,32],sad:[.78,-12,-15,30],angry:[.67,12,-5,30],thinking:[.88,-6,3,23],listening:[1.12,-8,7,24]};
 let restingExpression = 'happy';
 try { const saved = localStorage.getItem('aria-expression'); if (['happy','normal','sad','angry'].includes(saved)) restingExpression = saved; } catch (_) {}
 function paintFace(state = 'idle') {
   const name = {thinking:'thinking',listening:'listening',speaking:'happy',stopping:'normal',error:'sad'}[state] || restingExpression;
-  const expression = expressions[name];
-  document.querySelectorAll('.robot-face').forEach(face => {
-    face.dataset.expression = name;
-    face.querySelector('.eye-left').setAttribute('d', expression.left);
-    face.querySelector('.eye-right').setAttribute('d', expression.right);
-    face.querySelector('.mouth').setAttribute('d', expression.mouth);
-    face.querySelector('.mouth').classList.toggle('filled', expression.fill);
-  });
+  faceTarget = expressions[name];
+  document.querySelectorAll('.robot-face').forEach(face => { face.dataset.expression = name; });
 }
+let faceTarget = expressions.happy, facePose = [...faceTarget];
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+function svgNode(tag, attrs = {}, children = []) {
+  const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+  for (const [key,value] of Object.entries(attrs)) node.setAttribute(key,value);
+  node.append(...children); return node;
+}
+const faceViews = [...document.querySelectorAll('.robot-face')].map((face,index) => {
+  const irisId = 'iris-' + index, whiteId = 'white-' + index;
+  const gradient = (id, stops) => svgNode('radialGradient',{id,cx:'35%',cy:'28%',r:'75%'},stops.map(([offset,color])=>svgNode('stop',{offset,'stop-color':color})));
+  const defs = svgNode('defs',{},[
+    gradient(whiteId,[['0%','#f1ffff'],['65%','#b6eef5'],['100%','#71c9db']]),
+    gradient(irisId,[['0%','#299cab'],['65%','#177284'],['100%','#073e50']])
+  ]);
+  const features = svgNode('g',{'class':'features'});
+  const eyes = [83,217].map(x => {
+    const pupil = svgNode('g',{},[
+      svgNode('circle',{r:17,fill:`url(#${irisId})`}),
+      svgNode('circle',{r:9,fill:'#052731'}),
+      svgNode('circle',{cx:-5,cy:-6,r:4,fill:'#fff','fill-opacity':'.95'}),
+      svgNode('circle',{cx:6,cy:6,r:1.8,fill:'#c6fcff','fill-opacity':'.7'})
+    ]);
+    const eye = svgNode('g',{'class':'living-eye'},[
+      svgNode('ellipse',{cx:0,cy:0,rx:28,ry:35,fill:`url(#${whiteId})`}),pupil
+    ]);
+    const brow = svgNode('path',{'class':'eyebrow'});
+    features.append(eye,brow); return {x,eye,pupil,brow};
+  });
+  const mouth = svgNode('path',{'class':'soft-mouth'});
+  features.append(mouth); face.replaceChildren(defs,features);
+  return {face,features,eyes,mouth};
+});
+let lastFaceFrame=0, nextBlink=performance.now()+3500, blinkStart=-1000, nextLook=0, gaze=[0,0], gazeTarget=[0,0];
+function animateFace(now) {
+  requestAnimationFrame(animateFace);
+  if (document.hidden || now-lastFaceFrame < 32) return;
+  const dt=Math.min(64,now-lastFaceFrame); lastFaceFrame=now;
+  const still=reducedMotion.matches, blend=still ? 1 : 1-Math.exp(-dt/160);
+  facePose=facePose.map((value,i)=>value+(faceTarget[i]-value)*blend);
+  if (now>nextLook) { gazeTarget=Math.random()<.4 ? [0,0] : [(Math.random()-.5)*10,(Math.random()-.5)*6]; nextLook=now+2200+Math.random()*2800; }
+  gaze=gaze.map((value,i)=>still ? 0 : value+(gazeTarget[i]-value)*blend*.6);
+  if (now>nextBlink) { blinkStart=now; nextBlink=now+3200+Math.random()*3800; }
+  const blinkTime=now-blinkStart;
+  const blink=still || blinkTime>210 ? 1 : 1-.96*Math.sin(Math.PI*blinkTime/210);
+  const [openness,browLift,smile,width]=facePose;
+  for (const view of faceViews) {
+    if (!view.face.getClientRects().length) continue;
+    view.features.setAttribute('transform',`translate(0 ${still ? 0 : Math.sin(now/1700)*1.2})`);
+    for (const [i,{x,eye,pupil,brow}] of view.eyes.entries()) {
+      eye.setAttribute('transform',`translate(${x} 78) scale(1 ${openness*blink})`);
+      pupil.setAttribute('transform',`translate(${gaze[0]} ${gaze[1]})`);
+      const outer=i===0 ? x-23 : x+23, inner=i===0 ? x+23 : x-23;
+      brow.setAttribute('d',`M${outer} 30 Q${x} ${22+browLift/2} ${inner} ${30+browLift}`);
+    }
+    const speech=!still && current?.state==='speaking' ? Math.sin(now/130)*3 : 0;
+    view.mouth.setAttribute('d',`M${150-width} 143 C${150-width*.55} ${143+smile+speech} ${150+width*.55} ${143+smile+speech} ${150+width} 143`);
+  }
+}
+requestAnimationFrame(animateFace);
 let lastInteraction = performance.now();
 const STANDBY_AFTER_MS = 30000;
 function showStandby(visible) {
