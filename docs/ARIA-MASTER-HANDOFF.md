@@ -4,6 +4,12 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Owner rejects current 3D draft — 2026-09-13 10:55 UTC
+
+CURRENT visual checkpoint supersedes the earlier review/refinement next action: owner explicitly rejects the refined draft ("xấu") and asks where to find a downloadable 3D character. Concept 1 remains the selected visual direction; neither the existing draft nor a replacement model is approved. Source assistant acknowledges the unsuitable base mesh and recommends replacing it rather than continuing minor appearance edits. Next visual action: owner selects a candidate model/link, then inspect actual formats, facial blink/mouth controls, license and Pi suitability before acquisition or integration. No replacement has been downloaded or verified by this synchronization; marketplace descriptions in the source reply are unverified here and are not purchase authorization.
+
+VERIFIED synchronization evidence: source task completed, source refinement commit `eb39eb1d94b300f6290d4e7aa6f324e62b8ec8de` already on remote main, and [6 new extracted text messages](conversations/2026-09-13-01a0916f-avatar-rejected.md) through 10:55:19.600 UTC. Owner rejection is direct text evidence; screenshot pixels and source visual/test claims were not independently rechecked. The earlier refinement paragraph's `ccef30b` reference identifies the previous draft; the later refinement publication is `eb39eb1`. Pi performance, facial/audio integration and replacement quality remain NOT VERIFIED. Technical NEXT STEP ORDER and motor/encoder/driver/legacy-core service HOLD remain unchanged. Older backlog, image bytes and inaccessible account/cloud history remain outside this bounded archive.
+
 ### Accessible-message synchronization — 2026-09-13, avatar draft completion
 
 [New bounded transcript](conversations/2026-09-13-01a0916f-avatar-increment.md) preserves 36 additional user/final-assistant text messages, including the 35 deferred while the source task was active. Coverage ends at 09:18:35.685 UTC; earlier backlog, image bytes and inaccessible account/cloud history remain outside this export. Source task is completed at this checkpoint; its final response confirms draft publication in `ccef30b`, which synchronization verified on remote main before documentation edits. No code or hardware changes are made by this synchronization; source test reports above were not rerun here.
