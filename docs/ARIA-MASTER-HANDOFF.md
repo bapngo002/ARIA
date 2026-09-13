@@ -4,6 +4,14 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Reference likeness iteration R8-R18 — 2026-09-13, INCOMPLETE
+
+Owner explicitly requests continued Blender work until the face resembles the supplied three views. R8-R18 are preserved appearance experiments, not a finished or selected avatar. Latest files are under assets/characters/aria-custom/r18-side-cleanup; preceding numbered directories are historical iterations. R4 launcher remains unchanged. No hardware/runtime/pipeline change.
+
+Verified: local Blender saves and multiview renders through R17; R16/R17 oblique/profile inspection exposed photo stretching at the temple, incomplete hair coverage and an inaccurate lower-face silhouette. R18 adds per-pixel skin-class masking and reduces the frontal photograph on side surfaces; its render review is pending at this checkpoint. Actual head, eyes and curved hair meshes exist. Appearance is heavily dependent on low-resolution source-photo projection, not a finished reconstructed texture or strand groom. Likeness remains INCOMPLETE; do not call these animation-ready. No rig/teeth/blendshape/export validation for these appearance studies; R6 export checks do not transfer.
+
+Inputs and provenance: assets/characters/aria-custom/reference-fit-inputs/README.md and saved JSON/NPY inputs. Local MediaPipe landmarks guide 142 frontal constraints; this 2D fit residual is NOT 3D accuracy or likeness evidence. Builders fit_head_r8.py and refine_r9.py through refine_r18.py retain the actual mathematical edits and local dependencies. Original three-view reference is packed in the Blender files. Next: inspect R18 in all views, resolve visible silhouette and texture defects, then reintroduce facial animation only after appearance is satisfactory. Usage at 7% remaining prompted this recovery checkpoint; task is not declared complete.
+
 ### R6 rejected; direct Blender head study R7 — 2026-09-13
 
 Owner explicitly rejects R6 appearance ("xấu không tả nổi") and asks to create directly in Blender. R6 is REJECTED/HISTORICAL, not a viable selected avatar or a basis for further cosmetic patching. Preserved all existing files. Created `assets/characters/aria-custom/r7-head-study/aria-head-r7.blend` directly from R4, with four editable proportion layers for jaw/chin, nose, eyelids and lips, cropped head/bust and the original three-view reference packed. No hair or facial animation work in R7; no pipeline or hardware change. R4 remains the previously selected baseline; R7 is unapproved.
@@ -509,3 +517,4 @@ Tiếp tục dùng Copilot Pro cho các việc hỗ trợ có lợi ích cụ th
 **Bước tiếp theo đang hoạt động theo MOTOR HOLD:** người dùng chạy `software/pi/aria_sensors.py` độc lập trên Pi, lưu output/error để gắn runtime evidence; sau đó thu `wpctl status`/`aplay -l` chỉ đọc nếu tiếp tục audio. STEP-003 motor/encoder/carrier tạm dừng; không cấp motor, không flash ESP và không khởi động `aria-core.service`. Thứ tự tổng thể phía trên không bị thay thế.
 
 Mỗi lần hoàn thành một bước: cập nhật trạng thái + evidence tại master này, lưu artifact thật vào repo, rồi commit local; tự đồng bộ GitHub theo ủy quyền thường xuyên bên dưới và xác minh remote HEAD. Snapshot này khôi phục tri thức hiện có; khả năng dựng lại phần mềm hoàn chỉnh còn phụ thuộc MIGRATION GAPS.
+

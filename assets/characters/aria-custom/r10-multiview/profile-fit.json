@@ -1,0 +1,39 @@
+{
+  "front_rows": [
+    100.0,
+    130.0,
+    148.0,
+    168.0,
+    184.0,
+    193.0,
+    207.0,
+    215.0,
+    232.0,
+    247.0
+  ],
+  "profile_x": [
+    707.0,
+    719.0,
+    724.0,
+    731.0,
+    742.0,
+    729.0,
+    733.0,
+    730.0,
+    722.0,
+    707.0
+  ],
+  "depth_shifts_m": [
+    0.02,
+    0.02,
+    0.02,
+    0.02,
+    0.02,
+    0.02,
+    0.02,
+    0.02,
+    0.02,
+    0.02
+  ],
+  "method": "Authored profile points aligned approximately to front landmarks; not calibrated photographs"
+}

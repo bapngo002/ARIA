@@ -1,0 +1,13 @@
+{
+  "method": "Regularized thin-plate 2D landmark fit, frontal reference texture projection, stock CC0 long01 hair foundation",
+  "landmarks": 142,
+  "rms_control_fit_mm": 0.005923470120891693,
+  "scale_pixels_per_metre": 1200.0,
+  "not_verified": [
+    "3D depth",
+    "profile likeness",
+    "animation",
+    "Pi performance"
+  ],
+  "reference_image_used_as_texture": true
+}
