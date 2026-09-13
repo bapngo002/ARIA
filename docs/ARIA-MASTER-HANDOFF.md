@@ -4,6 +4,18 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### R6 facial animation candidate — 2026-09-13
+
+Continued owner request from "Tạo mô hình 3D" after reading current main and the existing R4 selection. Recovered and visually inspected the actual attached three-view reference. Created a separate R4-derived candidate in `assets/characters/aria-custom/r6-candidate/`: editable packed Blender file, GLB, FBX, five rendered views/expression samples, source reference, licenses, build report and export validation. Builders: `tools/avatar/build_face_r6.py` and `validate_face_r6.py`. R4 and its launcher remain the selected baseline; R6 is NOT an owner-approved replacement.
+
+VERIFIED on local PC: Blender 5.2/MPFB 2.0.17 build and save; head/bust quad mesh with one smoothing level baked; separate eyes, teeth_base, tongue01, long-hair mesh blockout, brows/lid details and a MakeHuman rig containing head/neck bones. Loaded 52 ARKit-style CC0 faceunits from makehumancommunity/extra-targets commit `7eaba3453134385bb5ea9811ef0b33b85b4b556d`. Both GLB and FBX were imported into fresh scenes and retained all 52 named head keys and 163 bones. All 52 controls have nonzero displacement somewhere on the avatar; tongueOut affects the tongue, not the cropped skin mesh. GLB evaluated geometry changes across sample animation frames after import. GLB is about 46.2 MB and FBX about 28.0 MB; these are PC review artifacts, not optimized Pi assets.
+
+PARTIALLY VERIFIED: front/three-quarter/profile, blink and jaw-open renders visually inspected. Fixed submerged brows via baked smoothing, jagged lip coloration via vertex colors and moved the stock dental mesh back to reduce exposed gums. Teeth are now recessed and dental placement still needs refinement. A four-second animation exercises blink, jaw opening, smile, gaze and head rotation; this is not audio lip-sync. The presence of morphs and imported actions does not certify every expression or combination. Brow/lash transfer uses approximate nearby-surface correspondences.
+
+NOT VERIFIED / OPEN: reference likeness remains inadequate for a final avatar; hair is visibly a coarse blockout, skin lacks detailed texture, mouth/eyelids need corrective shaping, and full-range combinations/contact are not exhaustively checked. Existing source preview can load GLB animations, but no live ARKit controller contract or Pi performance was established. No UI/pipeline, service, hardware or main-avatar replacement occurred. No paid tool/API was used.
+
+Next visual work: improve hair silhouette/parting and face likeness against the packed three-view reference, then inspect each morph and combinations (especially lids, gums/teeth and lips), reduce mesh/bone/draw-call cost, and benchmark on Pi before integration. General technical NEXT STEP ORDER and hardware HOLD remain unchanged.
+
 ### Accessible-message synchronization — 2026-09-13, custom head and Tripo
 
 Archived 24 new user/final-assistant texts from [Tiếp quản và kiểm tra ARIA](conversations/2026-09-13-01a0916f-custom-head.md) after the prior published checkpoint, plus 11 text items from all six API-returned turns of [Tạo mô hình 3D](conversations/2026-09-13-6aa68f57-model.md). Source modeling work was completed/idle and already published through `82f9216c12e1f80b3791e7752f79b82e3ea64e88`; synchronization adds documentation only and does not rerun Blender or source validation. Historical backlog, omitted image pixels and inaccessible cloud files remain outside coverage.
