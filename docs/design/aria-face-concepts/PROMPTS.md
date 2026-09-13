@@ -1,6 +1,6 @@
 # ARIA portrait concepts — 2026-09-13
 
-Generated using the built-in image_gen tool, one independent call per concept. Preview images only: no mesh, rig, animation or guaranteed real-time rendering equivalence. Not selected or installed in the app. Images lean semi-realistic; owner approval remains pending.
+Generated using the built-in image_gen tool, one independent call per concept. Preview images only: no mesh, rig, animation or guaranteed real-time rendering equivalence. Owner selected concept 1 (`01-long-hair.png`) as the visual direction on 2026-09-13. Concepts 2–4 remain alternatives, not selected. No concept has been converted into a rigged model or installed in the app.
 
 ## Shared prompt (followed by the corresponding variant below)
 
