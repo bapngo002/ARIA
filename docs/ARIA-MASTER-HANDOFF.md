@@ -4,6 +4,12 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Accessible-message synchronization — 2026-09-13, avatar draft completion
+
+[New bounded transcript](conversations/2026-09-13-01a0916f-avatar-increment.md) preserves 36 additional user/final-assistant text messages, including the 35 deferred while the source task was active. Coverage ends at 09:18:35.685 UTC; earlier backlog, image bytes and inaccessible account/cloud history remain outside this export. Source task is completed at this checkpoint; its final response confirms draft publication in `ccef30b`, which synchronization verified on remote main before documentation edits. No code or hardware changes are made by this synchronization; source test reports above were not rerun here.
+
+Owner-selected concept 1 remains the approved visual direction, not approval of the adapted 3D draft. Latest source completion explicitly says the draft remains simpler than concept 1 and is not installed as the main UI. Next visual action is review/refinement of the draft's facial volumes and likeness; Pi performance, full-body motion and audio lip-sync remain unverified. All motor/encoder/driver and legacy-core service holds remain active. Existing technical NEXT STEP ORDER is unchanged.
+
 ### Animated 3D character trial — 2026-09-13
 
 **Latest checkpoint — editable 3D draft requested:** created `assets/characters/aria-concept-01/aria-concept-01-draft.blend` and `.glb`, with front/three-quarter Blender renders, build report and retained source license settings. This is an adapted pixiv sample directed toward concept 1, NOT an image reconstruction or an approved high-detail likeness. Changes include face proportions/morphs, darker hair, PBR materials, indigo collar/trim and a six-second demonstration animation. Reproducible Blender builder: `tools/avatar/build_concept_01.py`. The source VRM and main standby avatar remain preserved; `/model-preview` is a separate viewer with orbit/zoom and motion toggle.
