@@ -1,5 +1,11 @@
 # ARIA custom sculpt workspace
 
+## Current: eyes and profile R2
+
+`aria-head-r2.blend` preserves R1 and adds static warm-ivory eyeballs, curved brown iris/pupil caps, restrained reflections, bilateral eyelid-height adjustments and small nose-tip/upper-lip targets. Eye centers derive from MPFB joint landmarks; radius and settings are in `head-r2-report.json`. `tools/avatar/refine_head_r2.py` rebuilds this file from R1 and replaces R2, so preserve manual work under a new name before running it.
+
+Front, three-quarter and profile review images are `head-r2-*.png`. These are actual Blender renders with clay skin. Static fitting is only partially verified; eye movement/blink, tearline, eyebrows/eyelashes, hair, skin textures and likeness acceptance remain pending. Procedural iris materials are a study, not final photoreal eye shading. The launcher now opens R2; browser preview remains the earlier rejected model.
+
 ## Current: head proportions R1
 
 Open `aria-head-blockout-r1.blend` or the ARIA Blender launcher. This file keeps 13 editable MPFB face targets, temporary eye-fitting spheres and subdivision smoothing. It is a first proportion study, not an accepted likeness or completed sculpt. Settings are in `head-r1-report.json`; builder is `tools/avatar/sculpt_head_blockout.py`. The builder recreates R1 from the preserved base, so save future manual edits under a new revision before rebuilding.
