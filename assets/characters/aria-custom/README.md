@@ -1,6 +1,10 @@
 # ARIA custom sculpt workspace
 
-## Current: brows and eyelid details R3
+## Current: fuller brows R4
+
+`aria-head-r4.blend` widens and densifies the brows following the owner close-up (1,400 tapered strands), preserving R3 face and lid geometry. Three renders: `head-r4-*.png`; front visually checked. Static fit only; likeness and expression behavior still need review. Builder: `tools/avatar/refine_brows_r4.py`, which overwrites R4 from preserved R3. Launcher opens R4. Next: hair silhouette.
+
+## Previous: brows and eyelid details R3
 
 Owner accepts R2 as the face direction. `aria-head-r3.blend` keeps those proportions unchanged and adds individually tapered surface-fitted brows, subtle lid margins and upper lashes. Three actual Blender renders are `head-r3-front.png`, `head-r3-three-quarter.png` and `head-r3-profile.png`; all inspected. Static fit is partially verified; expression contact and rigging are not. Hair, skin, clothing and final likeness remain pending. Next: long dark hair shape and layered locks.
 

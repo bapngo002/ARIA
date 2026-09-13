@@ -4,6 +4,10 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Custom head R4 — fuller brows, 2026-09-13
+
+Owner finds R3 brows too thin against supplied close-up. Preserved R3 and created `aria-head-r4.blend` with 1,400 tapered surface-fitted strands, a wider brow body and tapered tail; existing face targets, eyes and eyelid details unchanged. VERIFIED: Blender saved R4 and rendered three views; front inspected for density and silhouette. PARTIALLY VERIFIED: static surface fit; reference likeness remains subject to review. NOT VERIFIED: expressions/rigging and Pi deployment. Builder `tools/avatar/refine_brows_r4.py` recreates R4 from R3; preserve later manual edits before rerunning. Launcher now opens R4. Next: long dark hair silhouette after this brow correction. Hardware HOLD unchanged.
+
 ### Custom head R3 — brows and lid details, 2026-09-13
 
 Owner accepts the R2 appearance as a modeling direction ("đẹp rồi tiếp theo"); this is not approval of exact reference likeness or completed animation. Created `assets/characters/aria-custom/aria-head-r3.blend` separately, retaining R2 geometry and all shape-target values. Added 270 tapered surface-fitted brown brow strands, four subtle eyelid-margin curves and 38 upper eyelashes. VERIFIED: Blender build/save, three renders (front/three-quarter/profile) generated and visually inspected; counts/settings in `head-r3-report.json`. PARTIALLY VERIFIED: static surface fitting only, not eyelid contact during expressions. NOT VERIFIED/pending: hair, skin textures, clothing, gaze/blink and facial rig, final reference likeness and Pi performance. Builder `tools/avatar/refine_head_r3.py` recreates R3 from R2; save future manual changes separately before rerunning. Launcher opens R3; browser still shows the old rejected avatar. Next modeling step: build the long dark hair silhouette and layered locks against the approved reference, preserving accepted face proportions. Hardware holds unchanged.
