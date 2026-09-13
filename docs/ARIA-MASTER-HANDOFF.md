@@ -4,7 +4,11 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
-### Custom head R5 — stronger brow density, 2026-09-13
+### Current selection restored to R4 — 2026-09-13
+
+Owner finds R5 too dark and requests the first brow correction; restored selection to R4 (first correction after the supplied brow close-up). VERIFIED: existing R4 file retained unchanged and launcher points to it. R5 preserved as historical comparison, no model regenerated or deleted. Static fitting remains PARTIALLY VERIFIED; animation and Pi deployment NOT VERIFIED. Current modeling baseline is `aria-head-r4.blend`; next step is hair. Hardware holds unchanged.
+
+### Historical custom head R5 — stronger brow density, 2026-09-13
 
 Owner rejects R4 brows as still thin/pale. Created separate `aria-head-r5.blend`: wider dark-brown brows, 2,200 tapered strands plus surface-fitted pigmented underlayers to remove bright gaps. Face/eye proportions preserved. VERIFIED: Blender saved and rendered three views; front visually inspected for clearly increased width and darkness. PARTIALLY VERIFIED: static fitting. NOT VERIFIED: owner acceptance, expression rig and Pi runtime. Builder `tools/avatar/refine_brows_r5.py`; launcher opens R5. R4 preserved. Next: review brow shape/density before hair. Hardware holds unchanged.
 

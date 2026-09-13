@@ -1,6 +1,10 @@
 # ARIA custom sculpt workspace
 
-## Current: stronger brow density R5
+## Current selection: R4 restored
+
+Owner rejected R5 as too dark and requested the first brow correction. Launcher now opens unchanged `aria-head-r4.blend`; R5 remains for comparison. No geometry was regenerated. Next: hair.
+
+## Historical: stronger brow density R5
 
 `aria-head-r5.blend` adds a dark fitted underlayer and 2,200 strands with a wider body following owner rejection of pale/thin R4. Front render inspected; three views saved as `head-r5-*.png`. Static fit only, owner review pending. Builder `tools/avatar/refine_brows_r5.py` overwrites R5 from preserved R4; save later manual edits separately. Launcher opens R5.
 
