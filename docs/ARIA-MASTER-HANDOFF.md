@@ -6,6 +6,8 @@
 
 ### Color and depth follow-up — 2026-09-13
 
+Latest owner correction: the oval face looked too round. Replaced its silhouette and shadow with a softly squared robot face, flatter forehead, straighter sides and a gently tapered lower edge; retained pupils, animation, color/depth and standby information. New silhouette visually checked in the local browser; actual Pi panel remains NOT VERIFIED.
+
 Owner requests stronger 3D feel and more color. UI now uses a rounded blue/teal face with directional gradient lighting, rim highlights and cast shadow, shaded white eyeballs/green-turquoise irises, pink cheeks and a recessed mouth with clipped pink tongue. This is lightweight SVG depth shading, not a 3D mesh renderer. Existing eased poses, pupils/gaze, blink, reduced-motion behavior, clock/temperature and navigation are retained. Browser visually checked the new standby, expression selection and return to standby with no JS errors in checked state. Pi GPU/render performance remains NOT VERIFIED. No backend or hardware changes.
 
 ### Softer face with pupils — 2026-09-13

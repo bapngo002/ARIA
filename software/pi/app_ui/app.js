@@ -29,11 +29,12 @@ const faceViews = [...document.querySelectorAll('.robot-face')].map((face,index)
     gradient(mouthId,[['0%','#492c58'],['50%','#281d38'],['100%','#100f25']])
   ]);
   const features = svgNode('g',{'class':'features'});
+  const headShape='M70 12 C111 7 189 7 230 12 Q262 16 267 44 L273 113 Q275 145 255 163 C234 185 195 190 150 190 C105 190 66 185 45 163 Q25 145 27 113 L33 44 Q38 16 70 12 Z';
   features.append(
-    svgNode('ellipse',{cx:150,cy:106,rx:127,ry:87,fill:'#020a16',opacity:'.45'}),
-    svgNode('ellipse',{cx:150,cy:98,rx:127,ry:89,fill:`url(#${skinId})`,stroke:'#8edbe1','stroke-opacity':'.25','stroke-width':1}),
-    svgNode('path',{d:'M47 58 C64 15 137 9 180 24',fill:'none',stroke:'#d3ffff','stroke-opacity':'.24','stroke-width':3,'stroke-linecap':'round'}),
-    svgNode('ellipse',{cx:94,cy:33,rx:28,ry:9,fill:'#ebffff',opacity:'.09',transform:'rotate(-15 94 33)'}),
+    svgNode('path',{d:headShape,transform:'translate(0 6)',fill:'#020a16',opacity:'.45'}),
+    svgNode('path',{d:headShape,fill:`url(#${skinId})`,stroke:'#8edbe1','stroke-opacity':'.25','stroke-width':1}),
+    svgNode('path',{d:'M40 66 L43 43 Q47 24 71 22 C106 17 147 17 181 19',fill:'none',stroke:'#d3ffff','stroke-opacity':'.24','stroke-width':3,'stroke-linecap':'round'}),
+    svgNode('ellipse',{cx:94,cy:22,rx:30,ry:5,fill:'#ebffff',opacity:'.09',transform:'rotate(-3 94 22)'}),
     svgNode('ellipse',{cx:59,cy:122,rx:24,ry:14,fill:`url(#${blushId})`,opacity:'.65'}),
     svgNode('ellipse',{cx:241,cy:122,rx:24,ry:14,fill:`url(#${blushId})`,opacity:'.65'})
   );
