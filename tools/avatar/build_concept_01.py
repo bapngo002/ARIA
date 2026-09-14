@@ -36,18 +36,25 @@ def deform_face(v):
     z += .006*chin
     nose = math.exp(-(x/.012)**2-((z-1.409)/.013)**2)*max(0,min(1,(-y-.075)/.014))
     y += .004*nose
-    # Broad, low-amplitude cheek volume, without pointed protrusions.
+    # Soften cheek edge and remove the more pointed look around cheeks.
     cheek = math.exp(-((abs(x)-.052)/.03)**2-((z-1.411)/.026)**2)*front
-    y -= .0018*cheek
-    # Broad bridge and alar volume rather than a sharper anime nose tip.
+    y -= .0022*cheek
+    # Reduce hard temple profile and blend the head side into hair coverage.
+    temple = math.exp(-((abs(x)-.060)/.026)**2-((z-1.445)/.038)**2)*front
+    x += 0.0009*math.copysign(temple, -x)
+    # Broader bridge and alar volume with a softer transition than the previous tip-focused shape.
     bridge=math.exp(-(x/.011)**2-((z-1.427)/.020)**2)*front
     alar=math.exp(-((abs(x)-.008)/.007)**2-((z-1.407)/.007)**2)*front
     y -= .006*bridge+.0025*alar
-    # Fuller lip tissue and a less triangular lower jaw, shared by all morphs.
+    # Fuller, less triangular lip/jaw area and cleaner lip edge blending.
     lip=math.exp(-(x/.022)**4-((z-1.386)/.008)**2)*front
-    y -= .0028*lip
+    z += .0011*lip
+    y -= .0024*lip
     jaw=math.exp(-((abs(x)-.030)/.021)**2-((z-1.366)/.016)**2)*front
     x += math.copysign(.0022*jaw,x)
+    # Gentle lower-jaw line softening to reduce a rigid profile.
+    jaw_soft=math.exp(-((x)/.038)**2-((z-1.365)/.022)**2)*front
+    z -= .0011*jaw_soft
     return Vector((x,y,z))
 
 for key in face.data.shape_keys.key_blocks:
@@ -59,9 +66,12 @@ for vertex, point in zip(face.data.vertices,face.data.shape_keys.key_blocks[0].d
 # Dark flowing hair with a subtle asymmetric wave below the jaw.
 for vertex in hair.data.vertices:
     x,y,z = vertex.co
-    fade=max(0,min(1,(1.44-z)/.25))
-    vertex.co.x += .011*math.sin((z-1.05)*24 + (0 if x<0 else 1.1))*fade
-    vertex.co.y += .004*math.sin(z*31+x*7)*fade
+    fade=max(0,min(1,(1.42-z)/.24))
+    side = min(1, abs(x)/.087)
+    flow = 1 - 0.28*side
+    vertex.co.x += .013*math.sin((z-1.05)*24 + (0 if x<0 else 1.1))*fade*flow
+    vertex.co.y += .0037*math.sin(z*31+x*7)*fade*flow
+    vertex.co.z += .0011*math.cos((x*14)+(z*18)+(1 if x>0 else -1))*fade
 
 # Native mesh color detail. These are vertex colors, not projected portrait pixels.
 colors=face.data.color_attributes.new(name='ARIA_Complexion',type='FLOAT_COLOR',domain='POINT')
