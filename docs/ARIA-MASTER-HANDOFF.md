@@ -4,6 +4,11 @@
 
 ## ACTIVE CHECKPOINT — 2026-09-13: Pi sensors/audio; all motor work PAUSED
 
+### Ứng dụng tạm thời dùng khuôn mặt đang có trong app — 2026-09-14
+
+Để tạm thời quay về mặt chuẩn đang chạy trong UI, đã chỉnh `software/pi/app_ui/index.html` mặc định `data-avatar="three"` và buộc khởi tạo trong `software/pi/app_ui/app.js` về mode `three` (trừ khi user đã chọn `animated`). Hạn chế: chế độ `portrait` vẫn khả dụng khi người dùng chọn lại trong Cài đặt; không có thay đổi firmware, cảm biến hoặc cấu hình motor/hardware.
+
+
 ### Accessible-message synchronization — 2026-09-13, avatar rejection and incomplete likeness
 
 Archived 8 user/final-assistant text items from [Tạo avatar 3D khuôn mặt ARIA](conversations/2026-09-13-01a09aae-avatar.md), covering all four API-returned turns, and 4 new items from [Tạo mô hình 3D](conversations/2026-09-13-6aa68f57-avatar-followup.md), deduplicated against the published checkpoint. Both sources were idle; the latest source turn ended, but its requested likeness goal remains INCOMPLETE. Source work was already published through `e1f8aad`; this synchronization only adds reviewed documentation, without rerunning Blender or modifying preserved experiments.

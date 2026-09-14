@@ -16,7 +16,10 @@ function avatar3dFailed() {
   $('avatar-info').textContent = 'Không mở được nhân vật 3D trên trình duyệt này. Đang hiển thị ảnh bạn chọn.';
 }
 document.addEventListener('aria-3d-error', avatar3dFailed);
-try { setAvatarStyle(localStorage.getItem('aria-avatar-style-v2') || 'three'); } catch (_) { setAvatarStyle('three'); }
+let requestedStyle;
+try { requestedStyle = localStorage.getItem('aria-avatar-style-v2'); } catch (_) { requestedStyle = null; }
+// Tạm thời: dùng ngay mẫu khuôn mặt đang có trong app, tránh bị ảnh tĩnh (portrait) ép mặc định.
+setAvatarStyle(requestedStyle === 'animated' ? 'animated' : 'three');
 $('avatar-style').onchange = () => {
   setAvatarStyle($('avatar-style').value);
   try { localStorage.setItem('aria-avatar-style-v2', $('avatar-style').value); } catch (_) {}
