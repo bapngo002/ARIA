@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aria.local/automation/checkpoint-schema.json",
+  "title": "ARIA Phase 2 durable checkpoint",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "task_digest",
+    "updated_at",
+    "current_stage",
+    "status",
+    "attempt_count",
+    "completed_stages",
+    "resume_stage",
+    "last_error",
+    "stage_evidence"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "task_id": { "type": "string", "pattern": "^aria-[0-9]{8}T[0-9]{6}-[a-f0-9]{8}$" },
+    "task_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "current_stage": { "enum": ["RECEIVED", "CONTEXT_LOAD", "PRECHECK", "READY_FOR_ROUTING", "STOP"] },
+    "status": { "enum": ["RUNNING", "INTERRUPTED", "FAILED", "COMPLETED"] },
+    "attempt_count": { "type": "integer", "minimum": 1 },
+    "completed_stages": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": { "enum": ["RECEIVED", "CONTEXT_LOAD", "PRECHECK", "READY_FOR_ROUTING"] }
+    },
+    "resume_stage": { "type": ["string", "null"], "enum": ["RECEIVED", "CONTEXT_LOAD", "PRECHECK", "READY_FOR_ROUTING", null] },
+    "last_error": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["stage", "message", "timestamp"],
+      "properties": {
+        "stage": { "enum": ["RECEIVED", "CONTEXT_LOAD", "PRECHECK", "READY_FOR_ROUTING"] },
+        "message": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "stage_evidence": { "type": "object" }
+  }
+}

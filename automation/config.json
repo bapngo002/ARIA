@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "repo_root": "D:\\UserData\\ARIA\\repo",
+  "state_root": "D:\\UserData\\ARIA\\automation-state",
+  "canonical": "docs\\ARIA-AUTOMATION-CANONICAL.md",
+  "c2c": {
+    "root": "%USERPROFILE%\\.codex-chatgpt-web",
+    "expected_app_name": "Codex Native2",
+    "health_timeout_sec": 2,
+    "start_timeout_sec": 20
+  },
+  "windows": {
+    "startup_task": "ARIA-C2C-Startup",
+    "watchdog_task": "ARIA-C2C-Watchdog",
+    "watchdog_minutes": 5
+  },
+  "runner": {
+    "runtime_root": "D:\\UserData\\ARIA\\repo\\automation\\runtime",
+    "tasks_subdir": "tasks",
+    "max_task_text_chars": 16384,
+    "max_task_file_bytes": 65536,
+    "max_events_per_task": 1000
+  }
+}
