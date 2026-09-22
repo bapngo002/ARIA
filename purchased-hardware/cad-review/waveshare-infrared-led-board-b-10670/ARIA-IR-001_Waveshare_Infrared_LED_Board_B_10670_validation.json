@@ -1,0 +1,123 @@
+{
+  "model": "Waveshare Infrared LED Board (B)",
+  "manufacturer_sku": "10670",
+  "robotshop_sku": "RB-Wav-09",
+  "source_cad": "Camera Module NVision Assem.STEP",
+  "source_status": "User-supplied third-party CAD, SolidWorks 2018 STEP AP214",
+  "units": "mm",
+  "module_envelope": {
+    "min_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_mm": [
+      28.0,
+      20.0,
+      15.1
+    ],
+    "size_mm": [
+      28.0,
+      20.0,
+      15.1
+    ]
+  },
+  "exported_step_envelope": {
+    "min_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_mm": [
+      28.0,
+      20.0,
+      15.1
+    ],
+    "size_mm": [
+      28.0,
+      20.0,
+      15.1
+    ]
+  },
+  "solid_count": 6,
+  "exported_step_solid_count": 6,
+  "dxf_reimport_envelope_xy": [
+    28.0,
+    20.0
+  ],
+  "stl_envelope": {
+    "min_mm": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "max_mm": [
+      28.0,
+      20.0,
+      15.1
+    ],
+    "size_mm": [
+      28.0,
+      20.0,
+      15.1
+    ]
+  },
+  "stl_facet_count": 6892,
+  "dimensions_mm": {
+    "pcb_envelope": [
+      28.0,
+      20.0,
+      2.1
+    ],
+    "assembled_envelope": [
+      28.0,
+      20.0,
+      15.1
+    ],
+    "mount_hole_diameter": 4.0,
+    "mount_hole_centers": [
+      [
+        26.0,
+        3.0
+      ],
+      [
+        26.0,
+        17.0
+      ]
+    ],
+    "mount_hole_pitch": 14.0,
+    "led_axis": [
+      10.0,
+      10.0
+    ],
+    "reflector_cup_envelope": [
+      19.0,
+      19.0,
+      14.0
+    ],
+    "front_lens_outer_diameter": 19.435213,
+    "photoresistor_axis": [
+      20.650707,
+      16.807658
+    ],
+    "photoresistor_body_envelope": [
+      6.0,
+      6.0,
+      8.0
+    ]
+  },
+  "power_and_wiring": {
+    "board_connector": "none",
+    "standard_interface": "two mounting holes also carry power on compatible Waveshare camera PCBs",
+    "aria_note": "External wire routing is assembly-dependent and is not included in the source CAD."
+  },
+  "files": [
+    "ARIA-IR-001_Waveshare_Infrared_LED_Board_B_10670.step",
+    "ARIA-IR-001_Waveshare_Infrared_LED_Board_B_10670.stl",
+    "ARIA-IR-001_Waveshare_Infrared_LED_Board_B_10670_MOUNTING_2D.dxf",
+    "ARIA-IR-001_Waveshare_Infrared_LED_Board_B_10670.FCStd",
+    "ARIA-IR-001_Waveshare_Infrared_LED_Board_B_10670_KEEPOUT.step",
+    "ARIA-IR-001_Waveshare_Infrared_LED_Board_B_10670_PREVIEW.png",
+    "ARIA-IR-001_Waveshare_Infrared_LED_Board_B_10670_README.md"
+  ]
+}
