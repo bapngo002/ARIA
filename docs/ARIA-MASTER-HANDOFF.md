@@ -1,5 +1,19 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S3-17 Pi access blocked; S3-12 through S3-16 PC PASS retained
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S3-17 real Pi gate - BLOCKED ACCESS; PC S3-12 through S3-16 RETAINED PASS - 2026-10-02
+
+- **ACTUAL ACCESS EVIDENCE:**after S3-16 PASS,read-only check of documented endpoint aria@aria.local. DNS failed `[Errno 11001] getaddrinfo failed`; non-interactive strict-host-key SSH exit255,no identity output. No alternative Pi IP documented in current master. reports/S3-17/access_probe.json andcheckpoint.json. No Pi benchmark,remote file write,service start or hardware action; not Pi performance PASS.
+- **RETAINED:**S3-12/13/14/15/16 PC PASS,active native LOD290331tris/63097656bytes SHAc6ac88d11de7c883558996766efed8ae5e80485ed576305c698f190a2e04065a; source SHA1f1dcab26696fa6eef413e381454ebaf86f2aaffdbbae64fdb03356bf79eca71 SAME file retained.106avatar/74backend/76 S3-15+16 WebGL PASS,camera/bounds/layout0. User DEV tab reloaded,Native3D retained. Mai Chi temporary RMS-only voice frozen,real PC playback/end REST regression PASS; Piper fallback retained; ZeroWeight experimental unchanged.
+- **NEXT:**owner asked only for current Pi5 IP/hostname to resolve actual access blocker; verify target identity/model/RAM read-only first,then S3-17 real standalone Pi benchmark. Do not use PC FPS as Pi proof,start aria-core/motor/ESP services or open S4. S3-18 depends actual Pi runtime/audio and owner visual acceptance. Owner voice/lip-sync review tomorrow pending. Latest quota remaining56%,stop is access blocker,not quota. Code/config/assets local; documentation-only sync.
+
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S3-12 through S3-16 PC PASS; S3-17 real Pi next
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
