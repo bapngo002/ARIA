@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S3-13 offline LOD PASS; S3-14 next
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S3-13 offline LOD - PASS SOURCE UNTOUCHED - 2026-10-02
+
+- **RESULT:**290,331 triangles (274,271 main body+16,060 protected separate meshes), within200k-300k. Geometry derivative built ONLY IN RAM from SAME source; no new .blend/no source save. Recipe reports/S3-13/lod_recipe.npz SHA6bffc28f671833d60d8824cf940a60007c17096c8d6d3c45f35f48f9d5dc1072 is a derived build artifact, not source copy.
+- **PRESERVATION:** source SHA1f1dcab26696fa6eef413e381454ebaf86f2aaffdbbae64fdb03356bf79eca71 unchanged. Locked all moved facial vertices/head/hair/hand/bounds/sole; 588171 protected corners and195997 protected polygons exact, protected coordinates/morph/skin weights exact, UV delta0. Custom normals explicitly restored from evaluated source; precision {'max_degrees': 0.5647836040112109, 'p95_degrees': 0.0027978107678012024, 'max_vector_delta': 0.009189549833536148} (bounded encoding tolerance, NOT binary-equal normal claim).33-bone/action/material/texture contracts retained in RAM; neutral pose bounds delta0.
+- **TEST/EVIDENCE:**138 actual evaluated morph samples(23 targets x0/.25/.5/.75/1/0),finite and exact REST after cycles; real captures/S3-13 source/LOD rest and full-body plus idle/mouth/F_V. Agent visual PASS; owner artistic/Pi pending. reports/S3-13/offline_gate.json,visual_review.json,checkpoint.json. S3-12 PASS retained. Production manifest/runtime still S3-10; Mai Chi/ZeroWeight/native defaults unchanged; no hardware/Pi benchmark.
+- **NEXT:**S3-14 export/reimport build artifact, then S3-15 runtime integration and S3-16 framing/regression ONLY sequential PASS gates. Code/assets local; reviewed documentation only sync.
+
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S3-12 native idle DEV PC PASS
 
 Native primary/default; ZeroWeight experimental. Mai Chi TEMPORARY_VOICE_ACCEPTED_FOR_NOW, unchanged RMS mouth/Piper fallback. SAME-source idle48s PASS offline and120s WebGL. Production runtime unchanged; next S3-13 LOD then S3-14/15/16 sequential. Code/assets LOCAL; documentation only.
