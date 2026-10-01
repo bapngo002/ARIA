@@ -1,5 +1,19 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S3-14 LOD export reimport PASS; S3-15 next
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S3-14 LOD export/reimport - PASS PC SOURCE UNTOUCHED - 2026-10-02
+
+- **BUILD:**models/S3-14/ARIA_AVATAR_IDLE_LOD_v1.glb,63097656bytes,SHAc6ac88d11de7c883558996766efed8ae5e80485ed576305c698f190a2e04065a; 290331tris/33 joints/27 unique facial targets(25 geometry+2 inherited NORMAL-only blinkArc repairs). Exported ONLY from SAME source+validated S3-13 RAM recipe; no .blend copy/save. Source SHA1f1dcab26696fa6eef413e381454ebaf86f2aaffdbbae64fdb03356bf79eca71 unchanged; original master untouched. ARIA_IDLE_BREATHING48s,source frame1 rebased toclock0; accepted lid-normal export repair retained.
+- **VERIFY:**real Blender GLB re-import,258 evaluated0/.25/.5/.75/1/0 morph samples; REST exact,finite,real motion,48s idle loop returnsneutral. Actual image REST/mouth/F_V agent visual PASS; owner artistic approval pending. GLB audit verifies27 controls,33 joints,normalized weights,finite attributes,materials/image bytes/inverse bind matrices exact against S3-12. reports/S3-14/build.json,audit.json,reimport.json,visual_review.json,checkpoint.json and real captures/S3-14 PNGs.
+- **NEXT:**S3-15 integrate verified LOD runtime then S3-16 framing/visual regression. Existing runtime/manifest still S3-10 until S3-15. Native default/Mai Chi temporary RMS voice/Piper fallback/experimental ZeroWeight preserved. No Pi benchmark/hardware. Code/assets LOCAL; reviewed doc sync only.
+
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S3-13 offline LOD PASS; S3-14 next
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
