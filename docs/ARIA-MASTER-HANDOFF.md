@@ -1,5 +1,21 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 ZeroWeight OPTIONAL SECOND avatar renderer gate
+
+Native avatar retained; current default native_3d. ZeroWeight QYbF5iSbLYI0wdBTIIEG optional DEV renderer PASS PC. STOP renderer integration; no ZeroWeight audio work or native replacement. Native S3-09/S3-10 PC proofs retained; owner visual/production Pi pending. Code/SDK/GLBs local; this publication contains reviewed documentation only.
+
+### ZeroWeight optional SECOND avatar — renderer gate PASS PC — 2026-10-02
+
+- **STATUS/DEFAULT:** PASS_OPTIONAL_SECOND_AVATAR_RENDERER_PC. Native avatar retained and current default native_3d; ZeroWeight optional second provider only. Avatar ID QYbF5iSbLYI0wdBTIIEG. No default change or provider persistence; DEV Native 3D / ZeroWeight switch only. Stop at renderer integration gate.
+- **REAL BUNDLE/SDK:** server-only environment credential; real proxy/upstream HTTP200, nonempty opaque object payload. @zeroweight/renderer0.2.46 vendored unmodified/lazy, module SHA03f793c4cae679a5bdc62d39e623c39be23a8b55dfc157bd4bb590a8a79bf083. READY/dimensions1080x1920 and genuine canvas rendering confirmed. Opt-in CSP allows embedded WASM/exact CDN; disabled/native policy unchanged.
+- **REAL ACTIONS:** listening,speaking,wave_hand,think,speaking_excited. IDLE/STANDBY/SLEEP fallback listening (idle/sleep unavailable); LISTENING->listening, SPEAKING->speaking, THINKING->think. No fake action/capability or audio-sync claim. Piper/native viseme pipeline unchanged; ZeroWeight TTS/ActionQueue/VAD NOT opened.
+- **VERIFY:**17 targeted proxy tests included in59 backend regression PASS;94 native avatar +11 provider lifecycle tests PASS;101 post-change native WebGL +28 ZeroWeight actual-app runtime cases PASS. Repeated switch/destroy/reinit, rapid cancel, simulated401 recovery, reload default/native cache preservation PASS. Camera delta0/no JS exceptions; 64 native/source/GLB/manifest/layout/voice hashes exact; actual key absent from repo/evidence/browser requests. Full project suite not run.
+- **EVIDENCE:** SPATIAL_OS_WORK/reports/ZEROWEIGHT-INTEGRATION/{checkpoint.json,report.md,final_verification_renderer.json,bundle_probe.json,renderer_package.json,renderer_smoke.json,runtime_proof.json,renderer_review.diff,test_runs.json}; native_post_integration/webgl_runtime.json. Real captures under captures/ZEROWEIGHT-INTEGRATION. Earlier missing-key/schema/CSP attempts retained as history, superseded by PASS. Agent reviewed images; PENDING_OWNER_VISUAL_APPROVAL/production Pi performance.
+- **PRESERVATION/NEXT:** same active native S3-07 blend SHA79d5d415cf64a0bfa4db77d750f55baa47dd164a38d296a39b3fc5eb8d8df991; native expression runtime SHA2f984b72366fcd80861789b172ed23dfcb127e64aa828806c16e1b9d1fb66e9c,204571108bytes. No blend/source copy, geometry/master/runtime overwrite or hardware action. Test on owned localhost8789/?dev=1 on Tun; config enabled in memory only. Code/SDK/GLBs LOCAL; reviewed handoff sync alone permitted. STOP at requested renderer gate; owner visual/Pi next, native default retained.
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S3-09 and S3-10 technical PC completion
 
 S3-09 native Piper model timing is complete on PC; S3-10 real light expression runtime is now PASS PC on the SAME source. Code/build remain local. Owner visual and production Pi validation pending. Documentation-only sync; next roadmap S3-11 not opened in this request.
