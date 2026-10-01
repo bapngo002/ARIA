@@ -1,5 +1,24 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT — 2026-10-02 S3-09 technical PC completion
+
+Current local implementation/evidence stays on D. This newest checkpoint supersedes earlier amplitude-only completion; next S3-10 on same source. Documentation-only sync; app/GLB and hardware remain local.
+
+### S3-09 real Piper phoneme/model timing - TECHNICAL PASS PC - 2026-10-02
+
+- **STATUS:** PASS_PC_PIPER_MODEL_TIMED_VISEMES. Replaces the amplitude-only completion gate. Genuine phoneme sequence and per-ID sample durations come from the SAME Piper inference creating the WAV. REST/A/E/I/O/U/M_B_P/F_V are selected by phones; RMS controls intensity only. No random/equal-time/RMS-derived vowel schedule or human acoustic-accuracy claim.
+- **PROVIDER:** PC proof piper-tts1.8.0, bundled eSpeak-ng vi, pinned vi_VN-vivos-x_low ONNX SHA6ab13374eb0862021a545befe7727aef59e16117f1c075aa9e0362237ecc98ae, rate16000/hop256. Memory-only alignment output /Ceil_output_0 supplies exact sample counts. Unknown Vietnamese tone tokens skipped by model are recorded with zero samples; strict ID matching repairs upstream convenience-grouping failure. Stress prefixes map following phone, suffix length maps preceding; no timing rescale.
+- **IMPLEMENTATION:** optional ARIA_PIPER_PYTHON uses native Python API through the existing cancellable Voice/Piper/WAV/aplay pipeline. CLI amplitude fallback remains explicitly labelled. Model timeline validated against WAV and forwarded through existing tts:start/snapshot. Soft bounded crossfade; no double jaw. Aligned ALSA start requires owned RUNNING PCM hw_ptr/native rate and reports uncertainty; missing clock stops playback and withholds timeline. Production Pi setup remains unverified.
+- **REAL PROOF:** real_full.wav, 16000Hz monoPCM16, 177920 samples/11120ms/355884 bytes, SHAa6fdeb925b6c6e7e825de417401c85577c7a387a2c66da8f05262f4d9b9cb7f2. Actual PC browser played this WAV; model timeline used advancing audio-playhead t0_ms. Max measured clock drift36.964ms. Seven actual native targets observed; natural end and every end/error/cancel/barge-in/state-exit/rapid/consecutive/reload path REST.
+- **VERIFY:** 82 avatar tests (68 inherited+14 timing, real trace included), 39 backend tests (11 inherited+28 timing/clock/event contracts), 24 genuine-WAV WebGL cases, 101 fresh S3-08 WebGL regression cases, 10 syntax checks PASS. Camera delta0; no JS exception/NaN. Eight protected source/build/runtime hashes and unchanged RMS implementation/manifest frame PASS. Full project suite not run.
+- **SAME SOURCE/BUILD:** models/S3-07/ARIA_AVATAR_MOUTH_CANDIDATE_v1.blend SHAa4a1a7188028b22ff6f5bbb1927aacb78caeb3a0800212efce6ba4977073ad7f. No source copy/save or geometry change in S3-09. Existing full GLB candidate/runtime SHA0fa65c26ca5d62e27de6a709209e1cda32498dbae13019fbc353fc577416bce5,170864684 bytes,22 targets/33 bones. Master SHA8cc12cc6a973e435769bef3180240eec546f7f2eed390f4514a1ab83ae7348b6 untouched.
+- **EVIDENCE:** SPATIAL_OS_WORK/reports/S3-09/phoneme_timing_discovery.md; phoneme/{webgl_timing.json,wav_metadata.json,Vietnamese_phoneme_mapping.tsv,mapping_revision.json,test_runs.json,backend_final.log,avatar_final.log,final_verification.json,review.diff,s308_regression/webgl_runtime.json}; audio/S3-09/phoneme/{real_full.wav,real_full_alignment.json,payload.json,text.txt}; captures/S3-09/phoneme real rendered images, reviewed by agent.
+- **LIMITS/SYNC:** PC technical gate only. PENDING_OWNER_VISUAL_APPROVAL; production Pi Piper version/model, actual ALSA onset/drift/DAC latency and FPS pending. Predicted model alignment is technically sourced, not human forced alignment. Existing low-poly lip faceting retained. Code/GLB stay LOCAL; only reviewed canonical handoff may be synced. No hardware action, source-copy or LOD work.
+- **NEXT:** automatically start S3-10 LIGHT FACIAL EXPRESSIONS on SAME active blend; no copy. Preserve existing mouth/visemes/teeth/blink/gaze/head/camera and all33 bones. Re-read S3-10 checkpoint if present before edits.
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT — 2026-10-01: S3-08 full minimum + S3-09 PC real-audio baseline
 
 Current working repository/evidence: D:/UserData/ARIA/repo and D:/UserData/ARIA/SPATIAL_OS_WORK. This reviewed checkpoint records local PC implementation. App code/build outputs remain local; this documentation-only sync does not publish the untracked app foundation or deploy Pi/hardware. All motor/encoder/driver/ESP work remains paused. PCB state stays in docs/ARIA-PCB-PRO-MAX-CANONICAL.md.
