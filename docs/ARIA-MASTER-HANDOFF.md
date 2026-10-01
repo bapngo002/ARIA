@@ -1,5 +1,21 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S3-09 and S3-10 technical PC completion
+
+S3-09 native Piper model timing is complete on PC; S3-10 real light expression runtime is now PASS PC on the SAME source. Code/build remain local. Owner visual and production Pi validation pending. Documentation-only sync; next roadmap S3-11 not opened in this request.
+
+### S3-10 light facial expressions - TECHNICAL PASS PC - 2026-10-02
+
+- **STATUS:** PASS_PC_LIGHT_FACIAL_EXPRESSIONS. Six semantic states listening/thinking/speaking/concerned/alert/sleep now reach five real native smile/frown/browUp/browDown/browConcern morphs. Soft bounded interpolation, antagonist sums<=1; idle variation cannot leak into a requested state/neutral. Sleep retains inherited blink eyelids. No eye-wide/squint capability claim.
+- **SAME SOURCE:** models/S3-07/ARIA_AVATAR_MOUTH_CANDIDATE_v1.blend edited in place; SHA256 79d5d415cf64a0bfa4db77d750f55baa47dd164a38d296a39b3fc5eb8d8df991, 162400292 bytes. Only five new shape keys; original Basis/topology/UV/material slots/old mouth-viseme-eye keys and all33 bones exact. No source copy/backups, no original master or oral geometry rewrite. Master SHA8cc12cc6a973e435769bef3180240eec546f7f2eed390f4514a1ab83ae7348b6 unchanged.
+- **BUILD/RUNTIME:** models/S3-10/ARIA_AVATAR_LIGHT_EXPRESSIONS_v1.glb -> app_ui/assets/avatar/aria-avatar-light-expressions-runtime.glb, SHA256 2f984b72366fcd80861789b172ed23dfcb127e64aa828806c16e1b9d1fb66e9c,204571108 bytes,27 unique targets/33 joints. Manifest now selects this output; old runtimes retained. Texture bytes/material definitions and accepted camera/frame constants exact. No LOD work.
+- **VERIFY:** 56 offline expression/viseme pairs +72 FV/U intermediate cases PASS after bounded refinements to NEW expression keys only. 78 export/reimport cycles, neutral exact. 12 expression targeted +82 inherited avatar tests=94 PASS;39 backend regression PASS. 21 expression WebGL +101 S3-08 regression +24 real-Piper timing cases PASS; no JS exception/NaN/stuck speech, camera delta0. Real WAV clock drift max38.951ms; seven phoneme-driven targets with RMS intensity retained. Full project suite not run.
+- **EVIDENCE:** SPATIAL_OS_WORK/reports/S3-10/{checkpoint.json,final_report.json,report.md,inventory.json,applied.json,offline_gate.json,export_reimport.json,integration.json,review.diff,expression_targeted.log,avatar_regression.log,backend_regression.log,webgl_expression.json,visual_review.json,final_verification.json}; s308_regression/webgl_runtime.json, s309_regression/webgl_timing.json; captures/S3-10 genuine source/reimport/WebGL images, agent reviewed. S3-09 discovery/audio/timing evidence retained.
+- **LIMITS/NEXT:** PENDING_OWNER_VISUAL_APPROVAL and production Pi live Piper/model/aplay/ALSA onset/drift/FPS. Model-predicted alignment is technically sourced, not human acoustic accuracy certification. Existing low-poly facial/lid appearance and hair brow occlusion remain. Code/GLB stay LOCAL; reviewed canonical documentation only may sync. S3-11 is next roadmap code but NOT opened in this S3-09/S3-10 request. Preserve SAME source and no copies when continuing; hardware HOLD unchanged.
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT — 2026-10-02 S3-09 technical PC completion
 
 Current local implementation/evidence stays on D. This newest checkpoint supersedes earlier amplitude-only completion; next S3-10 on same source. Documentation-only sync; app/GLB and hardware remain local.
