@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 Mai Chi PC PASS and S3-11 offline breathing PASS
+
+Native primary/default; ZeroWeight experimental. Mai Chi temporary voice PASS PC with retained Piper fallback. S3-11 SAME-source action offline PASS; runtime unchanged. Next S3-12 SAME action. Code/config/assets LOCAL, reviewed documentation only.
+
+### S3-11 idle breathing - OFFLINE PASS SAME SOURCE - 2026-10-02
+
+- **SOURCE:** SAME models/S3-07/ARIA_AVATAR_MOUTH_CANDIDATE_v1.blend; SHA765d672b5ca482edfa2b63b02b7feed952fba13df2cdb5706289cb18c2cfa0f0. No blend/file copy; save backups disabled. Original master untouched. ARIA_NEUTRAL retained; active ARIA_IDLE_BREATHING action,16s/60fps,4s breathing cycles.
+- **MOTION/GATE:** only Spine/Spine1/Spine2 dynamic quaternion channels,+0.50/-0.35/-0.15deg counter pitch; Spine2 bounded0.2% X/0.1% Z scale. No dynamic head/neck/hips channels. Real posed mesh movement max0.73245mm/head origin0.62464mm; hips unchanged. Reopen and five loop boundaries restore ALL33 bone matrices exactly(delta0).
+- **PRESERVATION:** ALL mesh basis/topology/UV/27 real facial targets/material slots and33-bone rig data exact; no NLA/armature driver. Five true Blender captures reviewed, no apparent identity/neutral distortion. Original master/native runtime/manifest/UI/voice/ZeroWeight retained; remaining60 voice-baseline protected hashes exact.
+- **BOUNDARY/NEXT:** OFFLINE PASS only, not new runtime/Pi proof. Runtime still aria-avatar-light-expressions-runtime.glb SHA2f984b72366fcd80861789b172ed23dfcb127e64aa828806c16e1b9d1fb66e9c,204571108bytes; Mai Chi temporary provider PC PASS remains current. Next S3-12 refine SAME action with bounded shoulder/arm/weight-shift phases, then planned LOD/export/app gates. No early LOD/runtime replacement. Owner visual/Pi pending.
+- **EVIDENCE:** SPATIAL_OS_WORK/reports/S3-11/{inventory.json,probe.json,applied.json,checkpoint.json,report.md}; captures/S3-11/{rest,inhale_mid,inhale_peak,exhale_mid,rest_after_cycle}.png. bpy5.2.0LTS. Code/assets LOCAL; canonical documentation sync only.
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 Mai Chi TEMPORARY ARIA VOICE
 
 ZeroTTS maichi technical PASS PC; native_3d primary/default. Piper model-timed fallback retained. ZeroWeight experimental retained.74 backend/94 avatar/16 WebGL PASS,camera0. Zero uses RMS mouth amplitude, no phoneme timing claim. Code/config/assets LOCAL; reviewed documentation only. S3-11 next SAME source, no blend copy.
