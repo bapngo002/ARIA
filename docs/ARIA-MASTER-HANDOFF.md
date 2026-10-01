@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S3-12 through S3-16 PC PASS; S3-17 real Pi next
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S3-16 framing/visual regression - PASS PC - 2026-10-02
+
+- **COMPLETE:**S3-12 natural idle->S3-13 offline LOD->S3-14 export/reimport->S3-15 native runtime->S3-16 PC visual/framing all sequential PASS. Same active models/S3-07/ARIA_AVATAR_MOUTH_CANDIDATE_v1.blend SHA1f1dcab26696fa6eef413e381454ebaf86f2aaffdbbae64fdb03356bf79eca71; no new source copy,LOD source not saved/overwritten. Runtime aria-avatar-idle-lod-runtime.glb SHAc6ac88d11de7c883558996766efed8ae5e80485ed576305c698f190a2e04065a,63097656bytes,290331tris; previous expression runtime retained. Native default; ZeroWeight experimental unchanged.
+- **PROOF:**16 real WebGL before/after comparison cases REST/A/F_V/blink/gaze/head/reset. Camera delta0,bounds delta0,canvas layout delta0,and historical S3-06 accepted camera delta0. Protected sampled facial vertex delta<1e-7; visual region mean pixel delta<.058/255,p95=0. Face/hair/REST/facial motion retained; existing closeup shading remains baseline quality,owner artistic approval pending.33bones,7visemes,mouth/incisors,independent gaze/blink/expressions retained.106avatar/74backend/60 S3-15 WebGL plus16 S3-16 cases PASS; not full project/Pi PASS.
+- **VISIBLE APP/EVIDENCE:**current user Chrome DEV8790/?dev=1 reloaded; native asset READY,290331 triangles observed via CUA state+actual screenshot; no provider/default change. reports/S3-16/framing.json,visual_review.json,checkpoint.json and actual source/LOD face/app captures; S3-12/15 real120s idle videos retained. Mai Chi TEMPORARY_VOICE_ACCEPTED_FOR_NOW,RMS-only frozen,actual regression plays/ends REST; Piper remains. Voice review tomorrow; inherited aplay error1 UI history unchanged,not a new voice change.
+- **NEXT/PENDING:**S3-17 real Pi5/4GB performance gate,begin with read-only target identity/access check; no PC-to-Pi performance inference. S3-18 requires owner visual+Pi runtime/audio gates; do not open S4. No motor/encoder/driver/core-service action. Code/config/assets remain LOCAL; reviewed documentation-only GitHub sync.
+
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S3-15 native LOD runtime PC PASS; S3-16 next
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
