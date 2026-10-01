@@ -1,5 +1,22 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 Mai Chi TEMPORARY ARIA VOICE
+
+ZeroTTS maichi technical PASS PC; native_3d primary/default. Piper model-timed fallback retained. ZeroWeight experimental retained.74 backend/94 avatar/16 WebGL PASS,camera0. Zero uses RMS mouth amplitude, no phoneme timing claim. Code/config/assets LOCAL; reviewed documentation only. S3-11 next SAME source, no blend copy.
+
+### ZeroTTS Mai Chi - TEMPORARY ARIA VOICE - TECHNICAL PASS PC - 2026-10-02
+
+- **SELECTION:** tts.provider=zerotts; tts.voice=maichi; Mai Chi=TEMPORARY_ARIA_VOICE, not final. zerotts0.1.5; local model zeroweight-ai/ZeroTTS pinned c2bfbd67dc648cac455077333f7cf5c18a2e3bb4. Isolated tools/zerotts-env; model/cache/evidence on D; runtime local-files-only, no cloud/key.
+- **REAL AUDIO/APP:** exact requested Vietnamese sentence synthesized as PCM16 mono48k WAV and played on PC speaker. Actual Voice/Assistant and ARIA SSE start/end -> native mouthOpen -> REST. Explicit PC worker records PortAudio output-buffer DAC schedule; Pi aplay branch retained. Actual playback cancellation cleans owned subprocess/private WAV and speech.
+- **CAPABILITY:** ZeroTTS currently has no exported phoneme timestamps; AUDIO_ENVELOPE controls amplitude/jaw/mouth only, phoneme_timed=false. RMS never chooses vowels. S3-09 Piper model-timed phonemes/seven visemes remain intact when Piper fallback is used; real fallback inference/WAV/PC playback PASS. No phoneme-accurate claim for Mai Chi.
+- **VERIFY:** 15 new targeted provider/event contracts within74 backend tests PASS;94 avatar regression PASS;16 WebGL cases PASS, camera delta0/no JS exceptions/NaN/stuck weights. Natural real playback/SSE plus captured-envelope terminal/state/combination probes distinguish sources. End/error/cancel/barge-in/state exit/reload REST. Barge-in microphone/acoustic validation not claimed. Agent reviewed native speaking/final REST images; earlier portrait/hidden-slot test attempts are superseded.
+- **PRESERVED:**61 protected hashes exact at voice gate: SAME active blend SHA79d5d415cf64a0bfa4db77d750f55baa47dd164a38d296a39b3fc5eb8d8df991; original master SHA8cc12cc6a973e435769bef3180240eec546f7f2eed390f4514a1ab83ae7348b6; native expression GLB SHA2f984b72366fcd80861789b172ed23dfcb127e64aa828806c16e1b9d1fb66e9c,204571108bytes. No blend edit/copy, camera/geometry/frontend change or hardware action. Native_3d primary/default; ZeroWeight optional experimental retained, not activated.
+- **EVIDENCE/CONFIG:** SPATIAL_OS_WORK/reports/ZEROTTS-MAICHI/{checkpoint.json,report.md,audio_smoke.json,app_voice_proof.json,real_cancel.json,webgl.json,live_app_events.json,protected_verified.json,test_runs.json}; captures/ZEROTTS-MAICHI; audio/ZEROTTS-MAICHI. External PC config reports/ZEROTTS-MAICHI/aria-maichi-pc.json selects Mai Chi plus retained Piper paths. Owned dev_server.py localhost8790 uses actual app/voice with no hardware/background services started.
+- **LIMITS/NEXT:**PENDING_OWNER_VOICE/VISUAL_APPROVAL and production Pi performance/ALSA/acoustic barge-in. Not full project PASS. Code/config/builds stay LOCAL; reviewed documentation only may sync. Continue S3-11 idle breathing/spine/chest on SAME source, no .blend copy. S3-12 follows its gate; no LOD task now. Last reported Codex remaining62%, above20% stop threshold.
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 ZeroWeight OPTIONAL SECOND avatar renderer gate
 
 Native avatar retained; current default native_3d. ZeroWeight QYbF5iSbLYI0wdBTIIEG optional DEV renderer PASS PC. STOP renderer integration; no ZeroWeight audio work or native replacement. Native S3-09/S3-10 PC proofs retained; owner visual/production Pi pending. Code/SDK/GLBs local; this publication contains reviewed documentation only.
