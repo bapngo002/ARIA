@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S3-12 native idle DEV PC PASS
+
+Native primary/default; ZeroWeight experimental. Mai Chi TEMPORARY_VOICE_ACCEPTED_FOR_NOW, unchanged RMS mouth/Piper fallback. SAME-source idle48s PASS offline and120s WebGL. Production runtime unchanged; next S3-13 LOD then S3-14/15/16 sequential. Code/assets LOCAL; documentation only.
+
+### S3-12 natural idle body - DEV PC PASS SAME SOURCE - 2026-10-02
+
+- **SOURCE:** SAME models/S3-07/ARIA_AVATAR_MOUTH_CANDIDATE_v1.blend SHA1f1dcab26696fa6eef413e381454ebaf86f2aaffdbbae64fdb03356bf79eca71; no source copy/backups. Existing ARIA_IDLE_BREATHING action refined in place,48s/60fps. Nine unequal4.4-6.1s breaths with asymmetric smooth inhale/exhale,small bounded COM/spine counter-motion,offset shoulders,arm/hand settle and micro head drift; endpoints exactly neutral with flat velocity.
+- **PRESERVATION:** ALL basis/topology/UV/27 facial arrays/material slots and33 bones exact; master unchanged. DEV GLB SHA14b93baf41d3653253a3a455aebdfb87a391b482fdfdfb0872474ec4dea72efb,204632816bytes; geometry/normals/skin/morph/material/texture binary data equal S3-10 output. Production manifest/runtime unchanged until planned integration gate. Same source retained for next stages.
+- **RUNTIME/TEST:**120s actual WebGL idle/video,three additional48s deterministic cycles,state transitions and blink/gaze/mouth combinations PASS. Head idle smoothly yields to explicit gaze,including center hold; state body gain eases; no NaN/accumulation,snap or camera motion(delta0).8 targeted/102 avatar/74 backend/12 WebGL PASS. One unchanged real Mai Chi PC utterance/SSE/mouth->REST PASS; Piper untouched. Not full project PASS.
+- **EVIDENCE/NEXT:**reports/S3-12/{checkpoint,offline,reopen,build_audit,tests,webgl,preservation,visual_review}.json and genuine captures/S3-12 PNG/video. Native primary/default,ZeroWeight experimental; Mai Chi TEMPORARY_VOICE_ACCEPTED_FOR_NOW,RMS only. Owner artistic/Pi pending. Next S3-13 offline LOD,do not save/overwrite source; only PASS permits S3-14 export/reimport then S3-15 integration and S3-16 visual. No Pi benchmark/hardware action. Code/assets LOCAL; reviewed doc sync only.
+
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 Mai Chi PC PASS and S3-11 offline breathing PASS
 
 Native primary/default; ZeroWeight experimental. Mai Chi temporary voice PASS PC with retained Piper fallback. S3-11 SAME-source action offline PASS; runtime unchanged. Next S3-12 SAME action. Code/config/assets LOCAL, reviewed documentation only.
