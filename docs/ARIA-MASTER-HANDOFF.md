@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S3-15 native LOD runtime PC PASS; S3-16 next
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S3-15 native LOD runtime integration - PASS PC - 2026-10-02
+
+- **ACTIVE RUNTIME:**software/pi/app_ui/assets/avatar/aria-avatar-idle-lod-runtime.glb SHAc6ac88d11de7c883558996766efed8ae5e80485ed576305c698f190a2e04065a,63097656bytes,290331tris. Manifest aria-avatar-new.json SHA4d0405f1d0765e8c589498f29f02c3b65d5e9b94a9da0008bcc51e774ae322c2 selects verified S3-14 output andARIA_IDLE_BREATHING48s. Previous expression GLB retained unchanged for fallback; native remains primary/default; ZeroWeight experimental untouched.33bones/25 geometry+2NORMAL-only inherited arc targets remain truthful.
+- **REGRESSION:**8 idle+4 LOD targeted checks,106 avatar total and74 backend PASS;120s real continuous app WebGL+3 additional48s loops,state transitions,blink/gaze/head/mouth priority,one unchanged real Mai Chi PC utterance/end REST PASS.12 idle/voice+48 actual facial WebGL cases PASS (60total):7 visemes0/.25/.5/.75/1/0 real evaluated vertex motion,combos,reset/reload. No NaN/accumulation/camera movement(delta0). Not full project PASS.
+- **PRESERVATION/EVIDENCE:**SAME source SHA1f1dcab26696fa6eef413e381454ebaf86f2aaffdbbae64fdb03356bf79eca71 unchanged sinceS3-12; master original/source geometry/voice backend/face mapping/camera constants retained. Mai Chi TEMPORARY_VOICE_ACCEPTED_FOR_NOW,RMS only,Piper fallback retained. Existing inherited UI notice aplay error1 unchanged; real test utterance starts/ends successfully. reports/S3-15/checkpoint.json,integration.json,tests.json,webgl.json,runtime_matrix.json,preservation.json,visual_review.json and genuine PNG/WebM captures. Owner visual/Pi pending.
+- **CHANGED/NEXT:**manifest,new runtime output; fv_control/light_expression tests now inspect active GLB; new idle_lod_asset tests. S3-12 AvatarController/SkinnedGlbAdapter idle priority changes retained. Next S3-16 visual/framing compare retained prior runtime. No Pi benchmark/hardware. Code/assets LOCAL; doc-only reviewed sync.
+
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S3-14 LOD export reimport PASS; S3-15 next
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
