@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S4-02 Memory context PASS PC; field retained
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S4-02 Memory context surface - PASS PC - 2026-10-02
+
+- **RESULT:** S4-01 accepted field retained; Memory now uses a real CONTEXT surface bound to existing AppStore memories/remember controls, rather than web-page navigation. Native avatar remains visible with unchanged accepted camera. Draft stays in its existing input; entry uses finite transform/opacity only. Reading an active context no longer triggers30s standby. Memory composer is fixed in the surface; content/destructive control scroll independently.
+- **SAFETY/UX:** existing cancel action is reachable via compact surface stop while busy; no TTS/backend rewrite. Close clears context/active/tint/description and restores focus/home interaction. Existing Messages/Camera/Media/Settings TASK surfaces remain accessible. Alert band reserved below surfaces; footer recedes only when a notice occupies that band, preventing overlap on small circles.
+- **VERIFY:** 51 targeted/regression tests,32 actual WebGL context cases+2 final audio/UI+20 final layout cases PASS (54 total),480/720/current1368x1027 and360x740. Real unchanged Mai Chi speaking -> end REST, and actual /api/cancel200 -> tts:end(ok=false) -> mouth/UI REST;31s context reading,touch,draft,reload,cleanup and all five surface selections.0 JS exceptions/NaN;camera delta0;avatar/canvas/load/render-loop unchanged. Remember dispatch and replayed existing alert are labelled isolated UI fixtures; no saved owner record/send/camera/external launch.
+- **PRESERVED/LIMITS:**40 protected hashes exact; source/master/runtime/manifest/engine/FaceRig/gaze/blink/mouth/backend/voice/hardware untouched. Native primary; ZeroWeight experimental; temporary Mai Chi RMS-only and Piper fallback retained. Same source file,no candidate copy. Owner artistic approval and actual Pi performance remain pending; S3-17 DEFERRED_PI. Existing inherited aplay notice is displayed honestly, not a new voice fix. Full project suite not run.
+- **EVIDENCE/NEXT:** reports/S4-02/{checkpoint.json,webgl.json,final_ui.json,layout_final.json,preservation.json,visual_review.json,report.md}; captures/S4-02 actual Memory/voice/end/cancel/touch/production field PNGs. Code/UI LOCAL; reviewed documentation-only sync. NEXT S4-03 capability stop/cancel/return lifecycle per existing roadmap; no S5/Pi/hardware task opened.
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S4-01 Capability Field PASS PC; S4-02 context next
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
