@@ -1,5 +1,22 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 PC interface PASS with Pi deferred by owner
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### PC interface completion - PASS AGENT VISUAL / RUNTIME; Pi DEFERRED_BY_OWNER - 2026-10-02
+
+- **OWNER PRIORITY:** PC interface first. S3-17 Pi/IP/aria.local/SSH/deploy is DEFERRED_PI, not PASS. S3-12 through S3-16 technical PASS retained; no rebuild/retest from start. S3-18 full owner/Pi gate remains unfulfilled; no S4/S5 or hardware opened.
+- **UI RESULT:** circular home with larger native avatar and reserved conversation/composer space; consistent ink background/type/spacing, local icons for mic/send/stop/quick actions; menu overlays without pushing content. Settings/memory/apps scroll inside the circle. DEV tools collapse into an explicit drawer, absent on production URL. Native canvas and user-facing capabilities no longer say placeholder/missing morph. Semantic hidden is enforced, fixing inherited return/action controls leaking into UI.
+- **VERIFY:** 51 targeted/regression tests (8 new UI truthfulness tests), 48 actual UI/WebGL cases across360/480/720 and1280x900. Accepted camera transform/FOV delta0; no JS exception/NaN/stuck mouth. Real unchanged Mai Chi utterance -> mouth -> end REST; actual chat UI -> playback -> stop -> REST. PC20s observation28.795FPS Balanced, NOT Pi evidence. Genuine before/after PNGs, all four state layouts and avatar controls; agent visual PASS, owner artistic acceptance still PENDING.
+- **PRESERVED:** SAME source models/S3-07/ARIA_AVATAR_MOUTH_CANDIDATE_v1.blend SHA1f1dcab26696fa6eef413e381454ebaf86f2aaffdbbae64fdb03356bf79eca71; native63,097,656byte LOD runtime SHAc6ac88d11de7c883558996766efed8ae5e80485ed576305c698f190a2e04065a and manifest unchanged. Original master/geometry/33bones/blink/gaze/head/mouth/viseme/camera lighting/voice backend unchanged. AvatarEngine change is accessible canvas label only. Mai Chi temporary RMS-only/Piper fallback retained; ZeroWeight experimental unchanged.
+- **EVIDENCE/SCOPE:** SPATIAL_OS_WORK/reports/UI-PC/{checkpoint.json,webgl.json,interaction.json,visual_review.json,preservation.json,targeted_regression.log,report.md}; captures/UI-PC real PNGs. Code/UI/assets stay LOCAL; reviewed documentation-only sync. Existing8765 launcher had no TTS config; user tab now uses unchanged existing Mai Chi PC server http://127.0.0.1:8790/ (no services/hardware started), native primary, DEV off. Micro/STT unavailable is shown honestly; no STT/cloud/camera capability claim.
+- **FIXED FAILURES:** menu route attribute initially collided with navigation selector, corrected; test fixtures isolated from live SSE polling (production unchanged); five old circular tests used retired property names, corrected to current public API without geometry change. Full project suite not run. NEXT retain this PC UI checkpoint for visual feedback; complete remaining PC UX issues if observed before expanding phase scope. Pi stays deferred until owner changes that decision; latest quota52% remaining.
+
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S3-17 Pi access blocked; S3-12 through S3-16 PC PASS retained
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
