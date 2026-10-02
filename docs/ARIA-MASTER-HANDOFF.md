@@ -1,5 +1,19 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S4-06 TECHNICAL PASS PC; VISUAL EVIDENCE READY; STOP owner review
+
+### S4-06 Hardware Aura - TECHNICAL PASS PC - 2026-10-02
+
+- **OWNER DECISION/SCOPE:** S4-05 TECHNICAL_PASS_PC / VISUAL_PASS_CONDITIONAL accepted; freeze accepted Home/Capability Field, POLISH_LATER only. S4-06 only; STOP for owner visual review, NO S4-07. Pi DEFERRED_PI.
+- **IMPLEMENTATION:** existing AppStore app.health drives seven bounded SVG arcs POWER/AUDIO/STT/CAMERA/ESP/NETWORK/AI; exact seven aria_state.py health states, unknown/missing/disconnected safe. SYSTEM_AURA semantic layer between CONTEXT/FOREGROUND; context recedes normal arcs, fault remains visible. Hover/tap/keyboard micro info,4200ms auto-dismiss, no permanent text. Real voltage only existing non-mock matching fresh backend power.latest source/schema; absent telemetry no number. STARTING pulse two700ms cycles only on state change; LOW_POWER/reduced motion static/cancel active pulse.
+- **VERIFY:**85 targeted tests(17 new+68 retained),3 JS syntax checks;26 aggregate browser cases(16 production+8 edges+2 real MaiChi voice).480x480/720x720/current1536x1039,mouse/touch,all five context ports,30 health cycles DOM349->349/listeners184->184/retained nodes962->962 after GC;heap7020572->7027744 bytes.10 factory destroy/re-init cycles clean. Camera0,avatar reload0,uncaught0,finite morphs,same native canvas/single loop. No new poll/render loop/canvas/WebGL.
+- **PRESERVED/LIMITS:**40 protected asset/avatar/voice hashes and28 backend hashes unchanged;36 existing UI sources unchanged; accepted46965-byte S4-05 CSS prefix exact. Three existing UI files(app.js/style.css/spatialLayers.js)+new hardwareAura.js+one test changed; code/assets LOCAL. Native primary,ZeroWeight experimental,MaiChi temporary RMS/Piper fallback retained. Genuine MaiChi playback across five contexts -> end REST;actual Media stop -> cancel REST. Full suite/live STT/camera/physical telemetry/Piper playback/Pi FPS not claimed. One favicon404 console resource error disclosed,0 JS exceptions.
+- **EVIDENCE:** D:/UserData/ARIA/SPATIAL_OS_WORK/reports/S4-06/{report.md,checkpoint.json,webgl.json,edges.json,voice.json,preservation.json,scope-audit.json,visual-evidence.json};captures/S4-06/review-sheet-720.png. Seven labelled frontend health fixtures on genuine production app/native GLB plus one actual PC health image; no backend health/telemetry writes. Full720 originals, no crop/filter/color changes.
+- **STATUS/NEXT:** TECHNICAL_PASS_PC / VISUAL_EVIDENCE_READY / PENDING_OWNER_REVIEW. STOP here; NO S4-07 or Pi. Review Hardware Aura sheet; small S4-05 polish deferred. Documentation-only reviewed synchronization; preserve dirty tree.
+
+## Earlier checkpoints - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S4-05 TECHNICAL PASS PC; VISUAL EVIDENCE READY; STOP owner review
 
 ### S4-05 Spatial Depth & Visual Language - TECHNICAL PASS PC - 2026-10-02
