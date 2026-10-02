@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S4-03 Context Lifecycle PASS PC; S4-04 next
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S4-03 Context Surface Lifecycle - TECHNICAL PASS PC - 2026-10-02
+
+- **RESULT:** spatialSurfaces.js now owns one foreground context through CLOSED/ENTERING/ACTIVE/EXITING/CLOSED, latest-request replacement, canonical Close/Escape/Browser Back and explicit owner/dismiss/restore policies. Listening reduces prominence without deleting draft; no SUSPENDED state required. Finite220ms enter/180ms exit; LOW_POWER120/100ms; reduced motion immediate. Semantic CONTEXT layer sits between retained avatar CENTER alias and foreground/alert layers; no redesign or new renderer.
+- **CLEANUP:** closed host body empty; generated Memory rows/listeners released, transition timer/animation/session scope0. Original lightweight form controls/handlers are parked as bounded reusable view templates to preserve drafts; no newly hidden heavy presentation retained or per-open listener added. App-lifetime listeners are abortable on destroy; trace is capped at96 metadata entries.
+- **VERIFY:** 62 targeted/regression tests; 71 browser cases PASS, including30 actual-click open/API replace/close cycles,10 rapid sequences, Browser Back, LISTENING/IDLE draft fixture, touch,480/720/current2138x1033, real unchanged Mai Chi WAV speaking/context replace/end/cancel REST.0 JS exceptions/NaN;camera delta0;native reload0 and same canvas/render loops. DOM/listener counters {'documents': 1, 'nodes': 938, 'jsEventListeners': 137} -> {'documents': 1, 'nodes': 938, 'jsEventListeners': 137}; live nodes 338 -> 338; heap delta308648bytes after controlled GC, no linear growth in samples.
+- **FIXES/LIMITS:** delayed backend open could reopen during EXITING; UI close intent now begins at EXITING, serial navigation waits for request acknowledgement plus matching state. Real400ms delayed-response proof PASS. Test-only standby/reload reference errors corrected; retained failure evidence.40 forbidden hashes exact; assets/avatar/voice/backend/hardware untouched. Native primary, experimental ZeroWeight, temporary Mai Chi RMS/Piper retained. Owner visual PENDING; Pi DEFERRED_PI; full suite not run, no mic/STT or phoneme timing claim.
+- **EVIDENCE/NEXT:** reports/S4-03/{report.md,checkpoint.json,webgl.json,edges.json,lifecycle_trace.json,preservation.json}; captures/S4-03 real context/listening fixture/voice/controls/touch PNGs. Code/assets LOCAL; documentation-only sync. NEXT automatically S4-04 port remaining four capabilities to this same context manager. No Hardware Aura.
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S4-02 Memory context PASS PC; field retained
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
