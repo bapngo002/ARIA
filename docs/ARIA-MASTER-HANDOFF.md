@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S4-05 TECHNICAL PASS PC; VISUAL EVIDENCE READY; STOP owner review
+
+### S4-05 Spatial Depth & Visual Language - TECHNICAL PASS PC - 2026-10-02
+
+- **OWNER REVIEW/SCOPE:** IDLE retained as accepted baseline; earlier HOME/CHAT visual FAIL and field-depth FAIL prompted this bounded UI change. S4-01–04 technical PASS retained. No backend/avatar/voice/model/hardware feature opened.
+- **RESULT:** latest user/ARIA current-turn strips replace permanent full-history panel; inactive turn DOM removed after20s attention. Explicit history uses same single-owner context lifecycle. Mic command dock tap/type expansion, successful-send collapse, unsent draft retention, max2 transient suggestions. Five asymmetric capability objects have distinct CSS Z-depth/scale/opacity, local material/rims and focus advancement; native camera unchanged. Two static background layers, consistent large avatar, healthy provider text hidden on main.
+- **VERIFY:**68 targeted/regression tests+4 syntax checks;34 aggregate browser cases(11 production+23 edge),30-cycle all-port cleanup DOM318->318;480/720/current1536x1039/mouse/touch. Camera0,avatar reload0,uncaught0,finite real blink/gaze/mouth/seven visemes,single native loop. New UI transform/opacity;observed targets max7;LOW_POWER perspective off. Dispatch and voice-state fixtures labelled,not new real audio proof. Native short meter quiet28.44FPS/field~29FPS under retained30FPS cap,NOT Pi/60FPS benchmark.
+- **PRESERVED/LIMITS:**40 protected hashes+40 other UI-source hashes unchanged. Six UI source files and one targeted test changed; code/assets LOCAL. Native primary,ZeroWeight experimental,MaiChi temporary RMS/Piper fallback retained. Full suite/live audio/STT/send/camera/media not rerun;favicon404 disclosed separately. Pi DEFERRED_PI. No source/master/runtime change or copy.
+- **EVIDENCE/STATUS:**D:/UserData/ARIA/SPATIAL_OS_WORK/reports/S4-05/{report.md,checkpoint.json,webgl.json,edges.json,lifecycle_trace.json,preservation.json,visual-evidence.json};captures/S4-05 eight genuine production720 PNGs+review-sheet-720.png,viewport captures. TECHNICAL_PASS_PC;VISUAL_EVIDENCE_READY;PENDING_OWNER_REVIEW. Agent inspection recorded;NO VISUAL_PASS.
+- **NEXT:**STOP for owner review of review-sheet-720.png. NO S4-06/Hardware Aura/Memory Constellation/Pi. Documentation-only reviewed sync; preserve dirty working tree.
+
+
+## Earlier checkpoints - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 VISUAL EVIDENCE READY; STOP owner review
 
 ### S4-03/S4-04 Production Visual Evidence Gate - 2026-10-02
