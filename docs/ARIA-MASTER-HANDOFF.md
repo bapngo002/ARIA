@@ -1,5 +1,20 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S5 HEALTH MANAGER TECHNICAL PASS PC; STOP owner decision
+
+- **Current: S5 HEALTH MANAGER = TECHNICAL_PASS_PC; STOP owner next decision.** HealthManager is the single evidence/normalization/publication owner for APP/AVATAR/VOICE/STT/TTS/AUDIO/CAMERA/ESP/POWER/NETWORK/AI. Seven existing states unchanged; HOLD not implemented.
+- **PC proof:** 147 backend + 4 real loopback HTTP health/security + 85 frontend tests PASS; 28 browser cases PASS, including real MaiChi playback/end/cancel -> REST and normalized TTS/AUDIO/VOICE health. Camera delta=0, avatar reload=0, uncaught exceptions=0. No new render loop/canvas/WebGL/health worker/timer.
+- **Stress:** 3,000 transition cycles -> 9,000 health events; 10,000 unchanged reports -> 0 events. Retained backend memory +884 bytes, listeners/thread count unchanged, bounded ring256; UI30 cycles DOM347->347/listeners184->184/post-GC nodes958->958.
+- **Health policy:** monotonic evidence leases; stale -> UNKNOWN/stale=true; disabled != offline != fault. Nonfatal first failure from HEALTHY grace3s, second DEGRADED, third FAULT; actual success recovers. APP/fatal evidence immediate; explicit POWER danger latched until success. Optional camera/ESP do not fault overall app. HTTP liveness cannot clear composition fault; browser cannot own APP health; fixture reports rejected.
+- **Current evidence limits:** APP TTL5s, AVATAR120s, POWER5s, configured ESP1.5s, NETWORK60s, others300s. Avatar readiness has a conservative lease without a new heartbeat. Real physical power/camera/ESP, STT capture, Pi CPU/FPS and service benchmark remain unverified/DEFERRED_PI; not production verified.
+- **S4-06 owner decision:** TECHNICAL_PASS_PC / VISUAL_PASS_CONDITIONAL. Hardware Aura visual locked, CAMERA OFFLINE visibility=POLISH_LATER. Production Aura consumes normalized health; labelled health fixtures are frontend-only tests, not telemetry.
+- **Evidence/checkpoint:** D:/UserData/ARIA/SPATIAL_OS_WORK/reports/S5-HEALTH-MANAGER/{report.md,checkpoint.json}; captures/S5-HEALTH-MANAGER contains genuine production-health and MaiChi proof plus labelled test fixtures. Source/capture SHA-256 and exact changed-file scope recorded. UI40 and other protected35 hashes unchanged.
+- **Preserved:** native primary/default; ZeroWeight experimental; temporary MaiChi RMS voice/Piper retained. No .blend/GLB/master copies or changes, no PCB/ESP transport/firmware/motor action. S5 health code/assets remain LOCAL; only this reviewed checkpoint synchronized. No reset/revert/broad staging.
+- **NEXT STEP: STOP. Owner decides next stage; no S6/S7, no Memory Constellation. Pi DEFERRED_PI.**
+
+## Earlier checkpoints - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S4-06 TECHNICAL PASS PC; VISUAL EVIDENCE READY; STOP owner review
 
 ### S4-06 Hardware Aura - TECHNICAL PASS PC - 2026-10-02
