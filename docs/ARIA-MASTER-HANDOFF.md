@@ -1,5 +1,18 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 VISUAL EVIDENCE READY; STOP owner review
+
+### S4-03/S4-04 Production Visual Evidence Gate - 2026-10-02
+
+- **STATUS:** S4-03 = TECHNICAL_PASS_PC; S4-04 = TECHNICAL_PASS_PC; VISUAL_APPROVAL_PENDING. VISUAL_EVIDENCE_READY; VISUAL_GATE = PENDING_OWNER_REVIEW. No owner visual PASS claimed.
+- **FIX/VERIFY:** Capture helper's serialized DOM lacked getAnimations despite correct element lookup; genuine Chromium154 supports it. Evidence-only feature detection, bounded transition fallback and full Home fade wait added; production UI unchanged.24 real production PNGs at720x720/480x480/current1536x1039, eight requested states each; no DEV overlay/mock/test page.60 lifecycle events: max active1,DOM323->323,empty closed host,avatar reload0/camera delta0/uncaught0/lifecycle errors0,same native canvas/loop. One initial favicon.ico404 disclosed separately.
+- **PRESERVED/EVIDENCE:**45 production source hashes unchanged;40 protected hashes match prior checkpoint. Native primary/Mai Chi temporary/Piper fallback retained. Existing technical suites not rerun. D:/UserData/ARIA/SPATIAL_OS_WORK/reports/S4-04/visual-gate.md, visual-capture.json, visual-lifecycle-trace.json; captures/S4-04/visual-gate/{720x720,480x480,current_1536x1039}/01_home_idle.png through08_return_home.png.
+- **NEXT:** STOP for owner screenshot review. S4-05/Hardware Aura/new redesign unopened; Pi DEFERRED_PI. Only this reviewed handoff delta published; code/assets remain LOCAL.
+
+
+## Earlier checkpoints - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S4-04 all five context ports PASS PC; owner visual pending
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
