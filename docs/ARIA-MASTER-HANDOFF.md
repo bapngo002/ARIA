@@ -1,5 +1,21 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S4-01 Capability Field PASS PC; S4-02 context next
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S4-01 Capability Field - PASS PC - 2026-10-02
+
+- **OWNER SCOPE OVERRIDE:** owner explicitly opened S4-01 PC UI despite deferred S3-17/Pi and pending owner visual gates. Historical no-S4 notes remain history; no Pi/SSH/deploy or hardware task opened.
+- **RESULT:** five fixed Messages/Camera/Memory/Media/Settings nodes on an avatar-centered arc; muted teal/violet/gold/coral/ice-blue, restrained perspective/focus depth. Four tabs and app grid removed. Existing forms/actions open through spatialSurfaces while native canvas stays mounted; no page navigation or second renderer. Closed/inert cleanup, Escape/outside/keyboard/touch, LOW_POWER and reduced-motion supported.
+- **VERIFY:** 51 targeted/regression tests, 104 UI/WebGL plus9 edge cases PASS;30 open/close cycles,480/720/current1368x1027 and360x740, all five selections, keyboard/touch, delayed backend open/close, reload and retained unsent draft.0 JS exceptions/NaN; accepted camera delta0; same avatar/canvas/load count/render loop. Real unchanged Mai Chi playback continues while field opens/closes and ends REST; real retained gaze/mouth/seven visemes verified.
+- **PERFORMANCE/PRESERVED:** PC UI requestAnimationFrame cadence143.997Hz over5s,p95 interval7.1ms; this is UI cadence, NOT native-avatar FPS or Pi measurement. Existing Balanced native cap remains30FPS.40 protected hashes exact: source/master/runtime/manifest/avatar controllers/FaceRig/voice/backend untouched. Native default, experimental ZeroWeight, temporary Mai Chi RMS voice and Piper fallback retained. No source/candidate copy.
+- **EVIDENCE/NEXT:** reports/S4-01/{checkpoint.json,webgl.json,edges.json,preservation.json,visual_review.json,report.md}; captures/S4-01 genuine before/after/focus/surface/touch/voice PNGs. Agent visual PASS; owner visual and Pi pending; unavailable STT/camera/media stay truthful. Code/UI LOCAL, reviewed documentation-only sync. Next automatically S4-02: connect Memory to a dedicated context surface using the accepted field; no unrelated feature.
+
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 PC interface PASS with Pi deferred by owner
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
