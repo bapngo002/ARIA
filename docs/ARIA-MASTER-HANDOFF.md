@@ -1,5 +1,19 @@
 # ARIA — MASTER HANDOFF
 
+## ACTIVE CHECKPOINT - 2026-10-02 S4-04 all five context ports PASS PC; owner visual pending
+
+Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
+
+### S4-04 Remaining Capability Context Ports - TECHNICAL PASS PC - 2026-10-02
+
+- **RESULT:** Messages/Camera/Media/Settings now register CONTEXT surfaces through the SAME S4-03 manager, alongside Memory. One host/owner; no new popup, renderer or page navigation. Draft restore for Memory/Messages, app-state for Camera/Media and preferences for Settings. Existing handler/backend mapping retained; unavailable camera stays disabled. No redesign; only capabilityField registry/policy/comment changed in this stage.
+- **VERIFY:** 62 targeted/regression tests and58 browser cases PASS: all five at480/720/current2138x1033/360x740; all20 ordered replacements, canonical Escape/Close, draft restore, all-port LISTENING prominence fixtures, production touch/captures. Existing Messages/Camera/Media/Settings handler dispatch isolated locally, without send/capture/external launch/config mutation. Real unchanged Mai Chi playback while replacing all five contexts -> end REST; actual Media surface stop -> cancel REST.0 exceptions/NaN,camera delta0,native reload0 during surface operations; same canvas/render loop.
+- **PRESERVED/LIMITS:**40 forbidden hashes exact;8 other S4-03 UI/core hashes unchanged, including lifecycle manager/CSS/apps. S4-03 30-cycle stress/no DOM-listener growth retained;20 new cross-capability replacements cleanup PASS. Native primary, experimental ZeroWeight, temporary Mai Chi RMS-only/Piper fallback, source/master/GLB/backend/hardware unchanged; no source/candidate copy. Owner visual PENDING, Pi DEFERRED_PI; full project suite/live camera/STT/send/media playback not claimed.
+- **EVIDENCE/NEXT:** reports/S4-04/{report.md,checkpoint.json,webgl.json,voice.json,lifecycle_trace.json,preservation.json,visual_review.json}; captures/S4-04 all ports/viewport/production-touch/actual voice PNGs. Code/UI LOCAL; reviewed documentation-only sync. Core context lifecycle and five ports technically complete on PC; retain for owner final visual review. No Hardware Aura or Pi task opened.
+
+## Earlier checkpoint records - retained as history
+
+
 ## ACTIVE CHECKPOINT - 2026-10-02 S4-03 Context Lifecycle PASS PC; S4-04 next
 
 Native primary; Mai Chi temporary RMS voice unchanged; no hardware. Code/assets LOCAL; documentation only.
